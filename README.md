@@ -67,5 +67,5 @@ dependencies: [
 
 ## Requirements
 
-* iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 10.15+
+* iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 11+
 * Xcode 11+
