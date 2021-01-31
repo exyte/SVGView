@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%" 
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2007 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" 
+    reviewer="[reviewer]" owner="ED" desc="Test handler element" status="created" 
+    approved="no"
+    version="$Revision: 1.1 $" testname="$RCSfile: script-handler-202-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This test checks that a handler element executes its content as if it was a function.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: script-handler-202-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    
+	<script><![CDATA[
+		function fail(num)
+		{
+			document.getElementById("r" + num).setAttributeNS(null, "fill", "red");
+			document.getElementById("t" + num).textContent = "Failed";
+		}
+		
+		function pass(num)
+		{
+			document.getElementById("r" + num).setAttributeNS(null, "fill", "green");
+			document.getElementById("t" + num).textContent = "Passed";
+		}
+        
+    function onclick3(evt)
+    {
+      try {
+        setAttributeNS(null, 'fill', 'green');
+        if(document.getElementById('r3').getAttributeNS(null, 'fill') != 'green')
+          fail(3);
+        else
+          pass(3);
+      }
+      catch(e)
+      {
+        fail(3);
+      }
+    }
+    
+    function onclick4(evt)
+    {
+      try {
+        if (arguments.length == 1
+            && typeof arguments.callee == 'function') {
+          pass(4);
+        } else {
+          fail(4);
+        }
+      }
+      catch(e)
+      {
+        fail(4);
+      }
+    }
+	]]></script>
+	
+  <xe:listener observer="svg-root" event="load" handler="#init"/>
+  <handler xml:id="init">
+    document.getElementById("r3").addEventListener("click", onclick3, false);
+    document.getElementById("r4").addEventListener("click", onclick4, false);
+  </handler>
+  
+	<g transform="translate(120 60)">
+		
+		<g id="g1" transform="translate(0 0)">
+			<rect xml:id="r1" width="100" height="100" fill="blue">
+			  <handler xe:event='click'>
+          try {
+            setAttributeNS(null, 'fill', 'green');
+            if(document.getElementById('r1').getAttributeNS(null, 'fill') != 'green')
+              fail(1);
+            else
+              pass(1);
+          }
+          catch(e)
+          {
+            fail(1);
+          }
+			  </handler>
+			</rect>
+      <text xml:id="t1" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>
+		</g>
+		
+    <g id="g2" transform="translate(110 0)">
+			<rect xml:id="r2" width="100" height="100" fill="blue">
+        <handler xe:event='click'><![CDATA[
+          try {
+            if (arguments.length == 1
+                && typeof arguments.callee == 'function') {
+              pass(2);
+            } else {
+              fail(2);
+            }
+          }
+          catch(e)
+          {
+            fail(2);
+          }
+        ]]></handler>
+      </rect>
+      <text xml:id="t2" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>
+    </g>
+    
+    <g id="g3" transform="translate(0 110)">
+      <rect xml:id="r3" width="100" height="100" fill="blue"/>
+      <text xml:id="t3" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>			
+    </g>
+    
+    <g id="g4" transform="translate(110 110)">
+      <rect xml:id="r4" width="100" height="100" fill="blue"/>
+      <text xml:id="t4" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>			
+    </g>
+    
+	</g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+  <text xml:id="revision" x="10" y="340" stroke="none" 
+    fill="black">$Revision: 1.1 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

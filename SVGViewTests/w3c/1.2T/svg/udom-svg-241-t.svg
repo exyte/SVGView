@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="BitFlash" desc="Test " status="created"
+    approved="no"
+    version="$Revision: 1.1 $" testname="$RCSfile: udom-svg-241-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests moveFocus and getCurrentFocusedObject, moving the focus and then checking that the correct element has focus. Successes are shown in green,
+        failures in red. If all subtests pass, the text in the blue box changes from "failed" to "passed".
+      </p>
+      <p>
+        A numeric keypad is shown. Focus starts on the "5" and is then moved programatically
+        to each of the other numbers, finally stopping at "7". Since this happens on the load event, there is no indication of the focus moving.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-241-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    
+  <handler type="text/ecmascript" ev:event="SVGLoad">
+    <![CDATA[
+
+    var svg_ns = "http://www.w3.org/2000/svg";
+    var xlink_ns = "http://www.w3.org/1999/xlink";
+    
+    var count=0;
+    var topsvg = document.documentElement;
+    var translate = topsvg.currentTranslate;
+    var startY = 60;
+    var fontSize = "8";
+    var rowHeight = 10;
+    var isPassed = true;
+
+    function drawString( text )
+    {
+      node_to_insert=document.createElementNS(svg_ns,"text");
+      node_to_insert.setAttributeNS(null,"font-size",fontSize);	
+      node_to_insert.setAttributeNS(null,"x","25");	
+      var yVal = startY + count++ * rowHeight;
+      node_to_insert.setAttributeNS(null, "y",  yVal.toString()  );
+      node_to_insert.textContent=text ;
+      if (isPassed)
+      {
+        node_to_insert.setAttributeNS(null, "fill", "#0C0");
+      }
+      else
+      {
+        node_to_insert.setAttributeNS(null, "fill", "#F00");
+      }      
+      document.getElementById( "test-body-content" ).appendChild(node_to_insert);     
+    }
+   
+    function getNavStr( nav )
+    {
+      var str = "UNDEFINED";
+      switch( nav )
+      {
+      case SVGSVGElement.NAV_DOWN:
+        str = "NAV_DOWN";
+        break;
+      case SVGSVGElement.NAV_UP:
+        str = "NAV_UP";
+        break;
+      case SVGSVGElement.NAV_LEFT:
+        str = "NAV_LEFT";
+        break;
+      case SVGSVGElement.NAV_RIGHT:
+        str = "NAV_RIGHT";
+        break;
+      case SVGSVGElement.NAV_DOWN_RIGHT:
+        str = "NAV_DOWN_RIGHT";
+        break;
+      case SVGSVGElement.NAV_UP_LEFT:
+        str = "NAV_UP_LEFT";
+        break;
+      case SVGSVGElement.NAV_DOWN_LEFT:
+        str = "NAV_DOWN_LEFT";
+        break;
+      case SVGSVGElement.NAV_UP_RIGHT:
+        str = "NAV_UP_RIGHT";
+        break;
+      }
+      return str;
+    }
+
+    function testIter( nav, expected )
+    {
+      this.nav = nav;
+      this.expected = expected;
+    }
+
+    var iterations = [
+        new testIter( SVGSVGElement.NAV_DOWN,        "t4" )
+      , new testIter( SVGSVGElement.NAV_UP,          "t7" )
+      , new testIter( SVGSVGElement.NAV_LEFT,        "t9" )
+      , new testIter( SVGSVGElement.NAV_RIGHT,       "t7" )
+      , new testIter( SVGSVGElement.NAV_DOWN_RIGHT,  "t5" )
+      , new testIter( SVGSVGElement.NAV_UP_LEFT,     "t7" )
+      , new testIter( SVGSVGElement.NAV_DOWN_LEFT,   "t6" )
+      , new testIter( SVGSVGElement.NAV_UP_RIGHT,    "t7" )
+    ];
+    var itercount = 8;
+
+    function doIter( iterpos )
+    {
+      topsvg.moveFocus( iterations[iterpos].nav );
+      drawString( "moveFocus: " + getNavStr( iterations[iterpos].nav ) + "        currentFocus: " + topsvg.getCurrentFocusedObject().id );
+      if ( topsvg.getCurrentFocusedObject().id == iterations[iterpos].expected )
+      {
+      }
+      else
+      {
+        isPassed = false;
+        drawString( "expected " + iterations[iterpos].expected );
+      }
+    }
+
+    drawString( "setFocus: t7" );
+    topsvg.setFocus( document.getElementById( "t7" ) );
+
+    try
+    {
+      for(iterpos = 0; iterpos < itercount; ++iterpos)
+      {
+        doIter( iterpos );
+      }
+    }
+    catch(e)
+    {
+      isPassed = false;
+      drawString( "error: unexpected exception!");
+    }
+
+    if ( isPassed )
+    {
+      var status = document.getElementById("TestStatus");
+      status.setAttribute("fill", "#0C0");
+      status.setTrait("#text", "passed");
+    }
+    ]]>
+  </handler>
+  
+      
+    <text  x="240" y="40" text-anchor="middle" >SVGSVGElement.moveFocus() - basic test</text>
+  
+    <g text-anchor="middle" font-size="16">
+      <g transform="translate(250,-100) scale(3.5,3)">
+        <a id="t7" xlink:href="interact-focus-105-t.svg" nav-up="#t1" nav-down="#t4" nav-right="#t8" nav-left="#t9" nav-up-right="#t2" nav-down-right="#t5" nav-up-left="#t3" nav-down-left="#t6" nav-next="#t8" nav-prev="#t6">
+          <text x="10" y="60" text-anchor="middle">7
+            <set attributeName="fill" to="green" begin="t7.focusin"/>
+            <set attributeName="fill" to="black" begin="t7.focusout"/>
+          </text>
+        </a>
+        <a id="t8" xlink:href="interact-focus-105-t.svg" nav-up="#t2" nav-down="#t5" nav-right="#t9" nav-left="#t7" nav-up-right="#t3" nav-down-right="#t6" nav-up-left="#t1" nav-down-left="#t4" nav-next="#t9" nav-prev="#t7">
+          <text x="30" y="60" text-anchor="middle">8
+            <set attributeName="fill" to="green" begin="t8.focusin"/>
+            <set attributeName="fill" to="black" begin="t8.focusout"/>
+          </text>
+        </a>
+        <a id="t9" xlink:href="interact-focus-105-t.svg" nav-up="#t3" nav-down="#t6" nav-right="#t7" nav-left="#t8" nav-up-right="#t1" nav-down-right="#t4" nav-up-left="#t2" nav-down-left="#t5" nav-next="#t1" nav-prev="#t8">
+          <text x="50" y="60" text-anchor="middle">9
+            <set attributeName="fill" to="green" begin="t9.focusin"/>
+            <set attributeName="fill" to="black" begin="t9.focusout"/>
+          </text>
+        </a>
+        <a id="t4" xlink:href="interact-focus-105-t.svg" nav-up="#t7" nav-down="#t1" nav-right="#t5" nav-left="#t6" nav-up-right="#t8" nav-down-right="#t2" nav-up-left="#t9" nav-down-left="#t3" nav-next="#t5" nav-prev="#t3">
+          <text x="10" y="80" text-anchor="middle">4
+            <set attributeName="fill" to="green" begin="t4.focusin"/>
+            <set attributeName="fill" to="black" begin="t4.focusout"/>
+          </text>
+        </a>
+        <a id="t5" xlink:href="interact-focus-105-t.svg" nav-up="#t8" nav-down="#t2" nav-right="#t6" nav-left="#t4" nav-up-right="#t9" nav-down-right="#t3" nav-up-left="#t7" nav-down-left="#t1" nav-next="#t6" nav-prev="#t4">
+          <text x="30" y="80" text-anchor="middle">5
+            <set attributeName="fill" to="green" begin="t5.focusin"/>
+            <set attributeName="fill" to="black" begin="t5.focusout"/>
+          </text>
+        </a>
+        <a id="t6" xlink:href="interact-focus-105-t.svg" nav-up="#t9" nav-down="#t3" nav-right="#t4" nav-left="#t5" nav-up-right="#t7" nav-down-right="#t1" nav-up-left="#t8" nav-down-left="#t2" nav-next="#t7" nav-prev="#t5">
+          <text x="50" y="80" text-anchor="middle">6
+            <set attributeName="fill" to="green" begin="t6.focusin"/>
+            <set attributeName="fill" to="black" begin="t6.focusout"/>
+          </text>
+        </a>
+        <a id="t1" xlink:href="interact-focus-105-t.svg" nav-up="#t4" nav-down="#t7" nav-right="#t2" nav-left="#t3" nav-up-right="#t5" nav-down-right="#t8" nav-up-left="#t6" nav-down-left="#t9" nav-next="#t2" nav-prev="#t9">
+          <text x="10" y="100" text-anchor="middle">1
+            <set attributeName="fill" to="green" begin="t1.focusin"/>
+            <set attributeName="fill" to="black" begin="t1.focusout"/>
+          </text>
+        </a>
+        <a id="t2" xlink:href="interact-focus-105-t.svg" nav-up="#t5" nav-down="#t8" nav-right="#t3" nav-left="#t1" nav-up-right="#t6" nav-down-right="#t9" nav-up-left="#t4" nav-down-left="#t7" nav-next="#t3" nav-prev="#t1">
+          <text x="30" y="100" text-anchor="middle">2
+            <set attributeName="fill" to="green" begin="t2.focusin"/>
+            <set attributeName="fill" to="black" begin="t2.focusout"/>
+          </text>
+        </a>
+        <a id="t3" xlink:href="interact-focus-105-t.svg" nav-up="#t6" nav-down="#t9" nav-right="#t1" nav-left="#t2" nav-up-right="#t4" nav-down-right="#t7" nav-up-left="#t5" nav-down-left="#t8" nav-next="#t4" nav-prev="#t2">
+          <text x="50" y="100" text-anchor="middle">3
+            <set attributeName="fill" to="green" begin="t3.focusin"/>
+            <set attributeName="fill" to="black" begin="t3.focusout"/>
+          </text>
+        </a>
+      </g>
+    </g>
+    <rect x="25" y="160" width="70" height="25" stroke="blue" fill="none"/>
+    <g fill="black">
+      <text xml:id="TestStatus" x="60" y="180" text-anchor="middle">failed</text>
+    </g>    
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.1 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+    text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+    </g>
+</svg>

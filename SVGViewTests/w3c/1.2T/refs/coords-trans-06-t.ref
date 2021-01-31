@@ -1,0 +1,77 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 0, 30],
+					contents: [
+						SVGGroup {
+							id: "nested-transforms-test",
+							contents: [
+								SVGGroup {
+									id: "nested-transforms",
+									contents: [
+										SVGGroup {
+											transform: [1, 0, 0, 1, -102, -450],
+											contents: [
+												SVGGroup {
+													transform: [7.5, 0, 0, 5, 0, 0],
+													contents: [
+														SVGGroup {
+															transform: [1, 0, 0, 1, 16.666667, 105],
+															contents: [
+																SVGRect { width: 20, height: 1, fill: "blue" },
+																SVGRect { width: 0.67, height: 20, fill: "red" }
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								SVGGroup {
+									id: "nested-transforms-test-markers",
+									transform: [2.5, 0, 0, 2.5, -600, -450],
+									contents: [
+										SVGText {
+											text: "scale(25, 95) then translate(2, 2)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 248, 200]
+										},
+										SVGRect { x: 248, y: 208, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 308, y: 208, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 248, y: 248, width: 5, height: 5, fill: "red" }
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.10 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

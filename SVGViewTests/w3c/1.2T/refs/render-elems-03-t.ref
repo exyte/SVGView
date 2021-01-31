@@ -1,0 +1,60 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 30, 80],
+					contents: [
+						SVGGroup {
+							contents: [
+								SVGPath {
+									path: "M60,0 l60,0 l60,60 l0,60 l-60,60 l-60,0 l-60,-60 l0,-60 z",
+									fill: "yellow",
+									stroke: { fill: "red", width: 8 }
+								}
+							]
+						},
+						SVGGroup {
+							transform: [1, 0, 0, 1, 200, 0],
+							contents: [
+								SVGPath {
+									path: "M60,0 l60,0 l60,60 l0,60 l-60,60 l-60,0 l-60,-60 l0,-60 z",
+									fill: "blue",
+									stroke: { fill: "black", width: 8 }
+								}
+							]
+						},
+						SVGText {
+							text: "Shape fill and stroke",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 28 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 70, -30]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.8 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

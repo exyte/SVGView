@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 0.48 0.36" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="DOH" desc="rendering and animation precision" status="created"
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: types-data-203-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        animate for path data, animateTransform translate and animateMotion
+        are used to test accurate rendering and timing.
+      </p>
+      <p>
+        The main indication for a failed test is the appearance of red, motion of
+        the triangles or a distortion of the stroke of the triangle.
+      </p>
+      <p>
+        SVG tiny requires a rendering accuracy within one device pixel and
+        a number range between -32767.9999 and +32767.9999 for the
+        data type number.
+        A blue stroked triangle with stroke-linejoin="round" is animated with a duration of
+        32767.9999ms using animate for path data, animateTransform and animateMotion
+        in such a way, that in the superposition of all three animations no visible change
+        gets visible.
+      </p>
+      <p>
+        Therefore the triangle does not move and covers always an
+        underlying red stroked triangle completely within an accuracy
+        below one device pixel.
+        If more than such a residual of red is visible, an error is occured.
+      </p>
+      <p>
+        The blue triangle is switched to gray if the test animation is finished.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: types-data-203-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <defs>
+      <!-- just in case that the changed viewBox is removed again by a script ... -->
+      <set xlink:href="#svg-root" attributeName="viewBox" to="0 0 0.48 0.36" />
+      <animateTransform xlink:href="#revision" attributeName="transform" type="scale" values="0.001" />
+      <animateTransform xlink:href="#test-frame" attributeName="transform" type="scale" values="0.001" />
+      <!-- remove/comment out the following  animateTransform, if the draft-watermark is removed -->
+      <animateTransform xlink:href="#draft-watermark" attributeName="transform" type="scale" values="0.001" />
+    </defs>
+
+    <rect x="0" y="0" width="0.48" height="0.36" fill="#fff" />
+
+    <g transform="translate(0.360,0.320) scale(10)" >
+
+      <path d="M-0.0002 -0.0002 v0.0004 h0.0004 Z"
+                  fill="none" stroke="#f00" stroke-width="0.0002" stroke-linejoin="round" />
+
+      <g transform="translate(-0.0002,-0.0002)">
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0"
+          begin="0s"
+          fill="freeze" />
+        <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="-2941.2998,2201"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <animateMotion
+            path="M0 0L2338.0804,-3021.1667"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <path d="M0.0007 0.0007 v0.0004 h0.0004 Z"
+                       fill="none" stroke="#00f" stroke-width="0.0002" stroke-linejoin="round">
+            <animate
+              attributeName="d"
+              from="M-0.0002 -0.0002 v0.0004 h0.0004 Z"
+              to="M603.2192 820.1665 v0.0004 h0.0004 Z"
+              dur="32767.9999ms"
+              fill="freeze" />
+            <set attributeName="stroke"
+              attributeType="XML"
+              begin="32767.9999ms"
+              to="#888" />
+          </path>
+
+        </g>
+      </g>
+
+    </g>
+    <!-- +++++++++++++++++++++++++++  -->
+    <g transform="translate(0.420,0.320) scale(1)" >
+
+      <path d="M-0.0033 -0.0033 v0.0066 h0.0066 Z"
+                   fill="none" stroke="#f00" stroke-width="0.0033" stroke-linejoin="round" />
+
+      <g transform="translate(-0.0033,-0.0033)">
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0"
+          begin="0s"
+          fill="freeze" />
+        <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="-29412.9981,22010.0002"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <animateMotion
+            path="M0 0L23380.8049,-30211.6673"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <path d="M0.0041 0.0041 v0.0066 h0.0066 Z"
+                       fill="none" stroke="#00f" stroke-width="0.0033" stroke-linejoin="round">
+            <animate
+              attributeName="d"
+              from="M-0.0033 -0.0033 v0.0066 h0.0066 Z"
+              to="M6032.1899 8201.6638 v0.0066 h0.0066 Z"
+              dur="32767.9999ms"
+              fill="freeze" />
+            <set attributeName="stroke"
+              attributeType="XML"
+              begin="32767.9999ms"
+              to="#888" />
+          </path>
+
+        </g>
+      </g>
+    </g>
+    <!-- +++++++++++++++++++++++++++  -->
+    <g transform="translate(0.13,0.20) scale(1)" >
+      <path d="M-0.1007 -0.1007 v0.2014 h0.2014 Z"
+                   fill="none" stroke="#f00" stroke-width="0.0207" stroke-linejoin="round" />
+
+      <g transform="translate(-0.1007,-0.1007)">
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0"
+          begin="0s"
+          fill="freeze" />
+        <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="-29412.9981,22010.0002"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <animateMotion
+            path="M0 0L23380.8049,-30211.6673"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <path d="M0.1113 0.1113 v0.2014 h0.2014 Z"
+                       fill="none" stroke="#00f" stroke-width="0.0207" stroke-linejoin="round">
+            <animate
+              attributeName="d"
+              from="M-0.1007 -0.1007 v0.2014 h0.2014 Z"
+              to="M6032.0925 8201.5664 v0.2014 h0.2014 Z"
+              dur="32767.9999ms"
+              fill="freeze" />
+            <set attributeName="stroke"
+              attributeType="XML"
+              begin="32767.9999ms"
+              to="#888" />
+          </path>
+
+        </g>
+      </g>
+    </g>
+    <!-- +++++++++++++++++++++++++++  -->
+    <g transform="translate(0.340,0.140) scale(0.04)" >
+
+      <path d="M-3.01 -3.01 h6.02 v6.02 Z"
+                   fill="none" stroke="#f00" stroke-width="0.41" stroke-linejoin="round" />
+
+      <g transform="translate(-3.01,-3.01)">
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0"
+          begin="0s"
+          fill="freeze" />
+        <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="-29412.995,22010.01"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <animateMotion
+            path="M0 0L23380.81,-30211.66"
+            dur="32767.9999ms"
+            fill="freeze" />
+          <path d="M3.32 3.32 h6.04 v6.04 Z"
+                       fill="none" stroke="#00f" stroke-width="0.41" stroke-linejoin="round">
+            <animate
+              attributeName="d"
+              from="M-3.01 -3.01 h6.02 v6.02 Z"
+              to="M6029.175 8198.64 h6.02 v6.02 Z"
+              dur="32767.9999ms"
+              fill="freeze" />
+            <set attributeName="stroke"
+              attributeType="XML"
+              begin="32767.9999ms"
+              to="#888" />
+          </path>
+
+        </g>
+      </g>
+
+
+    </g>
+    <g id="myText" xml:id="myText" font-size="12" stroke="none" transform="scale(0.001)">
+      <text x="10" y="30">basic data type</text>
+      <text x="25" y="45">number and animation</text>
+      <text x="40" y="60">rendering and accuracy</text>
+      <text x="60" y="80">red=wrong </text>
+      <text x="80" y="100">gray=animation finished </text>
+      <text x="100" y="120">motion=wrong </text>
+      <text x="120" y="140">shapes=triangles with</text>
+      <text x="135" y="155">rounded corners </text>
+    </g>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

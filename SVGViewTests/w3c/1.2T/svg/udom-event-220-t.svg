@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="CM" owner="DS" desc="Test the keyIdentifier attribute of keyboardEvent interface" status="created"
+    approved="no"
+    version="$Revision: 1.6 $" testname="$RCSfile: udom-event-220-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests the <tt>keyIdentifier</tt> attribute of the <b>keyboardEvent</b>
+        interface, using the <tt>keydown</tt> and <tt>keyup</tt> events.
+      </p>
+      <p>
+        To perform the test, the user must press a key. Once the key has been pressed,
+        the black rectangle should turn blue to indicate that the <tt>keydown</tt> 
+        event has fired, and that the <tt>keyIdentifier</tt> attribute is supported on 
+        that event. When the key is released, the black circle should turn blue to 
+        indicate that the <tt>keyup</tt> event has fired, and that the 
+        <tt>keyIdentifier</tt> attribute is supported on that event. In addition, the 
+        <tt>text</tt> element below the rectangle will show the <tt>keyIdentifier</tt>
+        value for the key that was pressed. If the  rectangle and the circle are both
+        blue, and the text indicates the correct keyIdentifier, the test has been passed.
+      </p>  
+      <p>        
+        If the rectangle or circle becomes red or stays black, the test failed because 
+        the <tt>keyIdentifier</tt> attribute had an invalid value.  If the rectangle
+        or circle remains black, the test failed because the <tt>keydown</tt> or 
+        <tt>keyup</tt> events are not supported.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-event-220-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>TextEvent interface test</text>
+    <text x='10' y='68' font-size='12'>Press any key, then release the key.  Both rectangles below should become blue</text>
+    <text x='10' y='81' font-size='12'>to indicate that the test has been passed.</text>
+
+    <rect xml:id='keydown-target' x='95' y='145' width='50' height='50'/>
+    <text x='120' y='222' font-size='12' text-anchor="middle">
+      keydown: [<tspan xml:id='keydown' fill='blue'/>]
+    </text>
+
+    <circle xml:id='keyup-target' cx='360' cy='170' r='25'/>
+    <text x='360' y='222' font-size='12' text-anchor="middle">
+      keyup: [<tspan xml:id='keyup' fill='blue'/>]
+    </text>
+
+    <script type='application/ecmascript'>
+      <![CDATA[
+      document.documentElement.addEventListener
+      (
+        'keydown',
+         function(e)
+         {
+            if (e.keyIdentifier != null && e.keyIdentifier != '')
+            {
+              document.getElementById('keydown-target').setAttributeNS(null, 'fill', 'blue');
+              document.getElementById('keydown').textContent = e.keyIdentifier;
+            }
+            else
+            {
+              document.getElementById('keydown-target').setAttributeNS(null, 'fill', 'red');
+            }
+          },
+          false
+      );
+
+      document.documentElement.addEventListener
+      (
+        'keyup',
+         function(e)
+         {
+            if (e.keyIdentifier != null && e.keyIdentifier != '')
+            {
+              document.getElementById('keyup-target').setAttributeNS(null, 'fill', 'blue');
+              document.getElementById('keyup').textContent = e.keyIdentifier;
+            }
+            else
+            {
+              document.getElementById('keyup-target').setAttributeNS(null, 'fill', 'red');
+            }
+          },
+          false
+      );
+      ]]>
+    </script>
+  </g>
+
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.6 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="DOH" desc="Advanced tests for combined to-animations." status="created"
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: animate-elem-224-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Advanced tests for combined to-animations.
+      </p>
+      <p>
+        The main indication for a failed test is the appearence of the red fill
+        of the test circles. The circles have to follow exactly the paths given
+        in gray.
+      </p>
+      <p>
+        First test on the left (starting at 0s):
+        A circle moves on a quadratic path using two to animations for cx and
+        one simple for cy. The animation for cy and the first to animation for
+        cx is repeated two times, the second to animation for cx just 1.5 times.
+        Note that the second to animation is frozen on the
+        half way. Because it has higher priority, the whole animation in cx
+        is frozen.
+      </p>
+      <p>
+        For the second cx animation it is noted accumulate="sum". Because to
+        animations start always with the underlying value and end with the
+        to value, there cannot be a visible cumulative effect (This is explicitely
+        noted in SMIL2.0/2.1).
+      </p>
+      <p>
+        First test on the right (starting at 16s):
+        A circle moves on a quadratic path using two to animations for cx and
+        one simple for cy. The animation for cy and the second to animation for
+        cx is repeated two times, the first to animation for cx just 1.5 times.
+        Note that the first to animation is frozen on the
+        half way. Because it has lower priority, the second cx animation survives
+        on a straight path.
+      </p>
+      <p>
+        For the cy animation it is noted accumulate="sum". Because to
+        animations start always with the underlying value and end with the
+        to value, there cannot be a visible cumulative effect (This is explicitely
+        noted in SMIL2.0/2.1).
+      </p>
+      <p>
+        The paths are given in gray for comparison, thin line for the first turn,
+        thick line for the second turn.
+        If the red center of a circle becomes visible, an error is
+        occured.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: animate-elem-224-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <defs>
+      <animate xlink:href="#c1"
+      attributeName="cx"
+      attributeType="XML"
+            to="2500"
+      dur="8s"
+      fill="freeze"
+      repeatCount="2" />
+      <animate xlink:href="#c1"
+        attributeName="cx"
+        attributeType="XML"
+              to="100"
+        dur="8s"
+        fill="freeze"
+        repeatCount="1.5"
+        additive="replace"
+        accumulate="sum" />
+      <animate xlink:href="#c1"
+        attributeName="cy"
+        attributeType="XML"
+              to="900"
+        dur="8s"
+        fill="freeze"
+        repeatCount="2" />
+
+
+
+      <animate xlink:href="#c2"
+        attributeName="cx"
+        attributeType="XML"
+              to="2500"
+        begin="16s"
+        dur="8s"
+        fill="freeze"
+        repeatCount="1.5" />
+      <animate xlink:href="#c2"
+        attributeName="cx"
+        attributeType="XML"
+              to="100"
+        begin="16s"
+        dur="8s"
+        fill="freeze"
+        repeatCount="2"
+        additive="sum" />
+      <animate xlink:href="#c2"
+        attributeName="cy"
+        attributeType="XML"
+              to="900"
+        begin="16s"
+        dur="8s"
+        fill="freeze"
+        repeatCount="2"
+        accumulate="sum" />
+    </defs>
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+
+
+
+    <g transform="scale(0.3)">
+      <title>first test, starting at 0s.</title>
+      <circle id="c1" xml:id="c1" cx="100" cy="100" r="40" fill="#f00"
+    stroke="#00f" stroke-width="40"/>
+
+      <path d="M 100 100 Q 700 300 700 500 v 400"
+      stroke-width="50" stroke="#666" stroke-linecap="round"
+      fill="none" />
+      <path d="M 100 100 Q 1300 500 100 900"
+      stroke-width="40" stroke="#aaa" stroke-linecap="round"
+      fill="none" />
+    </g>
+
+    <g transform="translate(220,0) scale(0.3)">
+      <title>second test, starting at 16s.</title>
+      <circle id="c2" xml:id="c2" cx="100" cy="100" r="40" fill="#f00"
+   stroke="#00f" stroke-width="40"/>
+      <path d="M 100 100 Q 700 300 700 500 L100 900"
+      stroke-width="50" stroke="#666" stroke-linecap="round"
+      fill="none" />
+      <path d="M 100 100 Q 1300 500 100 900"
+      stroke-width="40" stroke="#aaa" stroke-linecap="round"
+      fill="none" />
+    </g>
+
+    <g font-size="12" stroke="none" fill="#ccc">
+      <text x="10" y="300">combined to-animations:</text>
+      <text x="180" y="293">red = wrong</text>
+      <text x="280" y="293">no animation = wrong</text>
+      <text x="180" y="305">circle not centered below paths = wrong</text>
+    </g>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%" 
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" 
+    reviewer="ATE" owner="CM" desc="Test trait access for 'baseProfile'" status="reviewed" 
+    approved="no"
+    version="$Revision: 1.6 $" testname="$RCSfile: udom-svg-223-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests trait access methods on the <b>TraitAccess</b> interface
+        for the 'baseProfile' trait.  Each trait getter and setter method is called on
+        each applicable SVG Tiny 1.2 element.
+      </p>
+      <p>
+        The test is passed if the rendering matches the reference rendering.
+        The rectangle must be blue and there must be no text displayed below the rectangle.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-223-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>Trait access test: baseProfile</text>
+    <rect xml:id='ind' x='10' y='60' width='50' height='50' fill='red'/>
+    <text xml:id='d' x='10' y='180' font-size='9px'/>
+    <script type='application/ecmascript'><![CDATA[
+      SVGNS = 'http://www.w3.org/2000/svg';
+
+      function assertTrue(b, msg) {
+        if (!b) {
+          throw msg;
+        }
+      }
+
+      function assertException(f, code, msg) {
+        try {
+          f();
+        } catch (e) {
+          if (e.code == code) {
+            return;
+          }
+          throw 'Incorrect exception code: ' + msg;
+        }
+        throw 'No exception thrown: ' + msg;
+      }
+
+      function set(array) {
+        var o = { };
+        for (var i in array) {
+          o[array[i]] = true;
+        }
+        return o;
+      }
+
+      var svg = document.documentElement;
+
+      // Get all of the elements.
+      var ids = 'ind d'.split(' ');
+      for (var i in ids) {
+        this[ids[i]] = document.getElementById(ids[i]);
+      }
+
+      try {
+        var name='svg';
+        var e = document.createElementNS(SVGNS, name);
+
+        assertTrue(e.getTrait('baseProfile') == 'none', 'get lacuna value when missing using getTrait() on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'none', 'get lacuna value when missing using getTraitNS() on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'none', 'get lacuna value when missing using getPresentationTrait() on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'none', 'get lacuna value when missing using getPresentationTraitNS() on ' + name);
+
+        e.setAttributeNS(null, 'baseProfile', 'invalid');
+        assertTrue(e.getTrait('baseProfile') == 'none', 'get lacuna value when unsupported using getTrait() on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'none', 'get lacuna value when missing using getTraitNS() on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'none', 'get lacuna value when unsupported using getPresentationTrait() on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'none', 'get lacuna value when missing using getPresentationTraitNS() on ' + name);
+
+        e.setTrait('baseProfile', 'none');
+        assertTrue(e.getTrait('baseProfile') == 'none', 'get value "tiny" using getTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'none', 'get value "tiny" using getTraitNS(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'none', 'get value "tiny" using getPresentationTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'none', 'get value "tiny" using getPresentationTraitNS(), which was set with setTrait(), on ' + name);
+
+        e.setTrait('baseProfile', 'basic');
+        assertTrue(e.getTrait('baseProfile') == 'basic', 'get value "basic" using getTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'basic', 'get value "basic" using getTraitNS(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'basic', 'get value "basic" using getPresentationTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'basic', 'get value "basic" using getPresentationTraitNS(), which was set with setTrait(), on ' + name);
+
+        e.setTrait('baseProfile', 'full');
+        assertTrue(e.getTrait('baseProfile') == 'full', 'get value "full" using getTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'full', 'get value "full" using getTraitNS(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'full', 'get value "full" using getPresentationTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'full', 'get value "full" using getPresentationTraitNS(), which was set with setTrait(), on ' + name);
+
+        e.setTrait('baseProfile', 'none');
+        assertTrue(e.getTrait('baseProfile') == 'none', 'get value "none" using getTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'none', 'get value "none" using getTraitNS(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'none', 'get value "none" using getPresentationTrait(), which was set with setTrait(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'none', 'get value "none" using getPresentationTraitNS(), which was set with setTrait(), on ' + name);
+
+        e.setTraitNS(null, 'baseProfile', 'none');
+        assertTrue(e.getTrait('baseProfile') == 'none', 'get value "tiny" using getTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'none', 'get value "tiny" using getTraitNS(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'none', 'get value "tiny" using getPresentationTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'none', 'get value "tiny" using getPresentationTraitNS(), which was set with setTraitNS(), on ' + name);
+
+        e.setTraitNS(null, 'baseProfile', 'basic');
+        assertTrue(e.getTrait('baseProfile') == 'basic', 'get value "basic" using getTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'basic', 'get value "basic" using getTraitNS(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'basic', 'get value "basic" using getPresentationTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'basic', 'get value "basic" using getPresentationTraitNS(), which was set with setTraitNS(), on ' + name);
+
+        e.setTraitNS(null, 'baseProfile', 'full');
+        assertTrue(e.getTrait('baseProfile') == 'full', 'get value "full" using getTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'full', 'get value "full" using getTraitNS(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'full', 'get value "full" using getPresentationTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'full', 'get value "full" using getPresentationTraitNS(), which was set with setTraitNS(), on ' + name);
+
+        e.setTraitNS(null, 'baseProfile', 'none');
+        assertTrue(e.getTrait('baseProfile') == 'none', 'get value "none" using getTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getTraitNS(null, 'baseProfile') == 'none', 'get value "none" using getTraitNS(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTrait('baseProfile') == 'none', 'get value "none" using getPresentationTrait(), which was set with setTraitNS(), on ' + name);
+        assertTrue(e.getPresentationTraitNS(null, 'baseProfile') == 'none', 'get value "none" using getPresentationTraitNS(), which was set with setTraitNS(), on ' + name);
+
+        assertException(function() { e.setTrait('baseProfile', 'invalid') }, DOMException.NOT_SUPPORTED_ERR, 'set invalid value using setTrait(), on ' + name);
+        assertException(function() { e.setTraitNS(null, 'baseProfile', 'invalid') }, DOMException.NOT_SUPPORTED_ERR, 'set invalid value using setTraitNS(), on ' + name);
+
+        assertException(function() { e.getFloatTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getFloatTrait(), on ' + name);
+        assertException(function() { e.getFloatListTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getFloatListTrait(), on ' + name);
+        assertException(function() { e.getMatrixTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getMatrixTrait(), on ' + name);
+        assertException(function() { e.getRectTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getRectTrait(), on ' + name);
+        assertException(function() { e.getPathTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getPathTrait(), on ' + name);
+        assertException(function() { e.getRGBColorTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getRGBColorTrait(), on ' + name);
+
+        assertException(function() { e.getFloatPresentationTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getFloatPresentationTrait(), on ' + name);
+        assertException(function() { e.getFloatListPresentationTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getFloatListPresentationTrait(), on ' + name);
+        assertException(function() { e.getMatrixPresentationTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getMatrixPresentationTrait(), on ' + name);
+        assertException(function() { e.getRectPresentationTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getRectPresentationTrait(), on ' + name);
+        assertException(function() { e.getPathPresentationTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getPathPresentationTrait(), on ' + name);
+        assertException(function() { e.getRGBColorPresentationTrait('baseProfile') }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getRGBColorPresentationTrait(), on ' + name);
+
+        assertException(function() { e.setFloatTrait('baseProfile', 0) }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getFloatTrait(), on ' + name);
+        assertException(function() { e.setFloatListTrait('baseProfile', []) }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getFloatListTrait(), on ' + name);
+        assertException(function() { e.setMatrixTrait('baseProfile', svg.createSVGMatrixComponents(1, 0, 0, 1, 0, 0)) }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getMatrixTrait(), on ' + name);
+        assertException(function() { e.setRectTrait('baseProfile', svg.createSVGRect()) }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getRectTrait(), on ' + name);
+        assertException(function() { e.setPathTrait('baseProfile', svg.createSVGPath()) }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getPathTrait(), on ' + name);
+        assertException(function() { e.setRGBColorTrait('baseProfile', svg.createSVGRGBColor()) }, DOMException.TYPE_MISMATCH_ERR, 'incorrect get value using getRGBColorTrait(), on ' + name);
+
+        ind.setAttributeNS(null, 'fill', 'blue');
+      } catch (ex) {
+        var msg;
+        if (typeof ex == 'string') {
+          msg = ex;
+        } else if (typeof ex.message == 'string') {
+          msg = ex.message;
+        } else {
+          msg = String(ex);
+        }
+        d.textContent = ex;
+      }
+    ]]></script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+  <text xml:id="revision" x="10" y="340" stroke="none" 
+    fill="black">$Revision: 1.6 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,777 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 0, 30],
+					contents: [
+						SVGGroup {
+							id: "test-grid",
+							contents: [
+								SVGLine {
+									x1: 10,
+									y1: 10.5,
+									x2: 470,
+									y2: 10.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 20.5,
+									x2: 470,
+									y2: 20.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 30.5,
+									x2: 470,
+									y2: 30.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 40.5,
+									x2: 470,
+									y2: 40.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 50.5,
+									x2: 470,
+									y2: 50.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 60.5,
+									x2: 470,
+									y2: 60.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 70.5,
+									x2: 470,
+									y2: 70.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 80.5,
+									x2: 470,
+									y2: 80.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 90.5,
+									x2: 470,
+									y2: 90.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 100.5,
+									x2: 470,
+									y2: 100.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 110.5,
+									x2: 470,
+									y2: 110.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 120.5,
+									x2: 470,
+									y2: 120.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 130.5,
+									x2: 470,
+									y2: 130.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 140.5,
+									x2: 470,
+									y2: 140.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 150.5,
+									x2: 470,
+									y2: 150.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 160.5,
+									x2: 470,
+									y2: 160.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 170.5,
+									x2: 470,
+									y2: 170.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 180.5,
+									x2: 470,
+									y2: 180.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 190.5,
+									x2: 470,
+									y2: 190.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 200.5,
+									x2: 470,
+									y2: 200.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 210.5,
+									x2: 470,
+									y2: 210.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 220.5,
+									x2: 470,
+									y2: 220.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 230.5,
+									x2: 470,
+									y2: 230.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 240.5,
+									x2: 470,
+									y2: 240.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 250.5,
+									x2: 470,
+									y2: 250.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10,
+									y1: 260.5,
+									x2: 470,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 10.5,
+									y1: 10,
+									x2: 10.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 20.5,
+									y1: 10,
+									x2: 20.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 30.5,
+									y1: 10,
+									x2: 30.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 40.5,
+									y1: 10,
+									x2: 40.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 50.5,
+									y1: 10,
+									x2: 50.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 60.5,
+									y1: 10,
+									x2: 60.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 70.5,
+									y1: 10,
+									x2: 70.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 80.5,
+									y1: 10,
+									x2: 80.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 90.5,
+									y1: 10,
+									x2: 90.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 100.5,
+									y1: 10,
+									x2: 100.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 110.5,
+									y1: 10,
+									x2: 110.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 120.5,
+									y1: 10,
+									x2: 120.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 130.5,
+									y1: 10,
+									x2: 130.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 140.5,
+									y1: 10,
+									x2: 140.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 150.5,
+									y1: 10,
+									x2: 150.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 160.5,
+									y1: 10,
+									x2: 160.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 170.5,
+									y1: 10,
+									x2: 170.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 180.5,
+									y1: 10,
+									x2: 180.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 190.5,
+									y1: 10,
+									x2: 190.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 200.5,
+									y1: 10,
+									x2: 200.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 210.5,
+									y1: 10,
+									x2: 210.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 220.5,
+									y1: 10,
+									x2: 220.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 230.5,
+									y1: 10,
+									x2: 230.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 240.5,
+									y1: 10,
+									x2: 240.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 250.5,
+									y1: 10,
+									x2: 250.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 260.5,
+									y1: 10,
+									x2: 260.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 270.5,
+									y1: 10,
+									x2: 270.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 280.5,
+									y1: 10,
+									x2: 280.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 290.5,
+									y1: 10,
+									x2: 290.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 300.5,
+									y1: 10,
+									x2: 300.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 310.5,
+									y1: 10,
+									x2: 310.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 320.5,
+									y1: 10,
+									x2: 320.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 330.5,
+									y1: 10,
+									x2: 330.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 340.5,
+									y1: 10,
+									x2: 340.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 350.5,
+									y1: 10,
+									x2: 350.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 360.5,
+									y1: 10,
+									x2: 360.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 370.5,
+									y1: 10,
+									x2: 370.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 380.5,
+									y1: 10,
+									x2: 380.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 390.5,
+									y1: 10,
+									x2: 390.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 400.5,
+									y1: 10,
+									x2: 400.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 410.5,
+									y1: 10,
+									x2: 410.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 420.5,
+									y1: 10,
+									x2: 420.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 430.5,
+									y1: 10,
+									x2: 430.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 440.5,
+									y1: 10,
+									x2: 440.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 450.5,
+									y1: 10,
+									x2: 450.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 460.5,
+									y1: 10,
+									x2: 460.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								},
+								SVGLine {
+									x1: 470.5,
+									y1: 10,
+									x2: 470.5,
+									y2: 260.5,
+									fill: "black",
+									stroke: { fill: "#CCCCCC" }
+								}
+							]
+						},
+						SVGGroup {
+							id: "elementary-transforms-test",
+							transform: [1, 0, 0, 1, 0, 10],
+							contents: [
+								SVGGroup {
+									id: "elementary-transforms",
+									contents: [
+										SVGGroup {
+											transform: [1, 0, 0, 1, 50, 50],
+											contents: [
+												SVGRect { width: 20, height: 2, fill: "blue" },
+												SVGRect { width: 2, height: 20, fill: "red" }
+											]
+										},
+										SVGGroup {
+											transform: [0, -1, 1, 0, 150, 70],
+											contents: [
+												SVGRect { width: 20, height: 2, fill: "blue" },
+												SVGRect { width: 2, height: 20, fill: "red" }
+											]
+										},
+										SVGGroup {
+											transform: [1, 0, 1, 1, 250, 50],
+											contents: [
+												SVGRect { width: 20, height: 2, fill: "blue" },
+												SVGRect { width: 2, height: 20, fill: "red" }
+											]
+										},
+										SVGGroup {
+											transform: [1, 1, 0, 1, 350, 50],
+											contents: [
+												SVGRect { width: 20, height: 2, fill: "blue" },
+												SVGRect { width: 2, height: 20, fill: "red" }
+											]
+										},
+										SVGGroup {
+											transform: [2, 0, 0, 2, 210, 120],
+											contents: [
+												SVGRect { width: 20, height: 1, fill: "blue" },
+												SVGRect { width: 1, height: 20, fill: "red" }
+											]
+										}
+									]
+								},
+								SVGGroup {
+									id: "elementary-transforms-test-markers",
+									contents: [
+										SVGText {
+											text: "translate (50, 50)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 40, 40]
+										},
+										SVGRect { x: 48, y: 48, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 68, y: 48, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 48, y: 68, width: 5, height: 5, fill: "red" },
+										SVGText {
+											text: "rotate(-90)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 140, 40]
+										},
+										SVGRect { x: 148, y: 68, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 148, y: 48, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 168, y: 68, width: 5, height: 5, fill: "red" },
+										SVGText {
+											text: "skew x (45)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 240, 40]
+										},
+										SVGRect { x: 248, y: 48, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 268, y: 48, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 268, y: 68, width: 5, height: 5, fill: "red" },
+										SVGText {
+											text: "skew y (45)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 340, 40]
+										},
+										SVGRect { x: 348, y: 48, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 368, y: 68, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 348, y: 68, width: 5, height: 5, fill: "red" },
+										SVGText {
+											text: "scale (2)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 200, 110]
+										},
+										SVGRect { x: 208, y: 118, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 248, y: 118, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 208, y: 158, width: 5, height: 5, fill: "red" }
+									]
+								}
+							]
+						},
+						SVGGroup {
+							id: "nested-transforms-test",
+							contents: [
+								SVGGroup {
+									id: "nested-transforms",
+									contents: [
+										SVGGroup {
+											transform: [3, 0, 0, 2, 50.000001, 210],
+											contents: [
+												SVGRect { width: 20, height: 1, fill: "blue" },
+												SVGRect { width: 0.67, height: 20, fill: "red" }
+											]
+										},
+										SVGGroup {
+											transform: [1, 0, 0, 1, 200, 0],
+											contents: [
+												SVGGroup {
+													transform: [3, 0, 0, 2, 0, 0],
+													contents: [
+														SVGGroup {
+															transform: [1, 0, 0, 1, 16.666667, 105],
+															contents: [
+																SVGRect { width: 20, height: 1, fill: "blue" },
+																SVGRect { width: 0.67, height: 20, fill: "red" }
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								SVGGroup {
+									id: "nested-transforms-test-markers",
+									contents: [
+										SVGText {
+											text: "scale(25, 95) and translate(2, 2)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 40, 200]
+										},
+										SVGRect { x: 48, y: 208, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 108, y: 208, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 48, y: 248, width: 5, height: 5, fill: "red" },
+										SVGText {
+											text: "scale(25, 95) then translate(2, 2)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 13 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 240, 200]
+										},
+										SVGRect { x: 248, y: 208, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 308, y: 208, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 248, y: 248, width: 5, height: 5, fill: "red" }
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.10 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%" 
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2007 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" 
+    reviewer="CM" owner="ED" desc="Test handler element" status="reviewed" 
+    approved="no"
+    version="$Revision: 1.3 $" testname="$RCSfile: script-handler-201-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+		This test checks four assertions on the handler element:
+		<ul>
+			<li>that the 'this' keyword is bound to the observer element</li>
+			<li>that changing the xlink:href on a handler means the updated logic is run on second invocation</li>
+			<li>that a referenced handler element is executed instead of the handler content if both are present</li>
+			<li>that adding a handler installs an event listener</li>
+		</ul>
+	  </p>
+	  <p>
+		Click each of the rects once, and the top right rect one additional time when it says "Click again".
+	  </p>
+	  <p>
+		The test has passed if after clicking all the rects as instructed they all turn green and the text on each 
+		rect changes to say "Passed". If any of the rects are still blue or have turned red the test has failed.
+	  </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: script-handler-201-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    
+    <script>
+      function fail(num)
+      {
+        document.getElementById("r" + num).setAttributeNS(null, "fill", "red");
+        document.getElementById("t" + num).textContent = "Failed";
+      }
+      
+      function pass(num)
+      {
+        document.getElementById("r" + num).setAttributeNS(null, "fill", "green");
+        document.getElementById("t" + num).textContent = "Passed";
+      }
+    </script>
+	
+    <g transform="translate(120 60)">
+      
+      <!-- Tests that the 'this' keyword is bound to the observer element -->
+      <g id="g1" transform="translate(0 0)">
+        <rect xml:id="r1" width="100" height="100" fill="blue">
+          <handler xml:id="h1" xe:event="click">
+            if(this != document.getElementById("r1"))
+            {
+              fail(1);
+            }
+            else
+            {
+              pass(1);
+            }
+          </handler>
+        </rect>
+        <text xml:id="t1" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>			
+      </g>
+      
+      <!-- Tests that changing the xlink:href on a handler means the updated logic is run on second invocation -->
+      <g id="g2" transform="translate(110 0)">
+        <rect xml:id="r2" width="100" height="100" fill="blue">
+          <handler xml:id="h2" xe:event="click">
+            h2 = document.getElementById("h2");
+            document.getElementById("t2").textContent = "Click again"
+            h2.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#pass2");
+          </handler>
+          <handler xml:id="pass2">
+            pass(2);
+          </handler>
+        </rect>
+        <text xml:id="t2" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>			
+      </g>
+      
+      <!-- Tests that the referenced handler is executed and not the handler content in case they're both there -->
+      <g id="g3" transform="translate(0 110)">
+        <rect xml:id="r3" width="100" height="100" fill="blue">
+          <handler xml:id="h3" xe:event="click" xlink:href="#pass3">
+            fail(3);
+          </handler>
+          <handler xml:id="pass3">
+            pass(3);
+          </handler>
+        </rect>
+        <text xml:id="t3" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>			
+      </g>
+      
+      <!-- Tests that adding a handler installs an event listener -->
+      <g id="g4" transform="translate(110 110)">
+        <rect xml:id="r4" width="100" height="100" fill="blue">
+          <handler xml:id="h4" xe:event="SVGLoad">
+            var pass4 = document.createElementNS("http://www.w3.org/2000/svg", "handler");
+            pass4.setAttributeNS("http://www.w3.org/2001/xml-events", "event", "click");
+            pass4.textContent = "pass(4);"
+            document.getElementById("r4").appendChild(pass4);
+          </handler>
+        </rect>
+        <text xml:id="t4" x="50" y="55" text-anchor="middle" fill="white" pointer-events="none">Click here</text>			
+      </g>
+      
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+  <text xml:id="revision" x="10" y="340" stroke="none" 
+    fill="black">$Revision: 1.3 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

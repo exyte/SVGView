@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="ED" owner="CM" desc="Test the operation of Node.insertBefore" status="reviewed"
+    approved="no"
+    version="$Revision: 1.5 $" testname="$RCSfile: udom-dom-205-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests that the <tt>insertBefore</tt> method of the
+        <b>Node</b> interface works correctly.
+      </p>
+      <p>
+        The test has three rows of sub-tests.  The top row is testing
+        <tt>insertBefore</tt> when <tt>refNode == null</tt> (i.e.,
+        it is acting just like <tt>appendChild</tt>).  The middle
+        row is testing <tt>insertBefore</tt> with a valid <tt>refNode</tt>.
+        The bottom row is testing <tt>insertBefore</tt> with an invalid
+        <tt>refNode</tt>.
+      </p>
+      <p>
+        The test has been passed if the top row shows six blue rectangles,
+        the middle row shows three sets of cascading purple/pink rectangles
+        (which must be shown as a purple rectangle underneath, a pink
+        rectangle above that, and a light pink rectangle above the previous
+        two, each rectangle offset right and down from the previous one),
+        and on the right of the pink rectangles there are three blue rectangles,
+        and the bottom row shows a single blue rectangle.
+      </p>
+      <p>
+        For the top row:
+      </p>
+      <ul>
+        <li>
+          The first is a test of inserting a newly created <tt>rect</tt> that
+          is not yet in the document tree, using <tt>refNode == null</tt>.
+        </li>
+        <li>
+          The second is a test of inserting a <tt>rect</tt> that is already
+          somewhere else in the document tree, using <tt>refNode == null</tt>.
+          In its initial position, it inherits <tt>fill='red'</tt>, and its
+          new position, it inherits <tt>fill='blue'</tt>.
+        </li>
+        <li>
+          The third is a test of inserting a <tt>rect</tt> as a child of its
+          current parent, using <tt>refNode == null</tt>.  This results in the
+          <tt>rect</tt> being moved to the final position in the list of child
+          nodes.  In its initial position, a red <tt>rect</tt> occludes this
+          blue one.  In its final position, this blue <tt>rect</tt> occludes
+          the red one.
+        </li>
+        <li>
+          The fourth is a test of inserting a second element as a child of the
+          document node, using <tt>refNode == null</tt>.  This results in a
+          <b>DOMException</b> being thrown with code HIERARCHY_REQUEST_ERR.
+          If this exception is thrown, the <tt>rect</tt> is changed from red
+          to blue.
+        </li>
+        <li>
+          The fifth is a test of inserting an element as a child of one of its
+          descendant elements, using <tt>refNode == null</tt>.  This also
+          results in a <b>DOMException</b> being thrown with code
+          HIERARCHY_REQUEST_ERR.  If this exception is thrown, the
+          <tt>rect</tt> is changed from red to blue.
+        </li>
+        <li>
+          The sixth is a test of inserting an element from another document
+          into this document, using <tt>refNode == null</tt>.  The element from
+          the other document is obtained by calling <tt>parseXML</tt>.  A
+          <b>DOMException</b> must be thrown with code WRONG_DOCUMENT_ERR.
+          If this exception is thrown, the <tt>rect</tt> is changed from red
+          to blue.
+        </li>
+      </ul>
+      <p>
+        For the middle row:
+      </p>
+      <ul>
+        <li>
+          The first is a test of inserting a newly created <tt>rect</tt> that
+          is not yet in the document tree, using a valid <tt>refNode</tt>.
+        </li>
+        <li>
+          The second is a test of inserting a <tt>rect</tt> that is already
+          somewhere else in the document tree, using a valid <tt>refNode</tt>.
+          In its initial position, it inherits <tt>fill='red'</tt>, and in its
+          new position, it inherits <tt>fill='#f0f'</tt> (pink).
+        </li>
+        <li>
+          The third is a test of inserting a <tt>rect</tt> as a child of its
+          current parent, using a valid <tt>refNode</tt>.
+        </li>
+        <li>
+          The fourth is a test of inserting a second element as a child of the
+          document node, using a valid <tt>refNode</tt>.  This results in a
+          DOMException being thrown with code HIERARCHY_REQUEST_ERR.  If this
+          exception is thrown, the <tt>rect</tt> is changed from red to blue.
+        </li>
+        <li>
+          The fifth is a test of inserting an element as a child of one of its
+          descendant elements, using a valid <tt>refNode</tt>.  This also
+          results in a DOMException being thrown with code
+          HIERARCHY_REQUEST_ERR.  If this exception is thrown, the
+          <tt>rect</tt> is changed from red to blue.
+        </li>
+        <li>
+          The sixth is a test of inserting an element from another document
+          into this document, using a valid <tt>refNode</tt>.  The element from
+          the other document is obtained by calling <tt>parseXML</tt>.  A
+          DOMException must be thrown with code WRONG_DOCUMENT_ERR.  If this
+          exception is thrown, the <tt>rect</tt> is changed from red to blue.
+        </li>
+      </ul>
+      <p>
+        The bottom row has just a single test, which is a test of inserting a
+        newly created <tt>rect</tt> that is not yet in the document tree,
+        using an invalid <tt>refNode</tt>.  A DOMException must be thrown with
+        code NOT_FOUND_ERR.  If this exception is thrown, the <tt>rect</tt>
+        is changed from red to blue.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-dom-205-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>Node.insertBefore test</text>
+    <g transform='translate(0,30)'>
+      <g font-size='10'>
+        <text x='10' y='95'>These three rects must be blue.</text>
+        <text x='270' y='95'>These three rects must be blue.</text>
+        <text x='270' y='185'>These three rects must be blue.</text>
+        <text x='10' y='205'>These must be three sets of pink cascading rectangles.</text>
+        <text x='70' y='250'>This rect must be blue.</text>
+      </g>
+      <g xml:id='g1' fill='blue'>
+        <g xml:id='g2' fill='red'>
+          <rect xml:id='rect1' x='10' y='30' width='50' height='50'/>
+        </g>
+        <rect xml:id='rect2' x='130' y='30' width='50' height='50' fill='blue'/>
+        <rect xml:id='rect3' x='130' y='30' width='50' height='50' fill='red'/>
+        <rect xml:id='rect4' x='270' y='30' width='50' height='50' fill='red'/>
+        <rect xml:id='rect5' x='330' y='30' width='50' height='50' fill='red'/>
+        <rect xml:id='rect6' x='390' y='30' width='50' height='50' fill='red'/>
+        <g xml:id='g3'>
+          <g xml:id='g4'/>
+        </g>
+      </g>
+      <g xml:id='g5' fill='#f0f'>
+        <g xml:id='g6' fill='red'>
+          <rect xml:id='rect10' x='100' y='130' width='50' height='50'/>
+        </g>
+        <rect xml:id='rect7' x='10' y='120' width='50' height='50' fill='#808'/>
+        <rect xml:id='rect8' x='30' y='140' width='50' height='50' fill='#f8f'/>
+        <rect xml:id='rect9' x='90' y='120' width='50' height='50' fill='#808'/>
+        <rect xml:id='rect11' x='110' y='140' width='50' height='50' fill='#f8f'/>
+        <rect xml:id='rect12' x='170' y='120' width='50' height='50' fill='#808'/>
+        <rect xml:id='rect14' x='190' y='140' width='50' height='50' fill='#f8f'/>
+        <rect xml:id='rect13' x='180' y='130' width='50' height='50'/>
+        <g xml:id='g7'>
+          <g xml:id='g8'>
+            <g xml:id='g9'/>
+          </g>
+        </g>
+      </g>
+      <g xml:id='g10'>
+        <rect xml:id='rect15' x='270' y='120' width='50' height='50' fill='red'/>
+        <rect xml:id='rect16' x='330' y='120' width='50' height='50' fill='red'/>
+        <rect xml:id='rect17' x='390' y='120' width='50' height='50' fill='red'/>
+        <rect xml:id='rect18' x='10' y='220' width='50' height='50' fill='red'/>
+      </g>
+    </g>
+    <script type='application/ecmascript'>
+      <![CDATA[
+      SVGNS = 'http://www.w3.org/2000/svg';
+
+      // Get all of the elements.
+      var ids = 'g1 g2 g3 g4 g5 g6 g7 g8 g9 g10 rect1 rect2 rect3 rect4 rect5 rect6 rect7 rect8 rect9 rect10 rect11 rect12 rect13 rect14 rect15 rect16 rect17 rect18'.split(' ');
+      for (var i in ids) {
+        this[ids[i]] = document.getElementById(ids[i]);
+      }
+
+      // Test inserting an element not already in the tree, using
+      // refNode == null.
+      newRect = document.createElementNS(SVGNS, 'rect');
+      newRect.setAttributeNS(null, 'x', '70');
+      newRect.setAttributeNS(null, 'y', '30');
+      newRect.setAttributeNS(null, 'width', '50');
+      newRect.setAttributeNS(null, 'height', '50');
+      g1.insertBefore(newRect, null);
+
+      // Test inserting an element already in the tree, using refNode == null.
+      g1.insertBefore(rect1, null);
+
+      // Test inserting an element already in the tree as a child of its current
+      // parent, using refNode == null.
+      g1.insertBefore(rect2, null);
+
+      newG = document.createElementNS(SVGNS, 'g');
+
+      // Test inserting a second element as a child of the document node, using
+      // refNode == null.
+      try {
+        document.insertBefore(newG, null);
+      } catch (e) {
+        if (e.code == DOMException.HIERARCHY_REQUEST_ERR) {
+          rect4.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+
+      // Test inserting an element as a child of one of its descendants, using
+      // refNode == null.
+      try {
+        g4.insertBefore(g3, null);
+      } catch (e) {
+        if (e.code == DOMException.HIERARCHY_REQUEST_ERR) {
+          rect5.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+
+      // Test inserting an element from another document, using refNode == null.
+      try {
+        var newDoc = parseXML('<a/>', null);
+        g1.insertBefore(newDoc.documentElement, null);
+      } catch (e) {
+        if (e.code == DOMException.WRONG_DOCUMENT_ERR) {
+          rect6.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+
+      // Test inserting an element not already in the tree, using a valid
+      // refNode.
+      newRect = document.createElementNS(SVGNS, 'rect');
+      newRect.setAttributeNS(null, 'x', '20');
+      newRect.setAttributeNS(null, 'y', '130');
+      newRect.setAttributeNS(null, 'width', '50');
+      newRect.setAttributeNS(null, 'height', '50');
+      g5.insertBefore(newRect, rect8);
+
+      // Test inserting an element already in the tree, using a valid refNode.
+      g5.insertBefore(rect10, rect11);
+
+      // Test inserting an element already in the tree as a child of its current
+      // parent, using a valid refNode.
+      g5.insertBefore(rect13, rect14);
+
+      // Test inserting a second element as a child of the document node, using
+      // a valid refNode.
+      try {
+        document.insertBefore(newG, document.documentElement);
+      } catch (e) {
+        if (e.code == DOMException.HIERARCHY_REQUEST_ERR) {
+          rect15.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+
+      // Test inserting an element as a child of one of its descendants, using
+      // a valid refNode.
+      try {
+        g8.insertBefore(g7, g9);
+      } catch (e) {
+        if (e.code == DOMException.HIERARCHY_REQUEST_ERR) {
+          rect16.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+
+      // Test inserting an element from another document, using a valid refNode.
+      try {
+        var newDoc = parseXML('<a/>', null);
+        g10.insertBefore(newDoc.documentElement, rect15);
+      } catch (e) {
+        if (e.code == DOMException.WRONG_DOCUMENT_ERR) {
+          rect17.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+
+      // Test inserting a newly created element, using an invalid refNode.
+      try {
+        g10.insertBefore(newG, g9);
+      } catch (e) {
+        if (e.code == DOMException.NOT_FOUND_ERR) {
+          rect18.setAttributeNS(null, 'fill', 'blue');
+        }
+      }
+    ]]>
+    </script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.5 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

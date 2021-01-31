@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="CM" owner="ASl" desc="Tests cloneNode on gradients with different values of the 'deep' parameter" status="reviewed"
+    approved="no"
+    version="$Revision: 1.3 $" testname="$RCSfile: udom-node-203-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Tests cloneNode on gradients with the 'deep' parameter set to true and false.
+        The fill of the second rect that uses cloned gradient "gradient4" should be equal to 'none' because the 'deep' parameter is 'false'.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-node-203-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18" transform="scale(2.4, 1.8)">
+    <linearGradient xml:id="gradient1">
+      <stop offset="0.0" stop-color="red" />
+      <stop offset="0.95" stop-color="yellow" />
+    </linearGradient>
+
+    <linearGradient xml:id="gradient2">
+      <stop offset="0.05" stop-color="yellow" />
+      <stop offset="1.0" stop-color="red" />
+    </linearGradient>
+
+    <rect fill="none" stroke="teal" stroke-width="1"
+          x="6" y="6" width="188" height="68"/>
+
+    <rect fill="url(#gradient1)" stroke="url(#gradient2)" stroke-width="15"
+          x="15" y="15" width="170" height="50"/>
+
+    <text x="30" y="45" font-weight="bold" font-size="10" fill="blue">
+      Using non cloned linear gradient
+    </text>
+
+    <script type="application/ecmascript">
+      <![CDATA[
+            var testGroup = document.getElementById("test-body-content");
+            var linearGradient1 = document.getElementById("gradient1");
+            var linearGradient2 = document.getElementById("gradient2");
+            var linearGradient1Clone = linearGradient1.cloneNode(true);
+            var linearGradient2Clone = linearGradient2.cloneNode(false);
+            linearGradient1Clone.id = "gradient3";
+            linearGradient2Clone.id = "gradient4";
+            testGroup.appendChild(linearGradient1Clone);
+            testGroup.appendChild(linearGradient2Clone);
+        ]]>
+    </script>
+
+    <rect fill="none" stroke="teal" stroke-width="1"
+          x="6" y="86" width="188" height="68"/>
+
+    <!-- This will result in a rectangle with the stroke have the same 
+         linear gradient features as the gradient 1 above. The rectangle
+         will NOT be filled since gradient4 is cloned without children. -->
+    <rect fill="url(#gradient4)" stroke="url(#gradient3)" stroke-width="15"
+          x="15" y="95" width="170" height="50"/>
+
+    <text x="35" y="125" font-weight="bold" font-size="10" fill="green">
+      Using cloned linear gradient
+    </text>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.3 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

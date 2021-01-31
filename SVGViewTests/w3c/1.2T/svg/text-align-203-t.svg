@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="AE" owner="CL" desc="test alignment on RTL text" status="accepted"
+    approved="yes"
+    version="$Revision: 1.6 $" testname="$RCSfile: text-align-203-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>This test checks for text alignment on right-to-left text, using platform fonts only. If the fonts are installed, they must be used; if not, and other fonts are available which cover Arabic and Hebrew, these must be used; if no fonts are available which cover some or all of the letters used, the 'missing glyph' may be displayed.</p>
+<p>The test is passed if the maroon text is centred, the black text starts at the right hand alignment line and is rendered right to left (so it extends towards the middle) and the blue text is rendered right to left, starting near the midle and with the end of the text aligned at the left-hand alignment line.</p>
+      <p>The first subtest has the word Elat (name of a town): آلات</p>
+      <p>The second subtest has the word for 'Egypt', Miṣr:  مصر‎</p>
+      <p>The third subtest has the hebrew word for 'activity', pe‘ilút: פעילות </p>
+      <p>Text-anchor values of start are black, middle are maroon and end are dark blue.</p>
+
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: text-align-203-t.svg,v $</title>
+  <defs>
+    <font-face font-family="SVGFreeSansASCII" unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii" />
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+   
+    <path d="M20,10 L20,280" stroke="#BBB" />
+    <path d="M240,10 L240,280" stroke="#BBB" />
+    <path d="M460,10 L460,280" stroke="#BBB" />
+    <path d="M10,60 L470,60" stroke="#BBB" />
+    <path d="M10,150 L470,150" stroke="#BBB" />
+    <path d="M10,240 L470,240" stroke="#BBB" />
+    <g font-family="Andalus, Diwani Letter, serif"  font-size="50">
+      <text text-anchor="middle" x="240" y="60"  xml:lang="ar" fill="#700">آلات</text>
+      <text text-anchor="start" x="460" y="60"  xml:lang="ar">آلات</text>
+      <text text-anchor="end" x="20" y="60"  xml:lang="ar" fill="#009">آلات</text>
+    </g>
+    <g font-family="Andalus, Diwani Letter, serif"  font-size="50">
+      <text text-anchor="middle" x="240" y="150"  xml:lang="ar" fill="#700">مصر‎</text>
+      <text text-anchor="start" x="460" y="150"  xml:lang="ar">مصر‎</text>
+      <text text-anchor="end" x="20" y="150"  xml:lang="ar" fill="#009">مصر‎</text>
+      <!--
+              <text text-anchor="middle" x="380" y="320">&#x627;&#xfee0;&#xfee0;&#xfeea;    &#x0644;&#x0627;</text>
+          -->
+    </g>
+    <g font-family="David, serif" font-size="50">
+      <text text-anchor="middle" x="240" y="240"  xml:lang="he" fill="#700">פעילות </text>
+      <text text-anchor="start" x="460" y="240"  xml:lang="he">פעילות</text>
+      <text text-anchor="end" x="20" y="240"  xml:lang="he" fill="#009">פעילות</text>
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none" fill="black">$Revision: 1.6 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000" />
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark"> 
+      <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1" /> 
+      <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text> 
+    </g>
+</svg>
+

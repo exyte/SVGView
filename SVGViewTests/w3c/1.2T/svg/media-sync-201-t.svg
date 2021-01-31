@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+   viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xe="http://www.w3.org/2001/xml-events" syncBehaviorDefault="locked" >
+   <!--======================================================================-->
+   <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+   <!--=  Institute of Technology, European Research Consortium for         =-->
+   <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+   <!--=  All Rights Reserved.                                              =-->
+   <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+   <!--======================================================================-->
+   <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+      reviewer="[reviewer]" owner="BitFlash" desc="Test runtime synchronization attributes." status="created"
+      approved="no"
+      version="$Revision: 1.1 $" testname="$RCSfile: media-sync-201-t.svg,v $">
+      <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+         <p>Test runtime synchronization attributes.</p>
+         <p>
+            This test relies on the special Darwin server to be available. This is supplied with the testsuite and has been modified
+            such that it simulates video playbackback delays. 
+            
+            Two video files are playing, and the streamed video file is the syncMaster. There is also an animation playing as part of the SVG document. 
+            Therefore there are three timelines in this file - one each for the video and one for the SVG doucment. Since the streamed video file
+            is the syncMaster, the first video plus SVG animation should pause when the streamed video is paused by the modified Darwin server.
+         </p>
+      </d:OperatorScript> 
+   </SVGTestCase> 
+   <title xml:id="test-title">$RCSfile: media-sync-201-t.svg,v $</title> 
+   <defs> 
+      <font-face font-family="SVGFreeSansASCII" unicode-range="U+0-7F"> 
+         <font-face-src> 
+            <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii" /> 
+         </font-face-src> 
+      </font-face> 
+   </defs> 
+   <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+      
+	<g xml:id="videos">
+	   
+              <video xlink:href="../images/clock.mp4" x="10" y="10" width="200" height="280" dur="80s" />  
+              
+	      <!-- replace with actual location of special Darwin server -->
+	      <!-- Important! The movie clockm.mp4 must also be copied to the darwin server -->
+	      <video xlink:href="rtsp://aemmons_d820/clock.mp4" x="220" y="10" width="200" height="280" dur="80s" syncMaster="true" />
+        </g>
+
+       <g>
+        <rect x="10" y="250" width="410" height="3"/>
+        <rect x="10" y="255" width="410" height="3" fill="#F00">
+           <animate attributeName="width" values="0;410" dur="80" fill="freeze"/>
+        </rect>
+       </g>
+   </g>
+   <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+      <text xml:id="revision" x="10" y="340" stroke="none"
+         fill="black">$Revision: 1.1 $</text>
+   </g>
+   <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+   <!-- comment out this watermark once the test is approved -->
+   <g xml:id="draft-watermark">
+      <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+      <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+         text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+   </g>   
+</svg>

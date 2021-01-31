@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="NR" owner="DOH" desc="Stroking for rectangles with rounded corners, small width." status="reviewed"
+    approved="no"
+    version="$Revision: 1.4 $" testname="$RCSfile: paint-stroke-206-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Stroking for rectangles with rounded corners, small width.
+      </p>
+      <p>
+        The main indication for a failed test is a wrong height of the blue rectangles.
+        If such a blue rectangle has not exactly the same height as the gray rectangle
+        in the background.
+      </p>
+      <p>
+        A  family of light blue filled and dark blue stroked rectangles with rounded corners and decreasing width is displayed.
+        The left rectangles are animated with decreasing width too.
+      </p>
+      <p>
+        For smaller rectangles the width gets smaller than 2 times the radius of the rounded
+        corners and the stroke-width, therefore the fill is not visible anymore for them.
+        Only the animated rectangles at the beginning and the two next rectangles
+        on their right have a visible fill.
+      </p>
+      <p>
+        The three lines differ only in the property stroke-linejoin indicated with the
+        title element and the appearance of the gray rectangle using no rounded corners,
+        where the property stroke-linejoin therefore has a visible effect. stroke-linejoin has
+        no influence at all on the appearance of the blue rectangles, because for rectangles
+        with rounded corners the 'miter angle' between two path fragments is always zero,
+        this means, a rectangle with rounded corners has no corners anymore.
+        To test the correct rendering, the gray rectangles with exactly the same height are
+        given for comparison. If the height of the blue rectangles is larger or smaller as
+        the height of the related gray rectangle, an error is occured. If the blue rectangles differ from
+        line to line, have sharp corners or are not looking like rectangles with rounded corners
+        (for a small width is the correct appearance similar to a cigar shape),
+        this indicates an error too.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: paint-stroke-206-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <defs>
+      <g xml:id="family" id="family">
+        <rect fill="#ccc" stroke="#ccc"
+          x="30" y="50"
+          width="900" height="120" />
+        <rect
+          x="40" y="50"
+          width="10" height="120" rx="24" ry="48">
+          <animate
+            attributeName="width"
+            attributeType="XML"
+            values="64;64;32;16;8;4;2;1;0.5;0.25;0.125;0.0675"
+            dur="60s"
+            fill="freeze" />
+        </rect>
+
+        <rect
+          x="170" y="50"  rx="24" ry="48"
+          width="128" height="120" />
+        <rect
+          x="360" y="50"  rx="24" ry="4"
+          width="64" height="120" />
+        <rect
+          x="480" y="50"  rx="24" ry="48"
+          width="32" height="120" />
+        <rect
+          x="570" y="50"  rx="24" ry="100"
+          width="16" height="120" />
+        <rect
+          x="650" y="50"  rx="24" ry="48"
+          width="8" height="120" />
+        <rect
+          x="720" y="50"  rx="24" ry="4"
+          width="4" height="120" />
+        <rect
+          x="780" y="50"  rx="24" ry="48"
+          width="1" height="120" />
+        <rect
+          x="840" y="50"  rx="24" ry="1"
+          width="0.25" height="120" />
+        <rect
+          x="900" y="50"  rx="24" ry="48"
+          width="0.0675" height="120" />
+      </g>
+    </defs>
+
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+    <g fill="#88f" stroke="#008"
+          stroke-width="48" stroke-linejoin="round"
+          transform="scale(0.5)">
+      <title>rectangles with stroke-linejoin round</title>
+      <use xlink:href="#family"  y="-10" />
+    </g>
+
+    <g fill="#88f" stroke="#008"
+          stroke-width="48" stroke-linejoin="bevel"
+          transform="scale(0.5)">
+      <title>rectangles with stroke-linejoin bevel</title>
+      <use xlink:href="#family" y="175" />
+    </g>
+
+    <g fill="#88f" stroke="#008"
+          stroke-width="48" stroke-linejoin="miter"
+          transform="scale(0.5)">
+      <title>rectangles with stroke-linejoin miter</title>
+      <use xlink:href="#family" y="360" />
+    </g>
+    <g font-size="12" stroke="none" fill="#ccc">
+      <text x="250" y="300">rectangles with rounded corners</text>
+      <text x="340" y="320">gray rectangles =</text>
+      <text x="340" y="332">exact height</text>
+      <text x="340" y="344">for all rectangles</text>
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.4 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

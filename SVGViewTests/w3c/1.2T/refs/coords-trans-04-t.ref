@@ -1,0 +1,68 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 0, 30],
+					contents: [
+						SVGGroup {
+							id: "elementary-transforms-test",
+							contents: [
+								SVGGroup {
+									id: "elementary-transforms",
+									transform: [2.5, 0, 0, 2.5, 60, 45],
+									contents: [
+										SVGGroup {
+											transform: [2, 0, 0, 2, 40, 10],
+											contents: [
+												SVGRect { width: 20, height: 1, fill: "blue" },
+												SVGRect { width: 1, height: 20, fill: "red" }
+											]
+										}
+									]
+								},
+								SVGGroup {
+									id: "elementary-transforms-test-markers",
+									transform: [2.5, 0, 0, 2.5, -364, -230],
+									contents: [
+										SVGText {
+											text: "scale (2)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 200, 110]
+										},
+										SVGRect { x: 208, y: 118, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 248, y: 118, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 208, y: 158, width: 5, height: 5, fill: "red" }
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.9 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

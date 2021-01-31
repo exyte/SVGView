@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="AE" owner="CM" desc="Test the operation of Element.getAttribute(NS)" status="reviewed"
+    approved="no"
+    version="$Revision: 1.5 $" testname="$RCSfile: udom-dom-208-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests that the <tt>getAttribute</tt> and <tt>getAttributeNS</tt>
+        methods on the <b>Element</b> interface work correctly, for some
+        simple cases.
+      </p>
+      <p>
+        There are eight sub-tests (a rectangle for each: four in the top row,
+        four in the bottom row), each of which tests both
+        <tt>getAttribute</tt> and <tt>getAttributeNS</tt>.  These are:
+      </p>
+      <ul>
+        <li>Row 1, column 1: test getting existing known attributes in no namespace.</li>
+        <li>Row 1, column 2: test getting absent known attributes in no namespace.</li>
+        <li>Row 1, column 3: test getting existing unknown attributes in no namespace.</li>
+        <li>Row 1, column 4: test getting absent unknown attributes in no namespace.</li>
+        <li>Row 2, column 1: test getting existing known attributes in a namespace.</li>
+        <li>Row 2, column 2: test getting absent known attributes in a namespace.</li>
+        <li>Row 2, column 3: test getting existing unknown attributes in a namespace.</li>
+        <li>Row 2, column 4: test getting absent unknown attributes in a namespace.</li>
+      </ul>
+      <p>
+        The test has been passed if all eight rectangles are blue.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-dom-208-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>Element.getAttribute(NS) test</text>
+    <text x='10' y='250' font-size='12'>All eight rectangles must be blue.</text>
+    <g xml:id='g1' xmlns:v='http://example.org/vegetable' transform='translate(0,50)'>
+      <rect xml:id='rect1' x='10' y='30' width='50' height='50' fill='red'/>
+      <rect xml:id='rect2' x='80' y='30' width='50' height='50' fill='red'/>
+      <rect xml:id='rect3' x='150' y='30' width='50' height='50' fill='red' probability='high'/>
+      <rect xml:id='rect4' x='220' y='30' width='50' height='50' fill='red'/>
+
+      <rect xml:id='rect5' x='10' y='110' width='50' height='50' fill='red'/>
+      <rect xml:id='rect6' x='80' y='110' width='50' height='50' fill='red'/>
+      <rect xml:id='rect7' x='150' y='110' width='50' height='50' fill='red' v:crispness='quiteCrisp'/>
+      <rect xml:id='rect8' x='220' y='110' width='50' height='50' fill='red'/>
+    </g>
+    <script type='application/ecmascript'>
+      <![CDATA[
+      XMLNS = 'http://www.w3.org/XML/1998/namespace';
+      VNS = 'http://example.org/vegetable';
+
+      // Get all of the elements.
+      var ids = 'g1 rect1 rect2 rect3 rect4 rect5 rect6 rect7 rect8'.split(' ');
+      for (var i in ids) {
+        this[ids[i]] = document.getElementById(ids[i]);
+      }
+
+      // Test getting existing known attributes in no namespace.
+      // (Passing the values to the Number constructor should be enough to get
+      // around possible normalisation.)
+      if (Number(rect1.getAttribute('x')) == 10 &&
+          Number(rect1.getAttributeNS(null, 'y')) == 30) {
+        rect1.setAttributeNS(null, 'fill', 'blue');
+      }
+
+      // Test getting absent known attributes in no namespace.
+      if (rect2.getAttribute('stroke') == '' &&
+          rect2.getAttributeNS(null, 'stroke') == '') {
+        rect2.setAttributeNS(null, 'fill', 'blue');
+      }
+
+      // Test getting existing unknown attributes in no namespace.
+      if (rect3.getAttribute('probability') == 'high' &&
+          rect3.getAttributeNS(null, 'probability') == 'high') {
+        rect3.setAttributeNS(null, 'fill', 'blue');
+      }
+
+      // Test getting absent unknown attributes in no namespace.
+      if (rect4.getAttribute('altitude') == '' &&
+          rect4.getAttributeNS(null, 'altitude') == '') {
+        rect4.setAttributeNS(null, 'fill', 'blue');
+      }
+
+
+      // Test getting existing known attributes in a namespace.
+      if (rect5.getAttribute('xml:id') == 'rect5' &&
+          rect5.getAttributeNS(XMLNS, 'id') == 'rect5') {
+        rect5.setAttributeNS(null, 'fill', 'blue');
+      }
+
+      // Test getting absent known attributes in a namespace.
+      if (rect6.getAttribute('xml:lang') == '' &&
+          rect6.getAttributeNS(XMLNS, 'lang') == '') {
+        rect6.setAttributeNS(null, 'fill', 'blue');
+      }
+
+      // Test getting existing unknown attributes in a namespace.
+      if (rect7.getAttribute('v:crispness') == 'quiteCrisp' &&
+          rect7.getAttributeNS(VNS, 'crispness') == 'quiteCrisp') {
+        rect7.setAttributeNS(null, 'fill', 'blue');
+      }
+
+      // Test getting absent unknown attributes in a namespace.
+      if (rect8.getAttribute('v:hasSeeds') == '' &&
+          rect8.getAttributeNS(VNS, 'hasSeeds') == '') {
+        rect8.setAttributeNS(null, 'fill', 'blue');
+      }
+    ]]>
+    </script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.5 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="BitFlash" desc="Basic test of the prefetch element." status="created"
+    approved="no"
+    version="$Revision: 1.1 $" testname="$RCSfile: struct-prefetch-201-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>A basic test for the prefetch element</p>
+      <p>
+        An image element animates the xlink:href attribute to 10 different values over 1 second. These images are
+        also used in prefetch elements indicating that they could be pre-loaded by the SVG User Agent.
+        
+        If the prefetch hint is supported, all images should be loaded before any drawing takes place. If this is the case,
+        the numbers from 1 to 9 will animate smoothly over 1 second.
+        
+        If prefetch is not supported, there may be gaps and missing images depending on when the User Agent loads the resources.
+        
+        Note that this test is a pass regardless of whether prefetch is implemented, since prefetch is simply a hint to the User Agent.
+      </p>
+    </d:OperatorScript> 
+  </SVGTestCase> 
+  <title xml:id="test-title">$RCSfile: struct-prefetch-201-t.svg,v $</title> 
+  <defs> 
+    <font-face font-family="SVGFreeSansASCII" unicode-range="U+0-7F"> 
+      <font-face-src> 
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii" /> 
+      </font-face-src> 
+    </font-face> 
+  </defs> 
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    
+    <defs>
+      <prefetch xlink:href="..\images\pref_image0.jpg"/>
+      <prefetch xlink:href="..\images\pref_image1.jpg"/>
+      <prefetch xlink:href="..\images\pref_image2.jpg"/>
+      <prefetch xlink:href="..\images\pref_image3.jpg"/>
+      <prefetch xlink:href="..\images\pref_image4.jpg"/>
+      <prefetch xlink:href="..\images\pref_image5.jpg"/>
+      <prefetch xlink:href="..\images\pref_image6.jpg"/>
+      <prefetch xlink:href="..\images\pref_image7.jpg"/>
+      <prefetch xlink:href="..\images\pref_image8.jpg"/>
+      <prefetch xlink:href="..\images\pref_image9.jpg"/>
+    </defs>
+  
+    <text x="10" y="50" >prefetch: ten images should be fully loaded first so that</text>
+    <text x="10" y="75" >they are all displayed during the fast animation</text>
+  
+    <image x="10" y="100" width="320" height="200" xlink:href="..\images\pref_image0.jpg">
+  
+      <animate xml:id="pageTurn" attributeName="xlink:href" values="..\images\pref_image0.jpg;..\images\pref_image1.jpg;..\images\pref_image2.jpg;..\images\pref_image3.jpg;..\images\pref_image4.jpg;..\images\pref_image5.jpg;..\images\pref_image6.jpg;..\images\pref_image7.jpg;..\images\pref_image8.jpg;..\images\pref_image9.jpg"
+          begin="0s" dur="1s" fill="freeze"/>
+    </image>  
+    
+    <g font-family="SVGFreeSansASCII,sans-serif" font-size="32"> 
+      <text xml:id="revision" x="10" y="340" stroke="none" fill="black">$Revision: 1.1 $</text> 
+    </g> 
+    <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000" /> 
+    <!-- comment out this watermark once the test is approved -->
+    <g xml:id="draft-watermark">
+      <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+      <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+      </g>    
+</g>
+</svg>

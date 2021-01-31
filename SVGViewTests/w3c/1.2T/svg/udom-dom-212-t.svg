@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="CM" desc="Test the operation of Document.getElementById" status="created"
+    approved="no"
+    version="$Revision: 1.5 $" testname="$RCSfile: udom-dom-212-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests that the <tt>getElementById</tt> method of the
+        <b>Document</b> interface works correctly.
+      </p>
+      <p>
+        There are ten sub-tests (a rectangle for each), five on the top
+        row and five on the bottom row.  These are:
+      </p>
+      <ul>
+        <li>Row 1, column 1: search for element by xml:id attribute.</li>
+        <li>Row 1, column 2: search for element by id attribute.</li>
+        <li>Row 1, column 3: test that elements outside the document aren't found by xml:id.</li>
+        <li>Row 1, column 4: test that elements inserted into the document are found by xml:id.</li>
+        <li>Row 1, column 5: test that elements outside the document aren't found by id.</li>
+        <li>Row 2, column 1: test that elements inserted into the document are found by id.</li>
+        <li>Row 2, column 2: search for element by id when it also has an xml:id.</li>
+        <li>Row 2, column 3: test getting an element that used to have a duplicate xml:id.</li>
+        <li>Row 2, column 4: test getting an element that used to have a duplicate xml:id/id.</li>
+        <li>Row 2, column 5: test getting an element using an invalid id.</li>
+      </ul>
+      <p>
+        The test has been passed if all ten rectangles are blue.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-dom-212-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>Document.getElementById test</text>
+    <text x='10' y='250' font-size='12'>All ten rectangles must be blue.</text>
+    <g xmlns:ex='http://example.org/test'>
+      <g ex:mark='mark'>
+        <rect x='10' y='70' width='50' height='50' fill='red'/>
+        <rect x='80' y='70' width='50' height='50' fill='red'/>
+        <rect x='150' y='70' width='50' height='50' fill='red'/>
+        <rect x='220' y='70' width='50' height='50' fill='red'/>
+        <rect x='290' y='70' width='50' height='50' fill='red'/>
+        <rect x='10' y='140' width='50' height='50' fill='red'/>
+        <rect x='80' y='140' width='50' height='50' fill='red'/>
+        <rect x='150' y='140' width='50' height='50' fill='red'/>
+        <rect x='220' y='140' width='50' height='50' fill='red'/>
+        <rect x='290' y='140' width='50' height='50' fill='red'/>
+        <g xml:id='g1'/>
+        <g id='g2'/>
+        <g xml:id='g7' id='g8'/>
+      </g>
+      <g xml:id='g9' ex:pos='1'/>
+      <g xml:id='g9' ex:pos='2'/>
+      <g id='g10' ex:pos='3'/>
+      <g xml:id='g10' ex:pos='4'/>
+      <g xml:id='0'/>
+    </g>
+    <script type='application/ecmascript'>
+      <![CDATA[
+        SVGNS = 'http://www.w3.org/2000/svg';
+        XMLNS = 'http://www.w3.org/XML/1998/namespace';
+        EXNS = 'http://example.org/test';
+
+        function f(n)
+        {
+          if (n.getAttributeNS && n.getAttributeNS(EXNS, 'mark') == 'mark')
+          {
+            return n;
+          }
+          for (n = n.firstElementChild; n; n = n.nextElementSibling)
+          {
+            var e = f(n);
+            if (e)
+            {
+              return e;
+            }
+          }
+        }
+
+        // Find the marked element, and the result rect elements.
+        g = f(document.documentElement);
+        r1 = g.firstElementChild;
+        r2 = r1.nextElementSibling;
+        r3 = r2.nextElementSibling;
+        r4 = r3.nextElementSibling;
+        r5 = r4.nextElementSibling;
+        r6 = r5.nextElementSibling;
+        r7 = r6.nextElementSibling;
+        r8 = r7.nextElementSibling;
+        r9 = r8.nextElementSibling;
+        r10 = r9.nextElementSibling;
+
+        // Search for element by xml:id attribute.
+        if (document.getElementById('g1') == r10.nextElementSibling)
+        {
+          r1.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Search for element by id attribute.
+        if 
+        (
+          document.getElementById('g2')
+          ==
+          r10.nextElementSibling.nextElementSibling
+        )
+        {
+          r2.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Search for element by id when it also has an xml:id.
+        g7 = document.getElementById('g7');
+        if
+        (
+          document.getElementById('g8') == null
+          &&
+          g7 == r10.nextElementSibling.nextElementSibling.nextElementSibling
+        )
+        {
+          r7.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test that elements outside the document aren't found by xml:id.
+        var elt = document.createElementNS(SVGNS, 'g');
+        elt.setAttributeNS(XMLNS, 'id', 'g3');
+        if (document.getElementById('g3') == null)
+        {
+          r3.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test that elements inserted into the document are found by xml:id.
+        g.appendChild(elt);
+        if (document.getElementById('g3') == g.lastElementChild)
+        {
+          r4.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test that elements outside the document aren't found by id.
+        elt = document.createElementNS(SVGNS, 'g');
+        elt.setAttributeNS(null, 'id', 'g4');
+        if (document.getElementById('g4') == null)
+        {
+          r5.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test that elements inserted into the document are found by id.
+        g.appendChild(elt);
+        if (document.getElementById('g4') == g.lastElementChild)
+        {
+          r6.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test getting an element that used to have a duplicate xml:id.
+        g.parentNode.removeChild(g.nextElementSibling);
+        var g9 = document.getElementById('g9');
+        if (g9 && g9.getAttributeNS(EXNS, 'pos') == '2')
+        {
+          r8.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test getting an element that used to have a duplicate xml:id/id.
+        g.parentNode.removeChild(g.nextElementSibling.nextElementSibling.nextElementSibling);
+        var g10 = document.getElementById('g10');
+        if (g10 && g10.getAttributeNS(EXNS, 'pos') == '3')
+        {
+          r9.setAttributeNS(null, 'fill', 'blue');
+        }
+
+        // Test getting an element using an invalid name.
+        if (document.getElementById('0') == null)
+        {
+          r10.setAttributeNS(null, 'fill', 'blue');
+        }
+      ]]>
+    </script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.5 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

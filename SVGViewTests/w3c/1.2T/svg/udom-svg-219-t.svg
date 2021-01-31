@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="CM" desc="Test SVGSVGElement.currentRotate" status="created"
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: udom-svg-219-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests setting and getting the <tt>currentRotate</tt> attribute of
+        the <b>SVGSVGElement</b> interface.
+      </p>
+      <p>
+        There are three sub-tests, each represented by a rectangle (blue for
+        pass, red for fail).  The first tests that the initial value of
+        <tt>currentRotate</tt> is 0.  The second tests setting
+        <tt>currentRotate</tt> to a valid value (in this case, 5), and
+        looks at the resulting screenCTM.  The third tests retrieving
+        the newly set value.
+      </p>
+      <p>
+        The test has been passed if all three rectangles are blue and appear
+        aligned with the device coordinate system (i.e., they look unrotated),
+        and the test slide is shown rotated by 5 degrees.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-219-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>SVGSVGElement.currentRotate test</text>
+    <text x='10' y='280' font-size='12'>The two rectangles must be blue and appear unrotated.</text>
+    <g font-size='12' transform='rotate(-5)translate(40,0)'>
+      <rect xml:id='rect1' x='10' y='110' width='50' height='50' fill='red'/>
+      <text x='10' y='180'>Initial value</text>
+
+      <rect xml:id='rect2' x='210' y='110' width='50' height='50' fill='red'/>
+      <text x='210' y='180'>Get new value</text>
+    </g>
+    <script type='application/ecmascript'>
+      <![CDATA[
+      function eq(a, b) {
+        return Math.abs(a - b) < 1e-4;
+      }
+
+      svg = document.documentElement;
+
+      if (eq(svg.currentRotate, 0)) {
+        document.getElementById('rect1').setAttributeNS(null, 'fill', 'blue');
+      }
+
+      svg.currentRotate = 5;
+
+      if (eq(svg.currentRotate, 5)) {
+        document.getElementById('rect2').setAttributeNS(null, 'fill', 'blue');
+      }
+    ]]>
+    </script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

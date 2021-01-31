@@ -1,0 +1,212 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Testing the <line/> element with different stroke and stroke-width attributes",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					textAnchor: "middle",
+					fill: "black",
+					transform: [1, 0, 0, 1, 240, 14]
+				},
+				SVGGroup {
+					id: "diagonal-line-set",
+					contents: [
+						SVGLine {
+							x1: 37.5,
+							y1: 137,
+							x2: 112.5,
+							y2: 50,
+							stroke: { fill: "black" }
+						},
+						SVGLine {
+							x1: 112.5,
+							y1: 137,
+							x2: 187.5,
+							y2: 50,
+							stroke: { fill: "red", width: 5 }
+						},
+						SVGLine {
+							x1: 187.5,
+							y1: 137,
+							x2: 262.5,
+							y2: 50,
+							stroke: { fill: "green", width: 7.5 }
+						},
+						SVGLine {
+							x1: 262.5,
+							y1: 137,
+							x2: 337.5,
+							y2: 50,
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGLine {
+							x1: 337.5,
+							y1: 137,
+							x2: 412.5,
+							y2: 50,
+							stroke: { fill: "fuchsia", width: 12.5 }
+						}
+					]
+				},
+				SVGGroup {
+					id: "middle-figure",
+					contents: [
+						SVGLine {
+							x1: 170,
+							y1: 200,
+							x2: 220,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "black" }
+						},
+						SVGLine {
+							x1: 220,
+							y1: 200,
+							x2: 220,
+							y2: 250,
+							fill: "black",
+							stroke: { fill: "black" }
+						},
+						SVGLine {
+							x1: 220,
+							y1: 250,
+							x2: 270,
+							y2: 250,
+							fill: "black",
+							stroke: { fill: "black" }
+						},
+						SVGLine {
+							x1: 270,
+							y1: 250,
+							x2: 270,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "black" }
+						},
+						SVGLine {
+							x1: 270,
+							y1: 200,
+							x2: 320,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "black" }
+						}
+					]
+				},
+				SVGGroup {
+					id: "lower-left-figure",
+					contents: [
+						SVGLine {
+							x1: 25,
+							y1: 200,
+							x2: 75,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGLine {
+							x1: 75,
+							y1: 200,
+							x2: 75,
+							y2: 250,
+							fill: "black",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGLine {
+							x1: 75,
+							y1: 250,
+							x2: 125,
+							y2: 250,
+							fill: "black",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGLine {
+							x1: 125,
+							y1: 250,
+							x2: 125,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGLine {
+							x1: 125,
+							y1: 200,
+							x2: 175,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "blue", width: 10 }
+						}
+					]
+				},
+				SVGGroup {
+					id: "lower-right-figure",
+					contents: [
+						SVGLine {
+							x1: 370,
+							y1: 250,
+							x2: 420,
+							y2: 250,
+							fill: "black",
+							stroke: { fill: "black", width: 10 }
+						},
+						SVGLine {
+							x1: 420,
+							y1: 200,
+							x2: 470,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "fuchsia", width: 10 }
+						},
+						SVGLine {
+							x1: 320,
+							y1: 200,
+							x2: 370,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGLine {
+							x1: 370,
+							y1: 200,
+							x2: 370,
+							y2: 250,
+							fill: "black",
+							stroke: { fill: "green", width: 10 }
+						},
+						SVGLine {
+							x1: 420,
+							y1: 250,
+							x2: 420,
+							y2: 200,
+							fill: "black",
+							stroke: { fill: "red", width: 10 }
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.9 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

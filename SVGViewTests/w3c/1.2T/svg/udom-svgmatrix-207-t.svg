@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="ED" desc="Test SVGMatrix with special float values" status="created"
+    approved="no"
+    version="$Revision: 1.4 $" testname="$RCSfile: udom-svgmatrix-207-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This test checks behaviour of the SVGMatrix interface when the input arguments are special numerical values, NaN, negative and positive infinity.
+        To pass, each method must raise an exception when called with the special numerical values, and when this happens the text
+        changes from 'failed' to 'passed'.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svgmatrix-207-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+
+    <handler type="text/ecmascript" xe:event="SVGLoad">
+      <![CDATA[
+
+    var svg_ns = "http://www.w3.org/2000/svg";
+    var xlink_ns = "http://www.w3.org/1999/xlink";
+
+    var count=0;
+    var topsvg = document.documentElement;
+    var startY = 65;
+    var rowHeight = 10;
+    var isPassed = true;
+    var eps = 1 / 65535; // 16.16 fixpoint epsilon
+
+    function drawString( text )
+    {
+      node_to_insert=document.createElementNS(svg_ns,"text");
+      node_to_insert.setAttributeNS(null,"x","25");
+      node_to_insert.setAttributeNS(null,"font-size",rowHeight*0.8);
+      var yVal = startY + count++ * rowHeight;
+      node_to_insert.setAttributeNS(null, "y",  yVal.toString()  );
+      node_to_insert.textContent=text ;
+      document.getElementById( "test-body-content" ).appendChild(node_to_insert);                       
+    }
+
+    function verifyMatrix( matrix, expected, epsilon )
+    {
+      if
+      (
+        ( Math.abs(matrix.getComponent(0) - expected[0]) < epsilon ) &&
+        ( Math.abs(matrix.getComponent(1) - expected[1]) < epsilon ) &&
+        ( Math.abs(matrix.getComponent(2) - expected[2]) < epsilon ) &&
+        ( Math.abs(matrix.getComponent(3) - expected[3]) < epsilon ) &&
+        ( Math.abs(matrix.getComponent(4) - expected[4]) < epsilon ) &&
+        ( Math.abs(matrix.getComponent(5) - expected[5]) < epsilon )
+      )
+      {
+        drawString( "Results match expected values." );
+      }
+      else
+      {
+        isPassed = false;
+        drawString( "Results do not match expected values!" );
+        drawString( "expected: " + expected[0].toString() + " " 
+                                  + expected[1].toString() + " " 
+                                  + expected[2].toString() + " " 
+                                  + expected[3].toString() + " " 
+                                  + expected[4].toString() + " " 
+                                  + expected[5].toString() );
+      }
+    }
+    
+    function verifyException( str, expected )
+    {
+      var oldPassed = isPassed;
+      isPassed = false;
+      try
+      {
+        eval(str);
+      }
+      catch(e)
+      {
+        if(e.code == expected)
+        {
+          drawString(str + " succeeded.");
+          isPassed = oldPassed;
+          return;
+        }
+        else
+        {
+              drawString( "Results do not match expected value - got " + e.code + " expected: " + exception );
+        }
+      }
+
+      drawString(str + " failed.");
+    }
+  
+  
+    var matrix = topsvg.createSVGMatrixComponents( 1, 0, 0, 1, 10, 10 );
+    
+    verifyException("matrix.getComponent(Number.NaN)", DOMException.INDEX_SIZE_ERR);
+    verifyException("matrix.getComponent(Number.NEGATIVE_INFINITY)", DOMException.INDEX_SIZE_ERR);
+    verifyException("matrix.getComponent(Number.POSITIVE_INFINITY)", DOMException.INDEX_SIZE_ERR);
+    
+    verifyException("matrix.mTranslate(Number.NaN,0)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("matrix.mTranslate(Number.NEGATIVE_INFINITY,10)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("matrix.mTranslate(10.4,Number.POSITIVE_INFINITY)", DOMException.NOT_SUPPORTED_ERR);
+    
+    verifyException("matrix.mScale(Number.NaN)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("matrix.mScale(Number.NEGATIVE_INFINITY)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("matrix.mScale(Number.POSITIVE_INFINITY)", DOMException.NOT_SUPPORTED_ERR);
+    
+    verifyException("matrix.mRotate(Number.NaN)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("matrix.mRotate(Number.NEGATIVE_INFINITY)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("matrix.mRotate(Number.POSITIVE_INFINITY)", DOMException.NOT_SUPPORTED_ERR);
+    verifyException("topsvg.createSVGMatrixComponents( 1, 0, 0, Number.POSITIVE_INFINITY, 10, 10 )", DOMException.NOT_SUPPORTED_ERR);
+    
+    if ( isPassed )
+    {
+      var status = document.getElementById("TestStatus");
+      status.setTrait("#text", "passed");
+    }
+  ]]>
+    </handler>
+
+    <text  x="240" y="40" text-anchor="middle" >SVGMatrix float values test</text>
+
+    <rect x="330" y="315" width="130" height="40" stroke="blue" fill="none"/>
+    <g fill="black">
+      <text xml:id="TestStatus" x="333" y="350" font-size="40">failed</text>
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.4 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

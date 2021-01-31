@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%" 
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2007 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" 
+    reviewer="[reviewer]" owner="CM" desc="Test SVGGlobal.stringToBinary()" status="created" 
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: udom-svg-240-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This document tests the operation of
+        <code>SVGGlobal.stringToBinary()</code>.  The tests use the
+        two required encodings, UTF-8 and UTF-16.  It consists of three
+        subtests, the result of which is represented with a rectangle
+        (red for fail, green for pass).  The test is passed if all three
+        rectangles are green:
+      </p>
+      <ol>
+        <li>Encode a valid DOMString in UTF-8.</li>
+        <li>Encode a valid DOMString in UTF-16.</li>
+        <li>Pass an invalid DOMString to be encoded, which must result in an
+          <code>ENCODING_ERR</code> <code>GlobalException</code> being thrown.</li>
+      </ol>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-240-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>SVGGlobal.stringToBinary() tests</text>
+    <rect xml:id='r1' x='10' y='60' width='40' height='40' fill='red'/>
+    <rect xml:id='r2' x='10' y='110' width='40' height='40' fill='red'/>
+    <rect xml:id='r3' x='10' y='160' width='40' height='40' fill='red'/>
+    <g font-size='14'>
+      <text x='60' y='83'>Test encoding in UTF-8</text>
+      <text x='60' y='133'>Test encoding in UTF-16</text>
+      <text x='60' y='183'>Test passing invalid UTF-16 in 'data' parameter</text>
+    </g>
+    <script><![CDATA[
+      // Valid characters from different planes.
+      var utf8 = [
+        0x00,                       // U+0000
+        0x41,                       // U+0041
+        0x7F,                       // U+007F
+        0xC2, 0x80,                 // U+0080
+        0xCC, 0x83,                 // U+0303
+        0xD8, 0xA7,                 // U+0627
+        0xE0, 0xA4, 0x85,           // U+0905
+        0xE4, 0xB8, 0xAD,           // U+4E2D
+        0xEF, 0xBB, 0xBF,           // U+FEFF
+        0xEF, 0xBF, 0xBD,           // U+FFFD
+        0xF0, 0x90, 0x82, 0x80,     // U+10080
+        0xF0, 0xA0, 0x80, 0xA7,     // U+20027
+        0xF3, 0xA0, 0x80, 0x81,     // U+E0001
+        0xF4, 0x80, 0x80, 0x80      // U+100000
+      ];
+
+      // The same characters as in utf8 above.
+      var utf16_no_bom = [
+        0x0000,
+        0x0041,
+        0x007F,
+        0x0080,
+        0x0303,
+        0x0627,
+        0x0905,
+        0x4E2D,
+        0xFEFF,
+        0xFFFD,
+        0xD800, 0xDC80,
+        0xD840, 0xDC27,
+        0xDB40, 0xDC01,
+        0xDB80, 0xDC00
+      ];
+
+      // Generate "UTF-16 with a BE BOM", "UTF-16 with an LE BOM"
+      // and "UTF-16 BE with no BOM".
+      var utf16_le_with_bom = [0xFF, 0xFE];
+      var utf16_be_with_bom = [0xFE, 0xFF];
+      var utf16_be = [];
+      var i, lo, hi;
+      for (i = 0; i < utf16_no_bom.length; i++) {
+        lo = utf16_no_bom[i] & 0xFF;
+        hi = (utf16_no_bom[i] >> 8) & 0xFF;
+        utf16_le_with_bom.push(lo, hi);
+        utf16_be_with_bom.push(hi, lo);
+        utf16_be.push(hi, lo);
+      }
+
+      // Create a string from the 16-bit units.
+      var s = String.fromCharCode.apply(null, utf16_no_bom);
+
+      // SUB-TEST 1: Convert it to UTF-8.
+      var bytes;
+      try {
+        bytes = stringToBinary(s, 'UTF-8');
+        if (bytes.length == utf8.length) {
+          b = true;
+          for (i = 0; i < bytes.length; i++) {
+            if (bytes[i] !== utf8[i]) {
+              b = false;
+              break;
+            }
+          }
+          if (b) {
+            document.getElementById('r1').setAttributeNS(null, 'fill', 'green');
+          }
+        }
+      } catch (e) {
+      }
+
+      // SUB-TEST 2: Convert it to UTF-16.
+      // This might result in a BOM or it might not.  If not, then we
+      // assume it is BE.
+      var a;
+      try {
+        bytes = stringToBinary(s, 'UTF-16');
+        if (bytes.length == utf16_le_with_bom) {
+          if (bytes[0] === 0xff) {
+            a = utf16_le_with_bom;
+          } else if (bytes[0] == 0xfe) {
+            a = utf16_be_with_bom;
+          }
+        } else if (bytes.length == utf16_be.length) {
+          a = utf16_be;
+        }
+        if (a) {
+          b = true;
+          for (i = 0; i < bytes.length; i++) {
+            if (bytes[i] !== a[i]) {
+              b = false;
+              break;
+            }
+          }
+          if (b) {
+            document.getElementById('r2').setAttributeNS(null, 'fill', 'green');
+          }
+        }
+      } catch (e) {
+      }
+
+      // SUB-TEST 3: Invalid UTF-16 in the string.
+      var invalid_utf16s = [
+        // First surrogate without a second.
+        'A\xD800B',
+
+        // Second surrogate without a first.
+        'A\xDC00B',
+
+        // Two first surrogates.
+        'A\xD800\xD800B',
+
+        // Two second surrogates.
+        'A\xDC00\xDC00B'
+      ];
+      var count = 0;
+      for (i = 0; i < invalid_utf16s.length; i++) {
+        try {
+          stringToBinary('\xd800', 'UTF-8');
+        } catch (e) {
+          if (e.code == GlobalException.ENCODING_ERR) {
+            count++;
+          }
+        }
+      }
+      if (count == invalid_utf16s.length) {
+        document.getElementById('r3').setAttributeNS(null, 'fill', 'green');
+      }
+    ]]></script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+  <text xml:id="revision" x="10" y="340" stroke="none" 
+    fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

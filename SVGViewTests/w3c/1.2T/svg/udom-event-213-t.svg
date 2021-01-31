@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="BitFlash" desc="Progress Event test for image elements" status="created"
+    approved="no"
+    version="$Revision: 1.1 $" testname="$RCSfile: udom-event-213-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This test verifyes that progress events are fired.              
+        To pass, the text 'Starting...', 'Loading...' and '...Done' should appear        
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-event-213-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    
+  <script type="application/ecmascript">
+    <![CDATA[
+
+  function imageLoadStart(evt) 
+  {
+    var loadingText = document.getElementById('startText');
+    loadingText.setTrait("#text", "Starting...");
+  }
+
+  function imageLoadProgress(evt) 
+  {
+    var loadingText = document.getElementById('progressText');
+    loadingText.setTrait("#text", "Loading...");
+  }
+
+
+  function imageLoadComplete(evt) 
+  {
+    var loadingText = document.getElementById('doneText');
+    loadingText.setTrait("#text", "...Done");
+  }
+
+]]>
+  </script>
+
+    <text x="240" y="45" font-size="11" text-anchor="middle" >
+    Progress Events. The text 'Starting...' , 'Loading...' and '...Done' should appear</text>
+    
+  <g transform="translate(0,80)" >
+    <image y="50" xml:id="myImage" xlink:href="http://www.w3.org/Icons/w3c_main.png" width="100" height="100">
+      <handler type="application/ecmascript" ev:event="SVGPreload">
+        imageLoadStart(evt);
+      </handler>
+
+      <handler type="application/ecmascript" ev:event="SVGLoadProgress">
+        imageLoadProgress(evt);
+      </handler>
+      
+      <handler type="application/ecmascript" ev:event="SVGPostload">
+        imageLoadComplete(evt);
+      </handler>
+    </image>
+
+    <text xml:id="startText" x="10" y="0" font-size="16" >Failed</text>   
+    <text xml:id="progressText" x="10" y="20" font-size="16" >Failed</text>   
+    <text xml:id="doneText" x="10" y="40" font-size="16" >Failed</text>   
+  </g>
+    <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+      <text xml:id="revision" x="10" y="340" stroke="none"
+        fill="black">$Revision: 1.1 $</text>
+    </g>
+    <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+    <!-- comment out this watermark once the test is approved -->
+    <g xml:id="draft-watermark">
+      <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+      <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+      </g>    
+  </g>  
+</svg>

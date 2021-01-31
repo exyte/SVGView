@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="ATE" owner="ED" desc="Test for getURL and parseXML" status="reviewed"
+    approved="no"
+    version="$Revision: 1.5 $" testname="$RCSfile: udom-svg-203-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+      <p>
+        This test tries to load an xml resource with the getURL method. The test is passed
+        if, after the script has executed, there are
+        6 green rects visible and there are no visible red rects.
+      </p>
+      <p>
+        The xml file contains an 'svg' element as root, but this element is
+        in not in the svg namespace. Thus it should not have the DOM API:s
+        that are available on the SVGSVGElement.
+      </p>
+      <p>
+        Then a call is made to parseXML without using getURL, and
+        a rect element is parsed. The rect element is not namespace-qualified
+        and is therefore an xml element. As such it must not show up in the
+        svg renderingtree when inserted into the document.
+      </p>
+      <p>
+        Finally a script element in the svg namespace is parsed. The code
+        it contains must not be executed before inserted into the document.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-203-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII" font-size="18">
+    <script>
+      <![CDATA[
+      var test = new Array;
+      var ti = 0;
+      var val = 47;
+
+      var scriptcode = "<script xmlns='http://www.w3.org/2000/svg'> var checkval = val; </script>"
+
+      function loadComplete(status)
+      {
+        if(status.success)
+        {
+          test[ti++].setAttribute("fill", "green");
+
+          var root = parseXML(status.content, document);
+
+          if(root)
+          {
+            test[ti++].setAttribute("fill", "green");
+
+            try
+            {
+              // Since root isn't an SVGSVGElement this should give an exception
+              var rect = root.createSVGRect();
+            }
+            catch(e)
+            {
+              test[ti].setAttribute("fill", "green");
+            }
+            ti++;
+          }
+          else
+          {
+            ti+=2;
+          }
+
+          // this is not an svg element, it's an xml element and must not show up in rendering
+          var root = parseXML("<rect x='100' y='300' width='100' height='100' fill='red'/>", document);
+          document.getElementById("container1").appendChild(root);
+          test[ti++].setAttribute("fill", "green");
+
+          // if scriptcode is executed immidiately then checkval will be 47,
+          // if delayed until insertion in document, then it will be 11.
+          var root = parseXML(scriptcode, document);
+          val = 11;
+          document.getElementById("container2").appendChild(root);
+          if(checkval == 11)
+          {
+            test[ti++].setAttribute("fill", "green");
+          }
+        }
+      }
+
+      function init(evt)
+      {
+        for(var i = 0; i < 5; i++)
+        {
+          test[i] = document.getElementById("test"+i);
+        }
+
+        getURL("../images/xmltree.xml", loadComplete);			
+      }
+      ]]>
+    </script>
+
+    <g transform="translate(290 100)">
+      <text text-anchor="end">getURL()</text>
+      <rect xml:id="test0" x="10" y="-15" width="18" height="18" fill="red"/>
+    </g>
+    <g transform="translate(290 120)">
+      <text text-anchor="end">parseXML()</text>
+      <rect xml:id="test1" x="10" y="-15" width="18" height="18" fill="red"/>
+    </g>
+    <g transform="translate(290 140)">
+      <text text-anchor="end">root namespace</text>
+      <rect xml:id="test2" x="10" y="-15" width="18" height="18" fill="red"/>
+    </g>
+    <g xml:id="container1" transform="translate(290 160)">
+      <text text-anchor="end">root namespace #2</text>
+      <rect xml:id="test3" x="10" y="-15" width="18" height="18" fill="red"/>
+    </g>
+    <g xml:id="container2" transform="translate(290 180)">
+      <text text-anchor="end">deferred script execution</text>
+      <rect xml:id="test4" x="10" y="-15" width="18" height="18" fill="red"/>
+    </g>
+  </g>
+
+  <handler xe:event="load">
+    <![CDATA[
+      init( evt );
+    ]]>
+  </handler>
+
+  <g font-family="SVGFreeSansASCII" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.5 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="'Arial Black', Arial, sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

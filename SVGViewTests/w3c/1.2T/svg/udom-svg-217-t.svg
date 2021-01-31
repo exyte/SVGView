@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="CM" desc="Simple SVGGlobal.getURL() tests" status="created"
+    approved="no"
+    version="$Revision: 1.3 $" testname="$RCSfile: udom-svg-217-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This test simple invocations of <tt>SVGGlobal.getURL()</tt> to
+        fetch a small <tt>text/plain</tt> resource from an HTTP IRI.
+      </p>
+      <p>
+        The test has three sub-tests, the result of which is indicated
+        by the color of a rectangle.  The first sub-test is for a
+        <tt>getURL()</tt> request that fetches a text/plain resource.
+        The second sub-test is for a request that fetches a gzip
+        encoded text/plain resource, where the server correctly
+        responds with a <tt>Content-Encoding: gzip</tt> header.
+        The third sub-test is for a request that fetches a gzip
+        encoded text/plain resource, where the server incorrectly
+        omits a <tt>Content-Encoding: gzip</tt> header.  In this
+        last sub-test, the <tt>getURL()</tt> call should fail,
+        since the bytes must not be interpreted as being gzip encoded,
+        and since the bytes are not valid UTF-8 text, the
+        <tt>AsyncURLStatus</tt> object must indicate that the request
+        failed.
+      </p>
+      <p>
+        The rectangle representing each sub-test is initially black.  Each
+        <tt>getURL()</tt> request is made during the document load,
+        and the rectangle will become blue if the values of the
+        <tt>AsyncURLStatus</tt> object have the expected values.
+        The rectangle will become red if the callback was invoked but
+        the <tt>AsyncURLStatus</tt> object with incorrect values.
+      </p>
+      <p>
+        The test is passed if all three rectangles becomes blue some time after
+        the document load.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-217-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='40'>Simple SVGSVGElement.getURL() tests</text>
+    <rect xml:id='r1' x='10' y='50' width='40' height='40' fill='black'/>
+    <rect xml:id='r2' x='60' y='50' width='40' height='40' fill='black'/>
+    <rect xml:id='r3' x='110' y='50' width='40' height='40' fill='black'/>
+    <script>
+      <![CDATA[
+      // A simple test of a text/plain resource returned with status code 200.
+      var callback1 = {
+        operationComplete: function(status) {
+          var colour = 'red';
+          if (status.success
+              && status.contentType == "text/plain; charset=UTF-8"
+              && status.content == "ABCDEFGHIJKLMNOPQRST") {
+            colour = 'blue';
+          }
+          document.getElementById('r1').setAttributeNS(null, 'fill', colour);
+        }
+      };
+      getURL("/test/text", callback1);
+
+      // A gzip encoded text/plain resource returned with status code 200.
+      var callback2 = {
+        operationComplete: function(status) {
+          var colour = 'red';
+          if (status.success
+              && status.contentType == "text/plain; charset=UTF-8"
+              && status.content == "ABCDEFGHIJKLMNOPQRST") {
+            colour = 'blue';
+          }
+          document.getElementById('r2').setAttributeNS(null, 'fill', colour);
+        }
+      };
+      getURL("/test/text-gzip", callback2);
+
+      // A gzip encoded text/plain resource returned with status code 200
+      // but without the Content-Encoding: gzip HTTP header.
+      var callback3 = {
+        operationComplete: function(status) {
+          var colour = 'red';
+          if (!status.success
+              && status.contentType == null
+              && status.content == null) {
+            colour = 'blue';
+          }
+          document.getElementById('r3').setAttributeNS(null, 'fill', colour);
+        }
+      };
+      getURL("/test/text-gzip-not-really", callback3);
+    ]]>
+    </script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.3 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

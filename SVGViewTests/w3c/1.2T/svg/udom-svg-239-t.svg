@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%" 
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2007 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" 
+    reviewer="[reviewer]" owner="CM" desc="Test SVGGlobal.parseXML()" status="created" 
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: udom-svg-239-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This document tests <code>SVGGlobal.parseXML()</code>.
+        It consists of nine sub-tests, each of whose result is represented
+        by a rectangle (red for fail, green for pass).  This test has
+        been passed if all nine rectangles are green.  The sub-tests are:
+      </p>
+      <ol>
+        <li>Parsing a simple, well-formed XML 1.0 document.</li>
+        <li>Parsing a simple, well-formed XML 1.1 document, using an element
+          name that is not valid in XML 1.0 and checking for XML 1.1 newline
+          character normalization behavior.</li>
+        <li>Trying to parse a non-well-formed XML 1.0 document, using two
+          element nodes at the top level.</li>
+        <li>Trying to parse a non-well-formed XML 1.1 document, using the U+007F
+          character directly instead of using a numeric character reference.</li>
+        <li>Trying to parse a non-namespace-well-formed XML 1.0 document,
+          using a declaration for the XML namespace.</li>
+        <li>Trying to parse a non-namespace-well-formed XML 1.1 document,
+          using a prefix that has been undeclared.</li>
+        <li>Parsing with a context document, and checking that its <code>ownerDocument</code>
+          is set appropriately.</li>
+        <li>Parsing a document with an <code>&lt;svg:script></code> element in it,
+          and ensuring that it hasn't been run.</li>
+        <li>Parsing an XML 1.1 document that has an element whose name is not a
+          valid XML 1.0 name, supplying an XML 1.0 document as the context
+          document, and checking that an <code>INVALID_CHARACTER_ERR</code>
+          exception is thrown.</li>
+      </ol>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-svg-239-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>SVGGlobal.parseXML() tests</text>
+    <rect xml:id='r1' x='10' y='50' width='20' height='20' fill='red'/>
+    <rect xml:id='r2' x='10' y='80' width='20' height='20' fill='red'/>
+    <rect xml:id='r3' x='10' y='110' width='20' height='20' fill='red'/>
+    <rect xml:id='r4' x='10' y='140' width='20' height='20' fill='red'/>
+    <rect xml:id='r5' x='10' y='170' width='20' height='20' fill='red'/>
+    <rect xml:id='r6' x='10' y='200' width='20' height='20' fill='red'/>
+    <rect xml:id='r7' x='10' y='230' width='20' height='20' fill='red'/>
+    <rect xml:id='r8' x='10' y='260' width='20' height='20' fill='red'/>
+    <rect xml:id='r9' x='10' y='290' width='20' height='20' fill='red'/>
+    <g font-size='14' transform='translate(40,0)'>
+      <text y='65'>Well-formed XML 1.0 document</text>
+      <text y='95'>Well-formed XML 1.1 document</text>
+      <text y='125'>Non-well-formed XML 1.0 document</text>
+      <text y='155'>Non-well-formed XML 1.1 document</text>
+      <text y='185'>Non-namespace-well-formed XML 1.0 document</text>
+      <text y='215'>Non-namespace-well-formed XML 1.1 document</text>
+      <text y='245'>Using a context document</text>
+      <text y='275'>Ensuring &lt;script> doesn't run</text>
+      <text y='305'>Checking for INVALID_CHARACTER_ERR</text>
+    </g>
+    <script><![CDATA[
+      function assert(b) {
+        if (!b) throw 'assertion failed';
+      }
+
+      function pass(n) {
+        document.getElementById('r' + n).setAttributeNS(null, 'fill', 'green');
+      }
+
+      var doc, n;
+      var fromOtherScript = false;
+
+      // SUB-TEST 1: a simple XML 1.0 document
+      try {
+        doc = parseXML('<a/>', null);
+        assert(doc);
+        pass(1);
+      } catch (e) {
+      }
+
+      // SUB-TEST 2: a simple XML 1.1 document
+      // Note this checks also that the U+2028 character is normalized to a
+      // U+000A character, according to section 2.11 of XML 1.1 2ed.
+      try {
+        doc = parseXML('<?xml version="1.1"?><\D800\DC00>\u2028</\D800\DC00>', null);
+        assert(doc.documentElement.firstChild.nodeValue == '\n');
+        pass(2);
+      } catch (e) {
+      }
+
+      // SUB-TEST 3: a non-WF XML 1.0 document
+      try {
+        doc = parseXML('<a/><b/>', null);
+        assert(!doc);
+        pass(3);
+      } catch (e) {
+      }
+
+      // SUB-TEST 4: a non-WF XML 1.1 document
+      try {
+        doc = parseXML('<?xml version="1.1"?><a>\u007F</a>', null);
+        assert(!doc);
+        pass(4);
+      } catch (e) {
+      }
+
+      // SUB-TEST 5: a non-NS-WF XML 1.0 document
+      try {
+        doc = parseXML('<a xmlns="http://www.w3.org/XML/1998/namespace"/>', null);
+        assert(!doc);
+        pass(5);
+      } catch (e) {
+      }
+
+      // SUB-TEST 6: a non-NS-WF XML 1.1 document
+      try {
+        doc = parseXML('<?xml version="1.1"?><a xmlns:n="x"><b xmlns:n=""><n:c/></b></a>', null);
+        assert(!doc);
+        pass(6);
+      } catch (e) {
+      }
+
+      // SUB-TEST 7: supplying a context document
+      try {
+        n = parseXML('<a/>', document);
+        assert(n.nodeType == Node.ELEMENT_NODE);
+        assert(n.ownerDocument == document);
+        pass(7);
+      } catch (e) {
+      }
+
+      // SUB-TEST 8: ensuring <script> doesn't run
+      try {
+        parseXML('<g xmlns="http://www.w3.org/2000/svg"><script>fromOtherScript = true</script></g>', document);
+        assert(!fromOtherScript);
+        pass(8);
+      } catch (e) {
+      }
+
+      // SUB-TEST 9: an invalid XML name for the context document
+      try {
+        try {
+          parseXML('<?xml version="1.1"?><\D800\DC00/>', document);
+        } catch (e) {
+          assert(e.code == DOMException.INVALID_CHARACTER_ERR);
+          pass(9);
+        }
+      } catch (e) {
+      }
+    ]]></script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+  <text xml:id="revision" x="10" y="340" stroke="none" 
+    fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>
+

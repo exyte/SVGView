@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="AG" owner="CM" desc="Test for SVG fonts defined with names that match generic font families" status="reviewed"
+    approved="no"
+    version="$Revision: 1.3 $" testname="$RCSfile: fonts-elem-201-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This is a test for SVG fonts defined with the same name as one of the
+        generic font families, such as "sans-serif".  References to a font
+        with font-family="sans-serif" must still refer to the generic font
+        family, but font-family="'sans-serif'" must refer to the SVG font.
+      </p>
+      <p>
+        The test displays two characters.  The character on the left is
+        an "A" created using a <tt>&lt;text font-family="sans-serif"&gt;</tt>
+        element, and thus must be drawn in the default sans-serif font.
+        The character on the right is also an "A" but is created using
+        a <tt>&lt;text font-family="'sans-serif'"&gt;</tt> element, and
+        thus must be drawn using the 'sans-serif' SVG font defined in the
+        document (the glyph for "A" being a square).
+      </p>
+      <p>
+        The test is passed if the character displayed on the left is an "A" in
+        font-family="sans-serif" and the character displayed on the right is a
+        square.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: fonts-elem-201-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <font horiz-adv-x="500">
+      <font-face font-family="sans-serif" font-weight="normal"
+                 units-per-em="1000" ascent="800" descent="200" alphabetic="200"/>
+      <missing-glyph horiz-adv-x="500"
+                     d="M0 0L500 0L500 1000L0 1000M50 50L50 950L450 950L450 50Z"/>
+      <glyph unicode="A" glyph-name="square" d="M0 250L500 250L500 750L0 750Z"/>
+    </font>
+    <g font-size='48' text-anchor='middle'>
+      <text x='200' y='150' font-family="sans-serif">A</text>
+      <text x='280' y='150' font-family="'sans-serif'">A</text>
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.3 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

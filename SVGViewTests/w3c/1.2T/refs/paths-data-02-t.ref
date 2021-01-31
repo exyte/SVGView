@@ -1,0 +1,145 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Quadratic bézier curves drawn with commands:",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					textAnchor: "middle",
+					fill: "black",
+					transform: [1, 0, 0, 1, 240, 14]
+				},
+				SVGPath {
+					id: "Bez_MQMqz",
+					path: "M15,20 Q30,120,130,30 M180,80 q-75,-100,-163,-60 z",
+					stroke: { fill: "blue", width: 3 }
+				},
+				SVGText {
+					text: "M,Q,M,q,z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 80, 86]
+				},
+				SVGRect { x: 13, y: 18, width: 4, height: 4, fill: "#00C000" },
+				SVGRect { x: 128, y: 28, width: 4, height: 4, fill: "#00C000" },
+				SVGRect { x: 178, y: 78, width: 4, height: 4, fill: "#00C000" },
+				SVGRect { x: 15, y: 18, width: 4, height: 4, fill: "#00C000" },
+				SVGPath {
+					id: "Bez_fill_MQzmqz",
+					path: "M372,130 Q272,50,422,10 z m70,0 q50,-150,-80,-90 z",
+					fill: "yellow",
+					stroke: { fill: "#CF0000" }
+				},
+				SVGText {
+					text: "m,q,z,m,q,z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 352, 150]
+				},
+				SVGRect { x: 370, y: 128, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 420, y: 8, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 440, y: 128, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 360, y: 38, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Bez_stroke_MQz",
+					path: "M224,103 Q234,-12,304,33 z",
+					stroke: { fill: "aqua" }
+				},
+				SVGText {
+					text: "M,Q,Z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 192, 36]
+				},
+				SVGRect { x: 222, y: 101, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 302, y: 31, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Tri_MQTQz",
+					path: "M208,168 Q258,268,308,168 T258,118 Q128,88,208,168 z",
+					fill: "#00C000",
+					stroke: { fill: "black" }
+				},
+				SVGText {
+					text: "M,Q,T,Q,z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 308, 188]
+				},
+				SVGRect { x: 206, y: 166, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 306, y: 166, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 256, y: 116, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 206, y: 206, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Inv_V_MCcZ",
+					path: "M60,100 Q-40,150,60,200 Q160,150,60,100 z",
+					fill: "#CF0000"
+				},
+				SVGText {
+					text: "M,Q,Q,z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 80, 200]
+				},
+				SVGRect { x: 58, y: 98, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 58, y: 198, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 58, y: 98, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Sin_Mqttttz",
+					path: "M240,296 q25,-100,47,0 t47,0 t47,0 t47,0 t47,0 z",
+					stroke: { fill: "red" }
+				},
+				SVGText {
+					text: "M,q,t,t,t,t,z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 380, 236]
+				},
+				SVGRect { x: 238, y: 294, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 285, y: 294, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 332, y: 294, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 379, y: 294, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 426, y: 294, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 473, y: 294, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Dbl_spd_MCcZ",
+					path: "M172,193 q-100,50,0,50 Q72,243,172,293 q100,-50,0,-50 Q272,243,172,193 z",
+					fill: "#0000C0",
+					stroke: { fill: "#00CF00", width: 2 }
+				},
+				SVGText {
+					text: "M,q,Q,q,Q,z",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 48, 280]
+				},
+				SVGRect { x: 170, y: 191, width: 4, height: 4, fill: "red" },
+				SVGRect { x: 170, y: 241, width: 4, height: 4, fill: "red" },
+				SVGRect { x: 170, y: 291, width: 4, height: 4, fill: "red" },
+				SVGRect { x: 170, y: 241, width: 4, height: 4, fill: "red" },
+				SVGRect { x: 170, y: 191, width: 4, height: 4, fill: "red" }
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.13 $",
+					font: { name: "SVGFreeSansISO-8859-1,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

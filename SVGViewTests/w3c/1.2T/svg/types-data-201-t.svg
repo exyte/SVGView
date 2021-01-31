@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="DOH" desc="allowed range for number (length, coordinate)" status="created"
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: types-data-201-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Some stroked shapes and text and transformation are used with attributes almost from the
+        complete allowed range for numbers:  '-32,767.9999 to +32,767.9999' with not more than
+        4 decimal digits in the fractional part of their decimal expansion.
+        (It is recommended that higher precision floating point storage and computation be
+        performed on operations such as coordinate system transformations to provide the
+        best possible precision and to prevent round-off errors.) Anyway, however the
+        viewer gets the resulting display, the criteria for accuracy is a correct display within
+        one device pixel (without using zooming into the document).
+      </p>
+      <p>
+        Always two or three identical shapes are displayed on each other with stroke-opacity for
+        the topmost shape. This results in several shapes all in the same range somewhere in the
+        blue-purple range. Red or blue shapes or parts of shapes within the black test frame
+        indicate an error, if these wrong color residuals are not within the accuracy of one device
+        pixel. The correct color is given with a descriptive text.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: types-data-201-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+
+    <g stroke-width="20">
+      <desc>text '.' with rotate attribute at the bottom</desc>
+      <text x="160" y="320" rotate="-9.3257"
+     font-size="1286.7651" fill="none" stroke="#f00">.</text>
+      <text x="160" y="320" rotate="32030.6743"
+      font-size="1286.7651" fill="none" stroke="f00" stroke-opacity="0.5">.</text>
+      <text x="160" y="320" rotate="-32049.3257"
+       font-size="1286.7651" fill="none" stroke="blue" stroke-opacity="0.7">.</text>
+    </g>
+
+
+    <g fill="none" stroke-width="20">
+      <title>large rectangle, bottom right corner visible bottom and right</title>
+      <rect x="-1000" y="-1000" width="1470" height="1350" stroke="red" />
+      <rect x="-31012.1235" y="-30998.9823" width="31482.1235"
+       height="31348.9823" stroke="#00f"  stroke-width="20.5" stroke-opacity="0.7"/>
+    </g>
+    <g fill="none" stroke-width="20">
+      <title>large rectangle, bottom right corner visible top left</title>
+      <rect x="-30912.5732" y="-32195.1111" width="31112.5732"
+       height="32215.1111" stroke="red" />
+      <rect x="-1000" y="-1000" width="1200" height="1020"
+      stroke-width="20.5" stroke="#00f"  stroke-opacity="0.7"/>
+
+    </g>
+
+    <circle cx="111.1" cy="124.9" r="19.5" fill="none" stroke-width="21" stroke="#f00" />
+
+    <g transform="translate(111.1,124.9) translate(-16114.2,-123.2) scale(1000)" fill="none">
+      <title>left circle</title>
+      <circle cx="16.1142" cy="0.1232" r="0.0195" stroke-width="0.0211" stroke="#00f" stroke-opacity="0.7"/>
+    </g>
+
+    <circle cx="219.9" cy="126.3" r="22.4" fill="none" stroke-width="19.2" stroke="#f00" />
+    <g transform="translate(216.7,-31883.3) scale(32000)" fill="none">
+      <title>second circle from left</title>
+      <circle cx="0.0001" cy="1.0003" r="0.0007" stroke-width="0.0006" stroke="#00f" stroke-opacity="0.7"/>
+    </g>
+
+
+    <ellipse cx="339.2" cy="126.7" rx="2.6003" ry="3.2403" fill="none"
+                 stroke-width="3.1978" stroke="#f00" />
+    <g transform="translate(335.9429,125.0889) scale(-0.0001,0.0001)" fill="none">
+      <title>small ellipse on the right</title>
+      <ellipse cx="-32571" cy="16111" rx="26003" ry="32403" stroke-width="31978"
+                   stroke="#00f" stroke-opacity="0.7"/>
+    </g>
+
+
+    <g>
+      <title>rect with transform translate and rotate top right</title>
+      <rect x="339.7229" y="40.2771" width="50" height="50" fill="none"
+                stroke="#800" stroke-width="19.9" />
+
+      <rect x="32601.1234" y="32601.1234" width="50" height="50" fill="none" stroke="#f00" stroke-width="20"
+      transform="translate(-32121.1234 -32701.1234) rotate(32400.1234 -32601.1234 -32601.1234)"/>
+      <rect x="32601.1234" y="32601.1234" width="50" height="50" fill="none"
+        stroke="#00f" stroke-width="20" stroke-opacity="0.7"
+        transform="translate(-32121.1234 -32701.1234) rotate(-32399.8766 -32601.1234 -32601.1234)"/>
+      <!--          
+pos: 480 -100
+
+-140.579559874
+140.27711415
+
+339.72288585
+40.27711415
+-->
+    </g>
+    <g font-size="12" stroke="none" fill="rgb(30%,0,70%)">
+      <rect x="5" y="35" width="270" height="55" fill="#fff" fill-opacity="0.3" />
+      <text x="10" y="50">basic data type: number (length, coordinate ...)</text>
+      <text x="10" y="65">range and accuracy</text>
+      <text x="10" y="85">other color as this or black: fail </text>
+    </g>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="DOH" desc="Interactive animation with min and max." status="created"
+    approved="no"
+    version="$Revision: 1.4 $" testname="$RCSfile: animate-elem-223-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Interactive animation with min and max.
+      </p>
+      <p>
+        The height of an rectangle can be enlarged with a click/activate on the
+        start button and this can be stopped with the stop button. It starts 1s after
+        the activation of the start button.
+        The duration is 40s, min is 20s, max is 30s with the related size
+        of the rectangle marked in gray.
+      </p>
+      <div>
+        This means:
+        <ol>
+          <li>
+            The animation can be started or restarted always
+            because this is not prevented in the document.
+          </li>
+          <li>
+            If the animation is started and not restarted earlier as it ends,
+            it can be stopped somewhere between the min and the max value.
+          </li>
+          <li>
+            If the stop button is clicked after the animation reached the
+            max value or never, the animation has already stopped at the max
+            value and nothing more happens.
+          </li>
+          <li>
+            If the stop button is clicked between min and max the animation
+            stops immediately.
+          </li>
+          <li>
+            If the stop button is clicked before the animation reaches the min
+            value, the animation continues and is stopped at the min value.
+          </li>
+        </ol>
+      </div>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: animate-elem-223-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+
+
+
+
+    <circle id="c1" xml:id="c1" cx="65" cy="100"
+     r="50" stroke-width="10" stroke="#00f"
+     fill="#8fa" focusable="true" focusHeightlight="auto">
+      <title>click or activate to start animation</title>
+    </circle>
+
+    <circle id="c2" xml:id="c2" cx="185" cy="100"
+      r="50" stroke-width="10" stroke="#00f"
+      fill="#faf" focusable="true" focusHeightlight="auto">
+      <title>click or activate to stop animation</title>
+    </circle>
+
+    <rect x="250" y="20" width="200" height="0" fill="#0cf">
+      <animate
+            attributeName="height"
+            from="0"
+            to="300"
+            begin="c1.click +1s; c1.activate +1s"
+            end="c2.click; c2.activate; indefinite"
+            dur="40s"
+            min="20s"
+            max="30s"
+            fill="freeze" />
+    </rect>
+
+    <g fill="none" stroke="#ccc" stroke-width="4" stroke-linecap="round">
+      <rect x="250" y="20" width="200" height="300" />
+      <line x1="230" x2="280" y1="170" y2="170" />
+      <line x1="470" x2="420" y1="170" y2="170" />
+      <line x1="230" x2="280" y1="245" y2="245" />
+      <line x1="470" x2="420" y1="245" y2="245" />
+      <rect x="300" y="170" width="100" height="75" stroke="none" fill="#00f" fill-opacity="0.4" />
+    </g>
+
+    <text x="50" y="175">start</text>
+    <text x="170" y="175">stop</text>
+    <text x="300" y="20">0s (start +1s)</text>
+    <text x="300" y="170">20s (min)</text>
+    <text x="300" y="245">30s (max)</text>
+    <text x="300" y="320">40s (dur)</text>
+
+
+    <g id="myText" xml:id="myText" font-size="12">
+      <text x="10" y="200">Interactive animation with min and max.</text>
+      <text x="10" y="220">activate/click circles to start or stop </text>
+      <g fill="#666">
+        <text x="10" y="240">stop &lt; min: retarded to min </text>
+        <text x="10" y="255">min &lt; stop &lt; max: stops immediately </text>
+        <text x="10" y="270">max: automatic stop </text>
+        <text x="10" y="285">&gt; max: nothing to stop </text>
+        <text x="10" y="300">start: always </text>
+      </g>
+    </g>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.4 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

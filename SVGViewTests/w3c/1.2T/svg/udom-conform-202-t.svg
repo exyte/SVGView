@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%" 
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2007 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" 
+    reviewer="[reviewer]" owner="CM" desc="" status="empty" 
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: udom-conform-202-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        This tests the requirement that passing in a non-numeric Number
+        to an object expecting a float must throw a NOT_SUPPORTED_ERR
+        <b>DOMException</b> except for <code>setFloatTrait()</code> and
+        <code>setFloatListTrait()</code>, where TYPE_MISMATCH_ERR must
+        be thrown.
+      </p>
+      <p>
+        The test has 21 sub-tests.  Each is represented by a numbered
+        rectangle that indicates whether the test was passed (green if
+        it was, red if it wasn't).  The text to the right of each
+        rectangle shows what method (or property) was called (or assigned
+        to) with <code>NaN</code>, <code>Infinity</code> and
+        <code>-Infinity</code>.  The test has been passed if all 21
+        rectangles are green.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-conform-202-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <text x='10' y='42'>Non-numeric float values in uDOM test</text>
+
+    <g transform='translate(10, 60)' fill='red'>
+      <rect xml:id='r1' width='15' height='15'/>
+      <rect xml:id='r2' width='15' height='15' y='20'/>
+      <rect xml:id='r3' width='15' height='15' y='40'/>
+      <rect xml:id='r4' width='15' height='15' y='60'/>
+      <rect xml:id='r5' width='15' height='15' y='80'/>
+      <rect xml:id='r6' width='15' height='15' y='100'/>
+      <rect xml:id='r7' width='15' height='15' y='120'/>
+      <rect xml:id='r8' width='15' height='15' y='140'/>
+      <rect xml:id='r9' width='15' height='15' y='160'/>
+      <rect xml:id='r10' width='15' height='15' y='180'/>
+      <rect xml:id='r11' width='15' height='15' y='200'/>
+      <rect xml:id='r12' width='15' height='15' y='220'/>
+      <g transform='translate(240)'>
+        <rect xml:id='r13' width='15' height='15'/>
+        <rect xml:id='r14' width='15' height='15' y='20'/>
+        <rect xml:id='r15' width='15' height='15' y='40'/>
+        <rect xml:id='r16' width='15' height='15' y='60'/>
+        <rect xml:id='r17' width='15' height='15' y='80'/>
+        <rect xml:id='r18' width='15' height='15' y='100'/>
+        <rect xml:id='r19' width='15' height='15' y='120'/>
+        <rect xml:id='r20' width='15' height='15' y='140'/>
+        <rect xml:id='r21' width='15' height='15' y='160'/>
+      </g>
+    </g>
+
+    <set xml:id='e1' attributeName='display' to='inline' begin='indefinite'/>
+    <rect xml:id='e2' width='0' height='0'/>
+    <text xml:id='e3'/>
+
+    <script><![CDATA[
+      var SVGNS = 'http://www.w3.org/2000/svg';
+      var svg = document.documentElement;
+      var body = document.getElementById('test-body-content');
+      var vals = [NaN, Infinity, -Infinity];
+
+      var x = 10, y = 60, count = 0;
+
+      function result(o, f, b) {
+        var s = String(o);
+        if (o && o.nodeName) {
+          s = '<' + o.nodeName + '>';
+        }
+        count++;
+        if (b) {
+          document.getElementById('r' + count).setAttributeNS(null, 'fill', 'green');
+        }
+        var t = document.createElementNS(SVGNS, 'text');
+        t.setAttributeNS(null, 'text-anchor', 'middle');
+        t.setAttributeNS(null, 'font-size', '9');
+        t.setAttributeNS(null, 'fill', 'white');
+        t.setAttributeNS(null, 'x', x + 7.5);
+        t.setAttributeNS(null, 'y', y + 10.5);
+        t.textContent = count;
+        body.appendChild(t);
+        var t = document.createElementNS(SVGNS, 'text');
+        t.setAttributeNS(null, 'font-size', '10');
+        t.setAttributeNS(null, 'x', x + 20);
+        t.setAttributeNS(null, 'y', y + 10.5);
+        t.textContent = s + '.' + f;
+        body.appendChild(t);
+        y += 20;
+        if (count % 12 == 0) {
+          x = 250;
+          y = 60;
+        }
+      }
+
+      function pass(n, f) {
+        result(n, f, true);
+      }
+
+      function fail(n, f) {
+        result(n, f, false);
+      }
+
+      function assert(b) {
+        if (!b) throw '';
+      }
+
+      function testMethod(o, n, f, as, code) {
+        var i, j, b;
+        var args;
+        if (typeof code == 'undefined') {
+          code = DOMException.NOT_SUPPORTED_ERR;
+        }
+        try {
+          for (i = 0; i < vals.length; i++) {
+            b = true;
+            args = as.concat();
+            for (j = 0; j < args.length; j++) {
+              if (typeof args[j] == 'undefined') {
+                args[j] = vals[i];
+              }
+            }
+            try {
+              o[f].apply(o, args);
+              b = false;
+            } catch (e) {
+              b = e.code == code;
+            }
+            assert(b);
+          }
+          pass(n, f + '()');
+        } catch (e) {
+          fail(n, f + '()');
+        }
+      }
+
+      function testProperty(o, n, f) {
+        var i, old, b;
+        try {
+          for (i = 0; i < vals.length; i++) {
+            b = true;
+            try {
+              o[f] = vals[i];
+              b = false;
+            } catch (e) {
+              b = e.code == DOMException.NOT_SUPPORTED_ERR;
+            }
+            assert(b);
+          }
+          pass(n, f);
+        } catch (e) {
+          fail(n, f);
+        }
+      }
+
+      try {
+        var r = svg.createSVGRect();
+        var p = svg.createSVGPoint();
+        var pa = null;//svg.createSVGPath();
+        var m = null;//svg.createSVGMatrixComponents(0, 0, 0, 0, 0, 0);
+
+        var ids = 'e1 e2 e3'.split(' ');
+        var i;
+        for (i in ids) {
+          this[ids[i]] = document.getElementById(ids[i]);
+        }
+
+        testMethod(e1, 'ElementTimeControl', 'beginElementAt', [,]);
+        testMethod(e1, 'ElementTimeControl', 'endElementAt', [,]);
+        testMethod(svg, 'SVGSVGElement', 'createSVGMatrixComponents', [0, 0, 0, , 0, 0]);
+        testMethod(svg, 'SVGSVGElement', 'createSVGRGBColor', [0, , 0]);
+        testProperty(r, 'SVGRect', 'x');
+        testProperty(r, 'SVGRect', 'y');
+        testProperty(r, 'SVGRect', 'width');
+        testProperty(r, 'SVGRect', 'height');
+        testProperty(p, 'SVGPoint', 'x');
+        testProperty(p, 'SVGPoint', 'y');
+        testMethod(pa, 'SVGPath', 'moveTo', [0,]);
+        testMethod(pa, 'SVGPath', 'lineTo', [0,]);
+        testMethod(pa, 'SVGPath', 'quadTo', [0, , 0, 0]);
+        testMethod(pa, 'SVGPath', 'curveTo', [0, , 0, 0, 0, 0]);
+        testMethod(m, 'SVGMatrix', 'mTranslate', [0,]);
+        testMethod(m, 'SVGMatrix', 'mScale', [,]);
+        testMethod(m, 'SVGMatrix', 'mRotate', [,]);
+        testMethod(e2, 'TraitAccess', 'setFloatTrait', ['x',], DOMException.TYPE_MISMATCH_ERR);
+        testMethod(e3, 'TraitAccess', 'setFloatListTrait', [1, 2, , 4, 5], DOMException.TYPE_MISMATCH_ERR);
+        testProperty(svg, 'SVGSVGElement', 'currentScale');
+        testProperty(svg, 'SVGSVGElement', 'currentRotate');
+      } catch (e) {
+        var t = document.createElementNS(SVGNS, 'text');
+        t.setAttributeNS(null, 'font-size', '10');
+        t.setAttributeNS(null, 'x', '10');
+        t.setAttributeNS(null, 'y', '310');
+        t.textContent = e;
+        body.appendChild(t);
+      }
+    ]]></script>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+  <text xml:id="revision" x="10" y="340" stroke="none" 
+    fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

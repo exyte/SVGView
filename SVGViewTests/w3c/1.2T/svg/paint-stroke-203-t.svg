@@ -1,0 +1,130 @@
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="NR" owner="DOH" desc="Stroking for ellipse, large stroke-width, small rx or ry." status="reviewed"
+    approved="no"
+    version="$Revision: 1.4 $" testname="$RCSfile: paint-stroke-203-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Stroking for ellipse, large stroke-width, small rx or ry.
+      </p>
+      <p>
+        The main indication for a failed test is the appearence of something red.
+        A second indication is a thin white line inside a blue area.
+      </p>
+      <p>
+        A  family of light blue filled and dark blue stroked ellipses with decreasing radius rx is displayed.
+        The radius rx of the top left ellipse is animated with decreasing radius too.
+        For smaller ellipses the radius gets smaller than the half stroke-width, therefore the fill is not
+        visible anymore for them.  Only the animated ellipse at the beginning and the next ellipse
+        on its right have a visible fill.
+      </p>
+      <p>
+        To test the correct rendering, the blue ellipses cover always red filled ellipses without a stroke.
+        Additionally the size of the bounding box of the ellipses is given with a thin white
+        stroke on top.
+      </p>
+      <p>
+        The stroked ellipses are cigar shaped and therefore never smaller than the red ellipses
+        and blue parts of the stroke of an ellipse are never outside of the related white
+        stroked bounding box.
+      </p>
+      <p>
+        If something red gets visible an error is occured. If the ellipses do not look elliptical or cigar shaped
+        anymore or get corners larger than one device pixel, an error is occured too.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: paint-stroke-203-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+    <g fill="#f00">
+      <ellipse cx="100" cy="160" rx="90" ry="82">
+        <animate
+      attributeName="rx"
+      attributeType="XML"
+      values="88;88;56;40;32;28;26;25;24.5;24.25;24.125;24.0675"
+      dur="60s"
+      fill="freeze" />
+      </ellipse>
+      <ellipse cx="250" cy="70" rx="56" ry="64" />
+      <ellipse cx="370" cy="120" rx="40"  ry="25" />
+      <ellipse cx="430" cy="190" rx="32" ry="40" />
+      <ellipse cx="400" cy="260" rx="28" ry="26"/>
+      <ellipse cx="340" cy="290" rx="26" ry="44" />
+      <ellipse cx="280" cy="275" rx="25" ry="24.5"/>
+      <ellipse cx="250" cy="220" rx="24.5" ry="26" />
+      <ellipse cx="285" cy="170" rx="24.25" ry="24.5" />
+      <ellipse cx="340" cy="200" rx="24.125" ry="24.1" />
+
+    </g>
+
+    <g fill="#88f" stroke="#008" stroke-width="48">
+      <ellipse cx="100" cy="160" rx="40" ry="58">
+        <animate
+     attributeName="rx"
+     attributeType="XML"
+     values="64;64;32;16;8;4;2;1;0.5;0.25;0.125;0.0675"
+     dur="60s"
+     fill="freeze" />
+      </ellipse>
+      <ellipse cx="250" cy="70" rx="32"  ry="40" />
+      <ellipse cx="370" cy="120" rx="16"  ry="1" />
+      <ellipse cx="430" cy="190" rx="8"  ry="16" />
+      <ellipse cx="400" cy="260" rx="4" ry="2"/>
+      <ellipse cx="340" cy="290" rx="2"  ry="20"/>
+      <ellipse cx="280" cy="275" rx="1" ry="0.5"/>
+      <ellipse cx="250" cy="220" rx="0.5"  ry="2"/>
+      <ellipse cx="285" cy="170" rx="0.25"  ry="0.5"/>
+      <ellipse cx="340" cy="200" rx="0.125"  ry="0.1"/>
+    </g>
+
+
+    <g fill="none" stroke-width="0.5" stroke="#fff">
+      <rect x="12" y="78" width="176" height="164" />
+      <rect x="194" y="6" width="112" height="128" />
+      <rect x="330" y="95" width="80"  height="50" />
+      <rect x="398" y="150" width="64" height="80" />
+      <rect x="372" y="234" width="56" height="52"/>
+      <rect x="314" y="246" width="52" height="88" />
+      <rect x="255" y="250.5" width="50" height="49"/>
+      <rect x="225.5" y="194" width="49" height="52" />
+      <rect x="260.75" y="145.5" width="48.5" height="49" />
+      <rect x="315.875" y="175.9" width="48.25" height="48.2" />
+    </g>
+    <g font-size="12" stroke="none" fill="#ccc">
+      <text x="30" y="270">stroked ellipses</text>
+      <text x="30" y="287">red = wrong</text>
+      <text x="30" y="300">white inside blue = wrong</text>
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.4 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

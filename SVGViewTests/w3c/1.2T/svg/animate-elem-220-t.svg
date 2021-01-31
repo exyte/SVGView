@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="AE" owner="DOH" desc="Precicison test for calcMode spline, keySplines, values animate" status="reviewed"
+    approved="no"
+    version="$Revision: 1.5 $" testname="$RCSfile: animate-elem-220-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Advanced test for calcMode splines, keySplines using values animations.
+      </p>
+      <p>
+        The main indication for a failed test is the appearence of the red fill
+        of the test circle. The circle has to follow exactly the paths given
+        in gray.
+      </p>
+      <p>
+        The cy of a blue stroked circle is animated with six different values
+        animations using calcMode spline and keySplines.
+        The cx is animated linear with values animations to get
+        two dimensional trajectories.
+      </p>
+      <p>
+        The resulting trajectories are displayed within the active duration
+        as gray paths. These paths cover always completely the red fill
+        of the circle.
+        If the red center of the circle gets visible, an error is
+        occured.
+      </p>
+      <p>
+        The timing of the cx animations is choosen in such
+        a way, that the keySplines correspond directly to a cubic
+        path as trajectory. The keySplines values have to be multiplied
+        only with the related values, to get the path data.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: animate-elem-220-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+
+    <defs>
+      <!-- cx animations ...-->
+      <animate xlink:href="#bluetestcase"
+        attributeName="cx"
+        attributeType="XML"
+        values="100;900"
+        dur="20s"
+        fill="freeze"
+        repeatCount="3" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cx"
+        attributeType="XML"
+        values="100;500;700;900"
+        begin="60s"
+        dur="20s"
+        fill="freeze"  />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cx"
+        attributeType="XML"
+        values="100;900"
+        begin="80s"
+        dur="20s"
+        fill="freeze" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cx"
+        attributeType="XML"
+        values="100;400;600;900"
+        begin="100s"
+        dur="20s"
+        fill="freeze"  />
+      <!-- cy spline animations ...-->
+      <animate xlink:href="#bluetestcase"
+        attributeName="cy"
+        attributeType="XML"
+        calcMode="spline"
+        values="100;900"
+        keySplines="0 1 0 1"
+        dur="20s"
+        fill="freeze" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cy"
+        attributeType="XML"
+        calcMode="spline"
+        values="100;900"
+        keySplines="0 .75 .25 1"
+        begin="20s"
+        dur="20s"
+        fill="freeze" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cy"
+        attributeType="XML"
+        calcMode="spline"
+        values="100;500;900"
+        keySplines="1 0.8 0.2 0.4; 0.8 0.6 0.3 0.7"
+        begin="40s"
+        dur="20s"
+        fill="freeze" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cy"
+        attributeType="XML"
+        calcMode="spline"
+        values="100;500;700;900"
+        keySplines="1 0 0.6 0.4; 0.4 0.6 0.6 0.4;0.4 0.6 1 0"
+        begin="60s"
+        dur="20s"
+        fill="freeze" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cy"
+        attributeType="XML"
+        calcMode="spline"
+        values="100;900"
+        keySplines="1 0 0.6 0"
+        begin="80s"
+        dur="20s"
+        fill="freeze" />
+      <animate xlink:href="#bluetestcase"
+        attributeName="cy"
+        attributeType="XML"
+        calcMode="spline"
+        values="100;700;300;900"
+        keySplines="0.2 0.8 0.4 1;0.6 0 0.9 1;0.1 0 0.3 0.4"
+        begin="100s"
+        dur="20s"
+        fill="freeze" />
+
+      <!-- display path if active ...-->
+      <set xlink:href="#p1" attributeName="display" to="inline" begin="0s" dur="20s" />
+      <set xlink:href="#p2" attributeName="display" to="inline" begin="20s" dur="20s" />
+      <set xlink:href="#p3" attributeName="display" to="inline" begin="40s" dur="20s" />
+      <set xlink:href="#p4" attributeName="display" to="inline" begin="60s" dur="20s" />
+      <set xlink:href="#p5" attributeName="display" to="inline" begin="80s" dur="20s" />
+      <set xlink:href="#p6" attributeName="display" to="inline" begin="100s" />
+    </defs>
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+    <g transform="translate(120,0) scale(0.36)">
+      <circle id="bluetestcase" xml:id="bluetestcase"
+                   cx="500" cy="400" r="50"
+                   stroke="#00f" stroke-width="50"
+                   fill="#f00">
+        <title>Blue test circle - if the red center is not exactly below a gray path, this is an error</title>
+      </circle>
+      <g stroke="#888" stroke-width="50" fill="none"
+      stroke-linecap="round">
+        <title>Gray paths indicating the trajectory of the center of the circle</title>
+        <path xml:id="p1" d="M100,100c0,800 0,800 800,800"  display="none"/>
+        <path xml:id="p2" d="M100,100c0,600 200,800 800,800"  display="none"/>
+        <path xml:id="p3" d="M100,100c400,320 80,160 400,400c320,240 120,280 400,400 "  display="none"/>
+        <path xml:id="p4" d="M100,100c400,0 240,160 400,400c80,120 120,80 200,200c80,120 200,0  200,200"  display="none"/>
+        <path xml:id="p5" d="M100,100c800,0 480,0 800,800"  display="none"/>
+        <path xml:id="p6" d="M100,100c60,480 120,600 300,600c120,0 180,-400 200,-400c30,0 90,240  300,600" display="none"/>
+      </g>
+    </g>
+  </g>
+  <g font-size="12" stroke="none" fill="#ccc">
+    <text x="10" y="200">keySplines</text>
+    <text x="10" y="215">calcMode spline</text>
+    <text x="10" y="245">red = wrong</text>
+    <text x="10" y="265">no animation = wrong</text>
+    <text x="10" y="285">circle not centered</text>
+    <text x="10" y="300">below paths = wrong</text>
+  </g>
+
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.5 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,85 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 0, 30],
+					contents: [
+						SVGGroup {
+							id: "elementary-transforms-test",
+							transform: [1, 0, 0, 1, 0, 10],
+							contents: [
+								SVGGroup {
+									id: "elementary-transforms",
+									transform: [2.5, 0, 0, 2.5, -30, 0],
+									contents: [
+										SVGGroup {
+											transform: [1, 0, 0, 1, 50, 50],
+											contents: [
+												SVGRect { width: 20, height: 2, fill: "blue" },
+												SVGRect { width: 2, height: 20, fill: "red" }
+											]
+										},
+										SVGGroup {
+											transform: [0, -1, 1, 0, 150, 70],
+											contents: [
+												SVGRect { width: 20, height: 2, fill: "blue" },
+												SVGRect { width: 2, height: 20, fill: "red" }
+											]
+										}
+									]
+								},
+								SVGGroup {
+									id: "elementary-transforms-test-markers",
+									transform: [2.5, 0, 0, 2.5, -30, 0],
+									contents: [
+										SVGText {
+											text: "translate (50, 50)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 40, 40]
+										},
+										SVGRect { x: 48, y: 48, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 68, y: 48, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 48, y: 68, width: 5, height: 5, fill: "red" },
+										SVGText {
+											text: "rotate(-90)",
+											font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+											fill: "black",
+											transform: [1, 0, 0, 1, 140, 40]
+										},
+										SVGRect { x: 148, y: 68, width: 5, height: 5, fill: "black" },
+										SVGRect { x: 148, y: 48, width: 5, height: 5, fill: "blue" },
+										SVGRect { x: 168, y: 68, width: 5, height: 5, fill: "red" }
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.10 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

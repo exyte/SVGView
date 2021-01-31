@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2007 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/" reviewer="DS"
+    owner="CL" desc="'requiredFonts' attribute with list values" status="created" approved="no"
+    version="$Revision: 1.3 $" testname="$RCSfile: struct-cond-211-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/"
+      xmlns="http://www.w3.org/1999/xhtml">
+      <p> Tests that 'requiredFonts' test attribute is correctly processed, both by itself and as
+        part of a switch, when it contains a list of font family names. The test is passed if four
+        green circles are visible, as in the reference image. </p>
+      <p> There are four  subtests. The first (top left) checks a list containing a font which does not exist
+        (DoesNotExist, hopefully an unusual name for a font which does not, in fact, exist), plus a font which does exist (TestComic, provided in the test suite)  so overall the
+        test evaluates to false and the red rectangle must not be drawn. 
+      </p>
+      <p>The second subtest (top right) has three fonts in the list, the first two exist and the third does not. This checks that the whole list is evaluated, rather than stopping at the first font in the list. Again the test evaluates to false.</p>
+        <p>. The third (bottom left) subtest has a list of two fonts, both of which exist so the test evaluates to true. This causes a green circle to be drawn. Another part of this subtest checks for a single font which does not exist. The test fails if the red rectangle is drawn.</p>
+      <p>Lastly, the fourth  (bottom
+        right) subtest checks for a list of fonts which do exist, inside a switch. </p>
+      <p>To eliminate false positives from implementations which do not implement requiredFonts at
+        all (thus, not treating it as a test attribute, so always seeming to have evaluated to
+        positive) the third and fourth subtests also use negative tests.</p>
+      <p>This test only examines a list value for requiredFonts. A separate test, struct-cond-208-t.svg,  examines a single
+        value for this attribute.</p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: struct-cond-211-t.svg,v $</title>
+  <defs>
+    <font-face font-family="SVGFreeSansASCII" unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <defs>
+      <font-face font-family="TestComic">
+        <font-face-src>
+          <font-face-uri xlink:href="../images/ext-TestComic.svg#Font" />
+        </font-face-src>
+      </font-face>
+    </defs>
+
+    <!-- subtest 1 -->
+    <!-- draw a green circle, which indicates a pass -->
+    <circle cx="122.5" cy="95" r="60" fill="green"/>
+    <g requiredFonts="DoesNotExist,TestComic">
+      <!-- if subtest fails, obscure the first green circle with a red rectangle -->
+      <rect x="10" y="30" width="225" height="130" fill="red"/>
+    </g>
+
+    <!-- subtest 2 -->
+    <switch>
+      <g requiredFonts="TestComic, SVGFreeSansASCII, DoesNotExist">
+        <!-- evaluates to false, so not drawn unless subtest fails -->
+        <rect x="245" y="30" width="225" height="130" fill="red"/>
+      </g>
+      <!-- else draw a green circle, which indicates a pass -->
+      <circle cx="357.5" cy="95" r="60" fill="green"/>
+    </switch>
+
+    <!-- subtest 3 -->
+    <g requiredFonts="SVGFreeSansASCII, TestComic">
+      <!-- if true, draw a green circle, which indicates a pass -->
+      <circle cx="122.5" cy="235" r="60" fill="green"/>
+    </g>
+    <g requiredFonts="DoesNotExist">
+      <rect x="10" y="170" width="225" height="130" fill="red"/>
+    </g>
+
+    <!-- subtest 4 -->
+    <switch>
+      <g requiredFonts="TestComic, SVGFreeSansASCII">
+        <!-- if true, draw a green circle, which indicates a pass -->
+        <circle cx="357.5" cy="235" r="60" fill="green"/>
+      </g>
+      <!-- else draw a red rect, which indicates a fail -->
+      <rect x="245" y="170" width="225" height="130" fill="red"/>
+    </switch>
+    <switch>
+      <g requiredFonts="DoesNotExist, AlsoNotThere">
+        <!-- check for 'always positive' -->
+        <rect x="245" y="170" width="225" height="130" fill="red"/>
+      </g>
+    </switch>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none" fill="black">$Revision: 1.3 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

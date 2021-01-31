@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="480" height="360"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="NR" owner="AE" desc="Non-scaling Stroke" status="created"
+    approved="no"
+    version="$Revision: 1.8 $" testname="$RCSfile: paint-nsstroke-202-t.svg,v $" >
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>Non-scaling Stroke</p>
+      <p>
+        The SVG root element has a fixed width and height rather than the usual
+        width="100%" height="100%" viewBox="0 0 480 360"
+        This is to ensure that the two versions align just before scaling - both should be identical at the start.
+        As the shapes zoom forward the non-scaling stroke should maintain a fixed width while the other strokes scale.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: paint-nsstroke-202-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <g text-anchor="middle" font-size="10" fill="#555">
+      <text xml:id="display-title" x="240" y="30" font-size="14" fill="#000">Non-scaling Stroke</text>
+      <text xml:id="comment-1" x="240" y="45">
+        The SVG root element has a fixed width and height rather than 100%. Both versions should
+      </text>
+      <text xml:id="comment-2" x="240" y="57">
+        be identical at the start and should align just before scaling. As the shapes zoom forward
+      </text>
+      <text xml:id="comment-3" x="240" y="69">
+        the non-scaling stroke should maintain a fixed width while the other strokes scale.
+      </text>
+    </g>
+    <defs>
+      <g xml:id="shapes" transform="translate(0,0)" vector-effect="inherit">
+        <g stroke-dasharray="2, 6" stroke="black" vector-effect="inherit">
+          <rect x="36" y="85" fill="none" width="175" height="75" stroke-dasharray="5,5" stroke-width="10" stroke-opacity="0.5" vector-effect="inherit"/>
+          <circle fill="none" stroke-dasharray="5,5" r="24" cx="88" cy="122" stroke-width="10" stroke-opacity="0.5" vector-effect="inherit"/>
+          <g xml:id="plus" stroke-dasharray="6, 3" stroke-width="5" stroke-opacity="0.5" stroke="black" vector-effect="inherit">
+            <line fill="none" x1="67" x2="108" y1="122" y2="122" vector-effect="inherit"/>
+            <line fill="none" x1="88" x2="88" y1="102" y2="142" vector-effect="inherit"/>
+          </g>
+          <ellipse fill="none" rx="50" cx="200" ry="0" cy="200" stroke-width="10" stroke-opacity="0.5" vector-effect="inherit"/>
+        </g>
+        <g stroke-dasharray="6, 3" stroke-width="10" stroke-opacity="0.5" stroke="black" vector-effect="inherit">
+          <g xml:id="x" vector-effect="inherit">
+            <line fill="none" x1="133" x2="198" y1="152" y2="92" vector-effect="inherit"/>
+            <line fill="none" x1="133" x2="198" y1="95" y2="150" vector-effect="inherit"/>
+          </g>
+          <g transform="translate(0,-10)" vector-effect="inherit">
+            <polyline fill="none" points="28,235.0 51,225.0 75,235.0 98,225.0 122,235.0 146,225.0 168,235.0 193,225.0 218,235" stroke="black" vector-effect="inherit"/>
+            <ellipse fill="none" rx="87" cx="123" ry="15" cy="195" vector-effect="inherit"/>
+            <line fill="none" x1="63" x2="185" y1="195" y2="195" stroke-width="3" stroke-dasharray="6, 3, 12, 3" vector-effect="inherit"/>
+            <line fill="none" x1="28" x2="220" y1="245" y2="245" vector-effect="inherit"/>
+            <line fill="none" x1="28" x2="220" y1="260" y2="260" stroke-width="15" stroke-dasharray="6, 3, 12, 3" vector-effect="inherit"/>
+          </g>
+        </g>
+      </g>
+    </defs>
+    <g>
+      <g fill-opacity="1" font-size="14" text-anchor="middle" fill="#555">
+        <animate attributeName="fill-opacity" from="1" to="0" dur="1s" begin="3s" fill="freeze"/>
+        <text x="130" y="275">Non Scaling Stroke</text>
+        <text x="355" y="275">Scaling Stroke</text>
+      </g>
+      <use x="5" y="0" xlink:href="#shapes" vector-effect="non-scaling-stroke"/>
+      <use x="230" y="0" xlink:href="#shapes">
+        <animateTransform type="translate" dur="1s" fill="freeze" from="0, 0" to="-225, 0" begin="1s" attributeName="transform" additive="sum" attributeType="XML"/>
+      </use>
+      <animateTransform type="translate" dur="4s" fill="freeze" values="0,0; -230,-400; 0,0" begin="3s" attributeName="transform" additive="sum" attributeType="XML"/>
+      <animateTransform type="scale" dur="4s" fill="freeze" values="1;4; 1" begin="3s" attributeName="transform" additive="sum" attributeType="XML"/>
+    </g>
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.8 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240" 
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="BitFlash" desc="Timer interface and events" status="created"
+    approved="no"
+    version="$Revision: 1.1 $" testname="$RCSfile: udom-glob-205-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        In this test, a timer interface is create and an event listener registered to it. 
+        
+        In order to pass, the callback must be triggered at approximately 1 second into the document time.
+        The timer delay should be 1000, and the repeatInterval 10. FInally the handler should be triggered only
+        once due to the evt.target.stop() call.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: udom-glob-205-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    
+  <script type="application/ecmascript">
+    <![CDATA[
+
+    var svg = document.documentElement;
+    var timesTriggered = 0;
+
+  function timerHandler(evt) 
+  {
+    var doctime = svg.getCurrentTime();
+    
+    timesTriggered++;
+    
+    document.getElementById('t0').setTrait("#text", "Timer received at (document time): " + doctime.toString()  );
+    document.getElementById('t1').setTrait("#text", "Timer delay: " + evt.target.delay.toString()  );
+    document.getElementById('t2').setTrait("#text", "Timer interval: " + evt.target.repeatInterval.toString()  );
+    document.getElementById('t3').setTrait("#text", "Timer fired ( " + timesTriggered + " ) times" );
+
+    evt.target.stop();
+  }
+
+  var timer = createTimer( 1000, 10 );
+  
+  timer.addEventListener( "SVGTimer", timerHandler, false );
+  
+  timer.start();
+  
+]]>
+  </script>
+
+    <text x="240" y="45" font-size="11" text-anchor="middle" >
+    Timer interface and events</text>
+    
+  <g transform="translate(0,80)" >
+
+    <text xml:id="t0" x="10" y="0" font-size="16" >Failed</text>   
+    <text xml:id="t1" x="10" y="20" font-size="16" >Failed</text>   
+    <text xml:id="t2" x="10" y="40" font-size="16" >Failed</text>   
+    <text xml:id="t3" x="10" y="60" font-size="16" >Failed</text>   
+  </g>
+    <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+      <text xml:id="revision" x="10" y="340" stroke="none"
+        fill="black">$Revision: 1.1 $</text>
+    </g>
+    <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+    <!-- comment out this watermark once the test is approved -->
+    <g xml:id="draft-watermark">
+      <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+      <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+      </g>    
+  </g>  
+</svg>

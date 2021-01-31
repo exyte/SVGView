@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 0.48 0.36" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="[reviewer]" owner="DOH" desc="rendering and timing precision" status="created"
+    approved="no"
+    version="$Revision: 1.2 $" testname="$RCSfile: types-data-204-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        animate for path data, animateTransform translate and animateMotion
+        are used to test accurate rendering and timing.
+      </p>
+      <p>
+        The main indication for a failed test is the appearance of red.
+      </p>
+      <p>
+        A simple animation is used to test accurate rendering and timing.
+        SVG tiny requires a rendering accuracy within one device pixel and
+        a number range between -32767.9999 and +32767.9999 for the
+        data type number.
+      </p>
+      <p>
+        A simple from-to animation of cx of a blue circle with a duration of
+        32000ms (32s) is used with a from value of 0 and a to value of 32000.
+        The animation ends with an end attribute with a value in this
+        range. With a transform attribute for a g element the end value is
+        centered in the document.
+      </p>
+      <p>
+        Only the frozen final value is target of the test, it is not expected
+        to see a high precision continuous animation.
+        The correct frozen position is indicated with a dark red circle,
+        The fill of the dark red circle is set to red at the end time.
+        For an additional circle of the same group the fill is set from dark gray
+        to light red, covering the red circle, if cx and transform is correct, while
+        this is covered by the blue circle.
+        This means, all circles have to be rendered within an
+        accuracy within one device pixel. The animated blue circle has to
+        cover the red circles within an accuracy of less than one pixel. If
+        more than such a residual of red is visible or the circles are not
+        rendered as circles, an error is occured.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: types-data-204-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <defs>
+      <!-- just in case that the changed viewBox is removed again by a script ... -->
+      <set xlink:href="#svg-root" attributeName="viewBox" to="0 0 0.48 0.36" />
+      <animateTransform xlink:href="#revision" attributeName="transform" type="scale" values="0.001" />
+      <animateTransform xlink:href="#test-frame" attributeName="transform" type="scale" values="0.001" />
+      <!-- remove/comment out the following  animateTransform, if the draft-watermark is removed -->
+      <animateTransform xlink:href="#draft-watermark" attributeName="transform" type="scale" values="0.001" />
+    </defs>
+    <rect x="0" y="0" width=".48" height=".36" fill="#fff" />
+
+
+    <circle cx="0.3602" cy="0.0308" r="0.002"
+    fill="#a00">
+      <set attributeName="fill"
+        attributeType="XML"
+        begin="1612.0034ms"
+        to="#f00" />
+    </circle>
+    <g transform="translate(0.3602 0.0308) scale(20) translate(-1612.0034 0)">
+      <circle cx="1612.0034" cy="0" r="0.0001"
+     fill="#666">
+        <set attributeName="fill"
+          attributeType="XML"
+          begin="1612.0034ms"
+          to="#f66" />
+      </circle>
+
+
+      <circle cx="0" cy="0" r="0.0001"
+    fill="#00f">
+        <title>cx=: 1612.0034 at 1612.0034ms</title>
+        <animate
+         attributeName="cx"
+         attributeType="XML"
+         begin="0s"
+         end="1612.0034ms"
+         from="0"
+         to="32000"
+         dur="32000ms"
+         fill="freeze" />
+      </circle>
+    </g>
+
+    <!-- +++++++++++++++++++++++++++  -->
+
+    <circle cx="0.3602" cy="0.1004" r="0.0042"
+fill="#a00">
+      <set attributeName="fill"
+        attributeType="XML"
+        begin="13712.0034ms"
+        to="#f00" />
+    </circle>
+    <g transform="translate(0.3602 0.1004) scale(2) translate(-13712.0034 0)">
+      <circle cx="13712.0034" cy="0" r="0.0021"
+     fill="#666">
+        <set attributeName="fill"
+          attributeType="XML"
+          begin="13712.0034ms"
+          to="#f66" />
+      </circle>
+
+
+      <circle cx="0" cy="0" r="0.0021"
+    fill="#00f">
+        <title>cx=: 13712.0034 at 13712.0034ms</title>
+        <animate
+         attributeName="cx"
+         attributeType="XML"
+         begin="0s"
+         end="13712.0034ms"
+         from="0"
+         to="32000"
+         dur="32000ms"
+         fill="freeze" />
+      </circle>
+
+    </g>
+
+    <!-- +++++++++++++++++++++++++++  -->
+
+    <circle cx="0.3601" cy="0.2203" r="0.0401"
+fill="#a00">
+      <set attributeName="fill"
+        attributeType="XML"
+        begin="31512.0034ms"
+        to="#f00" />
+    </circle>
+    <g transform="translate(0.3601 0.2203) scale(1.0) translate(-31512.0034 0)">
+      <circle cx="31512.0034" cy="0" r="0.0401"
+     fill="#666">
+        <set attributeName="fill"
+          attributeType="XML"
+          begin="31512.0034ms"
+          to="#f66" />
+      </circle>
+
+
+      <circle cx="0" cy="0" r="0.0401"
+    fill="#00f">
+        <title>cx=: 31512.0034 at 31512.0034ms</title>
+        <animate
+         attributeName="cx"
+         attributeType="XML"
+         begin="0s"
+         end="31512.0034ms"
+         from="0"
+         to="32000"
+         dur="32000ms"
+         fill="freeze" />
+      </circle>
+
+    </g>
+
+    <g id="myText" xml:id="myText" font-size="12" stroke="none" transform="scale(0.001)">
+      <text x="10" y="30">basic data type number and timing</text>
+      <text x="10" y="45">rendering and accuracy</text>
+      <text x="10" y="65">red=wrong </text>
+      <text x="10" y="80">no gray=subtest finished </text>
+      <text x="10" y="100">shape: circle </text>
+    </g>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.2 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

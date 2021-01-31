@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" xml:id="svg-root" width="100%" height="100%"
+  viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xe="http://www.w3.org/2001/xml-events">
+  <!--======================================================================-->
+  <!--=  Copyright 2008 World Wide Web Consortium, (Massachusetts          =-->
+  <!--=  Institute of Technology, European Research Consortium for         =-->
+  <!--=  Informatics and Mathematics (ERCIM), Keio University).            =-->
+  <!--=  All Rights Reserved.                                              =-->
+  <!--=  See http://www.w3.org/Consortium/Legal/.                          =-->
+  <!--======================================================================-->
+  <SVGTestCase xmlns="http://www.w3.org/2000/02/svg/testsuite/description/"
+    reviewer="AS" owner="DOH" desc="to animateMotion with repeatCount and fill freeze" status="created"
+    approved="no"
+    version="$Revision: 1.3 $" testname="$RCSfile: animate-elem-208-t.svg,v $">
+    <d:OperatorScript xmlns:d="http://www.w3.org/2000/02/svg/testsuite/description/" xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Advanced tests for combined to animateMotion.
+      </p>
+      <p>
+        The main indication for a failed test is the appearence of the red fill
+        of the test circle. The circle has to follow exactly the paths given
+        in gray.
+      </p>
+      <p>
+        Test of the correct additive default behaviour of to animateMotion.
+        A circle moves on a quadratic path using two to animateMotions in
+        y direction and one for a g element around the circle in x direction.
+        The test is grouped in three parts with a reset with simple values animateMotion
+        between.  Each part has a repeatCount of 2 for the x direction with a simple
+        duration of 8s.
+      </p>
+      <p>
+        The first turn of each part and the second turn of the last part are related to the
+        light gray path. The difference is, that the third part has additional values for
+        additive and accumulate, to be ignored for to animations.
+        The second half of the first part is related to the gray path, because the
+        repeatCount for the second to animateMotion is set to 1.5.
+        The second half of the second part is related to the dark gray path, because
+        the repeatCount for the first animateMotion is set to 1.5.
+      </p>
+      <p>
+        Each to animateMotion later in the source code with the same begin as a higher
+        priority than previous animateMotion in the source code with the same begin,
+        therefore the combined frozen effect depends on the order in the source code.
+        If the red center of the circle becomes visible, an error is
+        occured.
+      </p>
+    </d:OperatorScript>
+  </SVGTestCase>
+  <title xml:id="test-title">$RCSfile: animate-elem-208-t.svg,v $</title>
+  <defs>
+    <font-face
+      font-family="SVGFreeSansASCII"
+      unicode-range="U+0-7F">
+      <font-face-src>
+        <font-face-uri xlink:href="../images/SVGFreeSans.svg#ascii"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g xml:id="test-body-content" font-family="SVGFreeSansASCII,sans-serif" font-size="18">
+    <rect x="0" y="0" width="480" height="360" fill="#fff" />
+    <g transform="translate(0,350) scale(0.45 -0.45)">
+      <g>
+        <desc>group with to animateMotion in x direction</desc>
+        <animateMotion
+                to="800,0"
+          dur="8s"
+          fill="freeze"
+          repeatCount="2" />
+        <animateMotion
+                values="0,0"
+          begin="18s"
+          fill="freeze" />
+        <animateMotion
+                to="800,0"
+          begin="18s"
+          dur="8s"
+          fill="freeze"
+          repeatCount="2"
+          accumulate="none" />
+        <animateMotion
+                values="0,0"
+          begin="36s"
+          fill="freeze" />
+        <animateMotion
+                to="800,0"
+          begin="36s"
+          dur="8s"
+          fill="freeze"
+          repeatCount="2"
+          accumulate="sum" />
+        <circle cx="100" cy="100" r="40" fill="#f00"
+        stroke="#00f" stroke-width="40">
+          <title>test circle with to animateMotion in y direction</title>
+          <animateMotion
+                  to="0,2400"
+            dur="8s"
+            fill="freeze"
+            repeatCount="2" />
+          <animateMotion
+                  to="0,0"
+            dur="8s"
+            fill="freeze"
+            repeatCount="1.5" />
+          <animateMotion
+                  values="0,0"
+            begin="18s"
+            fill="freeze" />
+          <animateMotion
+                  to="0,2400"
+            begin="18s"
+            dur="8s"
+            fill="freeze"
+            repeatCount="1.5" />
+          <animateMotion
+                  to="0,0"
+            begin="18s"
+            dur="8s"
+            fill="freeze"
+            repeatCount="2" />
+          <animateMotion
+                  values="0,0"
+            begin="36s"
+            fill="freeze" />
+          <animateMotion
+                  to="0,2400"
+            begin="36s"
+            dur="8s"
+            fill="freeze"
+            additive="replace"
+            accumulate="sum"
+            repeatCount="2" />
+          <animateMotion
+                  to="0,0"
+            begin="36s"
+            dur="8s"
+            fill="freeze"
+            additive="sum"
+            repeatCount="2" />
+        </circle>
+      </g>
+
+      <path d="M500 700L900 100"
+      stroke-width="40" stroke="#444" stroke-linecap="round"
+      fill="none">
+        <title>path for second half of second turn of second part</title>
+      </path>
+      <path d="M500 700h 400"
+      stroke-width="40" stroke="#888" stroke-linecap="round"
+      fill="none">
+        <title>path for second half of second turn of first part</title>
+      </path>
+      <path d="M100 100 Q500 1300 900 100"
+      stroke-width="40" stroke="#ccc" stroke-linecap="round"
+      fill="none">
+        <title>path for each first turn of each part and second too for the last part</title>
+      </path>
+
+    </g>
+
+    <g font-size="12" stroke="none" fill="#888">
+      <text x="120" y="210">superposition of</text>
+      <text x="120" y="225">animateMotion</text>
+      <text x="120" y="240">with to</text>
+      <text x="120" y="265">red = wrong</text>
+      <text x="120" y="280">no animation = wrong</text>
+      <text x="120" y="295">circle not centered below path = wrong</text>
+    </g>
+
+  </g>
+  <g font-family="SVGFreeSansASCII,sans-serif" font-size="32">
+    <text xml:id="revision" x="10" y="340" stroke="none"
+      fill="black">$Revision: 1.3 $</text>
+  </g>
+  <rect xml:id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000"/>
+  <!-- comment out this watermark once the test is approved -->
+  <g xml:id="draft-watermark">
+    <rect x="1" y="1" width="478" height="20" fill="red" stroke="black" stroke-width="1"/>
+    <text font-family="SVGFreeSansASCII,sans-serif" font-weight="bold" font-size="20" x="240"
+      text-anchor="middle" y="18" stroke-width="0.5" stroke="black" fill="white">DRAFT</text>
+  </g>
+</svg>

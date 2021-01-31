@@ -1,0 +1,706 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5815294025B6C8F600E8D23A /* SVGPaint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5815293F25B6C8F600E8D23A /* SVGPaint.swift */; };
+		5815294425B6C90F00E8D23A /* SVGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5815294325B6C90F00E8D23A /* SVGColor.swift */; };
+		5815298A25B752E600E8D23A /* SVGPreserveAspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5815298925B752E600E8D23A /* SVGPreserveAspectRatio.swift */; };
+		5852D66325BD726A00AD201D /* w3c in Resources */ = {isa = PBXBuildFile; fileRef = 5852D66225BD726A00AD201D /* w3c */; };
+		5852D67725BD74EF00AD201D /* SVG12Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5852D67625BD74EF00AD201D /* SVG12Tests.swift */; };
+		58869B6D25B5C52D00F6E324 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58869B6C25B5C52D00F6E324 /* Serializer.swift */; };
+		58869B7525B5EB0B00F6E324 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58869B7425B5EB0B00F6E324 /* Serializable.swift */; };
+		58869B7925B5EB3300F6E324 /* Serializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58869B7825B5EB3300F6E324 /* Serializations.swift */; };
+		5B0BD94024EE669C00F23286 /* DOMParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0BD93F24EE669C00F23286 /* DOMParser.swift */; };
+		5B0BD94224EE66A400F23286 /* SVGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0BD94124EE66A400F23286 /* SVGView.swift */; };
+		5B1017E725358E4400105E9A /* SVGViewport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1017E625358E4400105E9A /* SVGViewport.swift */; };
+		5B1017EC25358E5600105E9A /* SVGLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1017EA25358E5600105E9A /* SVGLength.swift */; };
+		5B10180025359C2100105E9A /* SVGParserViewBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1017FF25359C2100105E9A /* SVGParserViewBox.swift */; };
+		5B10181A2536C64700105E9A /* SVGUserSpaceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1018192536C64700105E9A /* SVGUserSpaceNode.swift */; };
+		5B1F4630251348F70068EF42 /* MBezierPath+Extension_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1F462F251348F70068EF42 /* MBezierPath+Extension_macOS.swift */; };
+		5B23AA6B24EA5D5F0085D48E /* SVGGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B23AA6A24EA5D5F0085D48E /* SVGGroup.swift */; };
+		5B23AA7024EA80250085D48E /* TestCreateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B23AA6F24EA80250085D48E /* TestCreateUtils.swift */; };
+		5B23AA7224EA88040085D48E /* CompareUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B23AA7124EA88040085D48E /* CompareUtils.swift */; };
+		5BE3322724E1446A00BB0D60 /* SVGView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE3321D24E1446A00BB0D60 /* SVGView.framework */; };
+		5BE3325F24E144B200BB0D60 /* SVGText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3323924E144B200BB0D60 /* SVGText.swift */; };
+		5BE3326024E144B200BB0D60 /* SVGNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3323A24E144B200BB0D60 /* SVGNode.swift */; };
+		5BE3326124E144B200BB0D60 /* SVGShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3323B24E144B200BB0D60 /* SVGShape.swift */; };
+		5BE3326224E144B200BB0D60 /* SVGPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3323D24E144B200BB0D60 /* SVGPolygon.swift */; };
+		5BE3326324E144B200BB0D60 /* SVGLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3323E24E144B200BB0D60 /* SVGLine.swift */; };
+		5BE3326424E144B200BB0D60 /* SVGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3323F24E144B200BB0D60 /* SVGPath.swift */; };
+		5BE3326624E144B200BB0D60 /* SVGPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324124E144B200BB0D60 /* SVGPolyline.swift */; };
+		5BE3326724E144B200BB0D60 /* SVGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324224E144B200BB0D60 /* SVGRect.swift */; };
+		5BE3326824E144B200BB0D60 /* SVGEllipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324324E144B200BB0D60 /* SVGEllipse.swift */; };
+		5BE3326924E144B200BB0D60 /* SVGCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324424E144B200BB0D60 /* SVGCircle.swift */; };
+		5BE3326B24E144B200BB0D60 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE3324724E144B200BB0D60 /* Preview Assets.xcassets */; };
+		5BE3326E24E144B200BB0D60 /* StyleStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324B24E144B200BB0D60 /* StyleStack.swift */; };
+		5BE3326F24E144B200BB0D60 /* XMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324C24E144B200BB0D60 /* XMLNode.swift */; };
+		5BE3327124E144B200BB0D60 /* SVGFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3324F24E144B200BB0D60 /* SVGFont.swift */; };
+		5BE3327224E144B200BB0D60 /* SVGStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325024E144B200BB0D60 /* SVGStroke.swift */; };
+		5BE3327424E144B200BB0D60 /* PathReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325324E144B200BB0D60 /* PathReader.swift */; };
+		5BE3327524E144B200BB0D60 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325424E144B200BB0D60 /* Extensions.swift */; };
+		5BE3327624E144B200BB0D60 /* SVGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325524E144B200BB0D60 /* SVGConstants.swift */; };
+		5BE3327924E144B200BB0D60 /* SVGParserBasics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325924E144B200BB0D60 /* SVGParserBasics.swift */; };
+		5BE3327A24E144B200BB0D60 /* SVGParserPrimitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325A24E144B200BB0D60 /* SVGParserPrimitives.swift */; };
+		5BE3327B24E144B200BB0D60 /* SVGParserNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325B24E144B200BB0D60 /* SVGParserNodes.swift */; };
+		5BE3327C24E144B200BB0D60 /* SVGParserLocuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325C24E144B200BB0D60 /* SVGParserLocuses.swift */; };
+		5BE3327D24E144B200BB0D60 /* SVGParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE3325D24E144B200BB0D60 /* SVGParser.swift */; };
+		5BE3327E24E144B200BB0D60 /* SVGView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BE3325E24E144B200BB0D60 /* SVGView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BE3322824E1446A00BB0D60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BE3321424E1446A00BB0D60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BE3321C24E1446A00BB0D60;
+			remoteInfo = SVGView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5815293F25B6C8F600E8D23A /* SVGPaint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPaint.swift; sourceTree = "<group>"; };
+		5815294325B6C90F00E8D23A /* SVGColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGColor.swift; sourceTree = "<group>"; };
+		5815298925B752E600E8D23A /* SVGPreserveAspectRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPreserveAspectRatio.swift; sourceTree = "<group>"; };
+		5852D66225BD726A00AD201D /* w3c */ = {isa = PBXFileReference; lastKnownFileType = folder; path = w3c; sourceTree = "<group>"; };
+		5852D67625BD74EF00AD201D /* SVG12Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVG12Tests.swift; sourceTree = "<group>"; };
+		58869B6C25B5C52D00F6E324 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		58869B7425B5EB0B00F6E324 /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
+		58869B7825B5EB3300F6E324 /* Serializations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializations.swift; sourceTree = "<group>"; };
+		5B0BD93F24EE669C00F23286 /* DOMParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOMParser.swift; sourceTree = "<group>"; };
+		5B0BD94124EE66A400F23286 /* SVGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGView.swift; sourceTree = "<group>"; };
+		5B1017E625358E4400105E9A /* SVGViewport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGViewport.swift; sourceTree = "<group>"; };
+		5B1017EA25358E5600105E9A /* SVGLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGLength.swift; sourceTree = "<group>"; };
+		5B1017FF25359C2100105E9A /* SVGParserViewBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGParserViewBox.swift; sourceTree = "<group>"; };
+		5B1018192536C64700105E9A /* SVGUserSpaceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGUserSpaceNode.swift; sourceTree = "<group>"; };
+		5B1F462F251348F70068EF42 /* MBezierPath+Extension_macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MBezierPath+Extension_macOS.swift"; sourceTree = "<group>"; };
+		5B23AA6A24EA5D5F0085D48E /* SVGGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGGroup.swift; sourceTree = "<group>"; };
+		5B23AA6F24EA80250085D48E /* TestCreateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateUtils.swift; sourceTree = "<group>"; };
+		5B23AA7124EA88040085D48E /* CompareUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareUtils.swift; sourceTree = "<group>"; };
+		5BE3321D24E1446A00BB0D60 /* SVGView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVGView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE3322624E1446A00BB0D60 /* SVGViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVGViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE3322D24E1446A00BB0D60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BE3323924E144B200BB0D60 /* SVGText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGText.swift; sourceTree = "<group>"; };
+		5BE3323A24E144B200BB0D60 /* SVGNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGNode.swift; sourceTree = "<group>"; };
+		5BE3323B24E144B200BB0D60 /* SVGShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGShape.swift; sourceTree = "<group>"; };
+		5BE3323D24E144B200BB0D60 /* SVGPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPolygon.swift; sourceTree = "<group>"; };
+		5BE3323E24E144B200BB0D60 /* SVGLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGLine.swift; sourceTree = "<group>"; };
+		5BE3323F24E144B200BB0D60 /* SVGPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPath.swift; sourceTree = "<group>"; };
+		5BE3324124E144B200BB0D60 /* SVGPolyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGPolyline.swift; sourceTree = "<group>"; };
+		5BE3324224E144B200BB0D60 /* SVGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGRect.swift; sourceTree = "<group>"; };
+		5BE3324324E144B200BB0D60 /* SVGEllipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGEllipse.swift; sourceTree = "<group>"; };
+		5BE3324424E144B200BB0D60 /* SVGCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGCircle.swift; sourceTree = "<group>"; };
+		5BE3324724E144B200BB0D60 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5BE3324B24E144B200BB0D60 /* StyleStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleStack.swift; sourceTree = "<group>"; };
+		5BE3324C24E144B200BB0D60 /* XMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLNode.swift; sourceTree = "<group>"; };
+		5BE3324F24E144B200BB0D60 /* SVGFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGFont.swift; sourceTree = "<group>"; };
+		5BE3325024E144B200BB0D60 /* SVGStroke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGStroke.swift; sourceTree = "<group>"; };
+		5BE3325324E144B200BB0D60 /* PathReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathReader.swift; sourceTree = "<group>"; };
+		5BE3325424E144B200BB0D60 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5BE3325524E144B200BB0D60 /* SVGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGConstants.swift; sourceTree = "<group>"; };
+		5BE3325624E144B200BB0D60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BE3325924E144B200BB0D60 /* SVGParserBasics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGParserBasics.swift; sourceTree = "<group>"; };
+		5BE3325A24E144B200BB0D60 /* SVGParserPrimitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGParserPrimitives.swift; sourceTree = "<group>"; };
+		5BE3325B24E144B200BB0D60 /* SVGParserNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGParserNodes.swift; sourceTree = "<group>"; };
+		5BE3325C24E144B200BB0D60 /* SVGParserLocuses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGParserLocuses.swift; sourceTree = "<group>"; };
+		5BE3325D24E144B200BB0D60 /* SVGParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGParser.swift; sourceTree = "<group>"; };
+		5BE3325E24E144B200BB0D60 /* SVGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGView.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5BE3321A24E1446A00BB0D60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE3322324E1446A00BB0D60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE3322724E1446A00BB0D60 /* SVGView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		58869B6B25B5C50B00F6E324 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				58869B6C25B5C52D00F6E324 /* Serializer.swift */,
+				58869B7425B5EB0B00F6E324 /* Serializable.swift */,
+				58869B7825B5EB3300F6E324 /* Serializations.swift */,
+			);
+			path = Serialization;
+			sourceTree = "<group>";
+		};
+		5BE3321324E1446A00BB0D60 = {
+			isa = PBXGroup;
+			children = (
+				5BE3323724E144B200BB0D60 /* Source */,
+				5BE3322A24E1446A00BB0D60 /* SVGViewTests */,
+				5BE3321E24E1446A00BB0D60 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5BE3321E24E1446A00BB0D60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3321D24E1446A00BB0D60 /* SVGView.framework */,
+				5BE3322624E1446A00BB0D60 /* SVGViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BE3322A24E1446A00BB0D60 /* SVGViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				5852D66225BD726A00AD201D /* w3c */,
+				5852D67625BD74EF00AD201D /* SVG12Tests.swift */,
+				5B23AA6F24EA80250085D48E /* TestCreateUtils.swift */,
+				5B23AA7124EA88040085D48E /* CompareUtils.swift */,
+				5BE3322D24E1446A00BB0D60 /* Info.plist */,
+			);
+			path = SVGViewTests;
+			sourceTree = "<group>";
+		};
+		5BE3323724E144B200BB0D60 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				58869B6B25B5C50B00F6E324 /* Serialization */,
+				5BE3325224E144B200BB0D60 /* Helpers */,
+				5BE3323824E144B200BB0D60 /* Nodes */,
+				5BE3324624E144B200BB0D60 /* Preview Content */,
+				5BE3324E24E144B200BB0D60 /* Primitives */,
+				5BE3323C24E144B200BB0D60 /* Shapes */,
+				5BE3325824E144B200BB0D60 /* SVGParser */,
+				5BE3324824E144B200BB0D60 /* XML */,
+				5BE3325E24E144B200BB0D60 /* SVGView.h */,
+				5BE3325624E144B200BB0D60 /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		5BE3323824E144B200BB0D60 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3323924E144B200BB0D60 /* SVGText.swift */,
+				5BE3323A24E144B200BB0D60 /* SVGNode.swift */,
+				5BE3323B24E144B200BB0D60 /* SVGShape.swift */,
+				5B23AA6A24EA5D5F0085D48E /* SVGGroup.swift */,
+				5B1017E625358E4400105E9A /* SVGViewport.swift */,
+				5B1018192536C64700105E9A /* SVGUserSpaceNode.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		5BE3323C24E144B200BB0D60 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3323D24E144B200BB0D60 /* SVGPolygon.swift */,
+				5BE3323E24E144B200BB0D60 /* SVGLine.swift */,
+				5BE3323F24E144B200BB0D60 /* SVGPath.swift */,
+				5BE3324124E144B200BB0D60 /* SVGPolyline.swift */,
+				5BE3324224E144B200BB0D60 /* SVGRect.swift */,
+				5BE3324324E144B200BB0D60 /* SVGEllipse.swift */,
+				5BE3324424E144B200BB0D60 /* SVGCircle.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		5BE3324624E144B200BB0D60 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3324724E144B200BB0D60 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5BE3324824E144B200BB0D60 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				5B0BD93F24EE669C00F23286 /* DOMParser.swift */,
+				5BE3324C24E144B200BB0D60 /* XMLNode.swift */,
+			);
+			path = XML;
+			sourceTree = "<group>";
+		};
+		5BE3324E24E144B200BB0D60 /* Primitives */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3324F24E144B200BB0D60 /* SVGFont.swift */,
+				5B1017EA25358E5600105E9A /* SVGLength.swift */,
+				5BE3325024E144B200BB0D60 /* SVGStroke.swift */,
+				5815293F25B6C8F600E8D23A /* SVGPaint.swift */,
+				5815294325B6C90F00E8D23A /* SVGColor.swift */,
+				5815298925B752E600E8D23A /* SVGPreserveAspectRatio.swift */,
+			);
+			path = Primitives;
+			sourceTree = "<group>";
+		};
+		5BE3325224E144B200BB0D60 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3325324E144B200BB0D60 /* PathReader.swift */,
+				5BE3325424E144B200BB0D60 /* Extensions.swift */,
+				5BE3325524E144B200BB0D60 /* SVGConstants.swift */,
+				5B1F462F251348F70068EF42 /* MBezierPath+Extension_macOS.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5BE3325824E144B200BB0D60 /* SVGParser */ = {
+			isa = PBXGroup;
+			children = (
+				5BE3324B24E144B200BB0D60 /* StyleStack.swift */,
+				5BE3325D24E144B200BB0D60 /* SVGParser.swift */,
+				5BE3325924E144B200BB0D60 /* SVGParserBasics.swift */,
+				5BE3325C24E144B200BB0D60 /* SVGParserLocuses.swift */,
+				5BE3325B24E144B200BB0D60 /* SVGParserNodes.swift */,
+				5BE3325A24E144B200BB0D60 /* SVGParserPrimitives.swift */,
+				5B1017FF25359C2100105E9A /* SVGParserViewBox.swift */,
+				5B0BD94124EE66A400F23286 /* SVGView.swift */,
+			);
+			path = SVGParser;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5BE3321824E1446A00BB0D60 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE3327E24E144B200BB0D60 /* SVGView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5BE3321C24E1446A00BB0D60 /* SVGView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BE3323124E1446A00BB0D60 /* Build configuration list for PBXNativeTarget "SVGView" */;
+			buildPhases = (
+				5BE3321824E1446A00BB0D60 /* Headers */,
+				5BE3321924E1446A00BB0D60 /* Sources */,
+				5BE3321A24E1446A00BB0D60 /* Frameworks */,
+				5BE3321B24E1446A00BB0D60 /* Resources */,
+				5B3A91C525ADB316006F1DC2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SVGView;
+			productName = SVGView;
+			productReference = 5BE3321D24E1446A00BB0D60 /* SVGView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5BE3322524E1446A00BB0D60 /* SVGViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BE3323424E1446A00BB0D60 /* Build configuration list for PBXNativeTarget "SVGViewTests" */;
+			buildPhases = (
+				5BE3322224E1446A00BB0D60 /* Sources */,
+				5BE3322324E1446A00BB0D60 /* Frameworks */,
+				5BE3322424E1446A00BB0D60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BE3322924E1446A00BB0D60 /* PBXTargetDependency */,
+			);
+			name = SVGViewTests;
+			productName = SVGViewTests;
+			productReference = 5BE3322624E1446A00BB0D60 /* SVGViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5BE3321424E1446A00BB0D60 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					5BE3321C24E1446A00BB0D60 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					5BE3322524E1446A00BB0D60 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = 5BE3321724E1446A00BB0D60 /* Build configuration list for PBXProject "SVGView" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5BE3321324E1446A00BB0D60;
+			productRefGroup = 5BE3321E24E1446A00BB0D60 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5BE3321C24E1446A00BB0D60 /* SVGView */,
+				5BE3322524E1446A00BB0D60 /* SVGViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5BE3321B24E1446A00BB0D60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE3326B24E144B200BB0D60 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE3322424E1446A00BB0D60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5852D66325BD726A00AD201D /* w3c in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B3A91C525ADB316006F1DC2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh script-suite-readme.sh\nsh script-test-cases.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BE3321924E1446A00BB0D60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BE3327A24E144B200BB0D60 /* SVGParserPrimitives.swift in Sources */,
+				5BE3326924E144B200BB0D60 /* SVGCircle.swift in Sources */,
+				5815298A25B752E600E8D23A /* SVGPreserveAspectRatio.swift in Sources */,
+				5BE3326624E144B200BB0D60 /* SVGPolyline.swift in Sources */,
+				5BE3326E24E144B200BB0D60 /* StyleStack.swift in Sources */,
+				5BE3327D24E144B200BB0D60 /* SVGParser.swift in Sources */,
+				5B23AA6B24EA5D5F0085D48E /* SVGGroup.swift in Sources */,
+				5BE3327424E144B200BB0D60 /* PathReader.swift in Sources */,
+				5BE3327924E144B200BB0D60 /* SVGParserBasics.swift in Sources */,
+				5BE3326124E144B200BB0D60 /* SVGShape.swift in Sources */,
+				5815294025B6C8F600E8D23A /* SVGPaint.swift in Sources */,
+				58869B7525B5EB0B00F6E324 /* Serializable.swift in Sources */,
+				5BE3326024E144B200BB0D60 /* SVGNode.swift in Sources */,
+				58869B7925B5EB3300F6E324 /* Serializations.swift in Sources */,
+				5BE3327B24E144B200BB0D60 /* SVGParserNodes.swift in Sources */,
+				5B10181A2536C64700105E9A /* SVGUserSpaceNode.swift in Sources */,
+				5BE3326824E144B200BB0D60 /* SVGEllipse.swift in Sources */,
+				5BE3327524E144B200BB0D60 /* Extensions.swift in Sources */,
+				5BE3325F24E144B200BB0D60 /* SVGText.swift in Sources */,
+				5B10180025359C2100105E9A /* SVGParserViewBox.swift in Sources */,
+				5BE3327C24E144B200BB0D60 /* SVGParserLocuses.swift in Sources */,
+				5BE3327624E144B200BB0D60 /* SVGConstants.swift in Sources */,
+				5815294425B6C90F00E8D23A /* SVGColor.swift in Sources */,
+				5B1017EC25358E5600105E9A /* SVGLength.swift in Sources */,
+				58869B6D25B5C52D00F6E324 /* Serializer.swift in Sources */,
+				5BE3327224E144B200BB0D60 /* SVGStroke.swift in Sources */,
+				5BE3326324E144B200BB0D60 /* SVGLine.swift in Sources */,
+				5BE3326224E144B200BB0D60 /* SVGPolygon.swift in Sources */,
+				5BE3326724E144B200BB0D60 /* SVGRect.swift in Sources */,
+				5B0BD94024EE669C00F23286 /* DOMParser.swift in Sources */,
+				5BE3326424E144B200BB0D60 /* SVGPath.swift in Sources */,
+				5B0BD94224EE66A400F23286 /* SVGView.swift in Sources */,
+				5BE3327124E144B200BB0D60 /* SVGFont.swift in Sources */,
+				5BE3326F24E144B200BB0D60 /* XMLNode.swift in Sources */,
+				5B1017E725358E4400105E9A /* SVGViewport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BE3322224E1446A00BB0D60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B23AA7224EA88040085D48E /* CompareUtils.swift in Sources */,
+				5B23AA7024EA80250085D48E /* TestCreateUtils.swift in Sources */,
+				5852D67725BD74EF00AD201D /* SVG12Tests.swift in Sources */,
+				5B1F4630251348F70068EF42 /* MBezierPath+Extension_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BE3322924E1446A00BB0D60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BE3321C24E1446A00BB0D60 /* SVGView */;
+			targetProxy = 5BE3322824E1446A00BB0D60 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5BE3322F24E1446A00BB0D60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5BE3323024E1446A00BB0D60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5BE3323224E1446A00BB0D60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = exyte.SVGView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5BE3323324E1446A00BB0D60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = exyte.SVGView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5BE3323524E1446A00BB0D60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SVGViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = exyte.SVGViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5BE3323624E1446A00BB0D60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SVGViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = exyte.SVGViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5BE3321724E1446A00BB0D60 /* Build configuration list for PBXProject "SVGView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BE3322F24E1446A00BB0D60 /* Debug */,
+				5BE3323024E1446A00BB0D60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BE3323124E1446A00BB0D60 /* Build configuration list for PBXNativeTarget "SVGView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BE3323224E1446A00BB0D60 /* Debug */,
+				5BE3323324E1446A00BB0D60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BE3323424E1446A00BB0D60 /* Build configuration list for PBXNativeTarget "SVGViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BE3323524E1446A00BB0D60 /* Debug */,
+				5BE3323624E1446A00BB0D60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5BE3321424E1446A00BB0D60 /* Project object */;
+}

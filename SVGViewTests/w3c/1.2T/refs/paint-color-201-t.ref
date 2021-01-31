@@ -1,0 +1,165 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGRect { x: 10, y: 30, width: 25, height: 25, fill: "black" },
+				SVGRect { x: 10, y: 60, width: 25, height: 25, fill: "silver" },
+				SVGRect { x: 10, y: 90, width: 25, height: 25, fill: "gray" },
+				SVGRect { x: 10, y: 120, width: 25, height: 25, fill: "white" },
+				SVGRect { x: 10, y: 150, width: 25, height: 25, fill: "maroon" },
+				SVGRect { x: 10, y: 180, width: 25, height: 25, fill: "red" },
+				SVGRect { x: 10, y: 210, width: 25, height: 25, fill: "purple" },
+				SVGRect { x: 10, y: 240, width: 25, height: 25, fill: "fuchsia" },
+				SVGRect { x: 35, y: 30, width: 25, height: 25, fill: "black" },
+				SVGRect { x: 35, y: 60, width: 25, height: 25, fill: "silver" },
+				SVGRect { x: 35, y: 90, width: 25, height: 25, fill: "gray" },
+				SVGRect { x: 35, y: 120, width: 25, height: 25, fill: "white" },
+				SVGRect { x: 35, y: 150, width: 25, height: 25, fill: "maroon" },
+				SVGRect { x: 35, y: 180, width: 25, height: 25, fill: "red" },
+				SVGRect { x: 35, y: 210, width: 25, height: 25, fill: "purple" },
+				SVGRect { x: 35, y: 240, width: 25, height: 25, fill: "fuchsia" },
+				SVGRect {
+					x: 10,
+					y: 120,
+					width: 50,
+					height: 25,
+					stroke: { fill: "black" }
+				},
+				SVGText {
+					text: "black",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 50]
+				},
+				SVGText {
+					text: "silver",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 80]
+				},
+				SVGText {
+					text: "gray",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 110]
+				},
+				SVGText {
+					text: "white",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 140]
+				},
+				SVGText {
+					text: "maroon",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 170]
+				},
+				SVGText {
+					text: "red",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 200]
+				},
+				SVGText {
+					text: "purple",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 230]
+				},
+				SVGText {
+					text: "fuchsia",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 70, 260]
+				},
+				SVGRect { x: 275, y: 30, width: 25, height: 25, fill: "green" },
+				SVGRect { x: 275, y: 60, width: 25, height: 25, fill: "lime" },
+				SVGRect { x: 275, y: 90, width: 25, height: 25, fill: "olive" },
+				SVGRect { x: 275, y: 120, width: 25, height: 25, fill: "yellow" },
+				SVGRect { x: 275, y: 150, width: 25, height: 25, fill: "navy" },
+				SVGRect { x: 275, y: 180, width: 25, height: 25, fill: "blue" },
+				SVGRect { x: 275, y: 210, width: 25, height: 25, fill: "teal" },
+				SVGRect { x: 275, y: 240, width: 25, height: 25, fill: "aqua" },
+				SVGRect { x: 250, y: 30, width: 25, height: 25, fill: "green" },
+				SVGRect { x: 250, y: 60, width: 25, height: 25, fill: "lime" },
+				SVGRect { x: 250, y: 90, width: 25, height: 25, fill: "olive" },
+				SVGRect { x: 250, y: 120, width: 25, height: 25, fill: "yellow" },
+				SVGRect { x: 250, y: 150, width: 25, height: 25, fill: "navy" },
+				SVGRect { x: 250, y: 180, width: 25, height: 25, fill: "blue" },
+				SVGRect { x: 250, y: 210, width: 25, height: 25, fill: "teal" },
+				SVGRect { x: 250, y: 240, width: 25, height: 25, fill: "aqua" },
+				SVGText {
+					text: "green",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 50]
+				},
+				SVGText {
+					text: "lime",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 80]
+				},
+				SVGText {
+					text: "olive",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 110]
+				},
+				SVGText {
+					text: "yellow",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 140]
+				},
+				SVGText {
+					text: "navy",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 170]
+				},
+				SVGText {
+					text: "blue",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 200]
+				},
+				SVGText {
+					text: "teal",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 230]
+				},
+				SVGText {
+					text: "aqua",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 310, 260]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.4 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}
