@@ -1,4 +1,4 @@
-<img src="https://github.com/exyte/SVGView/blob/master/Assets/header.png">
+<img src="https://github.com/exyte/SVGView/blob/main/Assets/header.png">
 
 <p><h1 align="left">SVGView</h1></p>
 
