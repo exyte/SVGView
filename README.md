@@ -65,10 +65,6 @@ dependencies: [
 ]
 ```
 
-### Manually
-
-Drop [SVGView.swift](https://github.com/exyte/SVGView/blob/master/Source/SVGView.swift) into your project.
-
 ## Requirements
 
 * iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 10.15+
