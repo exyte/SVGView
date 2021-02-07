@@ -1,12 +1,23 @@
+//
+//  BaseTestCase.swift
+//  SVGViewTests
+//
+//  Created by Yuriy Strot on 07.02.2021.
+//
+
 import XCTest
 @testable import SVGView
 
-extension SVG12Tests {
+class BaseTestCase : XCTestCase {
+
+    var dir: String {
+        return "1.2T"
+    }
 
     func compareToReference(_ fileName: String) {
         let bundle = Bundle(for: type(of: self))
-        let svgURL = bundle.url(forResource: fileName, withExtension: "svg", subdirectory: "w3c/1.2T/svg/")!
-        let refURL = bundle.url(forResource: fileName, withExtension: "ref", subdirectory: "w3c/1.2T/refs/")!
+        let svgURL = bundle.url(forResource: fileName, withExtension: "svg", subdirectory: "w3c/\(dir)/svg/")!
+        let refURL = bundle.url(forResource: fileName, withExtension: "ref", subdirectory: "w3c/\(dir)/refs/")!
 
         print(svgURL)
         let node = SVGParser.parse(fileURL: svgURL)
@@ -76,7 +87,6 @@ fileprivate func prettyFirstDifferenceBetweenNSStrings(s1: NSString, s2: NSStrin
     let firstDifferenceResult = firstDifferenceBetweenStrings(s1: s1, s2: s2)
     return prettyDescriptionOfFirstDifferenceResult(firstDifferenceResult: firstDifferenceResult, s1: s1, s2: s2)
 }
-
 
 /// Create a formatted String representation of a FirstDifferenceResult for two strings
 ///

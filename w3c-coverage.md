@@ -2,11 +2,11 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `0.0%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `2.2%`
     * [Animate](#animate-1): `0.0%`
-    * [Color](#color-1): `0.0%`
+    * [Color](#color-1): `33.3%`
     * [Conform](#conform-1): `0.0%`
-    * [Coords](#coords-1): `0.0%`
+    * [Coords](#coords-1): `31.2%`
     * [Extend](#extend-1): `0.0%`
     * [Filters](#filters-1): `0.0%`
     * [Fonts](#fonts-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`0.0%` of tests covered (0/522). They can be splitted into following categories:
+`2.2%` of tests covered (12/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -140,17 +140,17 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[animate-struct-dom-01-b](SVGViewTests/w3c/1.1F2/svg/animate-struct-dom-01-b.svg)|
 </details>
 
-### <a name='color-1'></a> [Color](https://www.w3.org/TR/SVG11/color.html): `0.0%`
+### <a name='color-1'></a> [Color](https://www.w3.org/TR/SVG11/color.html): `33.3%`
 
 <details>
-  <summary>(0/6) tests covered...</summary>
+  <summary>(2/6) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
 |❌|[color-prof-01-f](SVGViewTests/w3c/1.1F2/svg/color-prof-01-f.svg)|
 |❌|[color-prop-01-b](SVGViewTests/w3c/1.1F2/svg/color-prop-01-b.svg)|
-|❌|[color-prop-02-f](SVGViewTests/w3c/1.1F2/svg/color-prop-02-f.svg)|
-|❌|[color-prop-03-t](SVGViewTests/w3c/1.1F2/svg/color-prop-03-t.svg)|
+|✅|[color-prop-02-f](SVGViewTests/w3c/1.1F2/svg/color-prop-02-f.svg)|
+|✅|[color-prop-03-t](SVGViewTests/w3c/1.1F2/svg/color-prop-03-t.svg)|
 |❌|[color-prop-04-t](SVGViewTests/w3c/1.1F2/svg/color-prop-04-t.svg)|
 |❌|[color-prop-05-t](SVGViewTests/w3c/1.1F2/svg/color-prop-05-t.svg)|
 </details>
@@ -167,28 +167,28 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[conform-viewers-03-f](SVGViewTests/w3c/1.1F2/svg/conform-viewers-03-f.svg)|
 </details>
 
-### <a name='coords-1'></a> [Coords](https://www.w3.org/TR/SVG11/coords.html): `0.0%`
+### <a name='coords-1'></a> [Coords](https://www.w3.org/TR/SVG11/coords.html): `31.2%`
 
 <details>
-  <summary>(0/32) tests covered...</summary>
+  <summary>(10/32) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
-|❌|[coords-coord-01-t](SVGViewTests/w3c/1.1F2/svg/coords-coord-01-t.svg)|
+|✅|[coords-coord-01-t](SVGViewTests/w3c/1.1F2/svg/coords-coord-01-t.svg)|
 |❌|[coords-coord-02-t](SVGViewTests/w3c/1.1F2/svg/coords-coord-02-t.svg)|
 |❌|[coords-dom-01-f](SVGViewTests/w3c/1.1F2/svg/coords-dom-01-f.svg)|
 |❌|[coords-dom-02-f](SVGViewTests/w3c/1.1F2/svg/coords-dom-02-f.svg)|
 |❌|[coords-dom-03-f](SVGViewTests/w3c/1.1F2/svg/coords-dom-03-f.svg)|
 |❌|[coords-dom-04-f](SVGViewTests/w3c/1.1F2/svg/coords-dom-04-f.svg)|
-|❌|[coords-trans-01-b](SVGViewTests/w3c/1.1F2/svg/coords-trans-01-b.svg)|
-|❌|[coords-trans-02-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-02-t.svg)|
-|❌|[coords-trans-03-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-03-t.svg)|
-|❌|[coords-trans-04-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-04-t.svg)|
-|❌|[coords-trans-05-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-05-t.svg)|
-|❌|[coords-trans-06-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-06-t.svg)|
-|❌|[coords-trans-07-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-07-t.svg)|
-|❌|[coords-trans-08-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-08-t.svg)|
-|❌|[coords-trans-09-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-09-t.svg)|
+|✅|[coords-trans-01-b](SVGViewTests/w3c/1.1F2/svg/coords-trans-01-b.svg)|
+|✅|[coords-trans-02-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-02-t.svg)|
+|✅|[coords-trans-03-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-03-t.svg)|
+|✅|[coords-trans-04-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-04-t.svg)|
+|✅|[coords-trans-05-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-05-t.svg)|
+|✅|[coords-trans-06-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-06-t.svg)|
+|✅|[coords-trans-07-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-07-t.svg)|
+|✅|[coords-trans-08-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-08-t.svg)|
+|✅|[coords-trans-09-t](SVGViewTests/w3c/1.1F2/svg/coords-trans-09-t.svg)|
 |❌|[coords-trans-10-f](SVGViewTests/w3c/1.1F2/svg/coords-trans-10-f.svg)|
 |❌|[coords-trans-11-f](SVGViewTests/w3c/1.1F2/svg/coords-trans-11-f.svg)|
 |❌|[coords-trans-12-f](SVGViewTests/w3c/1.1F2/svg/coords-trans-12-f.svg)|

@@ -1,23 +1,41 @@
+//
+//  SVGRefGenerator.swift
+//  SVGViewTests
+//
+//  Created by Yuriy Strot on 07.02.2021.
+//
+
 import XCTest
 @testable import SVGView
 
-extension SVG12Tests {
+class SVGRefGenerator: XCTestCase {
 
-    // uncomment to recreate all references
-//    func testCreateReferences() {
-//        let path = Bundle(for: type(of: self)).resourcePath!
-//        for url in getContents(path) {
-//            if url.pathExtension == "svg" {
-//                createReference(url)
-//            }
-//        }
-//    }
+    let testFolderName = "TestOutputData"
+    let v11 = "w3c/1.1F2/svg/"
+    let v12 = "w3c/1.2T/svg/"
 
-    func createReference(_ testResource: URL) {
+    func testCreateReferences() {
+        createReference(name: "color-prop-02-f", version: v11)
+        createReference(name: "color-prop-03-t", version: v11)
+        createReference(name: "coords-coord-01-t", version: v11)
+        createReference(name: "coords-trans-01-b", version: v11)
+        createReference(name: "coords-trans-02-t", version: v11)
+        createReference(name: "coords-trans-03-t", version: v11)
+        createReference(name: "coords-trans-04-t", version: v11)
+        createReference(name: "coords-trans-05-t", version: v11)
+        createReference(name: "coords-trans-06-t", version: v11)
+        createReference(name: "coords-trans-07-t", version: v11)
+        createReference(name: "coords-trans-08-t", version: v11)
+        createReference(name: "coords-trans-09-t", version: v11)
+    }
+
+    func createReference(name: String, version: String) {
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: name, withExtension: "svg", subdirectory: version)!
         let testDirectory = getTestDir()
-        let node = SVGParser.parse(fileURL: testResource)
+        let node = SVGParser.parse(fileURL: url)
         let content = Serializer.serialize(node)
-        let fileName = testResource.deletingPathExtension().lastPathComponent
+        let fileName = url.deletingPathExtension().lastPathComponent
         let path = testDirectory.appendingPathComponent(fileName).appendingPathExtension("ref")
         writeToFile(content: content, fileURL: path)
         print("New reference file in \(path)")

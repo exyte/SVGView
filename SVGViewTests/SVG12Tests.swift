@@ -3,9 +3,11 @@
 import XCTest
 @testable import SVGView
 
-class SVG12Tests: XCTestCase {
+class SVG12Tests: BaseTestCase {
 
-    let testFolderName = "TestOutputData"
+    override var dir: String {
+        return "1.2T"
+    }
 
     func testCoordsTrans01T() {
         compareToReference("coords-trans-01-t")
