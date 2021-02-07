@@ -10,7 +10,7 @@ public class SVGStroke : SerializableBlock {
     public let dashes: [CGFloat]
     public let offset: CGFloat
 
-    public init(fill: Color = .black, width: CGFloat = 1, cap: CGLineCap = .butt, join: CGLineJoin = .miter, miterLimit: CGFloat = 10, dashes: [CGFloat] = [], offset: CGFloat = 0.0) {
+    public init(fill: Color = .black, width: CGFloat = 1, cap: CGLineCap = .butt, join: CGLineJoin = .miter, miterLimit: CGFloat = 4, dashes: [CGFloat] = [], offset: CGFloat = 0.0) {
         self.fill = fill
         self.width = width
         self.cap = cap
@@ -34,8 +34,8 @@ public class SVGStroke : SerializableBlock {
         serializer.add("width", width, 1)
         serializer.add("cap", cap)
         serializer.add("join", join)
-        if !dashes.isEmpty {
-            serializer.add("dashes", String(describing: dashes))
-        }
+        serializer.add("offset", offset, 0)
+        serializer.add("miterLimit", miterLimit, 4)
+        serializer.add("dashes", dashes.serialized)
     }
 }

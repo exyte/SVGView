@@ -1,0 +1,116 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					contents: [
+						SVGRect { x: 220, y: 40, width: 160, height: 8, fill: "gold" },
+						SVGRect { x: 220, y: 80, width: 160, height: 8, fill: "gold" },
+						SVGRect { x: 220, y: 120, width: 160, height: 8, fill: "gold" },
+						SVGRect { x: 220, y: 160, width: 160, height: 8, fill: "gold" },
+						SVGRect { x: 64.6, y: 200, width: 319.5, height: 8, fill: "gold" },
+						SVGRect { x: 140, y: 240, width: 160, height: 8, fill: "gold" },
+						SVGRect { x: 220, y: 280, width: 160, height: 8, fill: "gold" }
+					]
+				},
+				SVGGroup {
+					transform: [8, 0, 0, 2, 60, -30],
+					contents: [
+						SVGPath {
+							path: "M20,40 H40",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,40 H40",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						},
+						SVGPath {
+							path: "M20,60 H40",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,60 H40",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						},
+						SVGPath {
+							path: "M20,80 H40",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,80 H40",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						},
+						SVGPath {
+							path: "M20,100 H40",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,100 H40",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						},
+						SVGPath {
+							path: "M20,120 H40.5 H0.6",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,120 H40.5 H0.6",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						},
+						SVGPath {
+							path: "M20,140 h10 h-20",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,140 h10 h-20",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						},
+						SVGPath {
+							path: "M20,160 H40",
+							fill: "black",
+							stroke: { fill: "red", width: 2 }
+						},
+						SVGPath {
+							path: "M20,160 H40",
+							fill: "black",
+							stroke: { fill: "black", width: 4 }
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.6 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

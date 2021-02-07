@@ -1,0 +1,65 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Basic paint: fill properties.",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 36 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 40, 42]
+				},
+				SVGRect {
+					id: "fill-01",
+					x: 75,
+					y: 70,
+					width: 100,
+					height: 160,
+					stroke: { fill: "black" }
+				},
+				SVGRect {
+					id: "fill-02",
+					x: 275,
+					y: 70,
+					width: 100,
+					height: 160,
+					fill: "green",
+					stroke: { fill: "black" }
+				},
+				SVGText {
+					text: "fill=\"none\"",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 36 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 75, 280]
+				},
+				SVGText {
+					text: "fill=\"green\"",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 36 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 275, 280]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.7 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -1,0 +1,57 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					id: "rects",
+					contents: [
+						SVGRect { width: 240, height: 180, fill: "blue" },
+						SVGRect { x: 60, y: 45, width: 120, height: 90, fill: "green" },
+						SVGRect { x: 240, y: 180, width: 240, height: 180, fill: "blue" }
+					]
+				},
+				SVGGroup {
+					id: "singleG",
+					contents: [
+						SVGRect { x: 240, width: 240, height: 180, fill: "black" }
+					]
+				},
+				SVGGroup {
+					id: "gratuitiousG",
+					contents: [
+						SVGGroup {
+							id: "yellowNrotate",
+							transform: [0.9396926208, -0.3420201433, 0.3420201433, 0.9396926208, 0, 0],
+							contents: [
+								SVGRect { y: 224, width: 40, height: 40, fill: "yellow" },
+								SVGRect { y: 280, width: 40, height: 40, fill: "yellow" }
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.5 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

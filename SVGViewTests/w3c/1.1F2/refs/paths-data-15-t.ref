@@ -1,0 +1,46 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1.8, 0, 0, 1.8, 36, 90],
+					contents: [
+						SVGPath {
+							path: "M20,20 Q50,10,80,20 Q110,30,140,20 Q170,10,200,20",
+							stroke: { fill: "purple", width: 3 }
+						},
+						SVGPath {
+							path: "M20,50 T50,50 T80,50",
+							stroke: { fill: "blue", width: 3 }
+						},
+						SVGPath { path: "M20,52 l-2,4 h4 z", fill: "black" },
+						SVGPath { path: "M50,52 l-2,4 h4 z", fill: "black" },
+						SVGPath { path: "M80,52 l-2,4 h4 z", fill: "black" }
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.6 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

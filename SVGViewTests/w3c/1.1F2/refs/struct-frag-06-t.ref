@@ -1,0 +1,98 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Default entities: amp, lt, gt, apos, quot: ",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 30, 30]
+				},
+				SVGText {
+					text: "&, <, >, ', \"",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "gray",
+					transform: [1, 0, 0, 1, 90, 60]
+				},
+				SVGText {
+					text: "Character references:",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 30, 100]
+				},
+				SVGText {
+					text: "    A hexadecimal (&#x41)= A",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "gray",
+					transform: [1, 0, 0, 1, 90, 130]
+				},
+				SVGText {
+					text: "    A decimal      (&#65)= A",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "gray",
+					transform: [1, 0, 0, 1, 90, 160]
+				},
+				SVGText {
+					text: "Entity references:",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 30, 200]
+				},
+				SVGText {
+					text: "gray",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					textAnchor: "middle",
+					fill: "black",
+					transform: [1, 0, 0, 1, 105, 228]
+				},
+				SVGGroup {
+					transform: [0.2, 0, 0, 0.2, 90, 235],
+					contents: [
+						SVGPath {
+							path: "M60,0 l60,0 l60,60 l0,60 l-60,60 l-60,0 l-60,-60 l0,-60 z",
+							fill: "gray"
+						}
+					]
+				},
+				SVGText {
+					text: "outlined",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
+					textAnchor: "middle",
+					fill: "black",
+					transform: [1, 0, 0, 1, 205, 228]
+				},
+				SVGGroup {
+					transform: [0.2, 0, 0, 0.2, 190, 235],
+					contents: [
+						SVGPath {
+							path: "M60,0 l60,0 l60,60 l0,60 l-60,60 l-60,0 l-60,-60 l0,-60 z",
+							stroke: { fill: "gray", width: 5 }
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.5 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -57,4 +57,120 @@ class SVG11Tests: BaseTestCase {
         compareToReference("coords-trans-09-t")
     }
 
+    func testCoordsTransformattr01F() {
+        compareToReference("coords-transformattr-01-f")
+    }
+
+    func testCoordsTransformattr02F() {
+        compareToReference("coords-transformattr-02-f")
+    }
+
+    func testPaintingControl03F() {
+        compareToReference("painting-control-03-f")
+    }
+
+    func testPaintingFill01T() {
+        compareToReference("painting-fill-01-t")
+    }
+
+    func testPaintingFill04T() {
+        compareToReference("painting-fill-04-t")
+    }
+
+    func testPaintingFill05B() {
+        compareToReference("painting-fill-05-b")
+    }
+
+    func testPaintingStroke01T() {
+        compareToReference("painting-stroke-01-t")
+    }
+
+    func testPaintingStroke04T() {
+        compareToReference("painting-stroke-04-t")
+    }
+
+    func testPaintingStroke07T() {
+        compareToReference("painting-stroke-07-t")
+    }
+
+    func testPathsData01T() {
+        compareToReference("paths-data-01-t")
+    }
+
+    func testPathsData02T() {
+        compareToReference("paths-data-02-t")
+    }
+
+    func testPathsData06T() {
+        compareToReference("paths-data-06-t")
+    }
+
+    func testPathsData07T() {
+        compareToReference("paths-data-07-t")
+    }
+
+    func testPathsData12T() {
+        compareToReference("paths-data-12-t")
+    }
+
+    func testPathsData13T() {
+        compareToReference("paths-data-13-t")
+    }
+
+    func testPathsData15T() {
+        compareToReference("paths-data-15-t")
+    }
+
+    func testPathsData17F() {
+        compareToReference("paths-data-17-f")
+    }
+
+    func testPathsData18F() {
+        compareToReference("paths-data-18-f")
+    }
+
+    func testPathsData19F() {
+        compareToReference("paths-data-19-f")
+    }
+
+    func testPathsData20F() {
+        compareToReference("paths-data-20-f")
+    }
+
+    func testRenderElems01T() {
+        compareToReference("render-elems-01-t")
+    }
+
+    func testRenderElems02T() {
+        compareToReference("render-elems-02-t")
+    }
+
+    func testRenderElems03T() {
+        compareToReference("render-elems-03-t")
+    }
+
+    func testStructDefs01T() {
+        compareToReference("struct-defs-01-t")
+    }
+
+    func testStructFrag01T() {
+        compareToReference("struct-frag-01-t")
+    }
+
+    func testStructFrag06T() {
+        compareToReference("struct-frag-06-t")
+    }
+
+    func testStructGroup01T() {
+        compareToReference("struct-group-01-t")
+    }
+
+    func testStructUse03T() {
+        compareToReference("struct-use-03-t")
+    }
+
+    func testTypesBasic01F() {
+        compareToReference("types-basic-01-f")
+    }
+
 }

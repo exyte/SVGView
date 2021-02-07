@@ -1,0 +1,6 @@
+SVGViewport {
+	id: "svg-root",
+	contents: [
+		SVGGroup { id: "test-body-content" }
+	]
+}

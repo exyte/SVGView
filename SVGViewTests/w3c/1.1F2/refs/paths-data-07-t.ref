@@ -1,0 +1,79 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1.8, 0, 0, 1.8, -360, -270],
+					contents: [
+						SVGText {
+							text: "m, h, v, h",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 288, 180]
+						},
+						SVGText {
+							text: "v, h, v, h",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 288, 194]
+						},
+						SVGText {
+							text: "v, z",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 304, 208]
+						},
+						SVGPath {
+							id: "Stairs_stroke_mhvz",
+							path: "m240,190 h30 v30 h30 v30 h30 v30 h-90 v-90 z",
+							stroke: { fill: "black" }
+						},
+						SVGRect { x: 238, y: 188, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 268, y: 188, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 268, y: 218, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 298, y: 218, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 298, y: 248, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 328, y: 248, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 328, y: 278, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 238, y: 278, width: 4, height: 4, fill: "blue" },
+						SVGPath {
+							id: "Stairs_fill_mhvz",
+							path: "m350,190 h30 v30 h30 v30 h30 v30 h-90 v-90 z",
+							fill: "yellow"
+						},
+						SVGRect { x: 348, y: 188, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 378, y: 188, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 378, y: 218, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 408, y: 218, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 408, y: 248, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 438, y: 248, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 438, y: 278, width: 4, height: 4, fill: "blue" },
+						SVGRect { x: 348, y: 278, width: 4, height: 4, fill: "blue" }
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.7 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

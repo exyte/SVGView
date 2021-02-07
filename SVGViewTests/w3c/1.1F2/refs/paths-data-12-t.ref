@@ -1,0 +1,47 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGPath {
+					path: "M100,100 C100,20,200,20,200,100 S300,180,300,100",
+					stroke: { fill: "black", width: 3 }
+				},
+				SVGRect { x: 100, y: 100, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 200, y: 100, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 300, y: 100, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					path: "M100,250 S200,200,200,250 S300,300,300,250",
+					stroke: { fill: "black", width: 3 }
+				},
+				SVGRect { x: 100, y: 250, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 200, y: 200, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 200, y: 250, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 200, y: 300, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 300, y: 300, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 300, y: 250, width: 4, height: 4, fill: "blue" }
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.5 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

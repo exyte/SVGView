@@ -1,0 +1,154 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Cubic bezier curves drawn with commands:",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 100, 14]
+				},
+				SVGPath {
+					id: "X_curve_MCSmcs",
+					path: "M210,130 C145,130,110,80,110,80 S75,25,10,25 m0,105 c65,0,100,-50,100,-50 s35,-55,100,-55",
+					fill: "lime",
+					stroke: { fill: "#00C000" }
+				},
+				SVGRect { x: 208, y: 128, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 108, y: 78, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 8, y: 23, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 8, y: 128, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 108, y: 78, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 208, y: 23, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "M, C, S, m, c, s",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 5, 82]
+				},
+				SVGPath {
+					id: "Infinity_McccCz",
+					path: "M240,90 c0,30,7,50,50,0 c43,-50,50,-30,50,0 c0,83,-68,-34,-90,-30 C240,60,240,90,240,90 z",
+					stroke: { fill: "black" }
+				},
+				SVGRect { x: 238, y: 88, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 288, y: 88, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 338, y: 88, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 248, y: 58, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "M, c, c, c, C, z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 253, 50]
+				},
+				SVGPath {
+					id: "Line_MCZ",
+					path: "M80,170 C100,170,160,170,180,170 z",
+					stroke: { fill: "black" }
+				},
+				SVGRect { x: 78, y: 168, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 178, y: 168, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "M, C, Z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 110, 190]
+				},
+				SVGPath {
+					id: "Inv_V_MCcZ",
+					path: "M5,260 C40,260,60,175,55,160 c-5,15,15,100,50,100 z",
+					fill: "#00C000"
+				},
+				SVGRect { x: 3, y: 258, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 53, y: 158, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 103, y: 258, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "M, C, c, Z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 85, 220]
+				},
+				SVGPath {
+					id: "Rem_Rib_mcs",
+					path: "m200,260 c50,-40,50,-100,25,-100 s-25,60,25,100",
+					stroke: { fill: "black" }
+				},
+				SVGRect { x: 198, y: 258, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 223, y: 158, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 248, y: 258, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "m, c, s",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 165, 210]
+				},
+				SVGPath {
+					id: "Arc_MC",
+					path: "M360,100 C420,90,460,140,450,190",
+					fill: "blue",
+					stroke: { fill: "black" }
+				},
+				SVGRect { x: 358, y: 98, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 448, y: 188, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "M, C",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 360, 150]
+				},
+				SVGPath {
+					id: "Circle_Mcssz",
+					path: "M360,210 c0,20,-16,36,-36,36 s-36,-16,-36,-36 s16,-36,36,-36 s36,16,36,36 z",
+					fill: "yellow",
+					stroke: { fill: "black" }
+				},
+				SVGRect { x: 358, y: 208, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 322, y: 244, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 286, y: 208, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 322, y: 172, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "M, c, s, s, s, z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 290, 265]
+				},
+				SVGPath {
+					id: "Horseshoe_Mcs",
+					path: "m360,325 c-40,-60,95,-100,80,0 z",
+					fill: "#F0F0F0",
+					stroke: { fill: "#00AA00" }
+				},
+				SVGRect { x: 358, y: 323, width: 4, height: 4, fill: "#4A83FF" },
+				SVGRect { x: 438, y: 323, width: 4, height: 4, fill: "#4A83FF" },
+				SVGText {
+					text: "m, c, z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 380, 340]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.7 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

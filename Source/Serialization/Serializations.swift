@@ -93,6 +93,31 @@ class CGPointList : SerializableAtom {
 
 }
 
+extension Collection where Iterator.Element == CGFloat {
+
+    var serialized: CGFloatList? {
+        if self.isEmpty {
+            return nil
+        }
+        return CGFloatList(list: self.map { $0 })
+    }
+
+}
+
+class CGFloatList : SerializableAtom {
+
+    let list: [CGFloat]
+
+    init(list: [CGFloat]) {
+        self.list = list
+    }
+
+    func serialize() -> String {
+        return "[\(list.map { p in p.serialize() }.joined(separator: ", "))]"
+    }
+
+}
+
 extension CGLineCap : SerializableOption {
 
     func isDefault() -> Bool {
