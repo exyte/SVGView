@@ -149,6 +149,66 @@ class SVG11Tests: BaseTestCase {
         compareToReference("render-elems-03-t")
     }
 
+    func testShapesCircle01T() {
+        compareToReference("shapes-circle-01-t")
+    }
+
+    func testShapesCircle02T() {
+        compareToReference("shapes-circle-02-t")
+    }
+
+    func testShapesEllipse01T() {
+        compareToReference("shapes-ellipse-01-t")
+    }
+
+    func testShapesEllipse02T() {
+        compareToReference("shapes-ellipse-02-t")
+    }
+
+    func testShapesEllipse03F() {
+        compareToReference("shapes-ellipse-03-f")
+    }
+
+    func testShapesIntro01T() {
+        compareToReference("shapes-intro-01-t")
+    }
+
+    func testShapesLine01T() {
+        compareToReference("shapes-line-01-t")
+    }
+
+    func testShapesPolygon01T() {
+        compareToReference("shapes-polygon-01-t")
+    }
+
+    func testShapesPolygon02T() {
+        compareToReference("shapes-polygon-02-t")
+    }
+
+    func testShapesPolygon03T() {
+        compareToReference("shapes-polygon-03-t")
+    }
+
+    func testShapesPolyline01T() {
+        compareToReference("shapes-polyline-01-t")
+    }
+
+    func testShapesPolyline02T() {
+        compareToReference("shapes-polyline-02-t")
+    }
+
+    func testShapesRect02T() {
+        compareToReference("shapes-rect-02-t")
+    }
+
+    func testShapesRect04F() {
+        compareToReference("shapes-rect-04-f")
+    }
+
+    func testShapesRect06F() {
+        compareToReference("shapes-rect-06-f")
+    }
+
     func testStructDefs01T() {
         compareToReference("struct-defs-01-t")
     }

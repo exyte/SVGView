@@ -1,0 +1,231 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					contents: [
+						SVGRect {
+							x: 50,
+							y: 50,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 50,
+							y: 155,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 130,
+							y: 50,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 130,
+							y: 155,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 210,
+							y: 50,
+							width: 60,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 210,
+							y: 155,
+							width: 60,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 315,
+							y: 50,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 315,
+							y: 155,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 394,
+							y: 50,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 394,
+							y: 155,
+							width: 35,
+							height: 60,
+							stroke: { fill: "black" }
+						},
+						SVGRect {
+							x: 235,
+							y: 260,
+							width: 10,
+							height: 10,
+							stroke: { fill: "black" }
+						}
+					]
+				},
+				SVGGroup {
+					contents: [
+						SVGText {
+							text: "Stroked",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 5, 90]
+						},
+						SVGText {
+							text: "Unstroked",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 5, 195]
+						},
+						SVGText {
+							text: "Zero width rect",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 50, 135]
+						},
+						SVGText {
+							text: "Zero height rect",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 130, 135]
+						},
+						SVGText {
+							text: "Zero radius circle",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 210, 135]
+						},
+						SVGText {
+							text: "Zero x radius ellipse",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 315, 135]
+						},
+						SVGText {
+							text: "Zero y radius ellipse",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 394, 135]
+						},
+						SVGText {
+							text: "Zero length line",
+							font: { name: "Arial", size: 8 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 235, 290]
+						}
+					]
+				},
+				SVGRect {
+					id: "Zero-width-stroked-rect",
+					x: 55,
+					y: 55,
+					height: 50,
+					stroke: { fill: "black" }
+				},
+				SVGRect {
+					id: "Zero-width-unstroked-rect",
+					x: 55,
+					y: 160,
+					height: 50,
+					fill: "red"
+				},
+				SVGRect {
+					id: "Zero-height-stroked-rect",
+					x: 135,
+					y: 55,
+					width: 25,
+					fill: "lime",
+					stroke: { fill: "blue" }
+				},
+				SVGRect { id: "Zero-height-rect", x: 135, y: 160, width: 25, fill: "lime" },
+				SVGCircle {
+					id: "Zero-radius-stroked-circle",
+					cx: 240,
+					cy: 80,
+					stroke: { fill: "black" }
+				},
+				SVGCircle { id: "Zero-radius-unstroked-circle", cx: 240, cy: 185, fill: "red" },
+				SVGEllipse {
+					id: "Zero-x-radius-stroked-ellipse",
+					cx: 332,
+					cy: 80,
+					ry: 25,
+					fill: "lime",
+					stroke: { fill: "blue" }
+				},
+				SVGEllipse {
+					id: "Zero-x-radius-unstroked-ellipse",
+					cx: 332,
+					cy: 185,
+					ry: 25,
+					fill: "lime"
+				},
+				SVGEllipse {
+					id: "Zero-y-radius-stroked-ellipse",
+					cx: 411,
+					cy: 80,
+					rx: 12,
+					stroke: { fill: "black" }
+				},
+				SVGEllipse {
+					id: "Zero-y-radius-unstroked-ellipse",
+					cx: 411,
+					cy: 185,
+					rx: 12,
+					fill: "red"
+				},
+				SVGLine {
+					id: "Zero-length-line",
+					x1: 240,
+					y1: 265,
+					x2: 240,
+					y2: 265,
+					fill: "black",
+					stroke: { fill: "blue" }
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.5 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -1,0 +1,95 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					contents: [
+						SVGPolyline {
+							id: "polyline-01",
+							points: [10, 50, 35, 150, 60, 50, 85, 150, 110, 50, 135, 150],
+							stroke: { fill: "#007700", width: 8 }
+						},
+						SVGPolyline {
+							id: "polyline-02",
+							points: [220, 50, 267, 84, 249, 140, 190, 140, 172, 84, 220, 50],
+							stroke: { fill: "#007700", width: 8 }
+						},
+						SVGPolyline {
+							id: "polyline-03",
+							points: [310, 50, 335, 150, 360, 50, 385, 150, 410, 50, 435, 150],
+							fill: "#339966",
+							stroke: { fill: "#007700", width: 8 }
+						},
+						SVGPolyline {
+							id: "polyline-04",
+							points: [59, 185, 98, 203, 108, 245, 82, 279, 39, 280, 11, 247, 19, 205],
+							stroke: { fill: "#007700", width: 8 }
+						},
+						SVGPolyline {
+							id: "polyline-05",
+							points: [189, 185, 228, 203, 238, 245, 212, 279, 169, 280, 141, 247, 149, 205],
+							fill: "#339966",
+							stroke: { fill: "#007700", width: 8 }
+						},
+						SVGPolyline {
+							id: "polyline-06",
+							points: [270, 225, 300, 245, 320, 225, 340, 245, 280, 280, 390, 280, 420, 240, 280, 185],
+							fill: "#339966",
+							stroke: { fill: "#007700", width: 8 }
+						}
+					]
+				},
+				SVGGroup {
+					contents: [
+						SVGPath {
+							path: "M10,50 L35,150 L60,50 L85,150 L110,50 L135,150",
+							stroke: { fill: "#33CC66", width: 3 }
+						},
+						SVGPath {
+							path: "M220,50 L267,84 L249,140 L190,140 L172,84 L220,50",
+							stroke: { fill: "#33CC66", width: 3 }
+						},
+						SVGPath {
+							path: "M310,50 L335,150 L360,50 L385,150 L410,50 L435,150",
+							stroke: { fill: "#33CC66", width: 3 }
+						},
+						SVGPath {
+							path: "M59,185 L98,203 L108,245 L82,279 L39,280 L11,247 L19,205",
+							stroke: { fill: "#33CC66", width: 3 }
+						},
+						SVGPath {
+							path: "M189,185 L228,203 L238,245 L212,279 L169,280 L141,247 L149,205",
+							stroke: { fill: "#33CC66", width: 3 }
+						},
+						SVGPath {
+							path: "M270,225 L300,245 L320,225 L340,245 L280,280 L390,280 L420,240 L280,185",
+							stroke: { fill: "#33CC66", width: 3 }
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.3 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

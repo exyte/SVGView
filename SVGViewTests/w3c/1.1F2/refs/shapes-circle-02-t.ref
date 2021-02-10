@@ -1,0 +1,64 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					contents: [
+						SVGCircle {
+							r: 50,
+							fill: "green",
+							stroke: { fill: "black" }
+						},
+						SVGCircle {
+							cy: 100,
+							r: 50,
+							fill: "green",
+							stroke: { fill: "black" }
+						},
+						SVGCircle {
+							cx: 100,
+							r: 50,
+							fill: "green",
+							stroke: { fill: "black" }
+						},
+						SVGCircle {
+							cx: 100,
+							cy: 100,
+							fill: "green",
+							stroke: { fill: "black" }
+						},
+						SVGCircle {
+							cx: 100,
+							cy: 100,
+							r: 50,
+							fill: "green",
+							stroke: { fill: "black" }
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.5 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -2,7 +2,7 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `7.8%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `10.7%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `33.3%`
     * [Conform](#conform-1): `0.0%`
@@ -20,7 +20,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Pservers](#pservers-1): `0.0%`
     * [Render](#render-1): `37.5%`
     * [Script](#script-1): `0.0%`
-    * [Shapes](#shapes-1): `0.0%`
+    * [Shapes](#shapes-1): `68.1%`
     * [Struct](#struct-1): `6.9%`
     * [Styling](#styling-1): `0.0%`
     * [Svgdom](#svgdom-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`7.8%` of tests covered (41/522). They can be splitted into following categories:
+`10.7%` of tests covered (56/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -542,34 +542,34 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[script-specify-02-f](SVGViewTests/w3c/1.1F2/svg/script-specify-02-f.svg)|
 </details>
 
-### <a name='shapes-1'></a> [Shapes](https://www.w3.org/TR/SVG11/shapes.html): `0.0%`
+### <a name='shapes-1'></a> [Shapes](https://www.w3.org/TR/SVG11/shapes.html): `68.1%`
 
 <details>
-  <summary>(0/22) tests covered...</summary>
+  <summary>(15/22) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
-|❌|[shapes-circle-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-circle-01-t.svg)|
-|❌|[shapes-circle-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-circle-02-t.svg)|
-|❌|[shapes-ellipse-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-01-t.svg)|
-|❌|[shapes-ellipse-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-02-t.svg)|
-|❌|[shapes-ellipse-03-f](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-03-f.svg)|
+|✅|[shapes-circle-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-circle-01-t.svg)|
+|✅|[shapes-circle-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-circle-02-t.svg)|
+|✅|[shapes-ellipse-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-01-t.svg)|
+|✅|[shapes-ellipse-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-02-t.svg)|
+|✅|[shapes-ellipse-03-f](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-03-f.svg)|
 |❌|[shapes-grammar-01-f](SVGViewTests/w3c/1.1F2/svg/shapes-grammar-01-f.svg)|
-|❌|[shapes-intro-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-intro-01-t.svg)|
+|✅|[shapes-intro-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-intro-01-t.svg)|
 |❌|[shapes-intro-02-f](SVGViewTests/w3c/1.1F2/svg/shapes-intro-02-f.svg)|
-|❌|[shapes-line-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-line-01-t.svg)|
+|✅|[shapes-line-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-line-01-t.svg)|
 |❌|[shapes-line-02-f](SVGViewTests/w3c/1.1F2/svg/shapes-line-02-f.svg)|
-|❌|[shapes-polygon-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-01-t.svg)|
-|❌|[shapes-polygon-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-02-t.svg)|
-|❌|[shapes-polygon-03-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-03-t.svg)|
-|❌|[shapes-polyline-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-polyline-01-t.svg)|
-|❌|[shapes-polyline-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-polyline-02-t.svg)|
+|✅|[shapes-polygon-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-01-t.svg)|
+|✅|[shapes-polygon-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-02-t.svg)|
+|✅|[shapes-polygon-03-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-03-t.svg)|
+|✅|[shapes-polyline-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-polyline-01-t.svg)|
+|✅|[shapes-polyline-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-polyline-02-t.svg)|
 |❌|[shapes-rect-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-rect-01-t.svg)|
-|❌|[shapes-rect-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-rect-02-t.svg)|
+|✅|[shapes-rect-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-rect-02-t.svg)|
 |❌|[shapes-rect-03-t](SVGViewTests/w3c/1.1F2/svg/shapes-rect-03-t.svg)|
-|❌|[shapes-rect-04-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-04-f.svg)|
+|✅|[shapes-rect-04-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-04-f.svg)|
 |❌|[shapes-rect-05-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-05-f.svg)|
-|❌|[shapes-rect-06-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-06-f.svg)|
+|✅|[shapes-rect-06-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-06-f.svg)|
 |❌|[shapes-rect-07-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-07-f.svg)|
 </details>
 
