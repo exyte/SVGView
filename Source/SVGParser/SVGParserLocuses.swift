@@ -56,7 +56,11 @@ extension SVGHelper {
 
     static func parsePath(_ attributes: [String : String], style: [String : String]) -> SVGPath {
         let segments = PathReader(input: attributes["d"] ?? "").read()
-        return SVGPath(segments: segments)
+        return SVGPath(segments: segments, fillRule: getFillRule(style))
+    }
+
+    static func getFillRule(_ style: [String: String]) -> CGPathFillRule {
+        return style["fill-rule"] == "evenodd" ? .evenOdd : .winding
     }
 
     static func parsePolygon(_ attributes: [String : String], style: [String : String]) -> SVGPolygon {

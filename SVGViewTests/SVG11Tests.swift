@@ -133,12 +133,36 @@ class SVG11Tests: BaseTestCase {
         compareToReference("paths-data-02-t")
     }
 
+    func testPathsData03F() {
+        compareToReference("paths-data-03-f")
+    }
+
+    func testPathsData04T() {
+        compareToReference("paths-data-04-t")
+    }
+
+    func testPathsData05T() {
+        compareToReference("paths-data-05-t")
+    }
+
     func testPathsData06T() {
         compareToReference("paths-data-06-t")
     }
 
     func testPathsData07T() {
         compareToReference("paths-data-07-t")
+    }
+
+    func testPathsData08T() {
+        compareToReference("paths-data-08-t")
+    }
+
+    func testPathsData09T() {
+        compareToReference("paths-data-09-t")
+    }
+
+    func testPathsData10T() {
+        compareToReference("paths-data-10-t")
     }
 
     func testPathsData12T() {
@@ -149,8 +173,16 @@ class SVG11Tests: BaseTestCase {
         compareToReference("paths-data-13-t")
     }
 
+    func testPathsData14T() {
+        compareToReference("paths-data-14-t")
+    }
+
     func testPathsData15T() {
         compareToReference("paths-data-15-t")
+    }
+
+    func testPathsData16T() {
+        compareToReference("paths-data-16-t")
     }
 
     func testPathsData17F() {

@@ -43,10 +43,12 @@ extension CGAffineTransform {
 
 extension Shape {
 
-    func applySVGStroke(stroke: SVGStroke?) -> some View {
-        var result = AnyView(self)
+    func applySVGStroke(stroke: SVGStroke?, eoFill: Bool = false) -> some View {
+        let result = eoFill
+            ? AnyView(self.fill(style: FillStyle(eoFill: true, antialiased: true)))
+            : AnyView(self)
         if let stroke = stroke {
-            result = AnyView(result.overlay(self.stroke(stroke.fill, style: stroke.toSwiftUI())))
+            return AnyView(result.overlay(self.stroke(stroke.fill, style: stroke.toSwiftUI())))
         }
         return result
     }

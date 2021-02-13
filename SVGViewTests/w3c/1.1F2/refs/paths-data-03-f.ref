@@ -1,0 +1,127 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Elliptical arc curves drawn with commands:",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 120, 14]
+				},
+				SVGPath {
+					id: "Arc_MAZ",
+					path: "M25,70 A40,40,0,1,0,25,69 z",
+					stroke: { fill: "#03DD20", width: 10 }
+				},
+				SVGText {
+					text: "M, A, Z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 48, 70]
+				},
+				SVGRect { x: 23, y: 68, width: 4, height: 4, fill: "#00C000" },
+				SVGRect { x: 23, y: 67, width: 4, height: 4, fill: "#00C000" },
+				SVGPath {
+					id: "Arc_fill_maz",
+					path: "m150,100 a50,40,0,1,0,25,-70 z",
+					fill: "lime",
+					stroke: { fill: "blue" }
+				},
+				SVGText {
+					text: "m, a, z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 124, 45]
+				},
+				SVGRect { x: 148, y: 98, width: 4, height: 4, fill: "#CF0000" },
+				SVGRect { x: 173, y: 28, width: 4, height: 4, fill: "#CF0000" },
+				SVGPath {
+					id: "Arc_Ma",
+					path: "M350,245 a40,40,0,1,0,80,60",
+					stroke: { fill: "black" }
+				},
+				SVGText {
+					text: "M, a",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 390, 300]
+				},
+				SVGRect { x: 348, y: 243, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 428, y: 303, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Tri_MAaaz",
+					path: "M270,30 A50,50,0,1,0,345,30 a50,50,0,1,0,50,0 a50,50,0,1,0,25,0 z",
+					fillRule: "evenodd",
+					fill: "#0067C0"
+				},
+				SVGText {
+					text: "M, A, a, a, z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 280, 135]
+				},
+				SVGRect { x: 268, y: 28, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 343, y: 28, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 393, y: 28, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 418, y: 28, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Arc_MaZmAzmaz",
+					path: "M30,150 a40,40,0,0,1,65,50 z m30,30 A20,20,0,0,0,125,230 z m40,24 a20,20,0,0,1,65,50 z",
+					fill: "#609040",
+					stroke: { fill: "black", width: 3 }
+				},
+				SVGText {
+					text: "M, a, Z, m, A, Z, m, a, z",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 25, 270]
+				},
+				SVGRect { x: 28, y: 148, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 93, y: 198, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 58, y: 178, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 123, y: 228, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 98, y: 202, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 163, y: 252, width: 4, height: 4, fill: "blue" },
+				SVGPath {
+					id: "Sin_MAAAAA",
+					path: "M215,190 A40,200,10,0,0,265,190 A40,200,20,0,1,315,190 A40,200,30,0,0,365,190 A40,200,40,0,1,415,190 A40,200,50,0,0,465,190",
+					stroke: { fill: "#40DD20" }
+				},
+				SVGText {
+					text: "M, A, A, A, A",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 215, 246]
+				},
+				SVGRect { x: 213, y: 188, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 263, y: 188, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 313, y: 188, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 363, y: 188, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 413, y: 188, width: 4, height: 4, fill: "blue" },
+				SVGRect { x: 463, y: 188, width: 4, height: 4, fill: "blue" }
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.7 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

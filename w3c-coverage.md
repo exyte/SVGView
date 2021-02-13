@@ -2,7 +2,7 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `12.8%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `14.3%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `33.3%`
     * [Conform](#conform-1): `0.0%`
@@ -16,7 +16,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Masking](#masking-1): `0.0%`
     * [Metadata](#metadata-1): `0.0%`
     * [Painting](#painting-1): `38.7%`
-    * [Paths](#paths-1): `52.3%`
+    * [Paths](#paths-1): `90.4%`
     * [Pservers](#pservers-1): `0.0%`
     * [Render](#render-1): `37.5%`
     * [Script](#script-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`12.8%` of tests covered (67/522). They can be splitted into following categories:
+`14.3%` of tests covered (75/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -438,28 +438,28 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[painting-stroke-10-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-10-t.svg)|
 </details>
 
-### <a name='paths-1'></a> [Paths](https://www.w3.org/TR/SVG11/paths.html): `52.3%`
+### <a name='paths-1'></a> [Paths](https://www.w3.org/TR/SVG11/paths.html): `90.4%`
 
 <details>
-  <summary>(11/21) tests covered...</summary>
+  <summary>(19/21) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
 |✅|[paths-data-01-t](SVGViewTests/w3c/1.1F2/svg/paths-data-01-t.svg)|
 |✅|[paths-data-02-t](SVGViewTests/w3c/1.1F2/svg/paths-data-02-t.svg)|
-|❌|[paths-data-03-f](SVGViewTests/w3c/1.1F2/svg/paths-data-03-f.svg)|
-|❌|[paths-data-04-t](SVGViewTests/w3c/1.1F2/svg/paths-data-04-t.svg)|
-|❌|[paths-data-05-t](SVGViewTests/w3c/1.1F2/svg/paths-data-05-t.svg)|
+|✅|[paths-data-03-f](SVGViewTests/w3c/1.1F2/svg/paths-data-03-f.svg)|
+|✅|[paths-data-04-t](SVGViewTests/w3c/1.1F2/svg/paths-data-04-t.svg)|
+|✅|[paths-data-05-t](SVGViewTests/w3c/1.1F2/svg/paths-data-05-t.svg)|
 |✅|[paths-data-06-t](SVGViewTests/w3c/1.1F2/svg/paths-data-06-t.svg)|
 |✅|[paths-data-07-t](SVGViewTests/w3c/1.1F2/svg/paths-data-07-t.svg)|
-|❌|[paths-data-08-t](SVGViewTests/w3c/1.1F2/svg/paths-data-08-t.svg)|
-|❌|[paths-data-09-t](SVGViewTests/w3c/1.1F2/svg/paths-data-09-t.svg)|
-|❌|[paths-data-10-t](SVGViewTests/w3c/1.1F2/svg/paths-data-10-t.svg)|
+|✅|[paths-data-08-t](SVGViewTests/w3c/1.1F2/svg/paths-data-08-t.svg)|
+|✅|[paths-data-09-t](SVGViewTests/w3c/1.1F2/svg/paths-data-09-t.svg)|
+|✅|[paths-data-10-t](SVGViewTests/w3c/1.1F2/svg/paths-data-10-t.svg)|
 |✅|[paths-data-12-t](SVGViewTests/w3c/1.1F2/svg/paths-data-12-t.svg)|
 |✅|[paths-data-13-t](SVGViewTests/w3c/1.1F2/svg/paths-data-13-t.svg)|
-|❌|[paths-data-14-t](SVGViewTests/w3c/1.1F2/svg/paths-data-14-t.svg)|
+|✅|[paths-data-14-t](SVGViewTests/w3c/1.1F2/svg/paths-data-14-t.svg)|
 |✅|[paths-data-15-t](SVGViewTests/w3c/1.1F2/svg/paths-data-15-t.svg)|
-|❌|[paths-data-16-t](SVGViewTests/w3c/1.1F2/svg/paths-data-16-t.svg)|
+|✅|[paths-data-16-t](SVGViewTests/w3c/1.1F2/svg/paths-data-16-t.svg)|
 |✅|[paths-data-17-f](SVGViewTests/w3c/1.1F2/svg/paths-data-17-f.svg)|
 |✅|[paths-data-18-f](SVGViewTests/w3c/1.1F2/svg/paths-data-18-f.svg)|
 |✅|[paths-data-19-f](SVGViewTests/w3c/1.1F2/svg/paths-data-19-f.svg)|

@@ -27,15 +27,15 @@ struct SVGPathView: View {
     @ObservedObject var model = SVGPath()
 
     public var body: some View {
-        model.toBezierPath().toSwiftUI(model: model)
+        model.toBezierPath().toSwiftUI(model: model, eoFill: model.fillRule == .evenOdd)
     }
 }
 
 extension MBezierPath {
 
-    func toSwiftUI(model: SVGShape) -> some View {
+    func toSwiftUI(model: SVGShape, eoFill: Bool = false) -> some View {
         Path(self.cgPath)
-            .applySVGStroke(stroke: model.stroke)
+            .applySVGStroke(stroke: model.stroke, eoFill: eoFill)
             .applyShapeAttributes(model: model)
     }
 }
