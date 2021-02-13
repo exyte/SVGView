@@ -38,19 +38,55 @@ extension SVGHelper {
             return .none
         }
 
-        var dashes = [CGFloat]()
-        if let strokeDashes = style["stroke-dasharray"] {
-            dashes = strokeDashes.components(separatedBy: ",").map { $0.cgFloatValue ?? 0 }
-        }
-
         return SVGStroke(
             fill: fill.opacity(SVGHelper.parseOpacity(style, "stroke-opacity")),
             width: parseCGFloat(style, "stroke-width", defaultValue: 1),
-            //cap: <#T##CGLineCap#>,
-            //join: <#T##CGLineJoin#>,
+            cap: getStrokeCap(style),
+            join: getStrokeJoin(style),
             miterLimit: parseCGFloat(style, "stroke-miterlimit", defaultValue: 4),
-            dashes: dashes,
+            dashes: getStrokeDashes(style),
             offset: parseCGFloat(style, "stroke-dashoffset"))
+    }
+
+    static func getStrokeDashes(_ style: [String: String]) -> [CGFloat] {
+        var dashes = [CGFloat]()
+        if let strokeDashes = style["stroke-dasharray"] {
+            let separatedValues = strokeDashes.components(separatedBy: CharacterSet(charactersIn: " ,"))
+            separatedValues.forEach { value in
+                if let doubleValue = doubleFromString(value) {
+                    dashes.append(CGFloat(doubleValue))
+                }
+            }
+        }
+        return dashes
+    }
+
+    static func getStrokeCap(_ style: [String : String]) -> CGLineCap {
+        if let strokeCap = style["stroke-linecap"] {
+            switch strokeCap {
+            case "round":
+                return .round
+            case "square":
+                return .square
+            default:
+                break
+            }
+        }
+        return .butt
+    }
+
+    static func getStrokeJoin(_ style: [String: String]) -> CGLineJoin {
+        if let strokeJoin = style["stroke-linejoin"] {
+            switch strokeJoin {
+            case "round":
+                return .round
+            case "bevel":
+                return .bevel
+            default:
+                break
+            }
+        }
+        return .miter
     }
 
     static func parseTransform(_ attributes: String, transform: CGAffineTransform = CGAffineTransform.identity) -> CGAffineTransform {

@@ -1,0 +1,84 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 50, 15],
+					contents: [
+						SVGGroup {
+							transform: [0.9659258263, 0.2588190451, -0.2588190451, 0.9659258263, 0, 0],
+							contents: [
+								SVGRect { x: 10, width: 100, height: 200, fill: "red" },
+								SVGEllipse { cx: 170, cy: 100, rx: 50, ry: 100, fill: "red" },
+								SVGLine {
+									x1: 230,
+									y1: 10,
+									x2: 330,
+									y2: 200,
+									fill: "black",
+									stroke: { fill: "red", width: 10 }
+								},
+								SVGPath { path: "M340,0 L440,0 L390,200 z", fill: "red" }
+							]
+						},
+						SVGGroup {
+							transform: [0.9659258263, 0.2588190451, -0.2588190451, 0.9659258263, 0, 0],
+							contents: [
+								SVGRect {
+									width: 100,
+									height: 200,
+									fill: "black",
+									transform: [1, 0, 0, 1, 10, 0]
+								},
+								SVGEllipse {
+									cx: 160,
+									cy: 100,
+									rx: 50,
+									ry: 100,
+									fill: "black",
+									transform: [1, 0, 0, 1, 10, 0]
+								},
+								SVGLine {
+									x1: 220,
+									y1: 10,
+									x2: 320,
+									y2: 200,
+									fill: "black",
+									stroke: { fill: "black", width: 10 },
+									transform: [1, 0, 0, 1, 10, 0]
+								},
+								SVGPath {
+									path: "M330,0 L430,0 L380,200 z",
+									fill: "black",
+									transform: [1, 0, 0, 1, 10, 0]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.4 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

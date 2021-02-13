@@ -1,0 +1,61 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1, 0, 0, 1, 0, 400],
+					contents: [
+						SVGGroup {
+							contents: [
+								SVGPolyline {
+									points: [270, -225, 300, -245, 320, -225, 340, -245, 280, -280, 390, -280, 420, -240, 280, -185],
+									fill: "#339966",
+									stroke: { fill: "#007700", width: 8 }
+								},
+								SVGPolygon {
+									points: [179, -185, 218, -203, 228, -245, 202, -279, 159, -280, 131, -247, 139, -205],
+									fill: "#55FF99",
+									stroke: { fill: "#007700", width: 8 }
+								}
+							]
+						},
+						SVGGroup {
+							contents: [
+								SVGPolyline {
+									points: [270, -225, 300, -245, 320, -225, 340, -245, 280, -280, 390, -280, 420, -240, 280, -185],
+									stroke: { fill: "#33CC66", width: 3 }
+								},
+								SVGPolygon {
+									points: [179, -185, 218, -203, 228, -245, 202, -279, 159, -280, 131, -247, 139, -205],
+									stroke: { fill: "#33CC66", width: 3 }
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.2 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

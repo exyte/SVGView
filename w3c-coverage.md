@@ -2,11 +2,11 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `10.7%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `12.8%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `33.3%`
     * [Conform](#conform-1): `0.0%`
-    * [Coords](#coords-1): `37.5%`
+    * [Coords](#coords-1): `46.8%`
     * [Extend](#extend-1): `0.0%`
     * [Filters](#filters-1): `0.0%`
     * [Fonts](#fonts-1): `0.0%`
@@ -15,12 +15,12 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Linking](#linking-1): `0.0%`
     * [Masking](#masking-1): `0.0%`
     * [Metadata](#metadata-1): `0.0%`
-    * [Painting](#painting-1): `22.5%`
+    * [Painting](#painting-1): `38.7%`
     * [Paths](#paths-1): `52.3%`
     * [Pservers](#pservers-1): `0.0%`
     * [Render](#render-1): `37.5%`
     * [Script](#script-1): `0.0%`
-    * [Shapes](#shapes-1): `68.1%`
+    * [Shapes](#shapes-1): `81.8%`
     * [Struct](#struct-1): `6.9%`
     * [Styling](#styling-1): `0.0%`
     * [Svgdom](#svgdom-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`10.7%` of tests covered (56/522). They can be splitted into following categories:
+`12.8%` of tests covered (67/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -167,10 +167,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[conform-viewers-03-f](SVGViewTests/w3c/1.1F2/svg/conform-viewers-03-f.svg)|
 </details>
 
-### <a name='coords-1'></a> [Coords](https://www.w3.org/TR/SVG11/coords.html): `37.5%`
+### <a name='coords-1'></a> [Coords](https://www.w3.org/TR/SVG11/coords.html): `46.8%`
 
 <details>
-  <summary>(12/32) tests covered...</summary>
+  <summary>(15/32) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -196,9 +196,9 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[coords-trans-14-f](SVGViewTests/w3c/1.1F2/svg/coords-trans-14-f.svg)|
 |✅|[coords-transformattr-01-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-01-f.svg)|
 |✅|[coords-transformattr-02-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-02-f.svg)|
-|❌|[coords-transformattr-03-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-03-f.svg)|
-|❌|[coords-transformattr-04-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-04-f.svg)|
-|❌|[coords-transformattr-05-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-05-f.svg)|
+|✅|[coords-transformattr-03-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-03-f.svg)|
+|✅|[coords-transformattr-04-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-04-f.svg)|
+|✅|[coords-transformattr-05-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-05-f.svg)|
 |❌|[coords-units-01-b](SVGViewTests/w3c/1.1F2/svg/coords-units-01-b.svg)|
 |❌|[coords-units-02-b](SVGViewTests/w3c/1.1F2/svg/coords-units-02-b.svg)|
 |❌|[coords-units-03-b](SVGViewTests/w3c/1.1F2/svg/coords-units-03-b.svg)|
@@ -398,10 +398,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[metadata-example-01-t](SVGViewTests/w3c/1.1F2/svg/metadata-example-01-t.svg)|
 </details>
 
-### <a name='painting-1'></a> [Painting](https://www.w3.org/TR/SVG11/painting.html): `22.5%`
+### <a name='painting-1'></a> [Painting](https://www.w3.org/TR/SVG11/painting.html): `38.7%`
 
 <details>
-  <summary>(7/31) tests covered...</summary>
+  <summary>(12/31) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -427,14 +427,14 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[painting-render-01-b](SVGViewTests/w3c/1.1F2/svg/painting-render-01-b.svg)|
 |❌|[painting-render-02-b](SVGViewTests/w3c/1.1F2/svg/painting-render-02-b.svg)|
 |✅|[painting-stroke-01-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-01-t.svg)|
-|❌|[painting-stroke-02-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-02-t.svg)|
-|❌|[painting-stroke-03-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-03-t.svg)|
+|✅|[painting-stroke-02-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-02-t.svg)|
+|✅|[painting-stroke-03-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-03-t.svg)|
 |✅|[painting-stroke-04-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-04-t.svg)|
-|❌|[painting-stroke-05-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-05-t.svg)|
+|✅|[painting-stroke-05-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-05-t.svg)|
 |❌|[painting-stroke-06-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-06-t.svg)|
 |✅|[painting-stroke-07-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-07-t.svg)|
-|❌|[painting-stroke-08-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-08-t.svg)|
-|❌|[painting-stroke-09-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-09-t.svg)|
+|✅|[painting-stroke-08-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-08-t.svg)|
+|✅|[painting-stroke-09-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-09-t.svg)|
 |❌|[painting-stroke-10-t](SVGViewTests/w3c/1.1F2/svg/painting-stroke-10-t.svg)|
 </details>
 
@@ -542,10 +542,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[script-specify-02-f](SVGViewTests/w3c/1.1F2/svg/script-specify-02-f.svg)|
 </details>
 
-### <a name='shapes-1'></a> [Shapes](https://www.w3.org/TR/SVG11/shapes.html): `68.1%`
+### <a name='shapes-1'></a> [Shapes](https://www.w3.org/TR/SVG11/shapes.html): `81.8%`
 
 <details>
-  <summary>(15/22) tests covered...</summary>
+  <summary>(18/22) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -554,11 +554,11 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |✅|[shapes-ellipse-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-01-t.svg)|
 |✅|[shapes-ellipse-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-02-t.svg)|
 |✅|[shapes-ellipse-03-f](SVGViewTests/w3c/1.1F2/svg/shapes-ellipse-03-f.svg)|
-|❌|[shapes-grammar-01-f](SVGViewTests/w3c/1.1F2/svg/shapes-grammar-01-f.svg)|
+|✅|[shapes-grammar-01-f](SVGViewTests/w3c/1.1F2/svg/shapes-grammar-01-f.svg)|
 |✅|[shapes-intro-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-intro-01-t.svg)|
 |❌|[shapes-intro-02-f](SVGViewTests/w3c/1.1F2/svg/shapes-intro-02-f.svg)|
 |✅|[shapes-line-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-line-01-t.svg)|
-|❌|[shapes-line-02-f](SVGViewTests/w3c/1.1F2/svg/shapes-line-02-f.svg)|
+|✅|[shapes-line-02-f](SVGViewTests/w3c/1.1F2/svg/shapes-line-02-f.svg)|
 |✅|[shapes-polygon-01-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-01-t.svg)|
 |✅|[shapes-polygon-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-02-t.svg)|
 |✅|[shapes-polygon-03-t](SVGViewTests/w3c/1.1F2/svg/shapes-polygon-03-t.svg)|
@@ -568,7 +568,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |✅|[shapes-rect-02-t](SVGViewTests/w3c/1.1F2/svg/shapes-rect-02-t.svg)|
 |❌|[shapes-rect-03-t](SVGViewTests/w3c/1.1F2/svg/shapes-rect-03-t.svg)|
 |✅|[shapes-rect-04-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-04-f.svg)|
-|❌|[shapes-rect-05-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-05-f.svg)|
+|✅|[shapes-rect-05-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-05-f.svg)|
 |✅|[shapes-rect-06-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-06-f.svg)|
 |❌|[shapes-rect-07-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-07-f.svg)|
 </details>

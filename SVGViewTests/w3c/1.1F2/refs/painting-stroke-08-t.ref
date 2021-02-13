@@ -1,0 +1,86 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					transform: [1.7, 0, 0, 1.7, 50, 0],
+					contents: [
+						SVGCircle { cx: 200, cy: 20, r: 5, fill: "#FF6666" },
+						SVGCircle { cx: 200, cy: 40, r: 5, fill: "#FF6666" },
+						SVGCircle { cx: 200, cy: 60, r: 5, fill: "#FF6666" },
+						SVGCircle { cx: 200, cy: 80, r: 5, fill: "#FF6666" },
+						SVGCircle { cx: 200, cy: 80, r: 5, fill: "yellow" },
+						SVGCircle { cx: 200, cy: 100, r: 5, fill: "yellow" },
+						SVGCircle { cx: 200, cy: 120, r: 5, fill: "yellow" },
+						SVGCircle { cx: 200, cy: 140, r: 5, fill: "yellow" },
+						SVGCircle { cx: 200, cy: 160, r: 5, fill: "#66FF33" },
+						SVGCircle { cx: 200, cy: 180, r: 5, fill: "#66FF33" },
+						SVGCircle { cx: 200, cy: 200, r: 5, fill: "#66FF33" },
+						SVGPath {
+							path: "M20,20 L200,20",
+							stroke: { fill: "0% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,40 L200,40",
+							stroke: { fill: "0% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,60 L200,60",
+							stroke: { fill: "0% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,80 L200,80",
+							stroke: { fill: "20% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,100 L200,100",
+							stroke: { fill: "40% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,120 L200,120",
+							stroke: { fill: "60% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,140 L200,140",
+							stroke: { fill: "80% blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,160 L200,160",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,180 L200,180",
+							stroke: { fill: "blue", width: 10 }
+						},
+						SVGPath {
+							path: "M20,200 L200,200",
+							stroke: { fill: "blue", width: 10 }
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.6 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

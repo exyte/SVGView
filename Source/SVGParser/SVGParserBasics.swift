@@ -10,39 +10,69 @@ import SwiftUI
 extension SVGHelper {
 
     static func parseDouble(_ attributes: [String : String], _ key: String, defaultValue: Double = 0) -> Double {
-        if let value = Double(attributes[key] ?? "") {
-            return value
+        if let value = attributes[key], let result = doubleFromString(value) {
+            return result
         }
         return defaultValue
     }
 
     static func parseCGFloat(_ attributes: [String : String], _ key: String, defaultValue: CGFloat = 0) -> CGFloat {
-        if let value = Double(attributes[key] ?? "") {
-            return CGFloat(value)
+        if let value = attributes[key], let result = doubleFromString(value) {
+            return CGFloat(result)
         }
         return defaultValue
     }
 
     static func parseOptCGFloat(_ attributes: [String : String], _ key: String) -> CGFloat? {
-        if let value = Double(attributes[key] ?? "") {
-            return CGFloat(value)
+        if let value = attributes[key], let result = doubleFromString(value) {
+            return CGFloat(result)
         }
         return .none
     }
 
-    static func parsePointsArray(_ string: String) -> [CGPoint] {
-        var resultPoints: [CGPoint] = []
-        let numbersString = string.replacingOccurrences(of: ",", with: " ")
-        let numbers = numbersString.split(separator: " ")
+    static func doubleFromString(_ string: String) -> Double? {
+        if string == "none" {
+            return 0
+        }
 
+        let scanner = Scanner(string: string)
+        let value = scanner.scanDouble()
+        let unit = scanner.scanCharacters(from: .unitCharacters)
+
+        if !scanner.isAtEnd {
+            let junk = scanner.scanUpToCharacters(from: []) ?? ""
+            print("Found trailing junk \"\(junk)\" in string \"\(string)\".")
+            return .none
+        }
+
+        switch unit {
+        case nil, "px":
+            return value
+        default:
+            print("SVG parsing error. Unit \"\(unit ?? "")\" is not supported")
+            return value
+        }
+    }
+
+    static func parsePointsArray(_ string: String) -> [CGPoint] {
+        var numbers: [Double] = []
+
+        let scanner = Scanner(string: string)
+        while !scanner.isAtEnd {
+            if let value = scanner.scanDouble() {
+                numbers.append(value)
+            }
+            _ = scanner.scanCharacters(from: [","])
+        }
+
+        var points: [CGPoint] = []
         var i = 0
         while i < numbers.count - 1 {
-            let x = Double(numbers[i]) ?? 0
-            let y = Double(numbers[i+1]) ?? 0
-            resultPoints.append(CGPoint(x: x, y: y))
+            points.append(CGPoint(x: numbers[i], y: numbers[i + 1]))
             i += 2
         }
-        return resultPoints
+
+        return points
     }
 
     static func parseOpacity(_ attributes: [String : String], _ key: String) -> Double {
@@ -106,4 +136,14 @@ extension SVGHelper {
         let div = inPercentage ? 100.0 : 255.0
         return Color(red: red / div, green: green / div, blue: blue / div)
     }
+}
+
+fileprivate extension CharacterSet {
+    /// Latin alphabet characters.
+    static let latinAlphabet = CharacterSet(charactersIn: "a"..."z")
+        .union(CharacterSet(charactersIn: "A"..."Z"))
+
+    static let unitCharacters = CharacterSet.latinAlphabet
+
+    static let transformationAttributeCharacters = CharacterSet.latinAlphabet
 }

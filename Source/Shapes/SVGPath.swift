@@ -34,17 +34,9 @@ struct SVGPathView: View {
 extension MBezierPath {
 
     func toSwiftUI(model: SVGShape) -> some View {
-        let path = Path(self.cgPath)
-
-        var result = AnyView(path
-            .apply(paint: model.fill)
-            .transformEffect(model.transform))
-
-        if let stroke = model.stroke {
-            result = AnyView(result.overlay(path.stroke(stroke.fill, style: stroke.toSwiftUI())))
-        }
-
-        return result
+        Path(self.cgPath)
+            .applySVGStroke(stroke: model.stroke)
+            .applyShapeAttributes(model: model)
     }
 }
 

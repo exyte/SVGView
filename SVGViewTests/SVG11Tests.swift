@@ -65,6 +65,18 @@ class SVG11Tests: BaseTestCase {
         compareToReference("coords-transformattr-02-f")
     }
 
+    func testCoordsTransformattr03F() {
+        compareToReference("coords-transformattr-03-f")
+    }
+
+    func testCoordsTransformattr04F() {
+        compareToReference("coords-transformattr-04-f")
+    }
+
+    func testCoordsTransformattr05F() {
+        compareToReference("coords-transformattr-05-f")
+    }
+
     func testPaintingControl03F() {
         compareToReference("painting-control-03-f")
     }
@@ -85,12 +97,32 @@ class SVG11Tests: BaseTestCase {
         compareToReference("painting-stroke-01-t")
     }
 
+    func testPaintingStroke02T() {
+        compareToReference("painting-stroke-02-t")
+    }
+
+    func testPaintingStroke03T() {
+        compareToReference("painting-stroke-03-t")
+    }
+
     func testPaintingStroke04T() {
         compareToReference("painting-stroke-04-t")
     }
 
+    func testPaintingStroke05T() {
+        compareToReference("painting-stroke-05-t")
+    }
+
     func testPaintingStroke07T() {
         compareToReference("painting-stroke-07-t")
+    }
+
+    func testPaintingStroke08T() {
+        compareToReference("painting-stroke-08-t")
+    }
+
+    func testPaintingStroke09T() {
+        compareToReference("painting-stroke-09-t")
     }
 
     func testPathsData01T() {
@@ -169,12 +201,20 @@ class SVG11Tests: BaseTestCase {
         compareToReference("shapes-ellipse-03-f")
     }
 
+    func testShapesGrammar01F() {
+        compareToReference("shapes-grammar-01-f")
+    }
+
     func testShapesIntro01T() {
         compareToReference("shapes-intro-01-t")
     }
 
     func testShapesLine01T() {
         compareToReference("shapes-line-01-t")
+    }
+
+    func testShapesLine02F() {
+        compareToReference("shapes-line-02-f")
     }
 
     func testShapesPolygon01T() {
@@ -203,6 +243,10 @@ class SVG11Tests: BaseTestCase {
 
     func testShapesRect04F() {
         compareToReference("shapes-rect-04-f")
+    }
+
+    func testShapesRect05F() {
+        compareToReference("shapes-rect-05-f")
     }
 
     func testShapesRect06F() {

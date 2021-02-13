@@ -41,7 +41,7 @@ extension CGAffineTransform {
 
 }
 
-extension InsettableShape {
+extension Shape {
 
     func applySVGStroke(stroke: SVGStroke?) -> some View {
         var result = AnyView(self)
