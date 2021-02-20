@@ -38,7 +38,7 @@ struct SVGTextView: View {
             .font(model.font?.toSwiftUI())
             .lineLimit(1)
             .alignmentGuide(.leading) { d in d[model.textAnchor] }
-            .alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.bottom] }
+            .alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
             .position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
             .apply(paint: model.fill)
             .transformEffect(model.transform)
