@@ -15,11 +15,12 @@ public struct SVGParser {
     }
 
     static public func parse(xml: XMLElement) -> SVGNode {
-        let defMap = createDefMap(xml: xml)
-        return parseInternal(xml: xml, defMap: defMap)!
+        let index = SVGIndex()
+        index.fill(from: xml)
+        return parseInternal(xml: xml, index: index)!
     }
 
-    static func parseInternal(xml: XMLElement, defMap: [String: XMLElement], ignoreDefs: Bool = true) -> SVGNode? {
+    static func parseInternal(xml: XMLElement, index: SVGIndex, ignoreDefs: Bool = true) -> SVGNode? {
         if ignoreDefs, SVGConstants.defTags.contains(xml.name) {
             return nil
         }
@@ -35,7 +36,7 @@ public struct SVGParser {
         if isGroup(xml: xml) { // group
             var nodes = [SVGNode]()
             for child in contents {
-                if let node = parseInternal(xml: child, defMap: defMap, ignoreDefs: ignoreDefs) {
+                if let node = parseInternal(xml: child, index: index, ignoreDefs: ignoreDefs) {
                     nodes.append(node)
                 }
             }
@@ -49,8 +50,8 @@ public struct SVGParser {
             let collectedStyle = collector.styleStack.currentStyle()
             if xml.name == "use", // def
                let useId = nonStyleDict["xlink:href"]?.replacingOccurrences(of: "#", with: ""),
-               let def = defMap[useId],
-               let useNode = parseInternal(xml: def, defMap: defMap, ignoreDefs: ignoreDefs) {
+               let def = index.element(by: useId),
+               let useNode = parseInternal(xml: def, index: index, ignoreDefs: ignoreDefs) {
 
                 useNode.transform = CGAffineTransform(
                     translationX: SVGHelper.parseCGFloat(nonStyleDict, "x"),
@@ -58,7 +59,7 @@ public struct SVGParser {
                 result = useNode
             }
             else { // simple node
-                result = SVGHelper.parseNode(xml: xml, attributes: nonStyleDict, style: collectedStyle)
+                result = SVGHelper.parseNode(xml: xml, index: index, attributes: nonStyleDict, style: collectedStyle)
             }
         }
 
@@ -68,8 +69,8 @@ public struct SVGParser {
         result?.opacity = SVGHelper.parseOpacity(styleDict, "opacity")
 
         if let clipId = SVGHelper.parseUse(styleDict["clip-path"]),
-           let clipNode = defMap[clipId],
-           let clip = parseInternal(xml: clipNode, defMap: defMap, ignoreDefs: false) {
+           let clipNode = index.element(by: clipId),
+           let clip = parseInternal(xml: clipNode, index: index, ignoreDefs: false) {
             result?.clip = SVGUserSpaceNode(node: clip, userSpace: parse(userSpace: clipNode.attributes["clipPathUnits"]))
         }
 
@@ -119,25 +120,7 @@ public struct SVGParser {
         }
         return SVGUserSpaceNode.UserSpace.objectBoundingBox
     }
- 
-    static func createDefMap(xml: XMLElement) -> [String: XMLElement] {
-        var map = [String: XMLElement]()
-        createDefMapRecursive(xml: xml, map: &map)
-        return map
-    }
 
-    static func createDefMapRecursive(xml: XMLElement, map: inout [String: XMLElement]) {
-        if let id = SVGHelper.parseId(xml.attributes){
-            map[id] = xml
-        }
-        if xml.contents.count > 0 { // group
-            for child in xml.contents {
-                if let child = child as? XMLElement {
-                    createDefMapRecursive(xml: child, map: &map)
-                }
-            }
-        }
-    }
 }
 
 class SVGAttributesCollector {

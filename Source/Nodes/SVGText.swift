@@ -9,7 +9,7 @@ public class SVGText: SVGNode, ObservableObject {
     @Published public var textAnchor: HorizontalAlignment = .leading
     //@Published public var baseline: Baseline
 
-    public init(text: String, font: SVGFont? = nil, fill: SVGPaint? = .color(.black), stroke: SVGStroke? = nil, textAnchor: HorizontalAlignment = .leading, /*baseline: Baseline = .top,*/ transform: CGAffineTransform = .identity, opaque: Bool = true, opacity: Double = 1, clip: SVGUserSpaceNode? = nil, mask: SVGNode? = nil) {
+    public init(text: String, font: SVGFont? = nil, fill: SVGPaint? = SVGColor.black, stroke: SVGStroke? = nil, textAnchor: HorizontalAlignment = .leading, /*baseline: Baseline = .top,*/ transform: CGAffineTransform = .identity, opaque: Bool = true, opacity: Double = 1, clip: SVGUserSpaceNode? = nil, mask: SVGNode? = nil) {
         self.text = text
         self.font = font
         self.fill = fill
@@ -24,7 +24,8 @@ public class SVGText: SVGNode, ObservableObject {
 
     override func serialize(_ serializer: Serializer) {
         serializer.add("text", text).add("font", font).add("textAnchor", textAnchor)
-        serializer.add("fill", fill).add("stroke", stroke)
+        fill?.serialize(key: "fill", serializer: serializer)
+        serializer.add("stroke", stroke)
         super.serialize(serializer)
     }
 }

@@ -80,21 +80,27 @@ extension SVGHelper {
         return min(max(opacity, 0), 1)
     }
 
-    static func parseFill(_ style: [String : String]) -> SVGPaint? {
+    static func parseFill(_ style: [String : String], _ index: SVGIndex) -> SVGPaint? {
         guard let colorString = style["fill"] else {
-            return .color(Color.black.opacity(parseOpacity(style, "fill-opacity")))
+            return SVGColor.black.opacity(parseOpacity(style, "fill-opacity"))
+        }
+        if let colorId = SVGHelper.parseIdFromUrl(colorString) {
+            if let paint = index.paint(by: colorId) {
+                return paint
+            }
         }
         if let color = parseColor(colorString) {
-            return .color(color.opacity(parseOpacity(style, "fill-opacity")))
+            return color.opacity(parseOpacity(style, "fill-opacity"))
         }
+        
         return .none
     }
 
-    static func parseColor(_ string: String) -> Color? {
+    static func parseColor(_ string: String) -> SVGColor? {
         let normalized = string.replacingOccurrences(of: " ", with: "")
         if normalized == "none" || normalized == "transparent" {
             return .none
-        } else if let defaultColor = Color.by(name: normalized) {
+        } else if let defaultColor = SVGColor.by(name: normalized) {
             return defaultColor
         } else if normalized.hasPrefix("rgb") {
             return parseRGBNotation(colorString: normalized)
@@ -103,7 +109,7 @@ extension SVGHelper {
         }
     }
 
-    static func createColorFromHex(_ hexString: String) -> Color {
+    static func createColorFromHex(_ hexString: String) -> SVGColor {
         var cleanedHexString = hexString
         if hexString.hasPrefix("#") {
             cleanedHexString = hexString.replacingOccurrences(of: "#", with: "")
@@ -112,10 +118,10 @@ extension SVGHelper {
             let x = Array(cleanedHexString)
             cleanedHexString = "\(x[0])\(x[0])\(x[1])\(x[1])\(x[2])\(x[2])"
         }
-        return Color(hex: cleanedHexString)
+        return SVGColor(hex: cleanedHexString)
     }
 
-    static func parseRGBNotation(colorString: String) -> Color {
+    static func parseRGBNotation(colorString: String) -> SVGColor {
         let from = colorString.index(colorString.startIndex, offsetBy: 4)
         let inPercentage = colorString.contains("%")
         let sp = String(colorString.suffix(from: from))
@@ -133,8 +139,28 @@ extension SVGHelper {
                 red = r
             }
         }
-        let div = inPercentage ? 100.0 : 255.0
-        return Color(red: red / div, green: green / div, blue: blue / div)
+        if inPercentage {
+            red *= 2.55
+            green *= 2.55
+            blue *= 2.55
+        }
+        return SVGColor(r: Int(round(red)), g: Int(round(green)), b: Int(round(blue)))
+    }
+
+    static private func parseIdFromUrl(_ urlString: String) -> String? {
+        if urlString.hasPrefix("url") {
+            return urlString.substringWithOffset(fromStart: 5, fromEnd: 1)
+        }
+        return .none
+    }
+
+}
+
+fileprivate extension String {
+    func substringWithOffset(fromStart: Int, fromEnd: Int) -> String {
+        let start = index(startIndex, offsetBy: fromStart)
+        let end = index(endIndex, offsetBy: -fromEnd)
+        return String(self[start..<end])
     }
 }
 

@@ -8,15 +8,14 @@
 import Foundation
 import SwiftUI
 
-public enum SVGPaint: SerializableAtom {
+public class SVGPaint {
 
-    case color(Color)
+    func serialize(key: String, serializer: Serializer) {
+        
+    }
 
-    func serialize() -> String {
-        switch self {
-        case .color(let color):
-            return color.serialize()
-        }
+    func apply<S>(view: S) -> AnyView where S : View {
+        return AnyView(view)
     }
 
 }
@@ -25,12 +24,9 @@ extension View {
 
     func apply(paint: SVGPaint?) -> some View {
         if let p = paint {
-            switch p {
-            case .color(let color):
-                return self.foregroundColor(color)
-            }
+            return AnyView(p.apply(view: self))
         }
-        return self.foregroundColor(Color.clear)
+        return AnyView(self.foregroundColor(.clear))
     }
 
 }

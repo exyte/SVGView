@@ -48,7 +48,7 @@ extension Shape {
             ? AnyView(self.fill(style: FillStyle(eoFill: true, antialiased: true)))
             : AnyView(self)
         if let stroke = stroke {
-            return AnyView(result.overlay(self.stroke(stroke.fill, style: stroke.toSwiftUI())))
+            return AnyView(result.overlay(self.stroke(stroke.fill.toSwiftUI(), style: stroke.toSwiftUI())))
         }
         return result
     }

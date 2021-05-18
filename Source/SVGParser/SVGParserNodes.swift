@@ -9,7 +9,7 @@ import SwiftUI
 
 public class SVGHelper: NSObject {
 
-    static func parseNode(xml: XMLElement, attributes: [String : String], style: [String : String]) -> SVGNode? {
+    static func parseNode(xml: XMLElement, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGNode? {
 
         let name = xml.name
         switch name {
@@ -19,9 +19,9 @@ public class SVGHelper: NSObject {
         case "image":
             return parseImage(attributes, style: style)
         case "text":
-            return parseText(xml: xml, attributes: attributes, style: style)
+            return parseText(xml: xml, index: index, attributes: attributes, style: style)
         default:
-            return parseShape(name: name, attributes: attributes, style: style)
+            return parseShape(name: name,  index: index, attributes: attributes, style: style)
         }
 
         return .none
@@ -32,7 +32,7 @@ public class SVGHelper: NSObject {
         return .none
     }
 
-    static func parseText(xml: XMLElement, attributes: [String : String], style: [String : String]) -> SVGText? {
+    static func parseText(xml: XMLElement, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGText? {
 
         let fontName = style["font-family"] ?? "Serif"
         let fontSize = style["font-size"]?.cgFloatValue ?? 12
@@ -45,15 +45,15 @@ public class SVGHelper: NSObject {
         let transform = CGAffineTransform(translationX: x, y: y)
 
         if let textNode = xml.contents.first as? XMLText {
-            return SVGText(text: textNode.text, font: font, fill: parseFill(style), stroke: parseStroke(style), textAnchor: textAnchor, transform: transform)
+            return SVGText(text: textNode.text, font: font, fill: parseFill(style, index), stroke: parseStroke(style), textAnchor: textAnchor, transform: transform)
         }
         return .none
     }
 
-    static func parseShape(name: String, attributes: [String : String], style: [String : String]) -> SVGShape? {
+    static func parseShape(name: String, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGShape? {
 
         if let locus = parseLocus(name: name, attributes: attributes, style: style) {
-            locus.fill = parseFill(style)
+            locus.fill = parseFill(style, index)
             locus.stroke = parseStroke(style)
             return locus
         }

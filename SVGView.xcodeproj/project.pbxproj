@@ -15,6 +15,8 @@
 		585A5C2725CFF2B9000E8B88 /* SVGRefGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A5C2625CFF2B9000E8B88 /* SVGRefGenerator.swift */; };
 		585A5C2F25D007B6000E8B88 /* SVG11Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A5C2E25D007B6000E8B88 /* SVG11Tests.swift */; };
 		585A5C3525D007EA000E8B88 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A5C3425D007EA000E8B88 /* BaseTestCase.swift */; };
+		585A5C3D25E280F7000E8B88 /* SVGIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A5C3C25E280F7000E8B88 /* SVGIndex.swift */; };
+		585A5C6125E2CCB6000E8B88 /* SVGGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585A5C6025E2CCB6000E8B88 /* SVGGradient.swift */; };
 		58869B6D25B5C52D00F6E324 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58869B6C25B5C52D00F6E324 /* Serializer.swift */; };
 		58869B7525B5EB0B00F6E324 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58869B7425B5EB0B00F6E324 /* Serializable.swift */; };
 		58869B7925B5EB3300F6E324 /* Serializations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58869B7825B5EB3300F6E324 /* Serializations.swift */; };
@@ -72,6 +74,8 @@
 		585A5C2625CFF2B9000E8B88 /* SVGRefGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGRefGenerator.swift; sourceTree = "<group>"; };
 		585A5C2E25D007B6000E8B88 /* SVG11Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVG11Tests.swift; sourceTree = "<group>"; };
 		585A5C3425D007EA000E8B88 /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		585A5C3C25E280F7000E8B88 /* SVGIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGIndex.swift; sourceTree = "<group>"; };
+		585A5C6025E2CCB6000E8B88 /* SVGGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGGradient.swift; sourceTree = "<group>"; };
 		58869B6C25B5C52D00F6E324 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		58869B7425B5EB0B00F6E324 /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
 		58869B7825B5EB3300F6E324 /* Serializations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializations.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 				5815293F25B6C8F600E8D23A /* SVGPaint.swift */,
 				5815294325B6C90F00E8D23A /* SVGColor.swift */,
 				5815298925B752E600E8D23A /* SVGPreserveAspectRatio.swift */,
+				585A5C6025E2CCB6000E8B88 /* SVGGradient.swift */,
 			);
 			path = Primitives;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				5BE3325A24E144B200BB0D60 /* SVGParserPrimitives.swift */,
 				5B1017FF25359C2100105E9A /* SVGParserViewBox.swift */,
 				5B0BD94124EE66A400F23286 /* SVGView.swift */,
+				585A5C3C25E280F7000E8B88 /* SVGIndex.swift */,
 			);
 			path = SVGParser;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 				5B23AA6B24EA5D5F0085D48E /* SVGGroup.swift in Sources */,
 				5BE3327424E144B200BB0D60 /* PathReader.swift in Sources */,
 				5BE3327924E144B200BB0D60 /* SVGParserBasics.swift in Sources */,
+				585A5C3D25E280F7000E8B88 /* SVGIndex.swift in Sources */,
 				5BE3326124E144B200BB0D60 /* SVGShape.swift in Sources */,
 				5815294025B6C8F600E8D23A /* SVGPaint.swift in Sources */,
 				58869B7525B5EB0B00F6E324 /* Serializable.swift in Sources */,
@@ -435,6 +442,7 @@
 				5BE3326724E144B200BB0D60 /* SVGRect.swift in Sources */,
 				5B0BD94024EE669C00F23286 /* DOMParser.swift in Sources */,
 				5BE3326424E144B200BB0D60 /* SVGPath.swift in Sources */,
+				585A5C6125E2CCB6000E8B88 /* SVGGradient.swift in Sources */,
 				5B0BD94224EE66A400F23286 /* SVGView.swift in Sources */,
 				5BE3327124E144B200BB0D60 /* SVGFont.swift in Sources */,
 				5BE3326F24E144B200BB0D60 /* XMLNode.swift in Sources */,

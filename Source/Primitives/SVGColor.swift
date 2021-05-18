@@ -7,6 +7,99 @@
 
 import SwiftUI
 
+public class SVGColor : SVGPaint {
+
+    public static let black = SVGColor(0)
+
+    public static func by(name: String) -> SVGColor? {
+        if let hex = SVGColors.hex(of: name.lowercased()) {
+            return SVGColor(hex)
+        }
+        return .none
+    }
+
+    public let value: Int
+
+    public init(_ value: Int = 0) {
+        self.value = value
+    }
+
+    public convenience init(r: Int, g: Int, b: Int, t: Int = 0) {
+        let x = (t & 0xff) << 24
+        let y = (r & 0xff) << 16
+        let z = (g & 0xff) << 8
+        let q = b & 0xff
+        self.init(x | y | z | q)
+    }
+
+    public convenience init(r: Int, g: Int, b: Int, opacity: Double) {
+        self.init(r: r, g: g, b: b, t: Int((( 1 - opacity) * 255)))
+    }
+
+    public convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&rgbValue)
+        self.init(Int(rgbValue))
+    }
+
+    override func serialize(key: String, serializer: Serializer) {
+        var prefix = ""
+        let transparency = t
+        if transparency != 0 {
+            prefix = "\(Int(round(Double(255 - transparency) * 100 / 255)))% "
+        }
+
+        let hex = ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff)
+        if let text = SVGColors.text(of: hex) {
+            serializer.add(key, "\(prefix)\(text)")
+        } else {
+            serializer.add(key, "\(prefix)#\(String(format: "%02X%02X%02X", r, g, b))")
+        }
+    }
+
+    public func toSwiftUI() -> Color {
+        return Color(red: Double(r) / 0xff, green: Double(g) / 0xff, blue: Double(b) / 0xff).opacity(opacity)
+    }
+
+    override func apply<S>(view: S) -> AnyView where S : View {
+        return AnyView(view.foregroundColor(toSwiftUI()))
+    }
+
+    public var r: Int {
+        return (value >> 16) & 0xff
+    }
+
+    public var g: Int {
+        return (value >> 8) & 0xff
+    }
+
+    public var b: Int {
+        return value & 0xff
+    }
+
+    var a: Int {
+        return 255 - t
+    }
+
+    var t: Int {
+        return (value >> 24) & 0xff
+    }
+
+    var opacity: Double {
+        return Double(a) / 255
+    }
+
+    public func opacity(_ opacity: Double) -> SVGColor {
+        return SVGColor(r: r, g: g, b: b, opacity: opacity)
+    }
+
+}
+
+public func == (lhs: SVGColor, rhs: SVGColor) -> Bool {
+    return lhs.value == rhs.value
+}
+
 extension Color : SerializableAtom {
 
     static func by(name: String) -> Color? {
