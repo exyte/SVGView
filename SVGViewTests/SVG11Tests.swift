@@ -77,6 +77,10 @@ class SVG11Tests: BaseTestCase {
         compareToReference("coords-transformattr-05-f")
     }
 
+    func testMaskingOpacity01B() {
+        compareToReference("masking-opacity-01-b")
+    }
+
     func testPaintingControl03F() {
         compareToReference("painting-control-03-f")
     }
@@ -199,6 +203,22 @@ class SVG11Tests: BaseTestCase {
 
     func testPathsData20F() {
         compareToReference("paths-data-20-f")
+    }
+
+    func testPserversGrad01B() {
+        compareToReference("pservers-grad-01-b")
+    }
+
+    func testPserversGrad02B() {
+        compareToReference("pservers-grad-02-b")
+    }
+
+    func testPserversGrad04B() {
+        compareToReference("pservers-grad-04-b")
+    }
+
+    func testPserversGrad07B() {
+        compareToReference("pservers-grad-07-b")
     }
 
     func testRenderElems01T() {

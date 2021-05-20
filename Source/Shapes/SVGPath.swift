@@ -37,6 +37,9 @@ extension MBezierPath {
         Path(self.cgPath)
             .applySVGStroke(stroke: model.stroke, eoFill: eoFill)
             .applyShapeAttributes(model: model)
+            .applyIf(model.fill is SVGGradient) {
+                $0.coordinateSpace(name: "GradientSpace")
+            }
     }
 }
 

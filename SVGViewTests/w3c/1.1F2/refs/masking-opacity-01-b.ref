@@ -1,0 +1,135 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Test for opacity property on a group.",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 24 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 50, 27]
+				},
+				SVGRect { x: 10, y: 30, width: 100, height: 260, fill: "red" },
+				SVGGroup {
+					contents: [
+						SVGRect { x: 60, y: 50, width: 80, height: 40, fill: "blue" },
+						SVGRect { x: 70, y: 60, width: 80, height: 40, fill: "lime" }
+					]
+				},
+				SVGText {
+					text: "Group opacity: 1",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 62]
+				},
+				SVGText {
+					text: "Blue rectangle opacity: 1",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 80]
+				},
+				SVGText {
+					text: "Green rectangle opacity: 1",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 98]
+				},
+				SVGGroup {
+					opacity: 0.5,
+					contents: [
+						SVGRect { x: 60, y: 110, width: 80, height: 40, fill: "blue" },
+						SVGRect { x: 70, y: 120, width: 80, height: 40, fill: "lime" }
+					]
+				},
+				SVGText {
+					text: "Group opacity: 0.5",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 122]
+				},
+				SVGText {
+					text: "Blue rectangle opacity: 1",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 140]
+				},
+				SVGText {
+					text: "Green rectangle opacity: 1",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 158]
+				},
+				SVGGroup {
+					contents: [
+						SVGRect { x: 60, y: 170, width: 80, height: 40, fill: "blue", opacity: 0.5 },
+						SVGRect { x: 70, y: 180, width: 80, height: 40, fill: "lime", opacity: 0.5 }
+					]
+				},
+				SVGText {
+					text: "Group opacity: 1",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 182]
+				},
+				SVGText {
+					text: "Blue rectangle opacity: 0.5",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 200]
+				},
+				SVGText {
+					text: "Green rectangle opacity: 0.5",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 218]
+				},
+				SVGGroup {
+					opacity: 0.5,
+					contents: [
+						SVGRect { x: 60, y: 230, width: 80, height: 40, fill: "blue", opacity: 0.5 },
+						SVGRect { x: 70, y: 240, width: 80, height: 40, fill: "lime", opacity: 0.5 }
+					]
+				},
+				SVGText {
+					text: "Group opacity: 0.5",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 242]
+				},
+				SVGText {
+					text: "Blue rectangle opacity: 0.5",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 260]
+				},
+				SVGText {
+					text: "Green rectangle opacity: 0.5",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 20 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 200, 278]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.6 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -84,6 +84,17 @@ extension SVGHelper {
         guard let colorString = style["fill"] else {
             return SVGColor.black.opacity(parseOpacity(style, "fill-opacity"))
         }
+        return parseFillInternal(colorString, style, index)
+    }
+
+    static func parseStrokeFill(_ style: [String : String], _ index: SVGIndex) -> SVGPaint? {
+        guard let colorString = style["stroke"] else {
+            return .none
+        }
+        return parseFillInternal(colorString, style, index)
+    }
+
+    static func parseFillInternal(_ colorString: String, _ style: [String : String], _ index: SVGIndex) -> SVGPaint? {
         if let colorId = SVGHelper.parseIdFromUrl(colorString) {
             if let paint = index.paint(by: colorId) {
                 return paint

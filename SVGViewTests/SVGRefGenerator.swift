@@ -27,6 +27,11 @@ class SVGRefGenerator: XCTestCase {
         createReference(name: "coords-trans-07-t", version: v11)
         createReference(name: "coords-trans-08-t", version: v11)
         createReference(name: "coords-trans-09-t", version: v11)
+        createReference(name: "pservers-grad-01-b", version: v11)
+        createReference(name: "pservers-grad-02-b", version: v11)
+        createReference(name: "pservers-grad-04-b", version: v11)
+        createReference(name: "pservers-grad-07-b", version: v11)
+        createReference(name: "masking-opacity-01-b", version: v11)
     }
 
     func createReference(name: String, version: String) {

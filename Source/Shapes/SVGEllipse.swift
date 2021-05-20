@@ -38,6 +38,9 @@ struct SVGEllipseView: View {
             .frame(width: 2 * model.rx, height: 2 * model.ry)
             .position(x: model.cx, y: model.cy)
             .applyShapeAttributes(model: model)
+            .applyIf(model.fill is SVGGradient) {
+                $0.coordinateSpace(name: "GradientSpace")
+            }
     }
 }
 

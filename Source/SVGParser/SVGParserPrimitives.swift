@@ -33,8 +33,8 @@ extension SVGHelper {
         return .leading
     }
 
-    static func parseStroke(_ style: [String : String]) -> SVGStroke? {
-        guard let string = style["stroke"], let fill = SVGHelper.parseColor(string) else {
+    static func parseStroke(_ style: [String : String], index: SVGIndex) -> SVGStroke? {
+        guard let fill = SVGHelper.parseStrokeFill(style, index) else {
             return .none
         }
 
