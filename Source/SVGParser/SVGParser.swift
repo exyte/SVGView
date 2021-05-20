@@ -26,6 +26,7 @@ public struct SVGParser {
         }
 
         let styleDict = xml.attributes.filter { SVGConstants.availableStyleAttributes.contains($0.key) }
+            .filter { $0.value != "inherit" }
         let nonStyleDict = xml.attributes.filter { !SVGConstants.availableStyleAttributes.contains($0.key) }
 
         let collector = SVGAttributesCollector.shared

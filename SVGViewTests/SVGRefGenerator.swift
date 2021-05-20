@@ -32,6 +32,7 @@ class SVGRefGenerator: XCTestCase {
         createReference(name: "pservers-grad-04-b", version: v11)
         createReference(name: "pservers-grad-07-b", version: v11)
         createReference(name: "masking-opacity-01-b", version: v11)
+        createReference(name: "color-prop-01-b", version: v11)
     }
 
     func createReference(name: String, version: String) {

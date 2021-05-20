@@ -9,6 +9,10 @@ class SVG11Tests: BaseTestCase {
         return "1.1F2"
     }
 
+    func testColorProp01B() {
+        compareToReference("color-prop-01-b")
+    }
+
     func testColorProp02F() {
         compareToReference("color-prop-02-f")
     }

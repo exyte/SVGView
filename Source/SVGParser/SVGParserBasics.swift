@@ -100,17 +100,19 @@ extension SVGHelper {
                 return paint
             }
         }
-        if let color = parseColor(colorString) {
+        if let color = parseColor(colorString, style) {
             return color.opacity(parseOpacity(style, "fill-opacity"))
         }
         
         return .none
     }
 
-    static func parseColor(_ string: String) -> SVGColor? {
+    static func parseColor(_ string: String, _ style: [String : String]) -> SVGColor? {
         let normalized = string.replacingOccurrences(of: " ", with: "")
         if normalized == "none" || normalized == "transparent" {
             return .none
+        } else if normalized == "currentColor", let currentColor = style["color"] {
+            return parseColor(currentColor, style)
         } else if let defaultColor = SVGColor.by(name: normalized) {
             return defaultColor
         } else if normalized.hasPrefix("rgb") {
