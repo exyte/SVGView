@@ -60,7 +60,7 @@ class SVGIndex {
     private func parseLinearGradient(_ element: XMLElement) -> SVGPaint? {
         let parent = getParentGradient(element)
 
-        let stops = element.contents.isEmpty ? (parent?.stops ?? []) : parseStops(element.contents)
+        let stops = element.contents.isEmpty ? (parent?.stops ?? []) : parseStops(element.contents, element.attributes)
 
         switch stops.count {
         case 0:
@@ -101,7 +101,7 @@ class SVGIndex {
 
     private func parseRadialGradient(_ element: XMLElement) -> SVGPaint? {
         let parent = getParentGradient(element)
-        let stops = element.contents.isEmpty ? (parent?.stops ?? []) : parseStops(element.contents)
+        let stops = element.contents.isEmpty ? (parent?.stops ?? []) : parseStops(element.contents, element.attributes)
 
         switch stops.count {
         case 0:
@@ -149,11 +149,11 @@ class SVGIndex {
         return SVGRadialGradient(cx: cx, cy: cy, fx: fx, fy: fy, r: r, userSpace: userSpace, stops: stops)
     }
 
-    private func parseStops(_ nodes: [XMLNode]) -> [SVGStop] {
+    private func parseStops(_ nodes: [XMLNode], _ style: [String : String]) -> [SVGStop] {
         var result = [SVGStop]()
         for node in nodes {
             if let element = node as? XMLElement {
-                if let stop = parseStop(element) {
+                if let stop = parseStop(element, style) {
                     result.append(stop)
                 }
             }
@@ -161,7 +161,7 @@ class SVGIndex {
         return result
     }
 
-    private func parseStop(_ element: XMLElement) -> SVGStop? {
+    private func parseStop(_ element: XMLElement, _ style: [String : String]) -> SVGStop? {
         let offset = getDoubleValueFromPercentage(element, attribute: "offset")
 
         var opacity: Double = 1
@@ -169,7 +169,7 @@ class SVGIndex {
             opacity = doubleValue
         }
         var color = SVGColor.black.opacity(opacity)
-        if let stopColor = element.attributes["stop-color"], let clr = SVGHelper.parseColor(stopColor) {
+        if let stopColor = element.attributes["stop-color"], let clr = SVGHelper.parseColor(stopColor, style) {
             color = clr.opacity(opacity)
         }
         return SVGStop(color: color, offset: offset)

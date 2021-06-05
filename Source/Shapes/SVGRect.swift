@@ -52,5 +52,8 @@ struct SVGRectView: View {
             .frame(width: model.width, height: model.height)
             .position(x: model.x, y: model.y)
             .offset(x: model.width/2, y: model.height/2)
+            .applyIf(model.fill is SVGGradient) {
+                $0.coordinateSpace(name: "GradientSpace")
+            }
     }
 }

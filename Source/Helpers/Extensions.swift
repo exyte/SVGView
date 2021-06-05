@@ -48,7 +48,19 @@ extension Shape {
             ? AnyView(self.fill(style: FillStyle(eoFill: true, antialiased: true)))
             : AnyView(self)
         if let stroke = stroke {
-            return AnyView(result.overlay(self.stroke(stroke.fill.toSwiftUI(), style: stroke.toSwiftUI())))
+            if let linear = stroke.fill as? SVGLinearGradient {
+                return AnyView(GeometryReader { geometry in
+                    result.overlay(self.stroke(linear.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
+                })
+            } else if let radial = stroke.fill as? SVGRadialGradient {
+                return AnyView(GeometryReader { geometry in
+                    result.overlay(self.stroke(radial.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
+                })
+            } else if let color = stroke.fill as? SVGColor {
+                return AnyView(
+                    result.overlay(self.stroke(color.toSwiftUI(), style: stroke.toSwiftUI()))
+                )
+            }
         }
         return result
     }
@@ -79,6 +91,19 @@ extension View {
             return AnyView(self)
         }
         return AnyView(self.mask(mask.toSwiftUI(absoluteNode: absoluteNode)))
+    }
+
+}
+
+extension View {
+
+    @ViewBuilder
+    func applyIf<T: View>(_ condition: Bool, apply: (Self) -> T) -> some View {
+        if condition {
+            apply(self)
+        } else {
+            self
+        }
     }
 
 }

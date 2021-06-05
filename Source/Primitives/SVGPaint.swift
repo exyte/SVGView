@@ -18,6 +18,10 @@ public class SVGPaint {
         return AnyView(view)
     }
 
+    public func opacity(_ opacity: Double) -> SVGPaint {
+        return self
+    }
+
 }
 
 extension View {

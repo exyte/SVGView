@@ -2,9 +2,9 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `14.3%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `15.5%`
     * [Animate](#animate-1): `0.0%`
-    * [Color](#color-1): `33.3%`
+    * [Color](#color-1): `50.0%`
     * [Conform](#conform-1): `0.0%`
     * [Coords](#coords-1): `46.8%`
     * [Extend](#extend-1): `0.0%`
@@ -13,11 +13,11 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Imp](#imp-1): `0.0%`
     * [Interact](#interact-1): `0.0%`
     * [Linking](#linking-1): `0.0%`
-    * [Masking](#masking-1): `0.0%`
+    * [Masking](#masking-1): `5.2%`
     * [Metadata](#metadata-1): `0.0%`
     * [Painting](#painting-1): `38.7%`
     * [Paths](#paths-1): `90.4%`
-    * [Pservers](#pservers-1): `0.0%`
+    * [Pservers](#pservers-1): `12.1%`
     * [Render](#render-1): `37.5%`
     * [Script](#script-1): `0.0%`
     * [Shapes](#shapes-1): `81.8%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`14.3%` of tests covered (75/522). They can be splitted into following categories:
+`15.5%` of tests covered (81/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -140,15 +140,15 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[animate-struct-dom-01-b](SVGViewTests/w3c/1.1F2/svg/animate-struct-dom-01-b.svg)|
 </details>
 
-### <a name='color-1'></a> [Color](https://www.w3.org/TR/SVG11/color.html): `33.3%`
+### <a name='color-1'></a> [Color](https://www.w3.org/TR/SVG11/color.html): `50.0%`
 
 <details>
-  <summary>(2/6) tests covered...</summary>
+  <summary>(3/6) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
 |❌|[color-prof-01-f](SVGViewTests/w3c/1.1F2/svg/color-prof-01-f.svg)|
-|❌|[color-prop-01-b](SVGViewTests/w3c/1.1F2/svg/color-prop-01-b.svg)|
+|✅|[color-prop-01-b](SVGViewTests/w3c/1.1F2/svg/color-prop-01-b.svg)|
 |✅|[color-prop-02-f](SVGViewTests/w3c/1.1F2/svg/color-prop-02-f.svg)|
 |✅|[color-prop-03-t](SVGViewTests/w3c/1.1F2/svg/color-prop-03-t.svg)|
 |❌|[color-prop-04-t](SVGViewTests/w3c/1.1F2/svg/color-prop-04-t.svg)|
@@ -360,10 +360,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[linking-uri-03-t](SVGViewTests/w3c/1.1F2/svg/linking-uri-03-t.svg)|
 </details>
 
-### <a name='masking-1'></a> [Masking](https://www.w3.org/TR/SVG11/masking.html): `0.0%`
+### <a name='masking-1'></a> [Masking](https://www.w3.org/TR/SVG11/masking.html): `5.2%`
 
 <details>
-  <summary>(0/19) tests covered...</summary>
+  <summary>(1/19) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -371,7 +371,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[masking-intro-01-f](SVGViewTests/w3c/1.1F2/svg/masking-intro-01-f.svg)|
 |❌|[masking-mask-01-b](SVGViewTests/w3c/1.1F2/svg/masking-mask-01-b.svg)|
 |❌|[masking-mask-02-f](SVGViewTests/w3c/1.1F2/svg/masking-mask-02-f.svg)|
-|❌|[masking-opacity-01-b](SVGViewTests/w3c/1.1F2/svg/masking-opacity-01-b.svg)|
+|✅|[masking-opacity-01-b](SVGViewTests/w3c/1.1F2/svg/masking-opacity-01-b.svg)|
 |❌|[masking-path-01-b](SVGViewTests/w3c/1.1F2/svg/masking-path-01-b.svg)|
 |❌|[masking-path-02-b](SVGViewTests/w3c/1.1F2/svg/masking-path-02-b.svg)|
 |❌|[masking-path-03-b](SVGViewTests/w3c/1.1F2/svg/masking-path-03-b.svg)|
@@ -468,20 +468,20 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[paths-dom-02-f](SVGViewTests/w3c/1.1F2/svg/paths-dom-02-f.svg)|
 </details>
 
-### <a name='pservers-1'></a> [Pservers](https://www.w3.org/TR/SVG11/pservers.html): `0.0%`
+### <a name='pservers-1'></a> [Pservers](https://www.w3.org/TR/SVG11/pservers.html): `12.1%`
 
 <details>
-  <summary>(0/33) tests covered...</summary>
+  <summary>(4/33) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
-|❌|[pservers-grad-01-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-01-b.svg)|
-|❌|[pservers-grad-02-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-02-b.svg)|
+|✅|[pservers-grad-01-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-01-b.svg)|
+|✅|[pservers-grad-02-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-02-b.svg)|
 |❌|[pservers-grad-03-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-03-b.svg)|
-|❌|[pservers-grad-04-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-04-b.svg)|
+|✅|[pservers-grad-04-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-04-b.svg)|
 |❌|[pservers-grad-05-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-05-b.svg)|
 |❌|[pservers-grad-06-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-06-b.svg)|
-|❌|[pservers-grad-07-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-07-b.svg)|
+|✅|[pservers-grad-07-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-07-b.svg)|
 |❌|[pservers-grad-08-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-08-b.svg)|
 |❌|[pservers-grad-09-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-09-b.svg)|
 |❌|[pservers-grad-10-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-10-b.svg)|

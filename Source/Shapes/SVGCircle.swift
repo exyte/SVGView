@@ -36,5 +36,8 @@ struct SVGCircleView: View {
             .frame(width: 2 * model.r, height: 2 * model.r)
             .position(x: model.cx, y: model.cy)
             .applyShapeAttributes(model: model)
+            .applyIf(model.fill is SVGGradient) {
+                $0.coordinateSpace(name: "GradientSpace")
+            }
     }
 }

@@ -45,7 +45,7 @@ public class SVGHelper: NSObject {
         let transform = CGAffineTransform(translationX: x, y: y)
 
         if let textNode = xml.contents.first as? XMLText {
-            return SVGText(text: textNode.text, font: font, fill: parseFill(style, index), stroke: parseStroke(style), textAnchor: textAnchor, transform: transform)
+            return SVGText(text: textNode.text, font: font, fill: parseFill(style, index), stroke: parseStroke(style, index: index), textAnchor: textAnchor, transform: transform)
         }
         return .none
     }
@@ -54,7 +54,7 @@ public class SVGHelper: NSObject {
 
         if let locus = parseLocus(name: name, attributes: attributes, style: style) {
             locus.fill = parseFill(style, index)
-            locus.stroke = parseStroke(style)
+            locus.stroke = parseStroke(style, index: index)
             return locus
         }
         return .none

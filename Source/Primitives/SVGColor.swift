@@ -10,6 +10,7 @@ import SwiftUI
 public class SVGColor : SVGPaint {
 
     public static let black = SVGColor(0)
+    public static let clear = SVGColor(0).opacity(0)
 
     public static func by(name: String) -> SVGColor? {
         if let hex = SVGColors.hex(of: name.lowercased()) {
@@ -90,7 +91,7 @@ public class SVGColor : SVGPaint {
         return Double(a) / 255
     }
 
-    public func opacity(_ opacity: Double) -> SVGColor {
+    public override func opacity(_ opacity: Double) -> SVGColor {
         return SVGColor(r: r, g: g, b: b, opacity: opacity)
     }
 

@@ -401,7 +401,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh script-suite-readme.sh\nsh script-test-cases.sh\n";
+			shellScript = "sh w3c-coverage.sh\nsh script-test-cases.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

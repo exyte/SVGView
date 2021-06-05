@@ -55,13 +55,36 @@ public class SVGLinearGradient: SVGGradient {
         )
     }
 
-    public func toSwiftUI() -> LinearGradient {
+    public func toSwiftUIScaled(rect: CGRect) -> AnyView {
         let suiStops = stops.map { stop in Gradient.Stop(color: stop.color.toSwiftUI(), location: stop.offset) }
-        return LinearGradient(gradient: Gradient(stops: suiStops), startPoint: UnitPoint(x: x1, y: y1), endPoint: UnitPoint(x: x2, y: y2))
+        let maximum = max(rect.size.width, rect.size.height)
+        let nx1 = userSpace ? (x1 - rect.minX) / rect.size.width : x1
+        let ny1 = userSpace ? (y1 - rect.minY) / rect.size.height : y1
+        let nx2 = userSpace ? (x2 - rect.minX) / rect.size.width : x2
+        let ny2 = userSpace ? (y2 - rect.minY) / rect.size.height : y2
+        return AnyView(
+            LinearGradient(gradient: Gradient(stops: suiStops), startPoint: UnitPoint(x: nx1, y: ny1), endPoint: UnitPoint(x: nx2, y: ny2))
+                .frame(width: maximum, height: maximum)
+                .scaleEffect(CGSize(width: rect.size.width / maximum, height: rect.size.height / maximum))
+        )
+    }
+
+    public func toSwiftUI(rect: CGRect) -> LinearGradient {
+        let suiStops = stops.map { stop in Gradient.Stop(color: stop.color.toSwiftUI(), location: stop.offset) }
+        let nx1 = userSpace ? (x1 - rect.minX) / rect.size.width : x1
+        let ny1 = userSpace ? (y1 - rect.minY) / rect.size.height : y1
+        let nx2 = userSpace ? (x2 - rect.minX) / rect.size.width : x2
+        let ny2 = userSpace ? (y2 - rect.minY) / rect.size.height : y2
+        return LinearGradient(gradient: Gradient(stops: suiStops), startPoint: UnitPoint(x: nx1, y: ny1), endPoint: UnitPoint(x: nx2, y: ny2)
+        )
     }
 
     override func apply<S>(view: S) -> AnyView where S : View {
-        return AnyView(view.overlay(toSwiftUI()).mask(view))
+        return AnyView(GeometryReader { geometry in
+            view.overlay(self.toSwiftUIScaled(rect: geometry.frame(in: .named("GradientSpace"))))
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .mask(view)
+        })
     }
 
 }
@@ -86,17 +109,28 @@ public class SVGRadialGradient: SVGGradient {
         )
     }
 
+    public func toSwiftUIScaled(rect: CGRect) -> AnyView {
+        let suiStops = stops.map { stop in Gradient.Stop(color: stop.color.toSwiftUI(), location: stop.offset) }
+        let s = min(rect.size.width, rect.size.height)
+        let ncx = userSpace ? (cx - rect.minX) / rect.size.width : cx
+        let ncy = userSpace ? (cy - rect.minY) / rect.size.height : cy
+        return AnyView(
+            RadialGradient(gradient: Gradient(stops: suiStops), center: UnitPoint(x: ncx, y: ncy), startRadius: 0, endRadius: userSpace ? r : r * s)
+                .scaleEffect(CGSize(width: userSpace ? 1 : rect.size.width/s,
+                                    height: userSpace ? 1 : rect.size.height/s)))
+    }
+
     public func toSwiftUI(rect: CGRect) -> RadialGradient {
         let suiStops = stops.map { stop in Gradient.Stop(color: stop.color.toSwiftUI(), location: stop.offset) }
         let s = min(rect.size.width, rect.size.height)
-        let ncx = userSpace ? cx / s : cx
-        let ncy = userSpace ? cy / s : cy
+        let ncx = userSpace ? (cx - rect.minX) / rect.size.width : cx
+        let ncy = userSpace ? (cy - rect.minY) / rect.size.height : cy
         return RadialGradient(gradient: Gradient(stops: suiStops), center: UnitPoint(x: ncx, y: ncy), startRadius: 0, endRadius: userSpace ? r : r * s)
     }
 
     override func apply<S>(view: S) -> AnyView where S : View {
         return AnyView(GeometryReader { geometry in
-            view.overlay(self.toSwiftUI(rect: geometry.frame(in: .local))).mask(view)
+            view.overlay(self.toSwiftUIScaled(rect: geometry.frame(in: .named("GradientSpace")))).mask(view)
         })
     }
 
