@@ -325,6 +325,14 @@ class SVG11Tests: BaseTestCase {
         compareToReference("struct-group-01-t")
     }
 
+    func testStructImage01T() {
+        compareToReference("struct-image-01-t")
+    }
+
+    func testStructImage04T() {
+        compareToReference("struct-image-04-t")
+    }
+
     func testStructUse03T() {
         compareToReference("struct-use-03-t")
     }

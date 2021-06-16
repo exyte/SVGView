@@ -9,18 +9,21 @@ import SwiftUI
 
 public struct SVGParser {
 
+    static var fileURL: URL?
+
     static public func parse(fileURL: URL) -> SVGNode {
         let xml = DOMParser.parse(fileURL: fileURL)
-        return parse(xml: xml)
+        return parse(xml: xml, fileURL: fileURL)
     }
 
-    static public func parse(xml: XMLElement) -> SVGNode {
+    static public func parse(xml: XMLElement, fileURL: URL? = nil) -> SVGNode {
+        self.fileURL = fileURL
         let index = SVGIndex()
         index.fill(from: xml)
         return parseInternal(xml: xml, index: index)!
     }
 
-    static func parseInternal(xml: XMLElement, index: SVGIndex, ignoreDefs: Bool = true) -> SVGNode? {
+    static func parseInternal(xml: XMLElement, index: SVGIndex, accumulatedUseIdentifiers: [String] = [], ignoreDefs: Bool = true) -> SVGNode? {
         if ignoreDefs, SVGConstants.defTags.contains(xml.name) {
             return nil
         }
@@ -37,7 +40,7 @@ public struct SVGParser {
         if isGroup(xml: xml) { // group
             var nodes = [SVGNode]()
             for child in contents {
-                if let node = parseInternal(xml: child, index: index, ignoreDefs: ignoreDefs) {
+                if let node = parseInternal(xml: child, index: index, accumulatedUseIdentifiers: accumulatedUseIdentifiers, ignoreDefs: ignoreDefs) {
                     nodes.append(node)
                 }
             }
@@ -50,14 +53,19 @@ public struct SVGParser {
         else {
             let collectedStyle = collector.styleStack.currentStyle()
             if xml.name == "use", // def
-               let useId = nonStyleDict["xlink:href"]?.replacingOccurrences(of: "#", with: ""),
-               let def = index.element(by: useId),
-               let useNode = parseInternal(xml: def, index: index, ignoreDefs: ignoreDefs) {
+               let useId = nonStyleDict["xlink:href"]?.replacingOccurrences(of: "#", with: "") {
+                if accumulatedUseIdentifiers.contains(useId) {
+                    return nil // <use> recursion detected
+                }
+                let ids = accumulatedUseIdentifiers + [useId]
+                if let def = index.element(by: useId),
+                   let useNode = parseInternal(xml: def, index: index, accumulatedUseIdentifiers: ids, ignoreDefs: ignoreDefs) {
 
-                useNode.transform = CGAffineTransform(
-                    translationX: SVGHelper.parseCGFloat(nonStyleDict, "x"),
-                    y: SVGHelper.parseCGFloat(nonStyleDict, "y"))
-                result = useNode
+                    useNode.transform = CGAffineTransform(
+                        translationX: SVGHelper.parseCGFloat(nonStyleDict, "x"),
+                        y: SVGHelper.parseCGFloat(nonStyleDict, "y"))
+                    result = useNode
+                }
             }
             else { // simple node
                 result = SVGHelper.parseNode(xml: xml, index: index, attributes: nonStyleDict, style: collectedStyle)
@@ -71,7 +79,7 @@ public struct SVGParser {
 
         if let clipId = SVGHelper.parseUse(styleDict["clip-path"]),
            let clipNode = index.element(by: clipId),
-           let clip = parseInternal(xml: clipNode, index: index, ignoreDefs: false) {
+           let clip = parseInternal(xml: clipNode, index: index, accumulatedUseIdentifiers: accumulatedUseIdentifiers, ignoreDefs: false) {
             result?.clip = SVGUserSpaceNode(node: clip, userSpace: parse(userSpace: clipNode.attributes["clipPathUnits"]))
         }
 

@@ -2,7 +2,7 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `15.5%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `15.9%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `50.0%`
     * [Conform](#conform-1): `0.0%`
@@ -21,7 +21,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Render](#render-1): `37.5%`
     * [Script](#script-1): `0.0%`
     * [Shapes](#shapes-1): `81.8%`
-    * [Struct](#struct-1): `6.9%`
+    * [Struct](#struct-1): `9.7%`
     * [Styling](#styling-1): `0.0%`
     * [Svgdom](#svgdom-1): `0.0%`
     * [Text](#text-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`15.5%` of tests covered (81/522). They can be splitted into following categories:
+`15.9%` of tests covered (83/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -573,10 +573,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[shapes-rect-07-f](SVGViewTests/w3c/1.1F2/svg/shapes-rect-07-f.svg)|
 </details>
 
-### <a name='struct-1'></a> [Struct](https://www.w3.org/TR/SVG11/struct.html): `6.9%`
+### <a name='struct-1'></a> [Struct](https://www.w3.org/TR/SVG11/struct.html): `9.7%`
 
 <details>
-  <summary>(5/72) tests covered...</summary>
+  <summary>(7/72) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -615,10 +615,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |✅|[struct-group-01-t](SVGViewTests/w3c/1.1F2/svg/struct-group-01-t.svg)|
 |❌|[struct-group-02-b](SVGViewTests/w3c/1.1F2/svg/struct-group-02-b.svg)|
 |❌|[struct-group-03-t](SVGViewTests/w3c/1.1F2/svg/struct-group-03-t.svg)|
-|❌|[struct-image-01-t](SVGViewTests/w3c/1.1F2/svg/struct-image-01-t.svg)|
+|✅|[struct-image-01-t](SVGViewTests/w3c/1.1F2/svg/struct-image-01-t.svg)|
 |❌|[struct-image-02-b](SVGViewTests/w3c/1.1F2/svg/struct-image-02-b.svg)|
 |❌|[struct-image-03-t](SVGViewTests/w3c/1.1F2/svg/struct-image-03-t.svg)|
-|❌|[struct-image-04-t](SVGViewTests/w3c/1.1F2/svg/struct-image-04-t.svg)|
+|✅|[struct-image-04-t](SVGViewTests/w3c/1.1F2/svg/struct-image-04-t.svg)|
 |❌|[struct-image-05-b](SVGViewTests/w3c/1.1F2/svg/struct-image-05-b.svg)|
 |❌|[struct-image-06-t](SVGViewTests/w3c/1.1F2/svg/struct-image-06-t.svg)|
 |❌|[struct-image-07-t](SVGViewTests/w3c/1.1F2/svg/struct-image-07-t.svg)|
