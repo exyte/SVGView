@@ -81,9 +81,13 @@ public class SVGLinearGradient: SVGGradient {
 
     override func apply<S>(view: S) -> AnyView where S : View {
         return AnyView(GeometryReader { geometry in
-            view.overlay(self.toSwiftUIScaled(rect: geometry.frame(in: .named("GradientSpace"))))
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .mask(view)
+            ZStack {
+                view
+                    .foregroundColor(.clear)
+                self.toSwiftUIScaled(rect: geometry.frame(in: .named("GradientSpace")))
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .mask(view)
+            }
         })
     }
 
@@ -130,7 +134,12 @@ public class SVGRadialGradient: SVGGradient {
 
     override func apply<S>(view: S) -> AnyView where S : View {
         return AnyView(GeometryReader { geometry in
-            view.overlay(self.toSwiftUIScaled(rect: geometry.frame(in: .named("GradientSpace")))).mask(view)
+            ZStack {
+                view
+                    .foregroundColor(.clear)
+                self.toSwiftUIScaled(rect: geometry.frame(in: .named("GradientSpace")))
+                    .mask(view)
+            }
         })
     }
 
