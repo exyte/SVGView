@@ -34,6 +34,11 @@ public class SVGPolyline: SVGShape, ObservableObject {
                       height: maxY - minY)
     }
 
+    public override func bounds() -> CGRect {
+        let frame = frame()
+        return CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+    }
+
     override public func toSwiftUI() -> AnyView {
         AnyView(SVGPolylineView(model: self))
     }
