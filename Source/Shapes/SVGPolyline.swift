@@ -12,7 +12,7 @@ public class SVGPolyline: SVGShape, ObservableObject {
         self.points = points
     }
 
-    override public func bounds() -> CGRect {
+    override public func frame() -> CGRect {
         guard !points.isEmpty else {
             return .zero
         }

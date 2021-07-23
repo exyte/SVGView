@@ -12,7 +12,7 @@ public class SVGCircle: SVGShape, ObservableObject {
         self.r = r
     }
 
-    override public func bounds() -> CGRect {
+    override public func frame() -> CGRect {
         CGRect(x: cx - r, y: cy - r, width: 2*r, height: 2*r)
     }
 
@@ -36,8 +36,5 @@ struct SVGCircleView: View {
             .frame(width: 2 * model.r, height: 2 * model.r)
             .position(x: model.cx, y: model.cy)
             .applyShapeAttributes(model: model)
-            .applyIf(model.fill is SVGGradient) {
-                $0.coordinateSpace(name: "GradientSpace")
-            }
     }
 }
