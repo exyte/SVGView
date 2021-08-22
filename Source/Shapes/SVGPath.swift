@@ -10,6 +10,14 @@ public class SVGPath: SVGShape, ObservableObject {
         self.fillRule = fillRule
     }
 
+    override public func frame() -> CGRect {
+        toBezierPath().cgPath.boundingBoxOfPath
+    }
+
+    override public func bounds() -> CGRect {
+        frame()
+    }
+
     override public func toSwiftUI() -> AnyView {
         AnyView(SVGPathView(model: self))
     }
@@ -34,11 +42,15 @@ struct SVGPathView: View {
 extension MBezierPath {
 
     func toSwiftUI(model: SVGShape, eoFill: Bool = false) -> some View {
-        Path(self.cgPath)
+        let isGradient = model.fill is SVGGradient
+        let bounds = isGradient ? model.bounds() : CGRect.zero
+        return Path(self.cgPath)
             .applySVGStroke(stroke: model.stroke, eoFill: eoFill)
             .applyShapeAttributes(model: model)
-            .applyIf(model.fill is SVGGradient) {
-                $0.coordinateSpace(name: "GradientSpace")
+            .applyIf(isGradient) {
+                $0.frame(width: bounds.width, height: bounds.height)
+                    .position(x: 0, y: 0)
+                    .offset(x: bounds.width/2, y: bounds.height/2)
             }
     }
 }

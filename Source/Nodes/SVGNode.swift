@@ -22,6 +22,11 @@ public class SVGNode : SerializableElement {
     }
 
     public func bounds() -> CGRect {
+        let frame = frame()
+        return CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+    }
+    
+    public func frame() -> CGRect {
         fatalError()
     }
 
