@@ -21,7 +21,7 @@ public class SVGLine: SVGShape, ObservableObject {
         self.y2 = y2
     }
 
-    override public func bounds() -> CGRect {
+    override public func frame() -> CGRect {
         return CGRect(x: min(x1, x2), y: min(y1, y2), width: abs(x1 - x2), height: abs(y1 - y2))
     }
 

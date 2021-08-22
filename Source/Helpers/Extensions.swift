@@ -70,7 +70,7 @@ extension Shape {
 extension View {
 
     func applyShapeAttributes(model: SVGShape) -> some View {
-        apply(paint: model.fill).applyNodeAttributes(model: model)
+        apply(paint: model.fill, model: model).applyNodeAttributes(model: model)
     }
 
     func applyNodeAttributes(model: SVGNode) -> some View {

@@ -14,7 +14,7 @@ public class SVGPaint {
         
     }
 
-    func apply<S>(view: S) -> AnyView where S : View {
+    func apply<S>(view: S, model: SVGShape? = nil) -> AnyView where S : View {
         return AnyView(view)
     }
 
@@ -26,9 +26,9 @@ public class SVGPaint {
 
 extension View {
 
-    func apply(paint: SVGPaint?) -> some View {
+    func apply(paint: SVGPaint?, model: SVGShape? = nil) -> some View {
         if let p = paint {
-            return AnyView(p.apply(view: self))
+            return AnyView(p.apply(view: self, model: model))
         }
         return AnyView(self.foregroundColor(.clear))
     }
