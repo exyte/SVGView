@@ -48,9 +48,9 @@ struct SVGRectView: View {
     public var body: some View {
         RoundedRectangle(cornerSize: CGSize(width: model.rx, height: model.ry))
             .applySVGStroke(stroke: model.stroke)
-            .applyShapeAttributes(model: model)
             .frame(width: model.width, height: model.height)
             .position(x: model.x, y: model.y)
             .offset(x: model.width/2, y: model.height/2)
+            .applyShapeAttributes(model: model)
     }
 }
