@@ -31,12 +31,6 @@ extension SVGHelper {
         }
 
         // file URL
-        if let url = SVGParser.fileURL?.deletingLastPathComponent().appendingPathComponent(src) {
-            if let data = try? Data(contentsOf: url) {
-                return SVGDataImage(x: x, y: y, width: width, height: height, data: data)
-            }
-        }
-
-        return .none
+        return SVGUrlImage(x: x, y: y, width: width, height: height, src: src)
     }
 }
