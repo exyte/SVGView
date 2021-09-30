@@ -33,8 +33,8 @@ struct SVGCircleView: View {
     public var body: some View {
         Circle()
             .applySVGStroke(stroke: model.stroke)
+            .applyShapeAttributes(model: model)
             .frame(width: 2 * model.r, height: 2 * model.r)
             .position(x: model.cx, y: model.cy)
-            .applyShapeAttributes(model: model)
     }
 }
