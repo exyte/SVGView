@@ -12,7 +12,7 @@ public class SVGPolyline: SVGShape, ObservableObject {
         self.points = points
     }
 
-    override public func bounds() -> CGRect {
+    override public func frame() -> CGRect {
         guard !points.isEmpty else {
             return .zero
         }
@@ -32,6 +32,11 @@ public class SVGPolyline: SVGShape, ObservableObject {
         return CGRect(x: minX, y: minY,
                       width: maxX - minX,
                       height: maxY - minY)
+    }
+
+    public override func bounds() -> CGRect {
+        let frame = frame()
+        return CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
     }
 
     override public func toSwiftUI() -> AnyView {

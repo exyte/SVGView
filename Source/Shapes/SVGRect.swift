@@ -25,7 +25,7 @@ public class SVGRect: SVGShape, ObservableObject {
         self.height = rect.height
     }
 
-    override public func bounds() -> CGRect {
+    override public func frame() -> CGRect {
         CGRect(x: x, y: y, width: width, height: height)
     }
 
@@ -48,12 +48,9 @@ struct SVGRectView: View {
     public var body: some View {
         RoundedRectangle(cornerSize: CGSize(width: model.rx, height: model.ry))
             .applySVGStroke(stroke: model.stroke)
-            .applyShapeAttributes(model: model)
             .frame(width: model.width, height: model.height)
             .position(x: model.x, y: model.y)
             .offset(x: model.width/2, y: model.height/2)
-            .applyIf(model.fill is SVGGradient) {
-                $0.coordinateSpace(name: "GradientSpace")
-            }
+            .applyShapeAttributes(model: model)
     }
 }
