@@ -27,11 +27,6 @@ public class SVGHelper: NSObject {
         return .none
     }
 
-    static func parseImage(_ attributes: [String : String], style: [String : String]) -> SVGNode? {
-        print("Image not supported")
-        return .none
-    }
-
     static func parseText(xml: XMLElement, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGText? {
 
         let fontName = style["font-family"] ?? "Serif"

@@ -1,0 +1,45 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGURLImage {
+					id: "image1JPEG",
+					src: "../images/struct-image-01.jpg",
+					x: 240,
+					width: 240,
+					height: 150
+				},
+				SVGURLImage {
+					id: "image1PNG",
+					src: "../images/struct-image-01.png",
+					x: 240,
+					y: 150,
+					width: 240,
+					height: 150
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.7 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

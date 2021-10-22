@@ -13,7 +13,7 @@ public struct SVGView: View {
 
     public init(fileURL: URL) {
         let xml = DOMParser.parse(fileURL: fileURL)
-        self.svg = SVGParser.parse(xml: xml)
+        self.svg = SVGParser.parse(xml: xml, fileURL: fileURL)
     }
 
     public init(xml: XMLElement) {
