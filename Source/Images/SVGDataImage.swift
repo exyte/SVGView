@@ -21,7 +21,7 @@ public class SVGDataImage: SVGImage, ObservableObject {
     }
 
     override func serialize(_ serializer: Serializer) {
-        serializer.add("src", "\(data.base64EncodedString())")
+        serializer.add("data", "\(data.base64EncodedString())")
         super.serialize(serializer)
     }
 }

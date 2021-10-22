@@ -5,16 +5,16 @@ SVGViewport {
 		SVGGroup {
 			id: "test-body-content",
 			contents: [
-				SVGUrlImage {
+				SVGURLImage {
 					id: "image1JPEG",
-					url: "../images/struct-image-01.jpg",
+					src: "../images/struct-image-01.jpg",
 					x: 240,
 					width: 240,
 					height: 150
 				},
-				SVGUrlImage {
+				SVGURLImage {
 					id: "image1PNG",
-					url: "../images/struct-image-01.png",
+					src: "../images/struct-image-01.png",
 					x: 240,
 					y: 150,
 					width: 240,

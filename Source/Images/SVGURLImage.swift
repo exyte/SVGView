@@ -1,5 +1,5 @@
 //
-//  SVGUrlImage.swift
+//  SVGURLImage.swift
 //  SVGView
 //
 //  Created by Alisa Mylnikova on 22/09/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public class SVGUrlImage: SVGImage, ObservableObject {
+public class SVGURLImage: SVGImage, ObservableObject {
 
     @Published public var src: String
 
@@ -28,14 +28,14 @@ public class SVGUrlImage: SVGImage, ObservableObject {
     }
 
     override func serialize(_ serializer: Serializer) {
-        serializer.add("url", src)
+        serializer.add("src", src)
         super.serialize(serializer)
     }
 }
 
 struct SVGUrlImageView: View {
 
-    @ObservedObject var model: SVGUrlImage
+    @ObservedObject var model: SVGURLImage
 
     public var body: some View {
 

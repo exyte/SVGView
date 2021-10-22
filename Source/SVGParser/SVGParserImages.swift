@@ -31,6 +31,6 @@ extension SVGHelper {
         }
 
         // file URL
-        return SVGUrlImage(x: x, y: y, width: width, height: height, src: src)
+        return SVGURLImage(x: x, y: y, width: width, height: height, src: src)
     }
 }
