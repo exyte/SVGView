@@ -1,0 +1,57 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGText {
+					text: "Basic paint: fill properties.",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 36 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 30, 42]
+				},
+				SVGPath {
+					path: "M110,75 l50,160 l-130,-100 l160,0 l-130,100 z",
+					fillRule: "evenodd",
+					fill: "lime"
+				},
+				SVGPath {
+					path: "M365,75 l50,160 l-130,-100 l160,0 l-130,100 z",
+					fill: "lime"
+				},
+				SVGText {
+					text: "fill-rule=\"evenodd\"",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 24 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 282]
+				},
+				SVGText {
+					text: "fill-rule=\"nonzero\"",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 24 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 260, 282]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.7 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

@@ -15,6 +15,9 @@ class SVGRefGenerator: XCTestCase {
     let v12 = "w3c/1.2T/svg/"
 
     func testCreateReferences() {
+        createReference(name: "painting-control-02-f", version: v11)
+        createReference(name: "painting-fill-02-t", version: v11)
+        createReference(name: "painting-fill-03-t", version: v11)
         createReference(name: "struct-image-01-t", version: v11)
         createReference(name: "struct-image-04-t", version: v11)
         createReference(name: "color-prop-02-f", version: v11)

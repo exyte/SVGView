@@ -2,7 +2,7 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `15.9%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `16.4%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `50.0%`
     * [Conform](#conform-1): `0.0%`
@@ -15,7 +15,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Linking](#linking-1): `0.0%`
     * [Masking](#masking-1): `5.2%`
     * [Metadata](#metadata-1): `0.0%`
-    * [Painting](#painting-1): `38.7%`
+    * [Painting](#painting-1): `48.3%`
     * [Paths](#paths-1): `90.4%`
     * [Pservers](#pservers-1): `12.1%`
     * [Render](#render-1): `37.5%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`15.9%` of tests covered (83/522). They can be splitted into following categories:
+`16.4%` of tests covered (86/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -398,22 +398,22 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[metadata-example-01-t](SVGViewTests/w3c/1.1F2/svg/metadata-example-01-t.svg)|
 </details>
 
-### <a name='painting-1'></a> [Painting](https://www.w3.org/TR/SVG11/painting.html): `38.7%`
+### <a name='painting-1'></a> [Painting](https://www.w3.org/TR/SVG11/painting.html): `48.3%`
 
 <details>
-  <summary>(12/31) tests covered...</summary>
+  <summary>(15/31) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
 |❌|[painting-control-01-f](SVGViewTests/w3c/1.1F2/svg/painting-control-01-f.svg)|
-|❌|[painting-control-02-f](SVGViewTests/w3c/1.1F2/svg/painting-control-02-f.svg)|
+|✅|[painting-control-02-f](SVGViewTests/w3c/1.1F2/svg/painting-control-02-f.svg)|
 |✅|[painting-control-03-f](SVGViewTests/w3c/1.1F2/svg/painting-control-03-f.svg)|
 |❌|[painting-control-04-f](SVGViewTests/w3c/1.1F2/svg/painting-control-04-f.svg)|
 |❌|[painting-control-05-f](SVGViewTests/w3c/1.1F2/svg/painting-control-05-f.svg)|
 |❌|[painting-control-06-f](SVGViewTests/w3c/1.1F2/svg/painting-control-06-f.svg)|
 |✅|[painting-fill-01-t](SVGViewTests/w3c/1.1F2/svg/painting-fill-01-t.svg)|
-|❌|[painting-fill-02-t](SVGViewTests/w3c/1.1F2/svg/painting-fill-02-t.svg)|
-|❌|[painting-fill-03-t](SVGViewTests/w3c/1.1F2/svg/painting-fill-03-t.svg)|
+|✅|[painting-fill-02-t](SVGViewTests/w3c/1.1F2/svg/painting-fill-02-t.svg)|
+|✅|[painting-fill-03-t](SVGViewTests/w3c/1.1F2/svg/painting-fill-03-t.svg)|
 |✅|[painting-fill-04-t](SVGViewTests/w3c/1.1F2/svg/painting-fill-04-t.svg)|
 |✅|[painting-fill-05-b](SVGViewTests/w3c/1.1F2/svg/painting-fill-05-b.svg)|
 |❌|[painting-marker-01-f](SVGViewTests/w3c/1.1F2/svg/painting-marker-01-f.svg)|

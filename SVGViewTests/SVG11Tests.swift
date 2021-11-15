@@ -85,12 +85,24 @@ class SVG11Tests: BaseTestCase {
         compareToReference("masking-opacity-01-b")
     }
 
+    func testPaintingControl02F() {
+        compareToReference("painting-control-02-f")
+    }
+
     func testPaintingControl03F() {
         compareToReference("painting-control-03-f")
     }
 
     func testPaintingFill01T() {
         compareToReference("painting-fill-01-t")
+    }
+
+    func testPaintingFill02T() {
+        compareToReference("painting-fill-02-t")
+    }
+
+    func testPaintingFill03T() {
+        compareToReference("painting-fill-03-t")
     }
 
     func testPaintingFill04T() {
