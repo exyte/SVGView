@@ -43,26 +43,25 @@ extension CGAffineTransform {
 
 extension Shape {
 
+    @ViewBuilder
     func applySVGStroke(stroke: SVGStroke?, eoFill: Bool = false) -> some View {
         let result = eoFill
             ? AnyView(self.fill(style: FillStyle(eoFill: true, antialiased: true)))
             : AnyView(self)
         if let stroke = stroke {
             if let linear = stroke.fill as? SVGLinearGradient {
-                return AnyView(GeometryReader { geometry in
+                GeometryReader { geometry in
                     result.overlay(self.stroke(linear.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
-                })
+                }
             } else if let radial = stroke.fill as? SVGRadialGradient {
-                return AnyView(GeometryReader { geometry in
+                GeometryReader { geometry in
                     result.overlay(self.stroke(radial.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
-                })
+                }
             } else if let color = stroke.fill as? SVGColor {
-                return AnyView(
-                    result.overlay(self.stroke(color.toSwiftUI(), style: stroke.toSwiftUI()))
-                )
+                result.overlay(self.stroke(color.toSwiftUI(), style: stroke.toSwiftUI()))
             }
         }
-        return result
+        result
     }
 
 }
@@ -86,11 +85,13 @@ extension View {
 
 extension View {
 
+    @ViewBuilder
     func applyMask(mask: SVGNode?, absoluteNode: SVGNode) -> some View {
-        guard let mask = mask as? SVGUserSpaceNode else {
-            return AnyView(self)
+        if let mask = mask as? SVGUserSpaceNode {
+            self.mask(mask.toSwiftUI(absoluteNode: absoluteNode))
+        } else {
+            self
         }
-        return AnyView(self.mask(mask.toSwiftUI(absoluteNode: absoluteNode)))
     }
 
 }
