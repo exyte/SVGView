@@ -45,23 +45,33 @@ extension Shape {
 
     @ViewBuilder
     func applySVGStroke(stroke: SVGStroke?, eoFill: Bool = false) -> some View {
-        let result = eoFill
-            ? AnyView(self.fill(style: FillStyle(eoFill: true, antialiased: true)))
-            : AnyView(self)
         if let stroke = stroke {
             if let linear = stroke.fill as? SVGLinearGradient {
                 GeometryReader { geometry in
-                    result.overlay(self.stroke(linear.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
+                    apllyFillStyle(eoFill: eoFill)
+                        .overlay(self.stroke(linear.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
                 }
             } else if let radial = stroke.fill as? SVGRadialGradient {
                 GeometryReader { geometry in
-                    result.overlay(self.stroke(radial.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
+                    apllyFillStyle(eoFill: eoFill)
+                        .overlay(self.stroke(radial.toSwiftUI(rect: geometry.frame(in: .local)), style: stroke.toSwiftUI()))
                 }
             } else if let color = stroke.fill as? SVGColor {
-                result.overlay(self.stroke(color.toSwiftUI(), style: stroke.toSwiftUI()))
+                apllyFillStyle(eoFill: eoFill)
+                    .overlay(self.stroke(color.toSwiftUI(), style: stroke.toSwiftUI()))
             }
+        } else {
+            apllyFillStyle(eoFill: eoFill)
         }
-        result
+    }
+
+    @ViewBuilder
+    func apllyFillStyle(eoFill: Bool = false) -> some View {
+        if eoFill {
+            self.fill(style: FillStyle(eoFill: true, antialiased: true))
+        } else {
+            self
+        }
     }
 
 }
