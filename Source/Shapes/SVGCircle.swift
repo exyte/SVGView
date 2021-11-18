@@ -16,13 +16,13 @@ public class SVGCircle: SVGShape, ObservableObject {
         CGRect(x: cx - r, y: cy - r, width: 2*r, height: 2*r)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGCircleView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("cx", cx, 0).add("cy", cy, 0).add("r", r, 0)
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGCircleView(model: self)
     }
 }
 

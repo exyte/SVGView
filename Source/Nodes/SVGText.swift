@@ -18,15 +18,15 @@ public class SVGText: SVGNode, ObservableObject {
         super.init(transform: transform, opaque: opaque, opacity: opacity, clip: clip, mask: mask)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGTextView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("text", text).add("font", font).add("textAnchor", textAnchor)
         fill?.serialize(key: "fill", serializer: serializer)
         serializer.add("stroke", stroke)
         super.serialize(serializer)
+    }
+    
+    public func contentView() -> some View {
+        SVGTextView(model: self)
     }
 }
 

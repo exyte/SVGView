@@ -98,12 +98,15 @@ extension View {
     @ViewBuilder
     func applyMask(mask: SVGNode?, absoluteNode: SVGNode) -> some View {
         if let mask = mask as? SVGUserSpaceNode {
-            self.mask(mask.toSwiftUI(absoluteNode: absoluteNode))
+            if mask.userSpace == .userSpaceOnUse {
+                self.mask(mask.node.toSwiftUI())
+            } else {
+                self.mask(mask.node.toSwiftUI().transformEffect(SVGHelper.transformForNodeInRespectiveCoords(respective: mask.node, absolute: absoluteNode)))
+            }
         } else {
             self
         }
     }
-
 }
 
 extension View {

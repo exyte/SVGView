@@ -39,13 +39,6 @@ class SVGViewport: SVGGroup {
         return CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        return AnyView(GeometryReader { geometry -> AnyView in
-            self.layout(node: self, in: geometry.size)
-            return super.toSwiftUI()
-        })
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("width", width.toString(), "100%")
         serializer.add("height", height.toString(), "100%")
@@ -61,7 +54,7 @@ class SVGViewport: SVGGroup {
                       height: height.toPixels(total: parent.height))
     }
 
-    private func layout(node: SVGNode, in size: CGSize) {
+    func layout(node: SVGNode, in size: CGSize) {
         let svgSizeInPixels = computeSize(parent: size)
 
         if let viewBox = self.viewBox {

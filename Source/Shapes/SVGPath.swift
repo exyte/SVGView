@@ -18,15 +18,15 @@ public class SVGPath: SVGShape, ObservableObject {
         frame()
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGPathView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         let path = segments.map { s in "\(s.type)\(s.data.compactMap { $0.serialize() }.joined(separator: ","))" }.joined(separator: " ")
         serializer.add("path", path)
         serializer.add("fillRule", fillRule)
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGPathView(model: self)
     }
 }
 

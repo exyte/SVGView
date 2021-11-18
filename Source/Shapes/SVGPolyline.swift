@@ -39,13 +39,13 @@ public class SVGPolyline: SVGShape, ObservableObject {
         return CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGPolylineView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("points", points.serialized)
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGPolylineView(model: self)
     }
 }
 
@@ -54,18 +54,18 @@ struct SVGPolylineView: View {
     @ObservedObject var model = SVGPolyline()
 
     public var body: some View {
-        guard let first = model.points.first else {
-            return AnyView(EmptyView())
-        }
+        path?.toSwiftUI(model: model)
+    }
 
+    private var path: MBezierPath? {
+        guard let first = model.points.first else { return nil }
         let path = MBezierPath()
         path.move(to: CGPoint(x: first.x, y: first.y))
         for i in 1..<model.points.count {
             let point = model.points[i]
             path.addLine(to: CGPoint(x: point.x, y: point.y))
         }
-
-        return AnyView(path.toSwiftUI(model: model))
+        return path
     }
 }
 

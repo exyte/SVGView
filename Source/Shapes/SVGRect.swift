@@ -29,16 +29,15 @@ public class SVGRect: SVGShape, ObservableObject {
         CGRect(x: x, y: y, width: width, height: height)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGRectView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("x", x, 0).add("y", y, 0).add("width", width, 0).add("height", height, 0)
         serializer.add("rx", rx, 0).add("ry", ry, 0)
         super.serialize(serializer)
     }
-
+    
+    public func contentView() -> some View {
+        SVGRectView(model: self)
+    }
 }
 
 struct SVGRectView: View {

@@ -25,13 +25,13 @@ public class SVGLine: SVGShape, ObservableObject {
         return CGRect(x: min(x1, x2), y: min(y1, y2), width: abs(x1 - x2), height: abs(y1 - y2))
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGLineView(model: self))
-    }
-    
     override func serialize(_ serializer: Serializer) {
         serializer.add("x1", x1, 0).add("y1", y1, 0).add("x2", x2, 0).add("y2", y2, 0)
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGLineView(model: self)
     }
 }
 
@@ -40,11 +40,14 @@ struct SVGLineView: View {
     @ObservedObject var model = SVGLine()
 
     public var body: some View {
+        line.toSwiftUI(model: model)
+    }
+
+    private var line: MBezierPath {
         let line = MBezierPath()
         line.move(to: CGPoint(x: model.x1, y: model.y1))
         line.addLine(to: CGPoint(x: model.x2, y: model.y2))
-
-        return AnyView(line.toSwiftUI(model: model))
+        return line
     }
 }
 

@@ -18,13 +18,13 @@ public class SVGEllipse: SVGShape, ObservableObject {
         CGRect(x: cx - rx, y: cy - ry, width: 2*rx, height: 2*ry)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGEllipseView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("cx", cx, 0).add("cy", cy, 0).add("rx", rx, 0).add("ry", ry, 0)
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGEllipseView(model: self)
     }
 }
 

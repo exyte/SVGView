@@ -14,10 +14,6 @@ public class SVGPaint {
         
     }
 
-    func apply<S>(view: S, model: SVGShape? = nil) -> AnyView where S : View {
-        return AnyView(view)
-    }
-
     public func opacity(_ opacity: Double) -> SVGPaint {
         return self
     }
@@ -26,11 +22,22 @@ public class SVGPaint {
 
 extension View {
 
+    @ViewBuilder
     func apply(paint: SVGPaint?, model: SVGShape? = nil) -> some View {
         if let p = paint {
-            return AnyView(p.apply(view: self, model: model))
+            switch p {
+            case let linearGradient as SVGLinearGradient:
+                linearGradient.apply(view: self, model: model)
+            case let radialGradient as SVGRadialGradient:
+                radialGradient.apply(view: self, model: model)
+            case let color as SVGColor:
+                color.apply(view: self, model: model)
+            default:
+                fatalError("Base SVGPaint is not convertable to SwiftUI")
+            }
+        } else {
+            self.foregroundColor(.clear)
         }
-        return AnyView(self.foregroundColor(.clear))
     }
 
 }

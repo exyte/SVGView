@@ -23,13 +23,13 @@ public class SVGURLImage: SVGImage, ObservableObject {
         super.init(x: x, y: y, width: width, height: height)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGUrlImageView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("src", src)
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGUrlImageView(model: self)
     }
 }
 
@@ -37,23 +37,24 @@ struct SVGUrlImageView: View {
 
     @ObservedObject var model: SVGURLImage
 
-    public var body: some View {
-
-        var result = AnyView(EmptyView())
-
-        #if os(OSX)
+#if os(OSX)
+    @ViewBuilder
+    private var image: Image? {
         if let data = model.data, let nsImage = NSImage(data: data) {
-            result = AnyView(Image(nsImage: nsImage)
-                                .resizable())
+            Image(nsImage: nsImage)
         }
-        #else
+    }
+#else
+    @ViewBuilder
+    private var image: Image? {
         if let data = model.data, let uiImage = UIImage(data: data) {
-            result = AnyView(Image(uiImage: uiImage)
-                                .resizable())
+            Image(uiImage: uiImage)
         }
-        #endif
+    }
+#endif
 
-        return result
+    public var body: some View {
+        image
             .frame(width: model.width, height: model.height)
             .position(x: model.x, y: model.y)
             .offset(x: model.width/2, y: model.height/2)
