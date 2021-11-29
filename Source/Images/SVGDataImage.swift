@@ -16,37 +16,38 @@ public class SVGDataImage: SVGImage, ObservableObject {
         super.init(x: x, y: y, width: width, height: height)
     }
 
-    override public func toSwiftUI() -> AnyView {
-        AnyView(SVGDataImageView(model: self))
-    }
-
     override func serialize(_ serializer: Serializer) {
         serializer.add("data", "\(data.base64EncodedString())")
         super.serialize(serializer)
+    }
+
+    public func contentView() -> some View {
+        SVGDataImageView(model: self)
     }
 }
 
 struct SVGDataImageView: View {
 
+#if os(OSX)
+    @ViewBuilder
+    private var image: Image? {
+        if let nsImage = NSImage(data: model.data) {
+            Image(nsImage: nsImage)
+        }
+    }
+#else
+    @ViewBuilder
+    private var image: Image? {
+        if let uiImage = UIImage(data: model.data) {
+            Image(uiImage: uiImage)
+        }
+    }
+#endif
+
     @ObservedObject var model: SVGDataImage
 
     public var body: some View {
-
-        var result = AnyView(EmptyView())
-
-        #if os(OSX)
-        if let nsImage = NSImage(data: model.data) {
-            result = AnyView(Image(nsImage: nsImage)
-                                .resizable())
-        }
-        #else
-        if let uiImage = UIImage(data: model.data) {
-            result = AnyView(Image(uiImage: uiImage)
-                                .resizable())
-        }
-        #endif
-
-        return result
+        image
             .frame(width: model.width, height: model.height)
             .position(x: model.x, y: model.y)
             .offset(x: model.width/2, y: model.height/2)

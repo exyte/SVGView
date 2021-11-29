@@ -13,10 +13,6 @@ public class SVGGroup: SVGNode, ObservableObject {
         contents.map { $0.bounds() }.reduce(contents.first?.bounds() ?? CGRect.zero) { $0.union($1) }
     }
 
-    override public func toSwiftUI() -> AnyView {
-        return AnyView(SVGGroupView(model: self))
-    }
-
     override public func nodeById(_ id: String) -> SVGNode? {
         if let node = super.nodeById(id) {
             return node
@@ -34,6 +30,9 @@ public class SVGGroup: SVGNode, ObservableObject {
         serializer.add("contents", contents)
     }
 
+    public func contentView() -> some View {
+        SVGGroupView(model: self)
+    }
 }
 
 struct SVGGroupView: View {

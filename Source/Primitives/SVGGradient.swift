@@ -65,27 +65,25 @@ public class SVGLinearGradient: SVGGradient {
         )
     }
 
-    override func apply<S>(view: S, model: SVGShape? = nil) -> AnyView where S : View {
+    func apply<S>(view: S, model: SVGShape? = nil) -> some View where S : View {
         let frame = model?.frame() ?? CGRect()
         let bounds = model?.bounds() ?? CGRect()
         let width = bounds.width
         let height = bounds.height
         let maximum = max(width, height)
         
-        return AnyView(
-            view
-                .foregroundColor(.clear)
-                .overlay(
-                    toSwiftUI(rect: frame)
-                        .applyIf(!userSpace) {
-                            $0.frame(width: maximum, height: maximum)
-                                .scaleEffect(CGSize(width: width/maximum, height: height/maximum))
-                        }
-                        .frame(width: width, height: height)
-                        .offset(x: bounds.minX, y: bounds.minY)
-                        .mask(view)
-                )
-        )
+        return view
+            .foregroundColor(.clear)
+            .overlay(
+                toSwiftUI(rect: frame)
+                    .applyIf(!userSpace) {
+                        $0.frame(width: maximum, height: maximum)
+                            .scaleEffect(CGSize(width: width/maximum, height: height/maximum))
+                    }
+                    .frame(width: width, height: height)
+                    .offset(x: bounds.minX, y: bounds.minY)
+                    .mask(view)
+            )
     }
 
 }
@@ -118,23 +116,21 @@ public class SVGRadialGradient: SVGGradient {
         return RadialGradient(gradient: Gradient(stops: suiStops), center: UnitPoint(x: ncx, y: ncy), startRadius: 0, endRadius: userSpace ? r : r * s)
     }
 
-    override func apply<S>(view: S, model: SVGShape? = nil) -> AnyView where S : View {
+    func apply<S>(view: S, model: SVGShape? = nil) -> some View where S : View {
         let frame = model?.frame() ?? CGRect()
         let bounds = model?.bounds() ?? CGRect()
         let width = bounds.width
         let height = bounds.height
         let minimum = min(width, height)
-        return AnyView(
-            view
-                .foregroundColor(.clear)
-                .overlay(
-                    toSwiftUI(rect: frame)
-                        .scaleEffect(CGSize(width: userSpace ? 1 : width/minimum,
-                                            height: userSpace ? 1 : height/minimum))
-                        .offset(x: bounds.minX, y: bounds.minY)
-                        .mask(view)
-                    )
-        )
+        return view
+            .foregroundColor(.clear)
+            .overlay(
+                toSwiftUI(rect: frame)
+                    .scaleEffect(CGSize(width: userSpace ? 1 : width/minimum,
+                                        height: userSpace ? 1 : height/minimum))
+                    .offset(x: bounds.minX, y: bounds.minY)
+                    .mask(view)
+            )
     }
 
 }

@@ -23,29 +23,25 @@ public class SVGUserSpaceNode: SVGNode {
         self.node = node
         self.userSpace = userSpace
     }
-
-    override public func toSwiftUI() -> AnyView {
-        if userSpace == .userSpaceOnUse {
-            return node.toSwiftUI()
-        }
-
-        fatalError("Pass absolute node parameter for objectBoundingBox to work properly")
-    }
-
-    public func toSwiftUI(absoluteNode: SVGNode) -> AnyView {
-        if userSpace == .userSpaceOnUse {
-            return node.toSwiftUI()
-        }
-
-        let respective = SVGHelper.transformForNodeInRespectiveCoords(respective: node, absolute: absoluteNode)
-        return AnyView(
-            node.toSwiftUI().transformEffect(respective)
-        )
-    }
-
+    
     override func serialize(_ serializer: Serializer) {
         serializer.add("userSpace", userSpace)
         super.serialize(serializer)
     }
 
+    public func contentView() -> some View {
+        SVGUserSpaceNodeView(model: self)
+    }
+}
+
+struct SVGUserSpaceNodeView: View {
+    let model: SVGUserSpaceNode
+
+    var body: some View {
+        if model.userSpace == .userSpaceOnUse {
+            return model.node.toSwiftUI()
+        } else {
+            fatalError("Pass absolute node parameter for objectBoundingBox to work properly")
+        }
+    }
 }

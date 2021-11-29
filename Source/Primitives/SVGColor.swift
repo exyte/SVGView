@@ -63,8 +63,8 @@ public class SVGColor : SVGPaint {
         return Color(red: Double(r) / 0xff, green: Double(g) / 0xff, blue: Double(b) / 0xff).opacity(opacity)
     }
 
-    override func apply<S>(view: S, model: SVGShape? = nil) -> AnyView where S : View {
-        return AnyView(view.foregroundColor(toSwiftUI()))
+    func apply<S>(view: S, model: SVGShape? = nil) -> some View where S : View {
+        view.foregroundColor(toSwiftUI())
     }
 
     public var r: Int {
