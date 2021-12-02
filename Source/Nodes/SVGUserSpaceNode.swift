@@ -13,7 +13,6 @@ public class SVGUserSpaceNode: SVGNode {
 
         case objectBoundingBox
         case userSpaceOnUse
-
     }
 
     public let node: SVGNode

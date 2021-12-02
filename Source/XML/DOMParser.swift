@@ -9,12 +9,30 @@ import SwiftUI
 
 public struct DOMParser {
 
-    static public func parse(fileURL: URL) -> XMLElement {
-        let parser = XMLParser(contentsOf: fileURL)
+    static public func parse(fileURL: URL) -> XMLElement? {
+        commonParse(XMLParser(contentsOf: fileURL))
+    }
+
+    static public func parse(data: Data) -> XMLElement? {
+        commonParse(XMLParser(data: data))
+    }
+
+    static public func parse(string: String?) -> XMLElement? {
+        guard let data = string?.data(using: .utf8) else {
+            return nil
+        }
+        return commonParse(XMLParser(data: data))
+    }
+
+    static public func parse(stream: InputStream) -> XMLElement? {
+        commonParse(XMLParser(stream: stream))
+    }
+
+    static private func commonParse(_ parser: XMLParser?) -> XMLElement? {
         let delegate = XMLDelegate()
         parser?.delegate = delegate
         parser?.parse()
-        return delegate.root!
+        return delegate.root
     }
 }
 

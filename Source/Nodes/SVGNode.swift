@@ -7,7 +7,6 @@ public class SVGNode : SerializableElement {
     @Published public var opacity: Double
     @Published public var clip: SVGNode?
     @Published public var mask: SVGNode?
-    //@Published public var effect: Effect?
     @Published public var id: String?
 
     public var onTap = {}

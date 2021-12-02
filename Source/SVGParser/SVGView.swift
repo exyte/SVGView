@@ -9,11 +9,22 @@ import SwiftUI
 
 public struct SVGView: View {
 
-    private let svg: SVGNode
+    public let svg: SVGNode?
 
     public init(fileURL: URL) {
-        let xml = DOMParser.parse(fileURL: fileURL)
-        self.svg = SVGParser.parse(xml: xml, fileURL: fileURL)
+        self.svg = SVGParser.parse(fileURL: fileURL)
+    }
+
+    public init(data: Data) {
+        self.svg = SVGParser.parse(data: data)
+    }
+
+    public init(string: String) {
+        self.svg = SVGParser.parse(string: string)
+    }
+
+    public init(stream: InputStream) {
+        self.svg = SVGParser.parse(stream: stream)
     }
 
     public init(xml: XMLElement) {
@@ -25,7 +36,7 @@ public struct SVGView: View {
     }
 
     public var body: some View {
-        svg.toSwiftUI()
+        svg?.toSwiftUI()
     }
 
 }

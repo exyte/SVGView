@@ -11,16 +11,34 @@ public struct SVGParser {
 
     static var fileURL: URL?
 
-    static public func parse(fileURL: URL) -> SVGNode {
+    static public func parse(fileURL: URL) -> SVGNode? {
         let xml = DOMParser.parse(fileURL: fileURL)
         return parse(xml: xml, fileURL: fileURL)
     }
 
-    static public func parse(xml: XMLElement, fileURL: URL? = nil) -> SVGNode {
+    static public func parse(data: Data, fileURL: URL? = nil) -> SVGNode? {
+        let xml = DOMParser.parse(data: data)
+        return parse(xml: xml, fileURL: fileURL)
+    }
+
+    static public func parse(string: String, fileURL: URL? = nil) -> SVGNode? {
+        let xml = DOMParser.parse(string: string)
+        return parse(xml: xml, fileURL: fileURL)
+    }
+
+    static public func parse(stream: InputStream, fileURL: URL? = nil) -> SVGNode? {
+        let xml = DOMParser.parse(stream: stream)
+        return parse(xml: xml, fileURL: fileURL)
+    }
+
+    static public func parse(xml: XMLElement?, fileURL: URL? = nil) -> SVGNode? {
+        guard let xml = xml else {
+            return nil
+        }
         self.fileURL = fileURL
         let index = SVGIndex()
         index.fill(from: xml)
-        return parseInternal(xml: xml, index: index)!
+        return parseInternal(xml: xml, index: index)
     }
 
     static func parseInternal(xml: XMLElement, index: SVGIndex, accumulatedUseIdentifiers: [String] = [], ignoreDefs: Bool = true) -> SVGNode? {
