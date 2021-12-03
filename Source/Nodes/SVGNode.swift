@@ -9,7 +9,7 @@ public class SVGNode: SerializableElement {
     @Published public var mask: SVGNode?
     @Published public var id: String?
 
-    public var onTap = {}
+    var gestures = [AnyGesture<()>]()
 
     public init(transform: CGAffineTransform = .identity, opaque: Bool = true, opacity: Double = 1, clip: SVGNode? = nil, mask: SVGNode? = nil, id: String? = nil) {
         self.transform = transform
@@ -31,6 +31,21 @@ public class SVGNode: SerializableElement {
 
     public func nodeById(_ id: String) -> SVGNode? {
         return self.id == id ? self : .none
+    }
+
+    public func onTapGesture(_ count: Int = 1, tapClosure: @escaping ()->()) {
+        let newGesture = TapGesture(count: count).onEnded {
+            tapClosure()
+        }
+        gestures.append(AnyGesture(newGesture.map { _ in () }))
+    }
+
+    public func addGesture<T: Gesture>(_ newGesture: T) {
+        gestures.append(AnyGesture(newGesture.map { _ in () }))
+    }
+
+    public func removeAllGestures() {
+        gestures.removeAll()
     }
 
     func serialize(_ serializer: Serializer) {
