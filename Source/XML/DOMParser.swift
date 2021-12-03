@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct DOMParser {
 
+    static var whitespaceRegex = try! NSRegularExpression(pattern: "\\s+", options: NSRegularExpression.Options.caseInsensitive)
+
     static public func parse(fileURL: URL) -> XMLElement? {
         commonParse(XMLParser(contentsOf: fileURL))
     }
@@ -75,9 +77,8 @@ class XMLDelegate: NSObject, XMLParserDelegate {
 extension String {
 
     fileprivate func processingWhitespaces() -> String {
-        let regex = try! NSRegularExpression(pattern: "\\s+", options: NSRegularExpression.Options.caseInsensitive)
         let range = NSMakeRange(0, self.count)
-        let modString = regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: " ")
+        let modString = DOMParser.whitespaceRegex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: " ")
         return modString
     }
 }
