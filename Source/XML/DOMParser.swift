@@ -56,7 +56,7 @@ class XMLDelegate: NSObject, XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if let element = stack.last {
-            let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\t", with: " ")
+            let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines).processingWhitespaces()
             if let textNode = element.contents.last as? XMLText {
                 textNode.text.append(trimmed)
             } else {
@@ -70,4 +70,14 @@ class XMLDelegate: NSObject, XMLParserDelegate {
         print(parseError.localizedDescription)
     }
 
+}
+
+extension String {
+
+    fileprivate func processingWhitespaces() -> String {
+        let regex = try! NSRegularExpression(pattern: "\\s+", options: NSRegularExpression.Options.caseInsensitive)
+        let range = NSMakeRange(0, self.count)
+        let modString = regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: " ")
+        return modString
+    }
 }
