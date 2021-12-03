@@ -7,9 +7,9 @@ public class XMLElement: XMLNode {
 
     public let name: String
     public var contents: [XMLNode] = []
-    public var attributes: [String : String]
+    public var attributes: [String: String]
 
-    public init(name: String, attributes: [String : String]) {
+    public init(name: String, attributes: [String: String]) {
         self.name = name
         self.attributes = attributes
     }

@@ -27,7 +27,7 @@ protocol SerializableBlock {
 
 }
 
-protocol SerializableElement : SerializableBlock {
+protocol SerializableElement: SerializableBlock {
 
     var id: String? { get }
 

@@ -1,6 +1,6 @@
 import SwiftUI
 
-public class SVGNode : SerializableElement {
+public class SVGNode: SerializableElement {
 
     @Published public var transform: CGAffineTransform = CGAffineTransform.identity
     @Published public var opaque: Bool

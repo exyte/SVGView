@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public class SVGColor : SVGPaint {
+public class SVGColor: SVGPaint {
 
     public static let black = SVGColor(0)
     public static let clear = SVGColor(0).opacity(0)
@@ -101,7 +101,7 @@ public func == (lhs: SVGColor, rhs: SVGColor) -> Bool {
     return lhs.value == rhs.value
 }
 
-extension Color : SerializableAtom {
+extension Color: SerializableAtom {
 
     static func by(name: String) -> Color? {
         if let hex = SVGColors.hex(of: name.lowercased()) {

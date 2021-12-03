@@ -28,6 +28,7 @@
 		5B1F4630251348F70068EF42 /* MBezierPath+Extension_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1F462F251348F70068EF42 /* MBezierPath+Extension_macOS.swift */; };
 		5B23AA6B24EA5D5F0085D48E /* SVGGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B23AA6A24EA5D5F0085D48E /* SVGGroup.swift */; };
 		5B5AEAFF26FB30A80018A1C6 /* SVGUrlImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AEAFE26FB30A80018A1C6 /* SVGUrlImage.swift */; };
+		5B9750492759E63C00EBDCA6 /* CSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9750482759E63C00EBDCA6 /* CSSParser.swift */; };
 		5BD9758926721DF400432F2C /* SVGDataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9758826721DF400432F2C /* SVGDataImage.swift */; };
 		5BD9758D26721E8100432F2C /* SVGParserImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9758C26721E8100432F2C /* SVGParserImages.swift */; };
 		5BD9758F267223F400432F2C /* SVGIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD9758E267223F400432F2C /* SVGIndex.swift */; };
@@ -91,6 +92,7 @@
 		5B1F462F251348F70068EF42 /* MBezierPath+Extension_macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MBezierPath+Extension_macOS.swift"; sourceTree = "<group>"; };
 		5B23AA6A24EA5D5F0085D48E /* SVGGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGGroup.swift; sourceTree = "<group>"; };
 		5B5AEAFE26FB30A80018A1C6 /* SVGUrlImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGUrlImage.swift; sourceTree = "<group>"; };
+		5B9750482759E63C00EBDCA6 /* CSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSSParser.swift; sourceTree = "<group>"; };
 		5BD9758826721DF400432F2C /* SVGDataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGDataImage.swift; sourceTree = "<group>"; };
 		5BD9758C26721E8100432F2C /* SVGParserImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGParserImages.swift; sourceTree = "<group>"; };
 		5BD9758E267223F400432F2C /* SVGIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGIndex.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			path = Serialization;
 			sourceTree = "<group>";
 		};
+		5B9750472759E62E00EBDCA6 /* CSS */ = {
+			isa = PBXGroup;
+			children = (
+				5B9750482759E63C00EBDCA6 /* CSSParser.swift */,
+			);
+			path = CSS;
+			sourceTree = "<group>";
+		};
 		5BD9758726721DE100432F2C /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +216,7 @@
 				5BE3323C24E144B200BB0D60 /* Shapes */,
 				5BE3325824E144B200BB0D60 /* SVGParser */,
 				5BE3324824E144B200BB0D60 /* XML */,
+				5B9750472759E62E00EBDCA6 /* CSS */,
 				5BE3325E24E144B200BB0D60 /* SVGView.h */,
 				5BE3325624E144B200BB0D60 /* Info.plist */,
 			);
@@ -433,6 +444,7 @@
 				5BE3326824E144B200BB0D60 /* SVGEllipse.swift in Sources */,
 				5BE3327524E144B200BB0D60 /* Extensions.swift in Sources */,
 				5BE3325F24E144B200BB0D60 /* SVGText.swift in Sources */,
+				5B9750492759E63C00EBDCA6 /* CSSParser.swift in Sources */,
 				5B10180025359C2100105E9A /* SVGParserViewBox.swift in Sources */,
 				5BE3327C24E144B200BB0D60 /* SVGParserLocuses.swift in Sources */,
 				5BE3327624E144B200BB0D60 /* SVGConstants.swift in Sources */,

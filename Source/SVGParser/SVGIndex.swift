@@ -11,9 +11,10 @@ class SVGIndex {
 
     private var elements = [String: XMLElement]()
     private var paints = [String: SVGPaint]()
+    private var cssParser = CSSParser()
 
     func fill(from element: XMLElement) {
-        if let id = SVGHelper.parseId(element.attributes){
+        if let id = SVGHelper.parseId(element.attributes) {
             elements[id] = element
             switch element.name {
             case "linearGradient", "radialGradient", "fill":
@@ -21,6 +22,10 @@ class SVGIndex {
             default:
                 elements[id] = element
             }
+        }
+        // css style
+        if element.name == "style", let textNode = element.contents.first as? XMLText {
+            cssParser.parse(content: textNode.text)
         }
         for child in element.contents {
             if let child = child as? XMLElement {
@@ -30,11 +35,15 @@ class SVGIndex {
     }
 
     func element(by id: String) -> XMLElement? {
-        return elements[id]
+        elements[id]
     }
 
     func paint(by id: String) -> SVGPaint? {
-        return paints[id]
+        paints[id]
+    }
+
+    func cssStyle(for element: XMLElement) -> [String: String] {
+        cssParser.getStyles(element: element)
     }
 
     private func parseFill(_ element: XMLElement) -> SVGPaint? {
@@ -149,7 +158,7 @@ class SVGIndex {
         return SVGRadialGradient(cx: cx, cy: cy, fx: fx, fy: fy, r: r, userSpace: userSpace, stops: stops)
     }
 
-    private func parseStops(_ nodes: [XMLNode], _ style: [String : String]) -> [SVGStop] {
+    private func parseStops(_ nodes: [XMLNode], _ style: [String: String]) -> [SVGStop] {
         var result = [SVGStop]()
         for node in nodes {
             if let element = node as? XMLElement {
@@ -161,7 +170,7 @@ class SVGIndex {
         return result
     }
 
-    private func parseStop(_ element: XMLElement, _ style: [String : String]) -> SVGStop? {
+    private func parseStop(_ element: XMLElement, _ style: [String: String]) -> SVGStop? {
         let offset = getDoubleValueFromPercentage(element, attribute: "offset")
 
         var opacity: Double = 1

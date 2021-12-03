@@ -1,6 +1,6 @@
 import SwiftUI
 
-public class SVGStroke : SerializableBlock {
+public class SVGStroke: SerializableBlock {
 
     public let fill: SVGPaint
     public let width: CGFloat

@@ -17,7 +17,7 @@ extension SVGHelper {
             .replacingOccurrences(of: ")", with: "")
     }
 
-    static func parseId(_ dict: [String : String]) -> String? {
+    static func parseId(_ dict: [String: String]) -> String? {
         return dict["id"] ?? dict["xml:id"]
     }
 
@@ -33,7 +33,7 @@ extension SVGHelper {
         return .leading
     }
 
-    static func parseStroke(_ style: [String : String], index: SVGIndex) -> SVGStroke? {
+    static func parseStroke(_ style: [String: String], index: SVGIndex) -> SVGStroke? {
         guard let fill = SVGHelper.parseStrokeFill(style, index) else {
             return .none
         }
@@ -61,7 +61,7 @@ extension SVGHelper {
         return dashes
     }
 
-    static func getStrokeCap(_ style: [String : String]) -> CGLineCap {
+    static func getStrokeCap(_ style: [String: String]) -> CGLineCap {
         if let strokeCap = style["stroke-linecap"] {
             switch strokeCap {
             case "round":

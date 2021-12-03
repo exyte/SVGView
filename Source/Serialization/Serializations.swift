@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension Bool : SerializableAtom {
+extension Bool: SerializableAtom {
 
     public func serialize() -> String {
         return self.description
@@ -16,7 +16,7 @@ extension Bool : SerializableAtom {
 
 }
 
-extension String : SerializableAtom {
+extension String: SerializableAtom {
 
     func serialize() -> String {
         return "\"\(self.replacingOccurrences(of: "\"", with: "\\\""))\""
@@ -24,7 +24,7 @@ extension String : SerializableAtom {
 
 }
 
-extension CGFloat : SerializableAtom {
+extension CGFloat: SerializableAtom {
 
     func serialize() -> String {
         let s = self.description
@@ -33,7 +33,7 @@ extension CGFloat : SerializableAtom {
 
 }
 
-extension Double : SerializableAtom {
+extension Double: SerializableAtom {
 
     func serialize() -> String {
         return CGFloat(self).serialize()
@@ -41,7 +41,7 @@ extension Double : SerializableAtom {
 
 }
 
-extension CGAffineTransform : SerializableAtom {
+extension CGAffineTransform: SerializableAtom {
 
     func serialize() -> String {
         let formatter = NumberFormatter()
@@ -59,7 +59,7 @@ extension CGAffineTransform : SerializableAtom {
     }
 }
 
-extension CGRect : SerializableBlock {
+extension CGRect: SerializableBlock {
 
     func serialize(_ serializer: Serializer) {
         serializer.add("x", self.minX, 0).add("y", self.minY, 0)
@@ -79,7 +79,7 @@ extension Collection where Iterator.Element == CGPoint {
 
 }
 
-class CGPointList : SerializableAtom {
+class CGPointList: SerializableAtom {
     
     let points: [CGPoint]
     
@@ -104,7 +104,7 @@ extension Collection where Iterator.Element == CGFloat {
 
 }
 
-class CGFloatList : SerializableAtom {
+class CGFloatList: SerializableAtom {
 
     let list: [CGFloat]
 
@@ -118,7 +118,7 @@ class CGFloatList : SerializableAtom {
 
 }
 
-extension CGLineCap : SerializableOption {
+extension CGLineCap: SerializableOption {
 
     func isDefault() -> Bool {
         return self == .butt
@@ -137,7 +137,7 @@ extension CGLineCap : SerializableOption {
 
 }
 
-extension CGLineJoin : SerializableOption {
+extension CGLineJoin: SerializableOption {
 
     func isDefault() -> Bool {
         return self == .miter
@@ -173,7 +173,7 @@ extension CGPathFillRule: SerializableOption {
 
 }
 
-extension HorizontalAlignment : SerializableOption {
+extension HorizontalAlignment: SerializableOption {
 
     func isDefault() -> Bool {
         return self == .leading

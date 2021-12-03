@@ -46,8 +46,7 @@ public struct SVGParser {
             return nil
         }
 
-        let styleDict = xml.attributes.filter { SVGConstants.availableStyleAttributes.contains($0.key) }
-            .filter { $0.value != "inherit" }
+        let styleDict = getStyleAttributes(xml: xml, index: index)
         let nonStyleDict = xml.attributes.filter { !SVGConstants.availableStyleAttributes.contains($0.key) }
 
         let collector = SVGAttributesCollector.shared
@@ -108,6 +107,29 @@ public struct SVGParser {
         return result
     }
 
+    static func getStyleAttributes(xml: XMLElement, index: SVGIndex) -> [String: String] {
+        var styleDict = xml.attributes.filter { SVGConstants.availableStyleAttributes.contains($0.key) }
+            .filter { $0.value != "inherit" }
+
+        for (att, val) in index.cssStyle(for: xml) {
+            if styleDict.index(forKey: att) == nil {
+                styleDict.updateValue(val, forKey: att)
+            }
+        }
+
+        if let cssStyle = xml.attributes["style"] {
+            let styleParts = cssStyle.replacingOccurrences(of: " ", with: "").components(separatedBy: ";")
+            styleParts.forEach { styleAttribute in
+                let currentStyle = styleAttribute.components(separatedBy: ":")
+                if currentStyle.count == 2 {
+                    styleDict.updateValue(currentStyle[1], forKey: currentStyle[0])
+                }
+            }
+        }
+
+        return styleDict
+    }
+
     static func isGroup(xml: XMLElement) -> Bool {
         switch xml.name {
         case "g", "svg":
@@ -117,7 +139,7 @@ public struct SVGParser {
         }
     }
 
-    static func parseViewport(_ attributes: [String : String], _ nodes: [SVGNode]) -> SVGViewport? {
+    static func parseViewport(_ attributes: [String: String], _ nodes: [SVGNode]) -> SVGViewport? {
         let widthAttributeNil = attributes["width"] == nil
         let heightAttributeNil = attributes["height"] == nil
         let viewBoxAttributeNil = attributes["viewBox"] == nil
