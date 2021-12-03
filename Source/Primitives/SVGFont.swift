@@ -1,6 +1,6 @@
 import SwiftUI
 
-public class SVGFont : SerializableBlock {
+public class SVGFont: SerializableBlock {
 
     public let name: String
     public let size: CGFloat

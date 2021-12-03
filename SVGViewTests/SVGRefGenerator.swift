@@ -15,6 +15,9 @@ class SVGRefGenerator: XCTestCase {
     let v12 = "w3c/1.2T/svg/"
 
     func testCreateReferences() {
+        createReference(name: "styling-pres-01-t", version: v11)
+        createReference(name: "styling-css-01-b", version: v11)
+        createReference(name: "styling-class-01-f", version: v11)
         createReference(name: "pservers-grad-09-b", version: v11)
         createReference(name: "pservers-grad-05-b", version: v11)
         createReference(name: "painting-control-02-f", version: v11)
@@ -46,7 +49,7 @@ class SVGRefGenerator: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         let url = bundle.url(forResource: name, withExtension: "svg", subdirectory: version)!
         let testDirectory = getTestDir()
-        let node = SVGParser.parse(fileURL: url)
+        let node = SVGParser.parse(fileURL: url)!
         let content = Serializer.serialize(node)
         let fileName = url.deletingPathExtension().lastPathComponent
         let path = testDirectory.appendingPathComponent(fileName).appendingPathExtension("ref")
