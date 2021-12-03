@@ -9,21 +9,21 @@ import SwiftUI
 
 extension SVGHelper {
 
-    static func parseDouble(_ attributes: [String : String], _ key: String, defaultValue: Double = 0) -> Double {
+    static func parseDouble(_ attributes: [String: String], _ key: String, defaultValue: Double = 0) -> Double {
         if let value = attributes[key], let result = doubleFromString(value) {
             return result
         }
         return defaultValue
     }
 
-    static func parseCGFloat(_ attributes: [String : String], _ key: String, defaultValue: CGFloat = 0) -> CGFloat {
+    static func parseCGFloat(_ attributes: [String: String], _ key: String, defaultValue: CGFloat = 0) -> CGFloat {
         if let value = attributes[key], let result = doubleFromString(value) {
             return CGFloat(result)
         }
         return defaultValue
     }
 
-    static func parseOptCGFloat(_ attributes: [String : String], _ key: String) -> CGFloat? {
+    static func parseOptCGFloat(_ attributes: [String: String], _ key: String) -> CGFloat? {
         if let value = attributes[key], let result = doubleFromString(value) {
             return CGFloat(result)
         }
@@ -75,26 +75,26 @@ extension SVGHelper {
         return points
     }
 
-    static func parseOpacity(_ attributes: [String : String], _ key: String) -> Double {
+    static func parseOpacity(_ attributes: [String: String], _ key: String) -> Double {
         let opacity = parseDouble(attributes, key, defaultValue: 1)
         return min(max(opacity, 0), 1)
     }
 
-    static func parseFill(_ style: [String : String], _ index: SVGIndex) -> SVGPaint? {
+    static func parseFill(_ style: [String: String], _ index: SVGIndex) -> SVGPaint? {
         guard let colorString = style["fill"] else {
             return SVGColor.black.opacity(parseOpacity(style, "fill-opacity"))
         }
         return parseFillInternal(colorString, style, index)
     }
 
-    static func parseStrokeFill(_ style: [String : String], _ index: SVGIndex) -> SVGPaint? {
+    static func parseStrokeFill(_ style: [String: String], _ index: SVGIndex) -> SVGPaint? {
         guard let colorString = style["stroke"] else {
             return .none
         }
         return parseFillInternal(colorString, style, index)
     }
 
-    static func parseFillInternal(_ colorString: String, _ style: [String : String], _ index: SVGIndex) -> SVGPaint? {
+    static func parseFillInternal(_ colorString: String, _ style: [String: String], _ index: SVGIndex) -> SVGPaint? {
         if let colorId = SVGHelper.parseIdFromUrl(colorString) {
             if let paint = index.paint(by: colorId) {
                 return paint
@@ -107,7 +107,7 @@ extension SVGHelper {
         return .none
     }
 
-    static func parseColor(_ string: String, _ style: [String : String]) -> SVGColor? {
+    static func parseColor(_ string: String, _ style: [String: String]) -> SVGColor? {
         let normalized = string.replacingOccurrences(of: " ", with: "")
         if normalized == "none" || normalized == "transparent" {
             return .none

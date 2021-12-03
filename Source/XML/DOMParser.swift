@@ -41,7 +41,7 @@ class XMLDelegate: NSObject, XMLParserDelegate {
     var root: XMLElement?
     var stack = [XMLElement]()
 
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
         let element = XMLElement(name: elementName, attributes: attributeDict)
         stack.last?.contents.append(element)
         stack.append(element)
@@ -56,10 +56,11 @@ class XMLDelegate: NSObject, XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if let element = stack.last {
+            let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
             if let textNode = element.contents.last as? XMLText {
-                textNode.text.append(string)
+                textNode.text.append(trimmed)
             } else {
-                element.contents.append(XMLText(text: string))
+                element.contents.append(XMLText(text: trimmed))
             }
         }
     }

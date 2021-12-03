@@ -35,7 +35,7 @@ extension SVGHelper {
         return SVGPreserveAspectRatio()
     }
 
-    static func parseDimension(_ attributes: [String : String], _ key: String) -> SVGLength? {
+    static func parseDimension(_ attributes: [String: String], _ key: String) -> SVGLength? {
         guard let string = attributes[key] else {
             return .none
         }

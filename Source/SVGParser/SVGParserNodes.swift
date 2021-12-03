@@ -9,7 +9,7 @@ import SwiftUI
 
 public class SVGHelper: NSObject {
 
-    static func parseNode(xml: XMLElement, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGNode? {
+    static func parseNode(xml: XMLElement, index: SVGIndex, attributes: [String: String], style: [String: String]) -> SVGNode? {
 
         let name = xml.name
         switch name {
@@ -27,7 +27,7 @@ public class SVGHelper: NSObject {
         return .none
     }
 
-    static func parseText(xml: XMLElement, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGText? {
+    static func parseText(xml: XMLElement, index: SVGIndex, attributes: [String: String], style: [String: String]) -> SVGText? {
 
         let fontName = style["font-family"] ?? "Serif"
         let fontSize = style["font-size"]?.cgFloatValue ?? 12
@@ -45,7 +45,7 @@ public class SVGHelper: NSObject {
         return .none
     }
 
-    static func parseShape(name: String, index: SVGIndex, attributes: [String : String], style: [String : String]) -> SVGShape? {
+    static func parseShape(name: String, index: SVGIndex, attributes: [String: String], style: [String: String]) -> SVGShape? {
 
         if let locus = parseLocus(name: name, attributes: attributes, style: style) {
             locus.fill = parseFill(style, index)

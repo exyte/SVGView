@@ -9,7 +9,7 @@ import SwiftUI
 
 extension SVGHelper {
 
-    static func parseImage(_ attributes: [String : String], style: [String : String]) -> SVGImage? {
+    static func parseImage(_ attributes: [String: String], style: [String: String]) -> SVGImage? {
         guard let src = attributes["xlink:href"] else {
             return .none
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 extension SVGHelper {
 
-    static func parseLocus(name: String, attributes: [String : String], style: [String : String]) -> SVGShape? {
+    static func parseLocus(name: String, attributes: [String: String], style: [String: String]) -> SVGShape? {
         switch name {
         case "circle":
             return parseCircle(attributes, style: style)
@@ -31,14 +31,14 @@ extension SVGHelper {
         }
     }
 
-    static func parseCircle(_ attributes: [String : String], style: [String : String]) -> SVGCircle {
+    static func parseCircle(_ attributes: [String: String], style: [String: String]) -> SVGCircle {
         let radius = parseCGFloat(attributes, "r")
         let x = parseCGFloat(attributes, "cx")
         let y = parseCGFloat(attributes, "cy")
         return SVGCircle(cx: x, cy: y, r: radius)
     }
 
-    static func parseEllipse(_ attributes: [String : String], style: [String : String]) -> SVGEllipse {
+    static func parseEllipse(_ attributes: [String: String], style: [String: String]) -> SVGEllipse {
         let x = parseCGFloat(attributes, "cx")
         let y = parseCGFloat(attributes, "cy")
         let rx = parseCGFloat(attributes, "rx")
@@ -46,7 +46,7 @@ extension SVGHelper {
         return SVGEllipse(cx: x, cy: y, rx: rx, ry: ry)
     }
 
-    static func parseLine(_ attributes: [String : String], style: [String : String]) -> SVGLine {
+    static func parseLine(_ attributes: [String: String], style: [String: String]) -> SVGLine {
         let x1 = parseCGFloat(attributes, "x1")
         let y1 = parseCGFloat(attributes, "y1")
         let x2 = parseCGFloat(attributes, "x2")
@@ -54,7 +54,7 @@ extension SVGHelper {
         return SVGLine(x1, y1, x2, y2)
     }
 
-    static func parsePath(_ attributes: [String : String], style: [String : String]) -> SVGPath {
+    static func parsePath(_ attributes: [String: String], style: [String: String]) -> SVGPath {
         let segments = PathReader(input: attributes["d"] ?? "").read()
         return SVGPath(segments: segments, fillRule: getFillRule(style))
     }
@@ -63,17 +63,17 @@ extension SVGHelper {
         return style["fill-rule"] == "evenodd" ? .evenOdd : .winding
     }
 
-    static func parsePolygon(_ attributes: [String : String], style: [String : String]) -> SVGPolygon {
+    static func parsePolygon(_ attributes: [String: String], style: [String: String]) -> SVGPolygon {
         let points = SVGHelper.parsePointsArray(attributes["points"] ?? "")
         return SVGPolygon(points)
     }
 
-    static func parsePolyline(_ attributes: [String : String], style: [String : String]) -> SVGPolyline {
+    static func parsePolyline(_ attributes: [String: String], style: [String: String]) -> SVGPolyline {
         let points = SVGHelper.parsePointsArray(attributes["points"] ?? "")
         return SVGPolyline(points)
     }
 
-    static func parseRect(_ attributes: [String : String], style: [String : String]) -> SVGShape {
+    static func parseRect(_ attributes: [String: String], style: [String: String]) -> SVGShape {
         let x = parseCGFloat(attributes, "x")
         let y = parseCGFloat(attributes, "y")
         let width = parseCGFloat(attributes, "width")
