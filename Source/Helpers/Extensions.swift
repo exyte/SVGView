@@ -86,9 +86,17 @@ extension View {
         self.opacity(model.opacity)
             .applyMask(mask: model.clip, absoluteNode: model)
             .transformEffect(model.transform)
-            .onTapGesture {
-                model.onTap()
+            .applyIf(!model.gestures.isEmpty) {
+                $0.gesture(makeOneGesture(model: model))
             }
+    }
+
+    func makeOneGesture(model: SVGNode) -> some Gesture {
+        var result = model.gestures.first
+        for gesture in model.gestures {
+            result = AnyGesture(SimultaneousGesture(result, gesture).map { _ in () })
+        }
+        return result
     }
 
 }
