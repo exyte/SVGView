@@ -70,7 +70,7 @@ if let part = view.getNode(byId: "part") {
 
 ## Complex effects
 
-SVGView make it easy to add interesting effects to your app. For example, let this <a href="https://www.iconfinder.com/icons/1337497/">pikachu</a> track your figer movement:
+SVGView make it easy to add interesting effects to your app. For example, let this <a href="https://www.iconfinder.com/icons/1337497/">pikachu</a> track a finger movement:
 
 ```Swift
 var body: some View {
