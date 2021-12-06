@@ -68,7 +68,7 @@ if let part = view.getNode(byId: "part") {
 }
 ```
 
-## Complex staff: track drag'n'drop
+## Complex effects
 
 SVGView make it easy to add interesting effects to your app. For example, let this <a href="https://www.iconfinder.com/icons/1337497/">pikachu</a> track your figer movement:
 
