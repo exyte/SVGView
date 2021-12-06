@@ -35,6 +35,10 @@ public struct SVGView: View {
         self.svg = svg
     }
 
+    public func getNode(byId id: String) -> SVGNode? {
+        return svg?.getNode(byId: id)
+    }
+
     public var body: some View {
         svg?.toSwiftUI()
     }

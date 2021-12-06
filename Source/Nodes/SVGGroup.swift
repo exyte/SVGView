@@ -13,12 +13,12 @@ public class SVGGroup: SVGNode, ObservableObject {
         contents.map { $0.bounds() }.reduce(contents.first?.bounds() ?? CGRect.zero) { $0.union($1) }
     }
 
-    override public func nodeById(_ id: String) -> SVGNode? {
-        if let node = super.nodeById(id) {
+    override public func getNode(byId id: String) -> SVGNode? {
+        if let node = super.getNode(byId: id) {
             return node
         }
         for node in contents {
-            if let node = node.nodeById(id) {
+            if let node = node.getNode(byId: id) {
                 return node
             }
         }

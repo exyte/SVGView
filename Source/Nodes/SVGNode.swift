@@ -29,7 +29,7 @@ public class SVGNode: SerializableElement {
         fatalError()
     }
 
-    public func nodeById(_ id: String) -> SVGNode? {
+    public func getNode(byId id: String) -> SVGNode? {
         return self.id == id ? self : .none
     }
 
