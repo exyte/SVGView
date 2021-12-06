@@ -40,7 +40,8 @@ public class SVGHelper: NSObject {
         let transform = CGAffineTransform(translationX: x, y: y)
 
         if let textNode = xml.contents.first as? XMLText {
-            return SVGText(text: textNode.text, font: font, fill: parseFill(style, index), stroke: parseStroke(style, index: index), textAnchor: textAnchor, transform: transform)
+            let trimmed = textNode.text.trimmingCharacters(in: .whitespacesAndNewlines).processingWhitespaces()
+            return SVGText(text: trimmed, font: font, fill: parseFill(style, index), stroke: parseStroke(style, index: index), textAnchor: textAnchor, transform: transform)
         }
         return .none
     }
@@ -53,5 +54,16 @@ public class SVGHelper: NSObject {
             return locus
         }
         return .none
+    }
+
+    static var whitespaceRegex = try! NSRegularExpression(pattern: "\\s+", options: NSRegularExpression.Options.caseInsensitive)
+}
+
+extension String {
+
+    fileprivate func processingWhitespaces() -> String {
+        let range = NSMakeRange(0, self.count)
+        let modString = SVGHelper.whitespaceRegex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: " ")
+        return modString
     }
 }

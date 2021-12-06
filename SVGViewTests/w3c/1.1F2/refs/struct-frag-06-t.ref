@@ -6,7 +6,7 @@ SVGViewport {
 			id: "test-body-content",
 			contents: [
 				SVGText {
-					text: "Default entities: amp, lt, gt, apos, quot: ",
+					text: "Default entities: amp, lt, gt, apos, quot:",
 					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
 					fill: "black",
 					transform: [1, 0, 0, 1, 30, 30]
@@ -24,13 +24,13 @@ SVGViewport {
 					transform: [1, 0, 0, 1, 30, 100]
 				},
 				SVGText {
-					text: "    A hexadecimal (&#x41)= A",
+					text: "A hexadecimal (&#x41)= A",
 					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
 					fill: "gray",
 					transform: [1, 0, 0, 1, 90, 130]
 				},
 				SVGText {
-					text: "    A decimal      (&#65)= A",
+					text: "A decimal (&#65)= A",
 					font: { name: "SVGFreeSansASCII,sans-serif", size: 18 },
 					fill: "gray",
 					transform: [1, 0, 0, 1, 90, 160]

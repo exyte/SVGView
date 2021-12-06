@@ -2,7 +2,7 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `16.4%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `17.4%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `50.0%`
     * [Conform](#conform-1): `0.0%`
@@ -17,12 +17,12 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
     * [Metadata](#metadata-1): `0.0%`
     * [Painting](#painting-1): `48.3%`
     * [Paths](#paths-1): `90.4%`
-    * [Pservers](#pservers-1): `12.1%`
+    * [Pservers](#pservers-1): `18.1%`
     * [Render](#render-1): `37.5%`
     * [Script](#script-1): `0.0%`
     * [Shapes](#shapes-1): `81.8%`
     * [Struct](#struct-1): `9.7%`
-    * [Styling](#styling-1): `0.0%`
+    * [Styling](#styling-1): `16.6%`
     * [Svgdom](#svgdom-1): `0.0%`
     * [Text](#text-1): `0.0%`
     * [Types](#types-1): `6.6%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`16.4%` of tests covered (86/522). They can be splitted into following categories:
+`17.4%` of tests covered (91/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -468,10 +468,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[paths-dom-02-f](SVGViewTests/w3c/1.1F2/svg/paths-dom-02-f.svg)|
 </details>
 
-### <a name='pservers-1'></a> [Pservers](https://www.w3.org/TR/SVG11/pservers.html): `12.1%`
+### <a name='pservers-1'></a> [Pservers](https://www.w3.org/TR/SVG11/pservers.html): `18.1%`
 
 <details>
-  <summary>(4/33) tests covered...</summary>
+  <summary>(6/33) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -479,11 +479,11 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |✅|[pservers-grad-02-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-02-b.svg)|
 |❌|[pservers-grad-03-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-03-b.svg)|
 |✅|[pservers-grad-04-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-04-b.svg)|
-|❌|[pservers-grad-05-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-05-b.svg)|
+|✅|[pservers-grad-05-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-05-b.svg)|
 |❌|[pservers-grad-06-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-06-b.svg)|
 |✅|[pservers-grad-07-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-07-b.svg)|
 |❌|[pservers-grad-08-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-08-b.svg)|
-|❌|[pservers-grad-09-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-09-b.svg)|
+|✅|[pservers-grad-09-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-09-b.svg)|
 |❌|[pservers-grad-10-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-10-b.svg)|
 |❌|[pservers-grad-11-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-11-b.svg)|
 |❌|[pservers-grad-12-b](SVGViewTests/w3c/1.1F2/svg/pservers-grad-12-b.svg)|
@@ -654,15 +654,15 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[struct-use-15-f](SVGViewTests/w3c/1.1F2/svg/struct-use-15-f.svg)|
 </details>
 
-### <a name='styling-1'></a> [Styling](https://www.w3.org/TR/SVG11/styling.html): `0.0%`
+### <a name='styling-1'></a> [Styling](https://www.w3.org/TR/SVG11/styling.html): `16.6%`
 
 <details>
-  <summary>(0/18) tests covered...</summary>
+  <summary>(3/18) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
-|❌|[styling-class-01-f](SVGViewTests/w3c/1.1F2/svg/styling-class-01-f.svg)|
-|❌|[styling-css-01-b](SVGViewTests/w3c/1.1F2/svg/styling-css-01-b.svg)|
+|✅|[styling-class-01-f](SVGViewTests/w3c/1.1F2/svg/styling-class-01-f.svg)|
+|✅|[styling-css-01-b](SVGViewTests/w3c/1.1F2/svg/styling-css-01-b.svg)|
 |❌|[styling-css-02-b](SVGViewTests/w3c/1.1F2/svg/styling-css-02-b.svg)|
 |❌|[styling-css-03-b](SVGViewTests/w3c/1.1F2/svg/styling-css-03-b.svg)|
 |❌|[styling-css-04-f](SVGViewTests/w3c/1.1F2/svg/styling-css-04-f.svg)|
@@ -674,7 +674,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[styling-css-10-f](SVGViewTests/w3c/1.1F2/svg/styling-css-10-f.svg)|
 |❌|[styling-elem-01-b](SVGViewTests/w3c/1.1F2/svg/styling-elem-01-b.svg)|
 |❌|[styling-inherit-01-b](SVGViewTests/w3c/1.1F2/svg/styling-inherit-01-b.svg)|
-|❌|[styling-pres-01-t](SVGViewTests/w3c/1.1F2/svg/styling-pres-01-t.svg)|
+|✅|[styling-pres-01-t](SVGViewTests/w3c/1.1F2/svg/styling-pres-01-t.svg)|
 |❌|[styling-pres-02-f](SVGViewTests/w3c/1.1F2/svg/styling-pres-02-f.svg)|
 |❌|[styling-pres-03-f](SVGViewTests/w3c/1.1F2/svg/styling-pres-03-f.svg)|
 |❌|[styling-pres-04-f](SVGViewTests/w3c/1.1F2/svg/styling-pres-04-f.svg)|

@@ -233,8 +233,16 @@ class SVG11Tests: BaseTestCase {
         compareToReference("pservers-grad-04-b")
     }
 
+    func testPserversGrad05B() {
+        compareToReference("pservers-grad-05-b")
+    }
+
     func testPserversGrad07B() {
         compareToReference("pservers-grad-07-b")
+    }
+
+    func testPserversGrad09B() {
+        compareToReference("pservers-grad-09-b")
     }
 
     func testRenderElems01T() {
@@ -347,6 +355,18 @@ class SVG11Tests: BaseTestCase {
 
     func testStructUse03T() {
         compareToReference("struct-use-03-t")
+    }
+
+    func testStylingClass01F() {
+        compareToReference("styling-class-01-f")
+    }
+
+    func testStylingCss01B() {
+        compareToReference("styling-css-01-b")
+    }
+
+    func testStylingPres01T() {
+        compareToReference("styling-pres-01-t")
     }
 
     func testTypesBasic01F() {
