@@ -2,7 +2,7 @@
 
 <p><h1 align="left">SVGView</h1></p>
 
-<p><h4>SVG parser written with SwiftUI</h4></p>
+<p><h4>SVG parser written in SwiftUI</h4></p>
 
 ___
 
@@ -22,7 +22,7 @@ ___
 
 # Overview
 
-The goal of this project is to bring the full power of SVG to Apple platforms. The framework can parse SVG files and represent their content in SwiftUI. It provides you with an ability to not only render SVG files, but also add interactivity to them, handle user input and use SwiftUI to put your art into motion.
+The goal of this project is to bring the full power of SVG to Apple platforms. Out framework can parse SVG files and represent their content in SwiftUI. It provides you with the ability to not only render SVG files, but also add interactivity to them, handle user input and use SwiftUI to put your art into motion.
 
 # Usage
 
@@ -38,7 +38,7 @@ struct ContentView: View {
 
 ## Interact with vector elements
 
-You may locate the disered part of your SVG file using standard identifiers to add gestures and change its properties in runtime:
+You may locate the desired part of your SVG file using standard identifiers to add gestures and change its properties in runtime:
 
 ```Swift
 struct ContentView: View {
@@ -56,7 +56,7 @@ struct ContentView: View {
 
 ## Animation
 
-You can use stanard SwiftUI tools to animate your graphics:
+You can use stanard SwiftUI tools to animate your image:
 
 ```Swift
 if let part = view.getNode(byId: "part") {
