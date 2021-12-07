@@ -22,7 +22,7 @@ ___
 
 # Overview
 
-The goal of this project is to bring full power of SVG to Apple's platforms. The framework parse SVG file and represent content with SwiftUI. It gives you ability not only render SVG file, but also interact with it, handle user input and use power of SwiftUI to put your art in motion.
+The goal of this project is to bring the full power of SVG to Apple platforms. The framework can parse SVG files and represent their content in SwiftUI. It provides you with an ability to not only render SVG files, but also add interactivity to them, handle user input and use SwiftUI to put your art into motion.
 
 # Usage
 
@@ -38,7 +38,7 @@ struct ContentView: View {
 
 ## Interact with vector elements
 
-You may find necessary part of your SVG file using standard identifiers, add some gesture and change any property in runtime:
+You may locate the disered part of your SVG file using standard identifiers to add gestures and change its properties in runtime:
 
 ```Swift
 struct ContentView: View {
@@ -56,7 +56,7 @@ struct ContentView: View {
 
 ## Animation
 
-You can use stanard SwiftUI tools to animate your art:
+You can use stanard SwiftUI tools to animate your graphics:
 
 ```Swift
 if let part = view.getNode(byId: "part") {
@@ -70,7 +70,7 @@ if let part = view.getNode(byId: "part") {
 
 ## Complex effects
 
-SVGView make it easy to add interesting effects to your app. For example, let this <a href="https://www.iconfinder.com/icons/1337497/">pikachu</a> track a finger movement:
+SVGView makes it easy to add custom effects to your app. For example, make this <a href="https://www.iconfinder.com/icons/1337497/">pikachu</a> track finger movement:
 
 ```Swift
 var body: some View {
@@ -89,7 +89,7 @@ var body: some View {
 
 # SVG Tests Coverage
 
-Our mission is to provide 100% SVG support of all standards: 1.1 (Second Edition), Tiny 1.2 and 2.0. However this project is at the very beggining, so you can follow our progress on <a href="w3c-coverage.md">this page</a>. Also you can check out <a href="https://github.com/exyte/SVGViewTests">SVGViewTests project</a> to see how good this framework render every single SVG test case.
+Our mission is to provide 100% support of all SVG standards: 1.1 (Second Edition), Tiny 1.2 and 2.0. However, this project is at its very beginning, so you can follow our progress on <a href="w3c-coverage.md">this page</a>. You can also check out <a href="https://github.com/exyte/SVGViewTests">SVGViewTests project</a> to see how well this framework handles every single SVG test case.
 
 # Installation
 
