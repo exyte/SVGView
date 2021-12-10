@@ -3,7 +3,7 @@ osx_image: xcode11.3
 
 branches:
     only:
-    - master
+    - main
 
 script:
 - set -o pipefail && xcodebuild -project SVGView.xcodeproj -scheme 'SVGView' -sdk iphonesimulator13.2 ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,OS=13.3,name=iPhone 11 Pro' | xcpretty;
