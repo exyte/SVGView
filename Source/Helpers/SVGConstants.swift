@@ -5,6 +5,8 @@
 //  Created by Alisa Mylnikova on 17/07/2020.
 //
 
+import Foundation
+
 open class SVGConstants {
 
     static let groupTags = ["svg", "g"]

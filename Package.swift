@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -6,7 +6,7 @@ let package = Package(
 	name: "SVGView",
 	platforms: [
 		.macOS(.v10_15),
-        .iOS(.v13),
+        .iOS(.v14),
         .watchOS(.v6)
     ],
     products: [
@@ -18,7 +18,8 @@ let package = Package(
     targets: [
     	.target(
     		name: "SVGView",
-            path: "Source"
+            path: "Source",
+            exclude: ["Info.plist"]
         )
     ],
     swiftLanguageVersions: [.v5]
