@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SVGView"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "SVGParser created with SwiftUI."
 
   s.homepage         = 'https://github.com/exyte/SVGView.git'
