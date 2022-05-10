@@ -18,6 +18,8 @@ class SVGRefGenerator: XCTestCase {
         createReference(name: "color-prop-01-b", version: v11)
         createReference(name: "color-prop-02-f", version: v11)
         createReference(name: "color-prop-03-t", version: v11)
+        createReference(name: "color-prop-04-t", version: v11)
+        createReference(name: "color-prop-05-t", version: v11)
         createReference(name: "coords-coord-01-t", version: v11)
         createReference(name: "coords-trans-01-b", version: v11)
         createReference(name: "coords-trans-02-t", version: v11)

@@ -2,9 +2,9 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `17.4%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `17.8%`
     * [Animate](#animate-1): `0.0%`
-    * [Color](#color-1): `50.0%`
+    * [Color](#color-1): `83.3%`
     * [Conform](#conform-1): `0.0%`
     * [Coords](#coords-1): `46.8%`
     * [Extend](#extend-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`17.4%` of tests covered (91/522). They can be splitted into following categories:
+`17.8%` of tests covered (93/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -140,10 +140,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[animate-struct-dom-01-b](SVGViewTests/w3c/1.1F2/svg/animate-struct-dom-01-b.svg)|
 </details>
 
-### <a name='color-1'></a> [Color](https://www.w3.org/TR/SVG11/color.html): `50.0%`
+### <a name='color-1'></a> [Color](https://www.w3.org/TR/SVG11/color.html): `83.3%`
 
 <details>
-  <summary>(3/6) tests covered...</summary>
+  <summary>(5/6) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -151,8 +151,8 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |✅|[color-prop-01-b](SVGViewTests/w3c/1.1F2/svg/color-prop-01-b.svg)|
 |✅|[color-prop-02-f](SVGViewTests/w3c/1.1F2/svg/color-prop-02-f.svg)|
 |✅|[color-prop-03-t](SVGViewTests/w3c/1.1F2/svg/color-prop-03-t.svg)|
-|❌|[color-prop-04-t](SVGViewTests/w3c/1.1F2/svg/color-prop-04-t.svg)|
-|❌|[color-prop-05-t](SVGViewTests/w3c/1.1F2/svg/color-prop-05-t.svg)|
+|✅|[color-prop-04-t](SVGViewTests/w3c/1.1F2/svg/color-prop-04-t.svg)|
+|✅|[color-prop-05-t](SVGViewTests/w3c/1.1F2/svg/color-prop-05-t.svg)|
 </details>
 
 ### <a name='conform-1'></a> [Conform](https://www.w3.org/TR/SVG11/conform.html): `0.0%`

@@ -127,6 +127,11 @@ public struct SVGParser {
             }
         }
 
+        // TODO: it's a temporary solution. Need to create a correct style merging mechanics
+        if styleDict["fill"] == "currentColor", let color = styleDict["color"] {
+            styleDict["fill"] = color
+        }
+
         return styleDict
     }
 

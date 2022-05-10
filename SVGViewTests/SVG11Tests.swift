@@ -21,6 +21,14 @@ class SVG11Tests: BaseTestCase {
         compareToReference("color-prop-03-t")
     }
 
+    func testColorProp04T() {
+        compareToReference("color-prop-04-t")
+    }
+
+    func testColorProp05T() {
+        compareToReference("color-prop-05-t")
+    }
+
     func testCoordsCoord01T() {
         compareToReference("coords-coord-01-t")
     }

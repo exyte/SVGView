@@ -1,0 +1,173 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					id: "Scene_1",
+					transform: [1, 0, 0, 1, 240, 180],
+					contents: [
+						SVGRect { x: -230, y: -170, width: 460, height: 300, fill: "#6363CE" },
+						SVGRect { x: -220, y: -160, width: 440, height: 280, fill: "white" },
+						SVGRect { x: -152, y: -108, width: 317, height: 221, fill: "white" },
+						SVGRect {
+							x: -152,
+							y: -108,
+							width: 317,
+							height: 221,
+							stroke: { fill: "#CCCCCC", width: 3 }
+						},
+						SVGGroup {
+							id: "contents",
+							contents: [
+								SVGText {
+									text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+									fill: "black",
+									transform: [1, 0, 0, 1, -148, 0]
+								},
+								SVGText {
+									text: "Vestibulum pulvinar. Duis laoreet, nunc vitae facilisis",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+									fill: "black",
+									transform: [1, 0, 0, 1, -148, 20]
+								},
+								SVGText {
+									text: "tristique, pede sem iaculis mi, non consectetuer lorem",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+									fill: "black",
+									transform: [1, 0, 0, 1, -148, 40]
+								},
+								SVGText {
+									text: "libero et est. Donec imperdiet purus sed odio. Duis",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+									fill: "black",
+									transform: [1, 0, 0, 1, -148, 60]
+								},
+								SVGText {
+									text: "venenatis tortor eu lectus. Suspendisse sed metus at",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+									fill: "black",
+									transform: [1, 0, 0, 1, -148, 80]
+								},
+								SVGText {
+									text: "metus viverra ultricies. Mauris porttitor, justo a vulputate",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 12 },
+									fill: "black",
+									transform: [1, 0, 0, 1, -148, 100]
+								}
+							]
+						},
+						SVGGroup {
+							id: "dropdown",
+							transform: [1, 0, 0, 1, 2, 0],
+							contents: [
+								SVGRect {
+									id: "drop-bg",
+									x: -150,
+									y: -107,
+									width: 118,
+									height: 190,
+									fill: "silver"
+								},
+								SVGRect { x: -143, width: 102, height: 34, fill: "silver" },
+								SVGText {
+									text: "Load",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 20, weight: "bold" },
+									fill: "black",
+									transform: [1, 0, 0, 1, -138, 24]
+								},
+								SVGRect { x: -143, y: 40, width: 102, height: 34, fill: "silver" },
+								SVGText {
+									text: "Save",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 20, weight: "bold" },
+									fill: "black",
+									transform: [1, 0, 0, 1, -138, 64]
+								},
+								SVGPath {
+									path: "M-149,83 h114 v-94",
+									stroke: { fill: "#666666", width: 4 }
+								},
+								SVGPath {
+									path: "M-149,83 v-94 h114",
+									stroke: { fill: "silver", width: 4 }
+								}
+							]
+						},
+						SVGGroup {
+							id: "menubar",
+							contents: [
+								SVGRect { x: -148, y: -62, width: 310, height: 46, fill: "silver" },
+								SVGPath { path: "M152,-52 l10,-10 v46 h-311 l10,-10 z", fill: "#666666" },
+								SVGRect { x: -144, y: -58, width: 302, height: 37, fill: "silver" },
+								SVGText {
+									text: "File",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 20, weight: "bold" },
+									fill: "black",
+									transform: [1, 0, 0, 1, -141, -32]
+								},
+								SVGText {
+									text: "Edit",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 20, weight: "bold" },
+									fill: "black",
+									transform: [1, 0, 0, 1, -90, -32]
+								}
+							]
+						},
+						SVGGroup {
+							id: "windowdecoration",
+							contents: [
+								SVGRect {
+									id: "windowbar",
+									x: -149,
+									y: -106,
+									width: 311,
+									height: 42,
+									fill: "#CCCCCC",
+									stroke: { fill: "white", width: 4 }
+								},
+								SVGText {
+									text: "Lorem",
+									font: { name: "SVGFreeSansASCII,sans-serif", size: 24, weight: "bold" },
+									textAnchor: "middle",
+									fill: "black",
+									transform: [1, 0, 0, 1, 5, -78]
+								},
+								SVGGroup {
+									id: "button",
+									contents: [
+										SVGRect { x: 120, y: -99, width: 26, height: 26, rx: 8, ry: 8, fill: "silver" },
+										SVGRect { x: 120, y: -99, width: 24, height: 24, rx: 8, ry: 8, fill: "#CCCCCC" },
+										SVGRect { x: 122, y: -97, width: 24, height: 24, rx: 8, ry: 8, fill: "#888888" },
+										SVGRect { x: 122, y: -97, width: 22, height: 22, rx: 8, ry: 8, fill: "silver" }
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.6 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}
