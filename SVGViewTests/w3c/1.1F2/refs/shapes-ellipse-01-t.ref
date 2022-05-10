@@ -55,7 +55,7 @@ SVGViewport {
 			contents: [
 				SVGText {
 					id: "revision",
-					text: "$Revision: 1.7 $",
+					text: "$Revision: 1.6 $",
 					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
 					fill: "black",
 					transform: [1, 0, 0, 1, 10, 340]
