@@ -34,14 +34,30 @@ struct SVGTextView: View {
     @ObservedObject var model: SVGText
 
     public var body: some View {
+        if let stroke = model.stroke, let fill = model.fill {
+            ZStack {
+                // TODO: just a temporary fix, should be replaced with a better solution
+                let hw = stroke.width / 2
+                filledText(fill: stroke.fill).offset(x: hw, y: hw)
+                filledText(fill: stroke.fill).offset(x: -hw, y: -hw)
+                filledText(fill: stroke.fill).offset(x: -hw, y: hw)
+                filledText(fill: stroke.fill).offset(x: hw, y: -hw)
+                filledText(fill: fill)
+            }
+        } else {
+            filledText(fill: model.fill)
+        }
+    }
+
+    private func filledText(fill: SVGPaint?) -> some View {
         Text(model.text)
-            .font(model.font?.toSwiftUI())
-            .lineLimit(1)
-            .alignmentGuide(.leading) { d in d[model.textAnchor] }
-            .alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
-            .position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
-            .apply(paint: model.fill)
-            .transformEffect(model.transform)
-            .frame(alignment: .topLeading)
+           .font(model.font?.toSwiftUI())
+           .lineLimit(1)
+           .alignmentGuide(.leading) { d in d[model.textAnchor] }
+           .alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
+           .position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
+           .apply(paint: fill)
+           .transformEffect(model.transform)
+           .frame(alignment: .topLeading)
     }
 }

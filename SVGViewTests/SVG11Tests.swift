@@ -33,6 +33,10 @@ class SVG11Tests: BaseTestCase {
         compareToReference("coords-coord-01-t")
     }
 
+    func testCoordsCoord02T() {
+        compareToReference("coords-coord-02-t")
+    }
+
     func testCoordsTrans01B() {
         compareToReference("coords-trans-01-b")
     }
@@ -67,6 +71,26 @@ class SVG11Tests: BaseTestCase {
 
     func testCoordsTrans09T() {
         compareToReference("coords-trans-09-t")
+    }
+
+    func testCoordsTrans10F() {
+        compareToReference("coords-trans-10-f")
+    }
+
+    func testCoordsTrans11F() {
+        compareToReference("coords-trans-11-f")
+    }
+
+    func testCoordsTrans12F() {
+        compareToReference("coords-trans-12-f")
+    }
+
+    func testCoordsTrans13F() {
+        compareToReference("coords-trans-13-f")
+    }
+
+    func testCoordsTrans14F() {
+        compareToReference("coords-trans-14-f")
     }
 
     func testCoordsTransformattr01F() {
