@@ -55,7 +55,7 @@ class SVGViewport: SVGGroup {
     }
 
     func layout(node: SVGNode, in size: CGSize) {
-        let svgSizeInPixels = computeSize(parent: size)
+        let svgSizeInPixels = size
 
         if let viewBox = self.viewBox {
             node.clip = SVGRect(viewBox)

@@ -71,6 +71,7 @@ extension SVGNode {
             GeometryReader { geometry in
                 SVGGroupView(model: { model.layout(node: self, in: geometry.size); return model }())
             }
+            .frame(idealWidth: model.width.ideal, idealHeight: model.height.ideal)
         case let model as SVGGroup:
             model.contentView()
         case let model as SVGRect:

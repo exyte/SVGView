@@ -20,6 +20,15 @@ enum SVGLength {
         self = .pixels(pixels)
     }
 
+    var ideal: CGFloat? {
+        switch self {
+        case .percent(_):
+            return nil
+        case let .pixels(pixels):
+            return pixels
+        }
+    }
+
     func toPixels(total: CGFloat) -> CGFloat {
         switch self {
         case let .percent(percent):
