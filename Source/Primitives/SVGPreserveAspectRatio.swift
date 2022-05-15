@@ -32,13 +32,13 @@ public class SVGPreserveAspectRatio {
         return CGAffineTransform(scaleX: sx, y: sy).translatedBy(x: dx - rect.minX, y: dy - rect.minY)
     }
 
-    public func slice(size: CGSize, into rectToFitIn: CGRect) -> SVGRect? {
+    public func slice(size: CGSize, into rectToFitIn: CGRect) -> CGRect? {
         if scaling == .slice {
             // setup new clipping to slice extra bits
             let newSize = Scaling.meet.fit(size: size, into: rectToFitIn)
             let newX = rectToFitIn.minX + xAlign.align(outer: rectToFitIn.width, inner: newSize.width)
             let newY = rectToFitIn.minY + yAlign.align(outer: rectToFitIn.height, inner: newSize.height)
-            return SVGRect(x: newX, y: newY, width: newSize.width, height: newSize.height)
+            return CGRect(x: newX, y: newY, width: newSize.width, height: newSize.height)
         }
         return nil
     }

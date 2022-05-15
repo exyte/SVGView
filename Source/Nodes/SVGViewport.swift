@@ -48,27 +48,33 @@ class SVGViewport: SVGGroup {
         serializer.add("yAlign", preserveAspectRatio.yAlign)
         super.serialize(serializer)
     }
-
+    
     private func computeSize(parent: CGSize) -> CGSize {
         return CGSize(width: width.toPixels(total: parent.width),
                       height: height.toPixels(total: parent.height))
     }
 
-    func layout(node: SVGNode, in size: CGSize) {
-        let svgSizeInPixels = size
+}
 
-        if let viewBox = self.viewBox {
-            node.clip = SVGRect(viewBox)
+struct SVGViewportView: View {
+
+    @ObservedObject var model: SVGViewport
+
+    public var body: some View {
+        GeometryReader { geometry in
+            let size = geometry.size
+            let viewBox = model.viewBox ?? CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            SVGGroupView(model: model)
+                .transformEffect(getTransform(viewBox: viewBox, size: size))
         }
-        let viewBox = self.viewBox ?? CGRect(x: 0, y: 0, width: svgSizeInPixels.width, height: svgSizeInPixels.height)
-        if let slice = preserveAspectRatio.slice(size: svgSizeInPixels, into: viewBox) {
-            node.clip = slice
-        }
+        .frame(idealWidth: model.width.ideal, idealHeight: model.height.ideal)
+        .clipped()
+    }
 
-        node.transform = preserveAspectRatio.layout(size: viewBox.size, into: svgSizeInPixels)
-
+    private func getTransform(viewBox: CGRect, size: CGSize) -> CGAffineTransform {
+        let transform = model.preserveAspectRatio.layout(size: viewBox.size, into: size)
         // move to (0, 0)
-        node.transform = node.transform.translatedBy(x: -viewBox.minX, y: -viewBox.minY)
+        return transform.translatedBy(x: -viewBox.minX, y: -viewBox.minY)
     }
 
 }
