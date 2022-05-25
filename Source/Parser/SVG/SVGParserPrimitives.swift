@@ -126,10 +126,10 @@ extension SVGHelper {
         case "rotate":
             if let angle = values[0].cgFloatValue {
                 if values.count == 1 {
-                    finalTransform = finalTransform.rotated(by: Utils.degreesToRadians(angle))
+                    finalTransform = finalTransform.rotated(by: angle.degreesToRadians)
                 } else if values.count == 3 {
                     if let x = values[1].cgFloatValue, let y = values[2].cgFloatValue {
-                        finalTransform = finalTransform.translatedBy(x: x, y: y).rotated(by: Utils.degreesToRadians(angle)).translatedBy(x: -x, y: -y)
+                        finalTransform = finalTransform.translatedBy(x: x, y: y).rotated(by: angle.degreesToRadians).translatedBy(x: -x, y: -y)
                     }
                 }
             }
