@@ -13,7 +13,23 @@ class SVGIndex {
     private var paints = [String: SVGPaint]()
     private var cssParser = CSSParser()
 
-    func fill(from element: XMLElement) {
+    init(element: XMLElement) {
+        fill(from: element)
+    }
+
+    func element(by id: String) -> XMLElement? {
+        elements[id]
+    }
+
+    func paint(by id: String) -> SVGPaint? {
+        paints[id]
+    }
+
+    func cssStyle(for element: XMLElement) -> [String: String] {
+        cssParser.getStyles(element: element)
+    }
+
+    private func fill(from element: XMLElement) {
         if let id = SVGHelper.parseId(element.attributes) {
             elements[id] = element
             switch element.name {
@@ -32,18 +48,6 @@ class SVGIndex {
                 fill(from: child)
             }
         }
-    }
-
-    func element(by id: String) -> XMLElement? {
-        elements[id]
-    }
-
-    func paint(by id: String) -> SVGPaint? {
-        paints[id]
-    }
-
-    func cssStyle(for element: XMLElement) -> [String: String] {
-        cssParser.getStyles(element: element)
     }
 
     private func parseFill(_ element: XMLElement) -> SVGPaint? {

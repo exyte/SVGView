@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension SVGHelper {
+public class SVGHelper: NSObject {
 
     static func parseUse(_ use: String?) -> String? {
         guard let use = use else {
@@ -19,18 +19,6 @@ extension SVGHelper {
 
     static func parseId(_ dict: [String: String]) -> String? {
         return dict["id"] ?? dict["xml:id"]
-    }
-
-    static func parseTextAnchor(_ string: String?) -> HorizontalAlignment {
-
-        if let anchor = string {
-            if anchor == "middle" {
-                return .center
-            } else if anchor == "end" {
-                return .trailing
-            }
-        }
-        return .leading
     }
 
     static func parseStroke(_ style: [String: String], index: SVGIndex) -> SVGStroke? {

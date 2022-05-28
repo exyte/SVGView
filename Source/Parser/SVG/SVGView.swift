@@ -11,8 +11,13 @@ public struct SVGView: View {
 
     public let svg: SVGNode?
 
+    public init(contentsOf url: URL) {
+        self.svg = SVGParser.parse(contentsOf: url)
+    }
+
+    @available(*, deprecated, message: "Use (contentsOf:) initializer instead")
     public init(fileURL: URL) {
-        self.svg = SVGParser.parse(fileURL: fileURL)
+        self.svg = SVGParser.parse(contentsOf: fileURL)
     }
 
     public init(data: Data) {

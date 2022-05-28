@@ -9,27 +9,30 @@ import SwiftUI
 
 public struct DOMParser {
 
-    static public func parse(fileURL: URL) -> XMLElement? {
-        commonParse(XMLParser(contentsOf: fileURL))
+    static public func parse(contentsOf url: URL, logger: SVGLogger = .console) -> XMLElement? {
+        parse(XMLParser(contentsOf: url), logger: logger)
     }
 
-    static public func parse(data: Data) -> XMLElement? {
-        commonParse(XMLParser(data: data))
+    @available(*, deprecated, message: "Use parse(contentsOf:) function instead")
+    static public func parse(fileURL: URL, logger: SVGLogger = .console) -> XMLElement? {
+        parse(XMLParser(contentsOf: fileURL), logger: logger)
     }
 
-    static public func parse(string: String?) -> XMLElement? {
-        guard let data = string?.data(using: .utf8) else {
-            return nil
-        }
-        return commonParse(XMLParser(data: data))
+    static public func parse(data: Data, logger: SVGLogger = .console) -> XMLElement? {
+        parse(XMLParser(data: data), logger: logger)
     }
 
-    static public func parse(stream: InputStream) -> XMLElement? {
-        commonParse(XMLParser(stream: stream))
+    static public func parse(string: String?, using encoding: String.Encoding = .utf8, logger: SVGLogger = .console) -> XMLElement? {
+        guard let data = string?.data(using: encoding) else { return nil }
+        return parse(XMLParser(data: data), logger: logger)
     }
 
-    static private func commonParse(_ parser: XMLParser?) -> XMLElement? {
-        let delegate = XMLDelegate()
+    static public func parse(stream: InputStream, logger: SVGLogger = .console) -> XMLElement? {
+        parse(XMLParser(stream: stream), logger: logger)
+    }
+
+    static private func parse(_ parser: XMLParser?, logger: SVGLogger) -> XMLElement? {
+        let delegate = XMLDelegate(logger: logger)
         parser?.delegate = delegate
         parser?.parse()
         return delegate.root
@@ -38,8 +41,13 @@ public struct DOMParser {
 
 class XMLDelegate: NSObject, XMLParserDelegate {
 
+    let logger: SVGLogger
     var root: XMLElement?
     var stack = [XMLElement]()
+
+    init(logger: SVGLogger) {
+        self.logger = logger
+    }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
         let element = XMLElement(name: elementName, attributes: attributeDict)
@@ -65,8 +73,7 @@ class XMLDelegate: NSObject, XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        // TODO: need to handle errors correctly
-        print(parseError.localizedDescription)
+        logger.log(error: parseError)
     }
 
 }

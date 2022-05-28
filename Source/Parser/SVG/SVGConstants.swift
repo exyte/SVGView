@@ -10,7 +10,6 @@ import Foundation
 open class SVGConstants {
 
     static let groupTags = ["svg", "g"]
-    static let defTags = ["defs", "clipPath"]
 
     static let availableStyleAttributes = [
         "stroke",
@@ -24,9 +23,7 @@ open class SVGConstants {
         "fill",
         "fill-rule",
         "fill-opacity",
-        "clip-path",
         "mask",
-        "opacity",
         "color",
         "stop-color",
         "stop-opacity",

@@ -9,17 +9,12 @@ import SwiftUI
 
 public class SVGURLImage: SVGImage, ObservableObject {
 
-    @Published public var src: String
+    public let src: String
+    public let data: Data?
 
-    public var data: Data? {
-        if let url = SVGParser.fileURL?.deletingLastPathComponent().appendingPathComponent(src) {
-            return try? Data(contentsOf: url)
-        }
-        return nil
-    }
-
-    public init(x: CGFloat = 0, y: CGFloat = 0, width: CGFloat = 0, height: CGFloat = 0, src: String) {
+    public init(x: CGFloat = 0, y: CGFloat = 0, width: CGFloat = 0, height: CGFloat = 0, src: String, data: Data?) {
         self.src = src
+        self.data = data
         super.init(x: x, y: y, width: width, height: height)
     }
 
