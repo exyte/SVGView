@@ -35,8 +35,9 @@ public struct SVGParser {
         return parse(element: xml, parentContext: SVGRootContext(
             logger: settings.logger,
             linker: settings.linker,
-            screen: SVGScreen(dpi: settings.dpi, width: 100, height: 100),
-            index: SVGIndex(element: xml)))
+            screen: SVGScreen.main(ppi: settings.ppi),
+            index: SVGIndex(element: xml),
+            defaultFontSize: settings.fontSize))
     }
 
     @available(*, deprecated, message: "Use parse(contentsOf:) function instead")

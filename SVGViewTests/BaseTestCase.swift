@@ -20,7 +20,7 @@ class BaseTestCase : XCTestCase {
         let refURL = bundle.url(forResource: fileName, withExtension: "ref", subdirectory: "w3c/\(dir)/refs/")!
 
         print(svgURL)
-        let node = SVGParser.parse(fileURL: svgURL)!
+        let node = SVGParser.parse(contentsOf: svgURL)!
         let content = Serializer.serialize(node)
         let reference = try! String(contentsOf: refURL)
 

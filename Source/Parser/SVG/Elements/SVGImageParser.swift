@@ -28,12 +28,12 @@ class SVGImageParser: SVGBaseElementParser {
         }
 
         do {
-            if let data = try context.linker?.load(src: src) {
+            if let data = try context.linker.load(src: src) {
                 return SVGURLImage(x: x, y: y, width: width, height: height, src: src, data: data)
             }
-            context.logger.log(message: "Couldn't find image `\(src)`")
+            context.log(message: "Couldn't find image `\(src)`")
         } catch {
-            context.logger.log(error: error)
+            context.log(error: error)
         }
         return SVGURLImage(x: x, y: y, width: width, height: height, src: src, data: nil)
     }

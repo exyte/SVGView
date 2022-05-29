@@ -12,27 +12,21 @@ public struct SVGSettings {
 
     public static let `default` = SVGSettings()
 
-    public let linker: SVGLinker?
+    public let linker: SVGLinker
     public let logger: SVGLogger
-    public let dpi: CGFloat
+    public let fontSize: CGFloat
+    public let ppi: Double
 
-    public init(linker: SVGLinker? = nil, logger: SVGLogger = .console, dpi: CGFloat = 90) {
+    public init(linker: SVGLinker = .none, logger: SVGLogger = .console, fontSize: CGFloat = 16, ppi: CGFloat = 96) {
         self.linker = linker
         self.logger = logger
-        self.dpi = dpi
-    }
-
-    public init(base: URL, logger: SVGLogger = .console, dpi: CGFloat = 90) {
-        self.init(linker: .base(url: base), logger: logger, dpi: dpi)
-    }
-
-    public init(relativeTo svgURL: URL, logger: SVGLogger = .console, dpi: CGFloat = 90) {
-        self.init(linker: .relative(to: svgURL), logger: logger, dpi: dpi)
+        self.fontSize = fontSize
+        self.ppi = ppi
     }
 
     func linkIfNeeded(to svgURL: URL) -> SVGSettings {
-        if linker == nil {
-            return SVGSettings(relativeTo: svgURL, logger: logger, dpi: dpi)
+        if linker === SVGLinker.none {
+            return SVGSettings(linker: .relative(to: svgURL), logger: logger, fontSize: fontSize, ppi: ppi)
         }
         return self
     }

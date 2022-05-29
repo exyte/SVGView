@@ -10,7 +10,7 @@ import SwiftUI
 class SVGTextParser: SVGBaseElementParser {
     override func doParse(context: SVGNodeContext, delegate: (XMLElement) -> SVGNode?) -> SVGNode? {
         let fontName = context.style("font-family") ?? "Serif"
-        let fontSize = context.style("font-size")?.cgFloatValue ?? 12
+        let fontSize = context.value(.fontSize)
         let fontWeight = context.style("font-weight") ?? "normal"
         let font = SVGFont(name: fontName, size: fontSize, weight: fontWeight)
         let textAnchor = parseTextAnchor(context.style("text-anchor"))

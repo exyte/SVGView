@@ -149,7 +149,7 @@ class SVGRefGenerator: XCTestCase {
         let url = bundle.url(forResource: name, withExtension: "svg", subdirectory: version)!
         let versionNumber = String(version.split(separator: "/")[1])
         let testDirectory = getTestDir(version: versionNumber)
-        let node = SVGParser.parse(fileURL: url)!
+        let node = SVGParser.parse(contentsOf: url)!
         let content = Serializer.serialize(node)
         let fileName = url.deletingPathExtension().lastPathComponent
         let path = testDirectory.appendingPathComponent(fileName).appendingPathExtension("ref")

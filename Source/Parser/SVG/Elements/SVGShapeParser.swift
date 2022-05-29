@@ -25,44 +25,40 @@ class SVGShapeParser: SVGBaseElementParser {
 
 class SVGRectParser: SVGShapeParser {
     override func parseLocus(context: SVGNodeContext) -> SVGShape? {
-        let x = SVGHelper.parseCGFloat(context.properties, "x")
-        let y = SVGHelper.parseCGFloat(context.properties, "y")
-        let width = SVGHelper.parseCGFloat(context.properties, "width")
-        let height = SVGHelper.parseCGFloat(context.properties, "height")
-        let rxOpt = SVGHelper.parseOptCGFloat(context.properties, "rx")
-        let ryOpt = SVGHelper.parseOptCGFloat(context.properties, "ry")
-        let rx = rxOpt ?? ryOpt ?? 0
-        let ry = ryOpt ?? rxOpt ?? 0
-        return SVGRect(x: x, y: y, width: width, height: height, rx: rx, ry: ry)
+        let rx = context.optional(.rx)
+        let ry = context.optional(.ry)
+        return SVGRect(
+            x: context.value(.x),
+            y: context.value(.y),
+            width: context.value(.width),
+            height: context.value(.height),
+            rx: rx ?? ry ?? 0,
+            ry: ry ?? rx ?? 0)
     }
 }
 
 class SVGCircleParser: SVGShapeParser {
     override func parseLocus(context: SVGNodeContext) -> SVGShape? {
-        let radius = SVGHelper.parseCGFloat(context.properties, "r")
-        let x = SVGHelper.parseCGFloat(context.properties, "cx")
-        let y = SVGHelper.parseCGFloat(context.properties, "cy")
-        return SVGCircle(cx: x, cy: y, r: radius)
+        return SVGCircle(
+            cx: context.value(.cx),
+            cy: context.value(.cy),
+            r: context.value(.r))
     }
 }
 
 class SVGEllipseParser: SVGShapeParser {
     override func parseLocus(context: SVGNodeContext) -> SVGShape? {
-        let x = SVGHelper.parseCGFloat(context.properties, "cx")
-        let y = SVGHelper.parseCGFloat(context.properties, "cy")
-        let rx = SVGHelper.parseCGFloat(context.properties, "rx")
-        let ry = SVGHelper.parseCGFloat(context.properties, "ry")
-        return SVGEllipse(cx: x, cy: y, rx: rx, ry: ry)
+        return SVGEllipse(
+            cx: context.value(.cx),
+            cy: context.value(.cy),
+            rx: context.value(.rx),
+            ry: context.value(.ry))
     }
 }
 
 class SVGLineParser: SVGShapeParser {
     override func parseLocus(context: SVGNodeContext) -> SVGShape? {
-        let x1 = SVGHelper.parseCGFloat(context.properties, "x1")
-        let y1 = SVGHelper.parseCGFloat(context.properties, "y1")
-        let x2 = SVGHelper.parseCGFloat(context.properties, "x2")
-        let y2 = SVGHelper.parseCGFloat(context.properties, "y2")
-        return SVGLine(x1, y1, x2, y2)
+        return SVGLine(context.value(.x1), context.value(.y1), context.value(.x2), context.value(.y2))
     }
 }
 

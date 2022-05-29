@@ -23,13 +23,6 @@ extension SVGHelper {
         return defaultValue
     }
 
-    static func parseOptCGFloat(_ attributes: [String: String], _ key: String) -> CGFloat? {
-        if let value = attributes[key], let result = doubleFromString(value) {
-            return CGFloat(result)
-        }
-        return .none
-    }
-
     static func doubleFromString(_ string: String) -> Double? {
         if string == "none" {
             return 0
@@ -38,12 +31,6 @@ extension SVGHelper {
         let scanner = Scanner(string: string)
         let value = scanner.scanDouble()
         let unit = scanner.scanCharacters(from: .unitCharacters)
-
-        if !scanner.isAtEnd {
-            let junk = scanner.scanUpToCharacters(from: []) ?? ""
-            print("Found trailing junk \"\(junk)\" in string \"\(string)\".")
-            return .none
-        }
 
         switch unit {
         case nil, "px":
@@ -177,7 +164,7 @@ fileprivate extension String {
     }
 }
 
-fileprivate extension CharacterSet {
+extension CharacterSet {
     /// Latin alphabet characters.
     static let latinAlphabet = CharacterSet(charactersIn: "a"..."z")
         .union(CharacterSet(charactersIn: "A"..."Z"))
