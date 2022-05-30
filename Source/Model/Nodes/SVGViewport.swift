@@ -63,12 +63,22 @@ struct SVGViewportView: View {
     public var body: some View {
         GeometryReader { geometry in
             let size = geometry.size
-            let viewBox = model.viewBox ?? CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            let viewBox = getViewBox(size: size)
             SVGGroupView(model: model)
                 .transformEffect(getTransform(viewBox: viewBox, size: size))
         }
         .frame(idealWidth: model.width.ideal, idealHeight: model.height.ideal)
         .clipped()
+    }
+
+    private func getViewBox(size: CGSize) -> CGRect {
+        if let viewBox = model.viewBox {
+            return viewBox
+        }
+        return CGRect(x: 0,
+                      y: 0,
+                      width: model.width.toPixels(total: size.width),
+                      height: model.height.toPixels(total: size.height))
     }
 
     private func getTransform(viewBox: CGRect, size: CGSize) -> CGAffineTransform {
