@@ -23,10 +23,14 @@ public class SVGText: SVGNode, ObservableObject {
         serializer.add("stroke", stroke)
         super.serialize(serializer)
     }
-    
-    public func contentView() -> some View {
-        SVGTextView(model: self)
-    }
+
+	public func contentView() ->  some View {
+		if self.stroke != nil || self.fill != nil {
+			return AnyView(SVGGUITextView(model: self))
+		} else {
+			return AnyView(SVGTextView(model: self))
+		}
+	}
 }
 
 struct SVGTextView: View {
@@ -51,13 +55,13 @@ struct SVGTextView: View {
 
     private func filledText(fill: SVGPaint?) -> some View {
         Text(model.text)
-           .font(model.font?.toSwiftUI())
-           .lineLimit(1)
-           .alignmentGuide(.leading) { d in d[model.textAnchor] }
-           .alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
-           .position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
-           .apply(paint: fill)
-           .transformEffect(model.transform)
-           .frame(alignment: .topLeading)
+            .font(model.font?.toSwiftUI())
+            .lineLimit(1)
+            .alignmentGuide(.leading) { d in d[model.textAnchor] }
+            .alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
+            .position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
+            .apply(paint: fill)
+            .transformEffect(model.transform)
+            .frame(alignment: .topLeading)
     }
 }
