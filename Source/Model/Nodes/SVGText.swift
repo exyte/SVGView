@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 public class SVGText: SVGNode, ObservableObject {
 
@@ -25,7 +26,7 @@ public class SVGText: SVGNode, ObservableObject {
     }
     
     public func contentView() -> some View {
-        SVGTextView(model: self)
+		SVGGUITextView(model: self)
     }
 }
 
@@ -60,4 +61,93 @@ struct SVGTextView: View {
            .transformEffect(model.transform)
            .frame(alignment: .topLeading)
     }
+}
+
+struct SVGGUITextView: View {
+	@ObservedObject var model: SVGText
+
+	var body: some View {
+		if model.stroke != nil {
+			StrokeTextLabel(model: model)
+		}
+	}
+}
+
+struct StrokeTextLabel: UIViewRepresentable {
+	var model: SVGText
+
+	init(model: SVGText) {
+		self.model = model
+	}
+
+	func makeUIView(context: Context) -> UIView {
+
+		let strokeColor = model.stroke?.fill
+		var resultView = UIView()
+		var kitColor = Color.black
+
+		switch strokeColor {
+		case _ as SVGLinearGradient:
+			return createGradientLabel(targetView: UIView(frame: CGRect(x: 0, y: 0, width: model.bounds().width, height: model.bounds().height)), letter: model.text, fontsize: model.font!.size, UIColor.blue, UIColor.green)
+		case _ as SVGRadialGradient:
+			break
+		case let color as SVGColor:
+			kitColor = color.toSwiftUI()
+			resultView = createPlainColorLabel(model: model, kitColor: kitColor)
+		default:
+			fatalError("Base SVGPaint is not convertable to SwiftUI")
+		}
+		return resultView
+	}
+
+	func updateUIView(_ uiView: UIView, context: Context) {
+	}
+}
+
+func createGradientLabel(targetView : UIView, letter : String,fontsize : CGFloat , _ startColor: UIColor = UIColor.init(named: "startColor")!, _ endColor: UIColor = UIColor.init(named: "endColor")!) -> UIView {
+	let gradientLayer = CAGradientLayer()
+   gradientLayer.frame = targetView.bounds
+   gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
+   targetView.layer.addSublayer(gradientLayer)
+   gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+   gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+
+	let label = UILabel(frame: targetView.bounds)
+	let strokeTextAttributes = [
+		NSAttributedString.Key.strokeColor : UIColor.red,
+		NSAttributedString.Key.foregroundColor : UIColor.clear,
+		NSAttributedString.Key.strokeWidth : -4.0,
+		NSAttributedString.Key.font : UIFont(name: "Arial", size: fontsize)!
+	] as [NSAttributedString.Key : Any]
+
+	label.attributedText = NSMutableAttributedString(string: letter, attributes: strokeTextAttributes)
+   targetView.addSubview(label)
+
+   targetView.layer.mask = label.layer
+	return targetView
+}
+
+func createPlainColorLabel(model: SVGText, kitColor: Color) -> UILabel {
+	let attributedStringParagraphStyle = NSMutableParagraphStyle()
+	attributedStringParagraphStyle.alignment = NSTextAlignment.center
+
+	let attributedString = NSAttributedString(
+		string: model.text,
+		attributes:[
+			NSAttributedString.Key.paragraphStyle: attributedStringParagraphStyle,
+			NSAttributedString.Key.strokeWidth: (model.stroke!.width / 4) as CGFloat,
+			NSAttributedString.Key.foregroundColor: UIColor.black,
+			NSAttributedString.Key.strokeColor: UIColor(cgColor:  kitColor.cgColor ?? CGColor(red: 255, green: 255, blue: 255, alpha: 1)),
+			NSAttributedString.Key.font: UIFont(name: "Arial", size: model.font!.size)!
+
+		]
+	)
+
+	let strokeLabel = UILabel(frame: CGRect.zero)
+	strokeLabel.attributedText = attributedString
+	strokeLabel.backgroundColor = UIColor.clear
+	strokeLabel.sizeToFit()
+	strokeLabel.center = CGPoint.init(x: 0.0, y: 0.0)
+
+	return strokeLabel
 }
