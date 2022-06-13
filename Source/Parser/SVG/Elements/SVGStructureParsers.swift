@@ -34,7 +34,8 @@ class SVGViewportParser: SVGGroupParser {
     }
 
     static func parseViewBox(_ attributes: [String: String], context: SVGContext) -> CGRect? {
-        if let string = attributes["viewBox"] {
+        // TODO: temporary solution, all attributes should be case insensitive
+        if let string = attributes[ignoreCase: "viewBox"] {
             let nums = string.components(separatedBy: .whitespaces)
             if nums.count == 4,
                let x = SVGLengthParser.xAxis.double(string: nums[0], context: context),
