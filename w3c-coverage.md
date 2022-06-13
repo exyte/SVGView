@@ -2,11 +2,11 @@
 
 This page is automatically generated and shows actual coverage of the [W3C SVG Test Suite](https://github.com/web-platform-tests/wpt/tree/master/svg) by this `SVGView` implementation. Currently there are two standards supported: [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/) and [SVG Tiny 1.2](https://www.w3.org/TR/SVGTiny12/).
 
-  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `18.9%`
+  * [SVG 1.1 (Second Edition)](#svg-11-second-edition): `19.3%`
     * [Animate](#animate-1): `0.0%`
     * [Color](#color-1): `83.3%`
     * [Conform](#conform-1): `0.0%`
-    * [Coords](#coords-1): `65.6%`
+    * [Coords](#coords-1): `71.8%`
     * [Extend](#extend-1): `0.0%`
     * [Filters](#filters-1): `0.0%`
     * [Fonts](#fonts-1): `0.0%`
@@ -51,7 +51,7 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 
 ## [SVG 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/)
 
-`18.9%` of tests covered (99/522). They can be splitted into following categories:
+`19.3%` of tests covered (101/522). They can be splitted into following categories:
 
 ### <a name='animate-1'></a> [Animate](https://www.w3.org/TR/SVG11/animate.html): `0.0%`
 
@@ -167,10 +167,10 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |❌|[conform-viewers-03-f](SVGViewTests/w3c/1.1F2/svg/conform-viewers-03-f.svg)|
 </details>
 
-### <a name='coords-1'></a> [Coords](https://www.w3.org/TR/SVG11/coords.html): `65.6%`
+### <a name='coords-1'></a> [Coords](https://www.w3.org/TR/SVG11/coords.html): `71.8%`
 
 <details>
-  <summary>(21/32) tests covered...</summary>
+  <summary>(23/32) tests covered...</summary>
 
 |Status  | Name|
 |------|-------|
@@ -200,8 +200,8 @@ This page is automatically generated and shows actual coverage of the [W3C SVG T
 |✅|[coords-transformattr-04-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-04-f.svg)|
 |✅|[coords-transformattr-05-f](SVGViewTests/w3c/1.1F2/svg/coords-transformattr-05-f.svg)|
 |❌|[coords-units-01-b](SVGViewTests/w3c/1.1F2/svg/coords-units-01-b.svg)|
-|❌|[coords-units-02-b](SVGViewTests/w3c/1.1F2/svg/coords-units-02-b.svg)|
-|❌|[coords-units-03-b](SVGViewTests/w3c/1.1F2/svg/coords-units-03-b.svg)|
+|✅|[coords-units-02-b](SVGViewTests/w3c/1.1F2/svg/coords-units-02-b.svg)|
+|✅|[coords-units-03-b](SVGViewTests/w3c/1.1F2/svg/coords-units-03-b.svg)|
 |❌|[coords-viewattr-01-b](SVGViewTests/w3c/1.1F2/svg/coords-viewattr-01-b.svg)|
 |❌|[coords-viewattr-02-b](SVGViewTests/w3c/1.1F2/svg/coords-viewattr-02-b.svg)|
 |❌|[coords-viewattr-03-b](SVGViewTests/w3c/1.1F2/svg/coords-viewattr-03-b.svg)|

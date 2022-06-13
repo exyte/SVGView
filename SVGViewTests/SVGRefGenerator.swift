@@ -41,6 +41,8 @@ class SVGRefGenerator: XCTestCase {
         createReference(name: "coords-transformattr-03-f", version: v11)
         createReference(name: "coords-transformattr-04-f", version: v11)
         createReference(name: "coords-transformattr-05-f", version: v11)
+        createReference(name: "coords-units-02-b", version: v11)
+        createReference(name: "coords-units-03-b", version: v11)
         createReference(name: "masking-opacity-01-b", version: v11)
         createReference(name: "painting-control-02-f", version: v11)
         createReference(name: "painting-control-03-f", version: v11)

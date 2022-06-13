@@ -1,0 +1,119 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					contents: [
+						SVGText {
+							text: "CSS pixel coordinate to user space conversion",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 17.333333333333332 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 60, 35]
+						},
+						SVGGroup {
+							transform: [4, 0, 0, 4, 5, 0],
+							contents: [
+								SVGCircle { cx: 7.5, cy: 7.5, r: 2.5, fill: "black" },
+								SVGCircle { cx: 7.5, cy: 7.5, r: 1.5, fill: "fuchsia" }
+							]
+						},
+						SVGText {
+							text: "Percentage coordinates to user space conversion",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 17.333333333333332 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 60, 85]
+						},
+						SVGGroup {
+							transform: [4, 0, 0, 4, 5, 50],
+							contents: [
+								SVGCircle { cx: 7.5, cy: 7.5, r: 2.5, fill: "black" },
+								SVGCircle {
+									cx: 7.502399999999999,
+									cy: 7.4988,
+									r: 1.4997734828966671,
+									fill: "fuchsia"
+								}
+							]
+						},
+						SVGText {
+							text: "CSS width/height to user space conversion",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 17.333333333333332 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 60, 140]
+						},
+						SVGGroup {
+							transform: [4, 0, 0, 4, 30, 115],
+							contents: [
+								SVGRect { x: -5, width: 10, height: 5, fill: "black" },
+								SVGRect { x: -5, y: 5, width: 10, height: 5, fill: "fuchsia" }
+							]
+						},
+						SVGText {
+							text: "Percentage width/height to user space conversion",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 17.333333333333332 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 60, 200]
+						},
+						SVGGroup {
+							transform: [4, 0, 0, 4, 30, 175],
+							contents: [
+								SVGRect { x: -5, width: 10, height: 5, fill: "black" },
+								SVGRect { x: -5, y: 5, width: 9.9984, height: 5.0004, fill: "fuchsia" }
+							]
+						},
+						SVGText {
+							text: "CSS and percentage length conversion",
+							font: { name: "SVGFreeSansASCII,sans-serif", size: 17.333333333333332 },
+							fill: "black",
+							transform: [1, 0, 0, 1, 140, 265]
+						},
+						SVGGroup {
+							transform: [4, 0, 4, 4, 30, 260],
+							contents: [
+								SVGCircle { r: 3.536, fill: "black" },
+								SVGCircle { cx: 10, r: 3.536, fill: "fuchsia" },
+								SVGCircle { cx: 20, r: 3.5358167486452126, fill: "green" },
+								SVGLine {
+									x1: -3.536,
+									y1: -3.536,
+									x2: 25,
+									y2: -3.536,
+									stroke: { fill: "#CCCCCC", width: 0.5 }
+								},
+								SVGLine {
+									x1: -3.536,
+									y1: 3.536,
+									x2: 25,
+									y2: 3.536,
+									stroke: { fill: "#CCCCCC", width: 0.5 }
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.8 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}

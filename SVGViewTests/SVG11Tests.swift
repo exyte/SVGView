@@ -113,6 +113,14 @@ class SVG11Tests: BaseTestCase {
         compareToReference("coords-transformattr-05-f")
     }
 
+    func testCoordsUnits02B() {
+        compareToReference("coords-units-02-b")
+    }
+
+    func testCoordsUnits03B() {
+        compareToReference("coords-units-03-b")
+    }
+
     func testMaskingOpacity01B() {
         compareToReference("masking-opacity-01-b")
     }
