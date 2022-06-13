@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { 'exyte' => 'info@exyte.com' }
   s.source           = { :git => 'https://github.com/exyte/SVGView.git', :tag => s.version.to_s }
-  s.social_media_url = 'http://exyte.com'
+  s.social_media_url = 'https://exyte.com'
 
   s.platform = :ios
   s.platform = :osx
