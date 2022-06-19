@@ -4,15 +4,9 @@
 
 <p><h4>SVG parser written in SwiftUI</h4></p>
 
+this forked from [exyte/SVGView](https://github.com/exyte/SVGView)
 ___
 
-<p> We are a development agency building
-  <a href="https://clutch.co/profile/exyte#review-731233">phenomenal</a> apps.</p>
-</br>
-
-<a href="https://exyte.com/contacts"><img src="https://i.imgur.com/vGjsQPt.png" width="134" height="34"></a> <a href="https://twitter.com/exyteHQ"><img src="https://i.imgur.com/DngwSn1.png" width="165" height="34"></a>
-
-</br></br>
 [![Travis CI](https://travis-ci.org/exyte/SVGView.svg?branch=master)](https://travis-ci.org/exyte/SVGView)
 [![Version](https://img.shields.io/cocoapods/v/SVGView.svg?style=flat)](http://cocoapods.org/pods/SVGView)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-0473B3.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -91,29 +85,7 @@ var body: some View {
 
 Our mission is to provide 100% support of all SVG standards: 1.1 (Second Edition), Tiny 1.2 and 2.0. However, this project is at its very beginning, so you can follow our progress on <a href="w3c-coverage.md">this page</a>. You can also check out <a href="https://github.com/exyte/SVGViewTests">SVGViewTests project</a> to see how well this framework handles every single SVG test case.
 
-# Installation
-
-## CocoaPods
-
-```ruby
-pod 'SVGView'
-```
-
-## Carthage
-
-```ogdl
-github "Exyte/SVGView"
-```
-
-## Swift Package Manager
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/exyte/SVGView.git", from: "1.0.0")
-]
-```
-
 # Requirements
 
-* iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 11+
+* iOS 13+ / watchOS 6+ / tvOS 13+ / macOS 11+
 * Xcode 11+
