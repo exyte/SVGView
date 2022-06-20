@@ -130,26 +130,30 @@ struct StrokeTextLabel: UIViewRepresentable {
 		return resultView
 	}
 
-	private func createOneColorStrokeLabel(model: SVGText, kitColor: Color) -> UILabel {
+	private func createOneColorStrokeLabel(model: SVGText, kitColor: Color) -> UIView {
 		guard let stroke = model.stroke, let font = model.font else {
-			return UILabel()
+			return UIView()
 		}
-		let strokeWidthPercent = stroke.width / font.size * 100 // you need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
-		let attributedString = NSAttributedString(
-			string: model.text,
-			attributes:[
-				NSAttributedString.Key.strokeWidth: (strokeWidthPercent) as CGFloat,
-				NSAttributedString.Key.foregroundColor: UIColor.black,
-				NSAttributedString.Key.backgroundColor: UIColor.green,
-				NSAttributedString.Key.strokeColor: UIColor(cgColor:  kitColor.cgColor ?? CGColor(red: 255, green: 255, blue: 255, alpha: 1)),
-				NSAttributedString.Key.font: UIFont(name: getLabelFont(model: model), size: font.size) ?? .systemFont(ofSize: 15)
-			]
-		)
+		let strokeTextAttributes = [
+			NSAttributedString.Key.strokeColor : UIColor(kitColor),
+			NSAttributedString.Key.foregroundColor : UIColor.clear,
+			NSAttributedString.Key.strokeWidth : stroke.width / font.size * 100, // you need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
+			NSAttributedString.Key.font : UIFont(name: getLabelFont(model: model), size: font.size) ?? .systemFont(ofSize: 15)
+		] as [NSAttributedString.Key : Any]
 
-		let strokeLabel = UILabel(frame: CGRect.zero)
-		strokeLabel.attributedText = attributedString
+		let strokeLabel = UILabel(frame: .zero)
+		strokeLabel.attributedText = NSMutableAttributedString(string: model.text, attributes: strokeTextAttributes)
 
-		return strokeLabel
+		var size = strokeLabel.attributedText?.boundingRect(with: .zero, options: [], context: nil)
+		size = CGRect(x: 0, y: 0, width: size?.width ?? 0, height: (size?.height ?? 0) + stroke.width)
+		strokeLabel.frame = size ?? CGRect()
+
+		let resultView = UIView(frame: size ?? CGRect())
+		resultView.backgroundColor = .blue
+
+		resultView.addSubview(strokeLabel)
+
+		return resultView
 	}
 
 	private func createGradientLabel(model: SVGText, startColor: UIColor, endColor: UIColor) -> UIView {
