@@ -74,6 +74,11 @@ struct SVGGUITextView: View {
 			StrokeTextLabel(model: model)
 			//TODO : need to fix postion to y axis
 				.offset(x: model.transform.tx, y: model.transform.ty - height)
+		case _ as SVGRadialGradient:
+			let height = getHeightOfLabel(model: model)
+			StrokeTextLabel(model: model)
+			//TODO : need to fix postion to y axis
+				.offset(x: model.transform.tx, y: model.transform.ty - height)
 		case _ as SVGColor:
 			let height = getHeightOfLabel(model: model)
 			if model.stroke?.width != nil {
@@ -223,6 +228,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let gradientColors = getGradientColors(gradient: gradient)
 		gradientLayer.colors = [gradientColors[0].cgColor, gradientColors[1].cgColor]
 		let gradientCoordinates = getLinearGradientCoordinates(rect: size , gradient: gradient)
+		gradientLayer.locations = getGradientLoactions(stops: gradientCoordinates.stops)
 		gradientLayer.startPoint = CGPoint(x: gradientCoordinates.0 , y: gradientCoordinates.1)
 		gradientLayer.endPoint = CGPoint(x: gradientCoordinates.2, y: gradientCoordinates.3)
 
@@ -230,7 +236,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 		resultView.layer.addSublayer(gradientLayer)
 		resultView.addSubview(strokeLabel)
 		resultView.layer.mask = strokeLabel.layer
-		
+
 		return resultView
 	}
 
@@ -255,12 +261,13 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let gradientCoordinates = getLinearGradientCoordinates(rect: size, gradient: gradient)
 		gradientLayer.startPoint = CGPoint(x: gradientCoordinates.0 , y: gradientCoordinates.1)
 		gradientLayer.endPoint = CGPoint(x: gradientCoordinates.2, y: gradientCoordinates.3)
+		gradientLayer.locations = getGradientLoactions(stops: gradientCoordinates.stops)
 
 		resultView.layer.mask = label.layer
 		return resultView
 	}
 
-	private func getGradientColors(gradient: SVGLinearGradient) -> [UIColor] {
+	private func getGradientColors(gradient: SVGGradient) -> [UIColor] {
 		var uiColorArr: [UIColor] = []
 		_ = gradient.stops.map { stop in
 			uiColorArr.append(UIColor(stop.color.toSwiftUI()))
@@ -314,10 +321,21 @@ private func getHeightOfLabel(model: SVGText) -> CGFloat {
 	}
 }
 
-private func getLinearGradientCoordinates(rect: CGRect, gradient: SVGLinearGradient) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
-	let nx1 =  (gradient.x1 - rect.minX) / rect.size.width
-	let ny1 =  (gradient.y1 - rect.minY) / rect.size.height
-	let nx2 =  (gradient.x2 - rect.minX) / rect.size.width
-	let ny2 =  (gradient.y2 - rect.minY) / rect.size.height
-	return (nx1, ny1, nx2, ny2)
+private func getLinearGradientCoordinates(rect: CGRect, gradient: SVGLinearGradient) -> (x1: CGFloat, y1: CGFloat, x2:  CGFloat, y2: CGFloat, stops: [CGFloat]) {
+	let suiStops = gradient.stops.map { stop in
+		stop.offset
+	}
+	let x1 = gradient.userSpace ? (gradient.x1 - rect.minX) / rect.size.width : gradient.x1
+	let y1 = gradient.userSpace ? (gradient.y1 - rect.minY) / rect.size.height : gradient.y1
+	let x2 = gradient.userSpace ? (gradient.x2 - rect.minX) / rect.size.width : gradient.x2
+	let y2 = gradient.userSpace ? (gradient.y2 - rect.minY) / rect.size.height : gradient.y2
+	return (x1, y1, x2, y2, suiStops)
+}
+
+private func getGradientLoactions(stops: [CGFloat]) -> [NSNumber] {
+	var locations: [NSNumber] = []
+	for stop in stops {
+		locations.append(stop as NSNumber)
+	}
+	return locations
 }
