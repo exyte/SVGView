@@ -72,25 +72,29 @@ struct SVGGUITextView: View {
 
 		switch getLabelColor(model: model) {
 		case _ as SVGLinearGradient:
-			let height = getHeightOfLabel(model: model)
+			let size = getLabelSize(model: model)
 			StrokeTextLabel(model: model)
 			//TODO: need to fix postion to y axis
-				.offset(x: model.transform.tx, y: model.transform.ty - height)
+//				.offset(x: model.transform.tx, y: model.transform.ty - size.height)
+				.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - size.height))
+				.frame(minWidth: size.width, minHeight: size.height)
 		case _ as SVGRadialGradient:
-			let height = getHeightOfLabel(model: model)
+			let size = getLabelSize(model: model)
 			StrokeTextLabel(model: model)
 			//TODO: need to fix postion to y axis
-				.offset(x: model.transform.tx, y: model.transform.ty - height)
+//				.offset(x: model.transform.tx, y: model.transform.ty - size.height)
+				.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - size.height))
+				.frame(minWidth: size.width, minHeight: size.height)
 		case _ as SVGColor:
-			let height = getHeightOfLabel(model: model)
+			let size = getLabelSize(model: model)
 			if model.stroke?.width != nil {
 				StrokeTextLabel(model: model)
 					.lineLimit(1)
 					.alignmentGuide(.leading) { d in d[model.textAnchor] }
 					.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
 					.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
-					.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - height))
-					.frame(alignment: .topLeading)
+					.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - size.height))
+					.frame(minWidth: size.width, minHeight: size.height, alignment: .topLeading)
 				//TODO: need to fix postion to y axis
 			} else {
 			Text(model.text)
@@ -102,6 +106,7 @@ struct SVGGUITextView: View {
 				.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
 				.transformEffect(model.transform)
 				.frame(alignment: .topLeading)
+				.minimumScaleFactor(0.3)
 			}
 		default:
 			Text("")
@@ -109,7 +114,14 @@ struct SVGGUITextView: View {
 	}
 }
 
-
+// You need this class because view should be in top left corner, other it will be moving by Y axis with window
+class FlippedView: NSView {
+	override var isFlipped: Bool {
+		get {
+			return true
+		}
+	}
+}
 
 struct StrokeTextLabel: NSViewRepresentable {
 	@ObservedObject var model: SVGText
@@ -124,7 +136,7 @@ struct StrokeTextLabel: NSViewRepresentable {
 	private func getStrokeLabel() -> NSView {
 		let strokeColor = model.stroke?.fill
 		let fillColor = model.fill
-		let resultView = NSView()
+		let resultView = FlippedView()
 
 		switch fillColor {
 		case nil:
@@ -306,9 +318,9 @@ private func getLabelFont(model: SVGText) -> String {
 }
 
 //need this method because you cant get height of view in any other way
-private func getHeightOfLabel(model: SVGText) -> CGFloat {
+private func getLabelSize(model: SVGText) -> CGRect {
 	guard let fontSize = model.font?.size else {
-		return 0
+		return CGRect.zero
 	}
 	if let width = model.stroke?.width {
 		let strokeTextAttributes = [
@@ -321,14 +333,21 @@ private func getHeightOfLabel(model: SVGText) -> CGFloat {
 		let attributedString = NSAttributedString(string: model.text,
 												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
 		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-		return size.height
+		return size
 	} else {
-		let strokeTextLayer = CATextLayer()
-		strokeTextLayer.string = model.text
-		strokeTextLayer.font = NSFont(name: getLabelFont(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
-		let size = strokeTextLayer.frame
+		let strokeTextAttributes = [
+			NSAttributedString.Key.foregroundColor : NSColor.black,
+			NSAttributedString.Key.font : NSFont(name: getLabelFont(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		] as [NSAttributedString.Key : Any]
 
-		return size.height
+		let strokeTextLayer = CATextLayer()
+		let attributedString = NSAttributedString(string: model.text,
+												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
+		strokeTextLayer.string = attributedString
+
+		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+
+		return size
 	}
 }
 
