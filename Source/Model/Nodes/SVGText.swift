@@ -198,21 +198,21 @@ struct StrokeTextLabel: NSViewRepresentable {
 			return NSView()
 		}
 		let strokeTextAttributes = [
-			NSAttributedString.Key.font : NSFont(name: getLabelFont(model: model), size: font.size) ?? .systemFont(ofSize: 15)
+			NSAttributedString.Key.font : NSFont(name: getLabelFont(model: model), size: font.size) ?? .systemFont(ofSize: 15),
+			NSAttributedString.Key.foregroundColor: NSColor(kitColor)
 		] as [NSAttributedString.Key : Any]
 
-		let strokeLabel = NSTextField()
-		
-
-		strokeLabel.textColor = NSColor(kitColor)
-		strokeLabel.attributedStringValue = NSMutableAttributedString(string: model.text, attributes: strokeTextAttributes)
-
-		var size = strokeLabel.attributedStringValue.boundingRect(with: .zero, options: [], context: nil)
-		size = CGRect(x: 0, y: 0, width: size.width , height: size.height )
-		strokeLabel.frame = size
+//		let strokeLabel = NSTextField()
+		let attributedString = NSAttributedString(string: model.text,
+												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
+		let strokeTextLayer = CATextLayer()
+		strokeTextLayer.string = attributedString
+		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+		strokeTextLayer.frame = size
 
 		let resultView = NSView(frame: size )
-		resultView.addSubview(strokeLabel)
+		resultView.wantsLayer = true
+		resultView.layer = strokeTextLayer
 
 		return resultView
 	}
