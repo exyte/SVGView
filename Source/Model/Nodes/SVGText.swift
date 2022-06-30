@@ -71,7 +71,7 @@ struct SVGGUITextView: View {
 	var body: some View {
 
 		switch getLabelColor(model: model) {
-		case _ as SVGLinearGradient:
+		case _ as SVGLinearGradient, _ as SVGRadialGradient :
 			let size = getLabelSize(model: model)
 			StrokeTextLabel(model: model)
 				.lineLimit(1)
@@ -81,18 +81,9 @@ struct SVGGUITextView: View {
 				.transformEffect(model.transform)
 				.frame(alignment: .topLeading)
 				.frame(minWidth: size.width, minHeight: size.height)
-		case _ as SVGRadialGradient:
-			let size = getLabelSize(model: model)
-			StrokeTextLabel(model: model)
-				.lineLimit(1)
-				.alignmentGuide(.leading) { d in d[model.textAnchor] }
-				.alignmentGuide(VerticalAlignment.top) { _ in size.height }
-				.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
-				.transformEffect(model.transform)
-				.frame(alignment: .topLeading)
 		case _ as SVGColor:
-			let size = getLabelSize(model: model)
 			if model.stroke?.width != nil {
+				let size = getLabelSize(model: model)
 				StrokeTextLabel(model: model)
 					.lineLimit(1)
 					.alignmentGuide(.leading) { d in d[model.textAnchor] }
@@ -119,7 +110,7 @@ struct SVGGUITextView: View {
 	}
 }
 
-// You need this class because view should be in top left corner, other it will be moving by Y axis with window
+// You need this class because strokeLabel should be in top left corner, otherwise it will be moving by Y axis with window
 class FlippedView: NSView {
 	override var isFlipped: Bool {
 		get {
@@ -143,6 +134,7 @@ struct StrokeTextLabel: NSViewRepresentable {
 		let fillColor = model.fill
 		let resultView = FlippedView()
 
+		//we use two switches because we need to put fill at first, and then put above it stroke
 		switch fillColor {
 		case nil:
 			break
@@ -208,7 +200,6 @@ struct StrokeTextLabel: NSViewRepresentable {
 			NSAttributedString.Key.foregroundColor: NSColor(kitColor)
 		] as [NSAttributedString.Key : Any]
 
-//		let strokeLabel = NSTextField()
 		let attributedString = NSAttributedString(string: model.text,
 												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
 		let strokeTextLayer = CATextLayer()
@@ -276,10 +267,9 @@ struct StrokeTextLabel: NSViewRepresentable {
 												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
 		strokeTextLayer.string = attributedString
 
-		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
 
 		strokeTextLayer.frame = size
-
 
 		let gradientLayer = CAGradientLayer()
 		gradientLayer.frame = size
@@ -306,22 +296,6 @@ struct StrokeTextLabel: NSViewRepresentable {
 		return NSColorArr
 	}
 
-}
-
-private func getLabelColor (model: SVGText) -> SVGPaint {
-	if let strokeColor = model.stroke?.fill {
-		return strokeColor
-	} else if let fillColor = model.fill {
-		return fillColor
-	}
-	return SVGPaint()
-}
-
-private func getLabelFont(model: SVGText) -> String {
-	let separator = ","
-	let fontString = model.font?.name
-	let fonts = fontString?.components(separatedBy: separator)
-	return fonts?[0] ?? ""
 }
 
 //need this method because you cant get height of view in any other way
@@ -359,26 +333,6 @@ private func getLabelSize(model: SVGText) -> CGRect {
 	}
 }
 
-private func getLinearGradientCoordinates(rect: CGRect, gradient: SVGLinearGradient) -> (x1: CGFloat, y1: CGFloat, x2:  CGFloat, y2: CGFloat, stops: [CGFloat]) {
-	let suiStops = gradient.stops.map { stop in
-		stop.offset
-	}
-	let x1 = gradient.userSpace ? (gradient.x1 - rect.minX) / rect.size.width : gradient.x1
-	let y1 = gradient.userSpace ? (gradient.y1 - rect.minY) / rect.size.height : gradient.y1
-	let x2 = gradient.userSpace ? (gradient.x2 - rect.minX) / rect.size.width : gradient.x2
-	let y2 = gradient.userSpace ? (gradient.y2 - rect.minY) / rect.size.height : gradient.y2
-	return (x1, y1, x2, y2, suiStops)
-}
-
-private func getGradientLoactions(stops: [CGFloat]) -> [NSNumber] {
-	var locations: [NSNumber] = []
-	for stop in stops {
-		locations.append(stop as NSNumber)
-	}
-	return locations
-}
-
-
 #else
 import UIKit
 
@@ -388,16 +342,7 @@ struct SVGGUITextView: View {
 	var body: some View {
 
 		switch getLabelColor(model: model) {
-		case _ as SVGLinearGradient:
-			let height = getHeightOfLabel(model: model)
-			StrokeTextLabel(model: model)
-				.lineLimit(1)
-				.alignmentGuide(.leading) { d in d[model.textAnchor] }
-				.alignmentGuide(VerticalAlignment.top) { _ in height }
-				.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
-				.transformEffect(model.transform)
-				.frame(alignment: .topLeading)
-		case _ as SVGRadialGradient:
+		case _ as SVGLinearGradient, _ as SVGRadialGradient:
 			let height = getHeightOfLabel(model: model)
 			StrokeTextLabel(model: model)
 				.lineLimit(1)
@@ -417,15 +362,15 @@ struct SVGGUITextView: View {
 					.transformEffect(model.transform)
 					.frame(alignment: .topLeading)
 			} else {
-			Text(model.text)
-				.font(model.font?.toSwiftUI())
-				.lineLimit(1)
-				.alignmentGuide(.leading) { d in d[model.textAnchor] }
-				.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
-				.apply(paint: model.fill)
-				.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
-				.transformEffect(model.transform)
-				.frame(alignment: .topLeading)
+				Text(model.text)
+					.font(model.font?.toSwiftUI())
+					.lineLimit(1)
+					.alignmentGuide(.leading) { d in d[model.textAnchor] }
+					.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
+					.apply(paint: model.fill)
+					.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
+					.transformEffect(model.transform)
+					.frame(alignment: .topLeading)
 			}
 		default:
 			Text("")
@@ -447,7 +392,8 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let strokeColor = model.stroke?.fill
 		let fillColor = model.fill
 		let resultView = UIView()
-
+		
+		//we use two switches because we need to put fill at first, and then put above it stroke
 		switch fillColor {
 		case nil:
 			break
@@ -539,10 +485,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let strokeLabel = UILabel(frame: .zero)
 		strokeLabel.attributedText = NSMutableAttributedString(string: model.text, attributes: strokeTextAttributes)
 
-		guard var size = strokeLabel.attributedText?.boundingRect(with: .zero,
-																  options: [],
-																  context: nil)
-		else {
+		guard var size = strokeLabel.attributedText?.boundingRect(with: .zero, options: [], context: nil) else {
 			return UIView()
 		}
 
@@ -600,23 +543,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 		}
 		return uiColorArr
 	}
-
-}
-
-private func getLabelColor (model: SVGText) -> SVGPaint {
-	if let strokeColor = model.stroke?.fill {
-		return strokeColor
-	} else if let fillColor = model.fill {
-		return fillColor
-	}
-	return SVGPaint()
-}
-
-private func getLabelFont(model: SVGText) -> String {
-	let separator = ","
-	let fontString = model.font?.name
-	let fonts = fontString?.components(separatedBy: separator)
-	return fonts?[0] ?? ""
+	
 }
 
 //need this method because you cant get height of view in any other way
@@ -647,6 +574,15 @@ private func getHeightOfLabel(model: SVGText) -> CGFloat {
 	}
 }
 
+#endif
+
+private func getLabelFont(model: SVGText) -> String {
+	let separator = ","
+	let fontString = model.font?.name
+	let fonts = fontString?.components(separatedBy: separator)
+	return fonts?[0] ?? ""
+}
+
 private func getLinearGradientCoordinates(rect: CGRect, gradient: SVGLinearGradient) -> (x1: CGFloat, y1: CGFloat, x2:  CGFloat, y2: CGFloat, stops: [CGFloat]) {
 	let suiStops = gradient.stops.map { stop in
 		stop.offset
@@ -665,4 +601,12 @@ private func getGradientLoactions(stops: [CGFloat]) -> [NSNumber] {
 	}
 	return locations
 }
-#endif
+
+private func getLabelColor (model: SVGText) -> SVGPaint {
+	if let strokeColor = model.stroke?.fill {
+		return strokeColor
+	} else if let fillColor = model.fill {
+		return fillColor
+	}
+	return SVGPaint()
+}
