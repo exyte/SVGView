@@ -74,7 +74,6 @@ struct SVGGUITextView: View {
 		case _ as SVGLinearGradient:
 			let size = getLabelSize(model: model)
 			StrokeTextLabel(model: model)
-			//TODO: need to fix postion to y axis
 				.lineLimit(1)
 				.alignmentGuide(.leading) { d in d[model.textAnchor] }
 				.alignmentGuide(VerticalAlignment.top) { _ in size.height }
@@ -85,32 +84,34 @@ struct SVGGUITextView: View {
 		case _ as SVGRadialGradient:
 			let size = getLabelSize(model: model)
 			StrokeTextLabel(model: model)
-			//TODO: need to fix postion to y axis
-//				.offset(x: model.transform.tx, y: model.transform.ty - size.height)
-				.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - size.height))
-				.frame(minWidth: size.width, minHeight: size.height)
+				.lineLimit(1)
+				.alignmentGuide(.leading) { d in d[model.textAnchor] }
+				.alignmentGuide(VerticalAlignment.top) { _ in size.height }
+				.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
+				.transformEffect(model.transform)
+				.frame(alignment: .topLeading)
 		case _ as SVGColor:
 			let size = getLabelSize(model: model)
 			if model.stroke?.width != nil {
 				StrokeTextLabel(model: model)
 					.lineLimit(1)
 					.alignmentGuide(.leading) { d in d[model.textAnchor] }
-					.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
-					.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
-					.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - size.height))
-					.frame(minWidth: size.width, minHeight: size.height, alignment: .topLeading)
-				//TODO: need to fix postion to y axis
+					.alignmentGuide(VerticalAlignment.top) { _ in size.height }
+					.position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
+					.transformEffect(model.transform)
+					.frame(alignment: .topLeading)
+					.frame(minWidth: size.width, minHeight: size.height)
 			} else {
-			Text(model.text)
-				.font(model.font?.toSwiftUI())
-				.lineLimit(1)
-				.alignmentGuide(.leading) { d in d[model.textAnchor] }
-				.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
-				.apply(paint: model.fill)
-				.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
-				.transformEffect(model.transform)
-				.frame(alignment: .topLeading)
-				.minimumScaleFactor(0.3)
+				Text(model.text)
+					.font(model.font?.toSwiftUI())
+					.lineLimit(1)
+					.alignmentGuide(.leading) { d in d[model.textAnchor] }
+					.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
+					.apply(paint: model.fill)
+					.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
+					.transformEffect(model.transform)
+					.frame(alignment: .topLeading)
+					.minimumScaleFactor(0.3)
 			}
 		default:
 			Text("")
@@ -339,7 +340,7 @@ private func getLabelSize(model: SVGText) -> CGRect {
 		let attributedString = NSAttributedString(string: model.text,
 												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
 		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-		size = CGRect(x: 0, y: 0, width: size.width + width / 2, height: size.height + width / 2)
+		size = CGRect(x: 0, y: 0, width: size.width + width, height: size.height + width)
 		return size
 	} else {
 		let strokeTextAttributes = [
@@ -390,23 +391,30 @@ struct SVGGUITextView: View {
 		case _ as SVGLinearGradient:
 			let height = getHeightOfLabel(model: model)
 			StrokeTextLabel(model: model)
-			//TODO : need to fix postion to y axis
-				.offset(x: model.transform.tx, y: model.transform.ty - height)
+				.lineLimit(1)
+				.alignmentGuide(.leading) { d in d[model.textAnchor] }
+				.alignmentGuide(VerticalAlignment.top) { _ in height }
+				.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
+				.transformEffect(model.transform)
+				.frame(alignment: .topLeading)
 		case _ as SVGRadialGradient:
 			let height = getHeightOfLabel(model: model)
 			StrokeTextLabel(model: model)
-			//TODO : need to fix postion to y axis
-				.offset(x: model.transform.tx, y: model.transform.ty - height)
+				.lineLimit(1)
+				.alignmentGuide(.leading) { d in d[model.textAnchor] }
+				.alignmentGuide(VerticalAlignment.top) { _ in height }
+				.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
+				.transformEffect(model.transform)
+				.frame(alignment: .topLeading)
 		case _ as SVGColor:
 			let height = getHeightOfLabel(model: model)
 			if model.stroke?.width != nil {
 				StrokeTextLabel(model: model)
 					.lineLimit(1)
 					.alignmentGuide(.leading) { d in d[model.textAnchor] }
-					.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
+					.alignmentGuide(VerticalAlignment.top) { _ in height }
 					.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
-				//TODO : need to fix postion to y axis
-					.transformEffect(CGAffineTransform(a: model.transform.a, b: model.transform.b, c: model.transform.c, d: model.transform.d, tx: model.transform.tx, ty: model.transform.ty - height))
+					.transformEffect(model.transform)
 					.frame(alignment: .topLeading)
 			} else {
 			Text(model.text)
