@@ -71,12 +71,13 @@ struct SVGGUITextView: View {
 	var body: some View {
 
 		switch getLabelColor(model: model) {
-		case _ as SVGLinearGradient, _ as SVGRadialGradient :
+		case _ as SVGLinearGradient, _ as SVGRadialGradient:
 			let size = getLabelSize(model: model)
 			StrokeTextLabel(model: model)
 				.lineLimit(1)
 				.alignmentGuide(.leading) { d in d[model.textAnchor] }
 				.alignmentGuide(VerticalAlignment.top) { _ in size.height }
+				.offset(x: -(model.stroke?.width ?? 0) / 2, y: (model.stroke?.width ?? 0) / 2)
 				.position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
 				.transformEffect(model.transform)
 				.frame(alignment: .topLeading)
@@ -88,6 +89,7 @@ struct SVGGUITextView: View {
 					.lineLimit(1)
 					.alignmentGuide(.leading) { d in d[model.textAnchor] }
 					.alignmentGuide(VerticalAlignment.top) { _ in size.height }
+					.offset(x: -(model.stroke?.width ?? 0) / 2, y: (model.stroke?.width ?? 0) / 2)
 					.position(x: 0, y: 0) // just to specify that positioning is global, actual coords are in transform
 					.transformEffect(model.transform)
 					.frame(alignment: .topLeading)
@@ -343,21 +345,23 @@ struct SVGGUITextView: View {
 
 		switch getLabelColor(model: model) {
 		case _ as SVGLinearGradient, _ as SVGRadialGradient:
-			let height = getHeightOfLabel(model: model)
+			let height = getLabelHeight(model: model)
 			StrokeTextLabel(model: model)
 				.lineLimit(1)
 				.alignmentGuide(.leading) { d in d[model.textAnchor] }
 				.alignmentGuide(VerticalAlignment.top) { _ in height }
+				.offset(x: (model.stroke?.width ?? 0) / 2, y: (model.stroke?.width ?? 0) / 2)
 				.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
 				.transformEffect(model.transform)
 				.frame(alignment: .topLeading)
 		case _ as SVGColor:
-			let height = getHeightOfLabel(model: model)
+			let height = getLabelHeight(model: model)
 			if model.stroke?.width != nil {
 				StrokeTextLabel(model: model)
 					.lineLimit(1)
 					.alignmentGuide(.leading) { d in d[model.textAnchor] }
 					.alignmentGuide(VerticalAlignment.top) { _ in height }
+					.offset(x: (model.stroke?.width ?? 0) / 2, y: (model.stroke?.width ?? 0) / 2)
 					.position(x: 0, y: 0) //to specify that positioning is global, coords are in transform
 					.transformEffect(model.transform)
 					.frame(alignment: .topLeading)
@@ -371,6 +375,7 @@ struct SVGGUITextView: View {
 					.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
 					.transformEffect(model.transform)
 					.frame(alignment: .topLeading)
+					.minimumScaleFactor(0.3)
 			}
 		default:
 			Text("")
@@ -392,7 +397,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let strokeColor = model.stroke?.fill
 		let fillColor = model.fill
 		let resultView = UIView()
-		
+
 		//we use two switches because we need to put fill at first, and then put above it stroke
 		switch fillColor {
 		case nil:
@@ -437,11 +442,15 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let strokeLabel = UILabel(frame: .zero)
 		strokeLabel.attributedText = NSMutableAttributedString(string: model.text, attributes: strokeTextAttributes)
 
-		var size = strokeLabel.attributedText?.boundingRect(with: .zero, options: [], context: nil)
-		size = CGRect(x: 0, y: 0, width: (size?.width ?? 0) + stroke.width, height: (size?.height ?? 0) + stroke.width)
-		strokeLabel.frame = size ?? CGRect()
+		guard var size = strokeLabel.attributedText?.boundingRect(with: .zero, options: [], context: nil) else {
+			return UIView()
+		}
 
-		let resultView = UIView(frame: size ?? CGRect())
+		size = CGRect(x: 0, y: 0, width: (size.width ?? 0) + stroke.width, height: (size.height ?? 0) + stroke.width)
+		strokeLabel.frame = size
+		strokeLabel.bounds = CGRect(x: stroke.width, y: stroke.width, width: (size.width ?? 0) + stroke.width, height: (size.height ?? 0) + stroke.width)
+
+		let resultView = UIView(frame: size )
 
 		resultView.addSubview(strokeLabel)
 
@@ -489,8 +498,9 @@ struct StrokeTextLabel: UIViewRepresentable {
 			return UIView()
 		}
 
-		size = CGRect(x: stroke.width / 2, y: stroke.width / 2, width: size.width + stroke.width , height: (size.height ) + stroke.width)
+		size = CGRect(x: 0, y: 0, width: size.width + stroke.width , height: (size.height ) + stroke.width)
 		strokeLabel.frame = size
+		strokeLabel.bounds = CGRect(x: stroke.width, y: stroke.width, width: size.width + stroke.width, height: size.height + stroke.width)
 
 		let gradientLayer = CAGradientLayer()
 		gradientLayer.frame = size
@@ -547,7 +557,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 }
 
 //need this method because you cant get height of view in any other way
-private func getHeightOfLabel(model: SVGText) -> CGFloat {
+private func getLabelHeight(model: SVGText) -> CGFloat {
 	guard let fontSize = model.font?.size else {
 		return 0
 	}
@@ -562,7 +572,7 @@ private func getHeightOfLabel(model: SVGText) -> CGFloat {
 		let label = UILabel(frame: .zero)
 		label.attributedText = NSMutableAttributedString(string: model.text, attributes: strokeTextAttributes)
 		let size = label.attributedText?.boundingRect(with: .zero, options: [], context: nil)
-		return size?.height ?? 0
+		return (size?.height ?? 0) + width
 	} else {
 		let label =  UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 		label.numberOfLines = 1
