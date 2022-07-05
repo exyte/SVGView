@@ -144,9 +144,8 @@ struct StrokeTextLabel: NSViewRepresentable {
 			resultView.addSubview(createOneColorFillLabel(model: model, kitColor: color.toSwiftUI()))
 		case let linearGradient as SVGLinearGradient:
 			resultView.addSubview(createFilledGradientLabel(model: model, gradient: linearGradient))
-		case let radialGradient as SVGRadialGradient :
-			break
-			//TODO: add radialGradientCase
+		case let radialGradient as SVGRadialGradient:
+			resultView.addSubview(createRadialGradientFillLabel(model: model, gradient: radialGradient))
 		default:
 			break
 		}
@@ -158,9 +157,8 @@ struct StrokeTextLabel: NSViewRepresentable {
 			resultView.addSubview(createOneColorStrokeLabel(model: model, kitColor: color.toSwiftUI()))
 		case let linearGradient as SVGLinearGradient:
 			resultView.addSubview(createGradientStrokeLabel(model: model, gradient: linearGradient))
-		case let radialGradient as SVGRadialGradient :
-			break
-			//TODO: add radialGradientCase
+		case let radialGradient as SVGRadialGradient:
+			resultView.addSubview(createRadialGradientStrokeLabel(model: model, gradient: radialGradient))
 		default:
 			break
 		}
@@ -290,6 +288,67 @@ struct StrokeTextLabel: NSViewRepresentable {
 		return resultView
 	}
 
+	private func createRadialGradientStrokeLabel(model: SVGText, gradient: SVGRadialGradient) -> NSView {
+		guard let stroke = model.stroke, let fontSize = model.font?.size else {
+			return NSView()
+		}
+		let strokeTextAttributes = [
+			NSAttributedString.Key.strokeColor : NSColor.black,
+			NSAttributedString.Key.foregroundColor : NSColor.clear,
+			NSAttributedString.Key.strokeWidth : stroke.width / fontSize * 100, // you need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
+			NSAttributedString.Key.font : NSFont(name: getLabelFont(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		] as [NSAttributedString.Key : Any]
+
+		let strokeTextLayer = CATextLayer()
+		let attributedString = NSAttributedString(string: model.text,
+												  attributes: strokeTextAttributes
+												  as [NSAttributedString.Key : Any]?)
+		strokeTextLayer.string = attributedString
+		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+
+		size = CGRect(x: 0, y: 0, width: size.width + stroke.width , height: size.height + stroke.width)
+		strokeTextLayer.frame = size
+
+		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
+
+		let vc = NSHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
+		vc.view.frame = size
+		let resultView = NSView(frame: size)
+
+		vc.view.layer?.mask = strokeTextLayer
+		resultView.addSubview(vc.view)
+
+		return resultView
+	}
+
+	private func createRadialGradientFillLabel(model: SVGText, gradient: SVGRadialGradient) -> NSView {
+		guard let fontSize = model.font?.size else {
+			return NSView()
+		}
+		let strokeTextAttributes = [
+			NSAttributedString.Key.foregroundColor : NSColor.black,
+			NSAttributedString.Key.font : NSFont(name: getLabelFont(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		] as [NSAttributedString.Key : Any]
+
+		let strokeTextLayer = CATextLayer()
+		let attributedString = NSAttributedString(string: model.text,
+												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
+		strokeTextLayer.string = attributedString
+				let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+
+
+		strokeTextLayer.frame = size
+
+		let vc = NSHostingController(rootView: RadialGradientView(gradient: gradient, size: size))
+		vc.view.frame = size
+		let resultView = NSView(frame: size)
+
+		vc.view.layer?.mask = strokeTextLayer
+		resultView.addSubview(vc.view)
+
+		return resultView
+	}
+
 	private func getGradientColors(gradient: SVGGradient) -> [NSColor] {
 		var NSColorArr: [NSColor] = []
 		_ = gradient.stops.map { stop in
@@ -406,9 +465,8 @@ struct StrokeTextLabel: UIViewRepresentable {
 			resultView.addSubview(createOneColorFillLabel(model: model, kitColor: color.toSwiftUI()))
 		case let linearGradient as SVGLinearGradient:
 			resultView.addSubview(createFilledGradientLabel(model: model, gradient: linearGradient))
-		case let radialGradient as SVGRadialGradient :
-			break
-			//TODO: add radialGradientCase
+		case let radialGradient as SVGRadialGradient:
+			resultView.addSubview(createRadialGradientFillLabel(model: model, gradient: radialGradient))
 		default:
 			break
 		}
@@ -420,9 +478,8 @@ struct StrokeTextLabel: UIViewRepresentable {
 			resultView.addSubview(createOneColorStrokeLabel(model: model, kitColor: color.toSwiftUI()))
 		case let linearGradient as SVGLinearGradient:
 			resultView.addSubview(createGradientStrokeLabel(model: model, gradient: linearGradient))
-		case let radialGradient as SVGRadialGradient :
-			break
-			//TODO: add radialGradientCase
+		case let radialGradient as SVGRadialGradient:
+			resultView.addSubview(createRadialGradientStrokeLabel(model: model, gradient: radialGradient))
 		default:
 			break
 		}
@@ -446,12 +503,14 @@ struct StrokeTextLabel: UIViewRepresentable {
 			return UIView()
 		}
 
-		size = CGRect(x: 0, y: 0, width: (size.width ?? 0) + stroke.width, height: (size.height ?? 0) + stroke.width)
+		size = CGRect(x: 0, y: 0, width: size.width + stroke.width, height: size.height + stroke.width)
 		strokeLabel.frame = size
-		strokeLabel.bounds = CGRect(x: stroke.width, y: stroke.width, width: (size.width ?? 0) + stroke.width, height: (size.height ?? 0) + stroke.width)
+		strokeLabel.bounds = CGRect(x: stroke.width,
+									y: stroke.width,
+									width: size.width + stroke.width,
+									height: size.height + stroke.width)
 
-		let resultView = UIView(frame: size )
-
+		let resultView = UIView(frame: size)
 		resultView.addSubview(strokeLabel)
 
 		return resultView
@@ -519,6 +578,70 @@ struct StrokeTextLabel: UIViewRepresentable {
 		return resultView
 	}
 
+	private func createRadialGradientStrokeLabel(model: SVGText, gradient: SVGRadialGradient) -> UIView {
+		guard let stroke = model.stroke, let fontSize = model.font?.size else {
+			return UIView()
+		}
+		let strokeTextAttributes = [
+			NSAttributedString.Key.strokeColor : UIColor.black,
+			NSAttributedString.Key.foregroundColor : UIColor.clear,
+			NSAttributedString.Key.strokeWidth : stroke.width / fontSize * 100, // you need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
+			NSAttributedString.Key.font : UIFont(name: getLabelFont(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		] as [NSAttributedString.Key : Any]
+
+		let strokeTextLayer = CATextLayer()
+		let attributedString = NSAttributedString(string: model.text,
+												  attributes: strokeTextAttributes
+												  as [NSAttributedString.Key : Any]?)
+		strokeTextLayer.string = attributedString
+		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+
+		size = CGRect(x: 0, y: 0, width: size.width + stroke.width , height: size.height + stroke.width)
+		strokeTextLayer.frame = size
+
+		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
+
+		let vc = UIHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
+		vc.view.frame = size
+		let resultView = UIView(frame: size)
+
+		vc.view.layer.mask = strokeTextLayer
+		resultView.layer.addSublayer(vc.view.layer)
+
+		return resultView
+	}
+
+	private func createRadialGradientFillLabel(model: SVGText, gradient: SVGRadialGradient) -> UIView {
+		guard let fontSize = model.font?.size else {
+			return UIView()
+		}
+		let strokeTextAttributes = [
+			NSAttributedString.Key.foregroundColor : UIColor.black,
+			NSAttributedString.Key.font : UIFont(name: getLabelFont(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		] as [NSAttributedString.Key : Any]
+
+		let strokeTextLayer = CATextLayer()
+		let attributedString = NSAttributedString(string: model.text,
+												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
+		strokeTextLayer.string = attributedString
+				let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+
+
+		strokeTextLayer.frame = size
+
+		let vc = UIHostingController(rootView: RadialGradientView(gradient: gradient, size: size))
+		vc.view.frame = size
+		let resultView = UIView(frame: size)
+
+		vc.view.layer.mask = strokeTextLayer
+		let gradientLayer = vc.view.layer
+		gradientLayer.mask = strokeTextLayer
+		vc.view.layer.mask = strokeTextLayer
+		resultView.layer.addSublayer(vc.view.layer)
+
+		return resultView
+	}
+
 	private func createFilledGradientLabel(model: SVGText, gradient: SVGLinearGradient) -> UIView {
 		guard let fontSize = model.font?.size else {
 			return UIView()
@@ -553,7 +676,7 @@ struct StrokeTextLabel: UIViewRepresentable {
 		}
 		return uiColorArr
 	}
-	
+
 }
 
 //need this method because you cant get height of view in any other way
@@ -619,4 +742,23 @@ private func getLabelColor (model: SVGText) -> SVGPaint {
 		return fillColor
 	}
 	return SVGPaint()
+}
+
+struct RadialGradientView: View {
+	let gradient: SVGRadialGradient
+	let size: CGRect
+	init(gradient: SVGRadialGradient, size: CGRect) {
+		self.gradient = gradient
+		self.size = size
+	}
+
+	var body: some View {
+		let minimum = min(size.width, size.height)
+		let width = size.width
+		let height = size.height
+		let userSpace = gradient.userSpace
+		gradient.toSwiftUI(rect: size)
+			.scaleEffect(CGSize(width: userSpace ? 1 : width/minimum,
+								height: userSpace ? 1 : height/minimum))
+	}
 }
