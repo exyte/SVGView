@@ -308,15 +308,15 @@ struct StrokeTextLabel: NSViewRepresentable {
 
 		size = CGRect(x: 0, y: 0, width: size.width + stroke.width , height: size.height + stroke.width)
 		strokeTextLayer.frame = size
-
+		//we make gradientSize like this because SVGRadialGradient method toSwiftUI uses global position of view
 		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
 
-		let vc = NSHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
-		vc.view.frame = size
+		let gradientView = NSHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
+		gradientView.view.frame = size
 		let resultView = NSView(frame: size)
 
-		vc.view.layer?.mask = strokeTextLayer
-		resultView.addSubview(vc.view)
+		gradientView.view.layer?.mask = strokeTextLayer
+		resultView.addSubview(gradientView.view)
 
 		return resultView
 	}
@@ -338,13 +338,15 @@ struct StrokeTextLabel: NSViewRepresentable {
 
 
 		strokeTextLayer.frame = size
+		//we make gradientSize like this because SVGRadialGradient method toSwiftUI uses global position of view
+		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
 
-		let vc = NSHostingController(rootView: RadialGradientView(gradient: gradient, size: size))
-		vc.view.frame = size
+		let gradientView = NSHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
+		gradientView.view.frame = size
 		let resultView = NSView(frame: size)
 
-		vc.view.layer?.mask = strokeTextLayer
-		resultView.addSubview(vc.view)
+		gradientView.view.layer?.mask = strokeTextLayer
+		resultView.addSubview(gradientView.view)
 
 		return resultView
 	}
@@ -601,12 +603,12 @@ struct StrokeTextLabel: UIViewRepresentable {
 
 		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
 
-		let vc = UIHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
-		vc.view.frame = size
+		let radialGradientView = UIHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
+		radialGradientView.view.frame = size
 		let resultView = UIView(frame: size)
 
-		vc.view.layer.mask = strokeTextLayer
-		resultView.layer.addSublayer(vc.view.layer)
+		radialGradientView.view.layer.mask = strokeTextLayer
+		resultView.layer.addSublayer(radialGradientView.view.layer)
 
 		return resultView
 	}
@@ -624,20 +626,18 @@ struct StrokeTextLabel: UIViewRepresentable {
 		let attributedString = NSAttributedString(string: model.text,
 												  attributes: strokeTextAttributes as [NSAttributedString.Key : Any]?)
 		strokeTextLayer.string = attributedString
-				let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
 
+		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+		//we make gradientSize like this because SVGRadialGradient method toSwiftUI uses global position of view
+		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
 
 		strokeTextLayer.frame = size
-
-		let vc = UIHostingController(rootView: RadialGradientView(gradient: gradient, size: size))
-		vc.view.frame = size
+		let radialGradientView = UIHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
+		radialGradientView.view.frame = size
 		let resultView = UIView(frame: size)
 
-		vc.view.layer.mask = strokeTextLayer
-		let gradientLayer = vc.view.layer
-		gradientLayer.mask = strokeTextLayer
-		vc.view.layer.mask = strokeTextLayer
-		resultView.layer.addSublayer(vc.view.layer)
+		radialGradientView.view.layer.mask = strokeTextLayer
+		resultView.layer.addSublayer(radialGradientView.view.layer)
 
 		return resultView
 	}
