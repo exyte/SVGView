@@ -308,22 +308,28 @@ struct StrokeTextLabel: MRepresentable {
 
 		let strokeTextLayer = CATextLayer()
 		let attributedString = getStrokeAttributedString(model: model, strokeColor: .black)
+		strokeTextLayer.string = attributedString
 		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
 
-		size = CGRect(x: 0, y: 0, width: size.width + stroke.width, height: size.height + stroke.width)
+		size = CGRect(x: 0, y: 0, width: size.width + stroke.width , height: size.height + stroke.width)
 		strokeTextLayer.frame = size
-		// We make gradientSize like this because SVGRadialGradient method toSwiftUI uses global position of view
-		let gradientSize = CGRect(x: model.transform.tx,
-								  y: model.transform.ty - size.height,
-								  width: size.width,
-								  height: size.height)
 
-		let gradientView = MHostingController(rootView: RadialGradientView(gradient: gradient,
-																			size: gradientSize))
+		let gradientSize = CGRect(x: model.transform.tx, y: model.transform.ty - size.height, width: size.width, height: size.height)
+
+		let gradientView = MHostingController(rootView: RadialGradientView(gradient: gradient, size: gradientSize))
 		gradientView.view.frame = size
 		let resultView = MView(frame: size)
 
-		return addSublayerToResultView(resultView: resultView, textLayer: strokeTextLayer)
+
+#if os(OSX)
+		gradientView.view.layer?.mask = strokeTextLayer
+		resultView.addSubview(gradientView.view)
+#else
+		gradientView.view.layer.mask = strokeTextLayer
+		resultView.layer.addSublayer(gradientView.view.layer)
+
+#endif
+		return resultView
 	}
 
 	private func createRadialGradientFillLabel(model: SVGText, gradient: SVGRadialGradient) -> MView {
