@@ -6,6 +6,21 @@ import UIKit
 #endif
 
 #if os(OSX)
+import AppKit
+public typealias MColor = NSColor
+public typealias MView = NSView
+public typealias MRepresentable = NSViewRepresentable
+public typealias MHostingController = NSHostingController
+public typealias MFont = NSFont
+#else
+public typealias MColor = UIColor
+public typealias MView = UIView
+public typealias MRepresentable = UIViewRepresentable
+public typealias MHostingController = UIHostingController
+public typealias MFont = UIFont
+#endif
+
+
 public struct SVGGUITextView: View {
 	@ObservedObject var model: SVGText
 
@@ -56,52 +71,6 @@ public struct SVGGUITextView: View {
 		}
 	}
 }
-#else
-struct SVGGUITextView: View {
-	@ObservedObject var model: SVGText
-
-	var body: some View {
-
-		switch getLabelColor(model: model) {
-		case _ as SVGLinearGradient, _ as SVGRadialGradient:
-			let height = getLabelHeight(model: model)
-			StrokeTextLabel(model: model)
-				.lineLimit(1)
-				.alignmentGuide(.leading) { d in d[model.textAnchor] }
-				.alignmentGuide(VerticalAlignment.top) { _ in height }
-				.offset(x: (model.stroke?.width ?? 0) / 2, y: (model.stroke?.width ?? 0) / 2)
-				.position(x: 0, y: 0) // to specify that positioning is global, coords are in transform
-				.transformEffect(model.transform)
-				.frame(alignment: .topLeading)
-		case _ as SVGColor:
-			let height = getLabelHeight(model: model)
-			if model.stroke?.width != nil {
-				StrokeTextLabel(model: model)
-					.lineLimit(1)
-					.alignmentGuide(.leading) { d in d[model.textAnchor] }
-					.alignmentGuide(VerticalAlignment.top) { _ in height }
-					.offset(x: (model.stroke?.width ?? 0) / 2, y: (model.stroke?.width ?? 0) / 2)
-					.position(x: 0, y: 0) // to specify that positioning is global, coords are in transform
-					.transformEffect(model.transform)
-					.frame(alignment: .topLeading)
-			} else {
-				Text(model.text)
-					.font(model.font?.toSwiftUI())
-					.lineLimit(1)
-					.alignmentGuide(.leading) { d in d[model.textAnchor] }
-					.alignmentGuide(VerticalAlignment.top) { d in d[VerticalAlignment.firstTextBaseline] }
-					.apply(paint: model.fill)
-					.position(x: 0, y: 0) // just to specify that positioning is global, actual coords
-					.transformEffect(model.transform)
-					.frame(alignment: .topLeading)
-					.minimumScaleFactor(0.3)
-			}
-		default:
-			Text("")
-		}
-	}
-}
-#endif
 
 #if os(OSX)
 // You need this class because strokeLabel should be in top left corner,
@@ -374,6 +343,67 @@ struct StrokeTextLabel: MRepresentable {
 		return resultView
 	}
 
+
+	private func getLabelBounds(size: CGRect, stroke: SVGStroke) -> CGRect {
+	#if os(OSX)
+		return CGRect(x: -stroke.width,
+					  y: stroke.width,
+					  width: size.width + stroke.width,
+					  height: size.height + stroke.width)
+	#else
+		return  CGRect(x: stroke.width,
+					   y: stroke.width,
+					   width: size.width + stroke.width,
+					   height: size.height + stroke.width)
+	#endif
+	}
+
+	struct LinearGradientCoordinates {
+		let x1: CGFloat
+		let y1: CGFloat
+		let x2: CGFloat
+		let y2: CGFloat
+		let stops: [CGFloat]
+	}
+
+	private func getLinearGradientCoordinates(rect: CGRect, gradient: SVGLinearGradient) -> LinearGradientCoordinates {
+		let stops = gradient.stops.map { stop in
+			stop.offset
+		}
+		let x1 = gradient.userSpace ? (gradient.x1 - rect.minX) / rect.size.width: gradient.x1
+		let y1 = gradient.userSpace ? (gradient.y1 - rect.minY) / rect.size.height: gradient.y1
+		let x2 = gradient.userSpace ? (gradient.x2 - rect.minX) / rect.size.width: gradient.x2
+		let y2 = gradient.userSpace ? (gradient.y2 - rect.minY) / rect.size.height: gradient.y2
+		return LinearGradientCoordinates(x1: x1, y1: y1, x2: x2, y2: y2, stops: stops)
+	}
+
+	private func getGradientLoactions(stops: [CGFloat]) -> [NSNumber] {
+		var locations: [NSNumber] = []
+		for stop in stops {
+			locations.append(stop as NSNumber)
+		}
+		return locations
+	}
+
+	struct RadialGradientView: View {
+		let gradient: SVGRadialGradient
+		let size: CGRect
+		init(gradient: SVGRadialGradient, size: CGRect) {
+			self.gradient = gradient
+			self.size = size
+		}
+
+		var body: some View {
+			let minimum = min(size.width, size.height)
+			let width = size.width
+			let height = size.height
+			let userSpace = gradient.userSpace
+			gradient.toSwiftUI(rect: size)
+				.scaleEffect(CGSize(width: userSpace ? 1: width/minimum,
+									height: userSpace ? 1: height/minimum))
+		}
+	}
+
 	private func getGradientColors(gradient: SVGGradient) -> [MColor] {
 		var NSColorArr: [MColor] = []
 		_ = gradient.stops.map { stop in
@@ -382,6 +412,41 @@ struct StrokeTextLabel: MRepresentable {
 		return NSColorArr
 	}
 
+	func getLinearGradientLayer(size: CGRect, gradient: SVGLinearGradient) -> CAGradientLayer {
+		let gradientLayer = CAGradientLayer()
+		gradientLayer.frame = size
+		let gradientColors = getGradientColors(gradient: gradient)
+		gradientLayer.colors = [gradientColors[0].cgColor, gradientColors[1].cgColor]
+		let gradientCoordinates = getLinearGradientCoordinates(rect: size, gradient: gradient)
+		gradientLayer.locations = getGradientLoactions(stops: gradientCoordinates.stops)
+		gradientLayer.startPoint = CGPoint(x: gradientCoordinates.x1, y: gradientCoordinates.y1)
+		gradientLayer.endPoint = CGPoint(x: gradientCoordinates.x2, y: gradientCoordinates.y2)
+		return gradientLayer
+	}
+
+	func addSublayerToResultView(resultView: MView, textLayer: CATextLayer) -> MView {
+
+	#if os(OSX)
+		resultView.wantsLayer = true
+		guard resultView.layer != nil else {
+			return resultView
+		}
+		resultView.layer?.addSublayer(textLayer)
+	#else
+		resultView.layer.addSublayer(textLayer)
+	#endif
+		return resultView
+	}
+
+}
+
+private func getLabelColor (model: SVGText) -> SVGPaint {
+	if let strokeColor = model.stroke?.fill {
+		return strokeColor
+	} else if let fillColor = model.fill {
+		return fillColor
+	}
+	return SVGPaint()
 }
 
 // We need this method because you cant get height of view in any other way
@@ -401,112 +466,8 @@ private func getLabelSize(model: SVGText) -> CGRect {
 		return size
 	}
 }
-#if os(iOS)
-private func getLabelHeight(model: SVGText) -> CGFloat {
-	guard let fontSize = model.font?.size else {
-		return 0
-	}
-	if let width = model.stroke?.width {
-		let strokeTextAttributes = [
-			NSAttributedString.Key.strokeColor: MColor.red,
-			NSAttributedString.Key.foregroundColor: MColor.clear,
-			// You need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
-			NSAttributedString.Key.strokeWidth: width / fontSize * 100,
-			NSAttributedString.Key.font: MFont(name: getFontName(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
-		] as [NSAttributedString.Key: Any]
 
-		let label = UILabel(frame: .zero)
-		label.attributedText = NSMutableAttributedString(string: model.text, attributes: strokeTextAttributes)
-		let size = label.attributedText?.boundingRect(with: .zero, options: [], context: nil)
-		return (size?.height ?? 0) + width
-	} else {
-		let label =  UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-		label.numberOfLines = 1
-		label.text = model.text
-		label.font = MFont(name: getFontName(model: model), size: model.font?.size ?? 15) ?? .systemFont(ofSize: fontSize)
-		label.sizeToFit()
-		let size = label.frame
-		return size.height
-	}
-}
-#endif
-private func getLabelBounds(size: CGRect, stroke: SVGStroke) -> CGRect {
-#if os(OSX)
-	return CGRect(x: -stroke.width,
-				  y: stroke.width,
-				  width: size.width + stroke.width,
-				  height: size.height + stroke.width)
-#else
-	return  CGRect(x: stroke.width,
-				   y: stroke.width,
-				   width: size.width + stroke.width,
-				   height: size.height + stroke.width)
-#endif
-}
-
-private func getFontName(model: SVGText) -> String {
-	let separator = ","
-	let fontString = model.font?.name
-	let fonts = fontString?.components(separatedBy: separator)
-	return fonts?[0] ?? ""
-}
-
-struct LinearGradientCoordinates {
-	let x1: CGFloat
-	let y1: CGFloat
-	let x2: CGFloat
-	let y2: CGFloat
-	let stops: [CGFloat]
-}
-
-private func getLinearGradientCoordinates(rect: CGRect, gradient: SVGLinearGradient) -> LinearGradientCoordinates {
-	let stops = gradient.stops.map { stop in
-		stop.offset
-	}
-	let x1 = gradient.userSpace ? (gradient.x1 - rect.minX) / rect.size.width: gradient.x1
-	let y1 = gradient.userSpace ? (gradient.y1 - rect.minY) / rect.size.height: gradient.y1
-	let x2 = gradient.userSpace ? (gradient.x2 - rect.minX) / rect.size.width: gradient.x2
-	let y2 = gradient.userSpace ? (gradient.y2 - rect.minY) / rect.size.height: gradient.y2
-	return LinearGradientCoordinates(x1: x1, y1: y1, x2: x2, y2: y2, stops: stops)
-}
-
-private func getGradientLoactions(stops: [CGFloat]) -> [NSNumber] {
-	var locations: [NSNumber] = []
-	for stop in stops {
-		locations.append(stop as NSNumber)
-	}
-	return locations
-}
-
-private func getLabelColor (model: SVGText) -> SVGPaint {
-	if let strokeColor = model.stroke?.fill {
-		return strokeColor
-	} else if let fillColor = model.fill {
-		return fillColor
-	}
-	return SVGPaint()
-}
-
-struct RadialGradientView: View {
-	let gradient: SVGRadialGradient
-	let size: CGRect
-	init(gradient: SVGRadialGradient, size: CGRect) {
-		self.gradient = gradient
-		self.size = size
-	}
-
-	var body: some View {
-		let minimum = min(size.width, size.height)
-		let width = size.width
-		let height = size.height
-		let userSpace = gradient.userSpace
-		gradient.toSwiftUI(rect: size)
-			.scaleEffect(CGSize(width: userSpace ? 1: width/minimum,
-								height: userSpace ? 1: height/minimum))
-	}
-}
-
-func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NSAttributedString {
+private func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NSAttributedString {
 	guard let font =  model.font, let stroke = model.stroke else {
 		return NSMutableAttributedString()
 	}
@@ -538,7 +499,7 @@ func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NSAttribut
 	return attributedString
 }
 
-func getFillAttributedString(model: SVGText, fillColor: Color) -> NSAttributedString {
+private func getFillAttributedString(model: SVGText, fillColor: Color) -> NSAttributedString {
 	guard let font =  model.font else {
 		return NSMutableAttributedString()
 	}
@@ -559,51 +520,9 @@ func getFillAttributedString(model: SVGText, fillColor: Color) -> NSAttributedSt
 	return attributedString
 }
 
-private func getGradientColors(gradient: SVGGradient) -> [MColor] {
-	var NSColorArr: [MColor] = []
-	_ = gradient.stops.map { stop in
-		NSColorArr.append(MColor(stop.color.toSwiftUI()))
-	}
-	return NSColorArr
+private func getFontName(model: SVGText) -> String {
+	let separator = ","
+	let fontString = model.font?.name
+	let fonts = fontString?.components(separatedBy: separator)
+	return fonts?[0] ?? ""
 }
-
-func getLinearGradientLayer(size: CGRect, gradient: SVGLinearGradient) -> CAGradientLayer {
-	let gradientLayer = CAGradientLayer()
-	gradientLayer.frame = size
-	let gradientColors = getGradientColors(gradient: gradient)
-	gradientLayer.colors = [gradientColors[0].cgColor, gradientColors[1].cgColor]
-	let gradientCoordinates = getLinearGradientCoordinates(rect: size, gradient: gradient)
-	gradientLayer.locations = getGradientLoactions(stops: gradientCoordinates.stops)
-	gradientLayer.startPoint = CGPoint(x: gradientCoordinates.x1, y: gradientCoordinates.y1)
-	gradientLayer.endPoint = CGPoint(x: gradientCoordinates.x2, y: gradientCoordinates.y2)
-	return gradientLayer
-}
-
-func addSublayerToResultView(resultView: MView, textLayer: CATextLayer) -> MView {
-
-#if os(OSX)
-	resultView.wantsLayer = true
-	guard resultView.layer != nil else {
-		return resultView
-	}
-	resultView.layer?.addSublayer(textLayer)
-#else
-	resultView.layer.addSublayer(textLayer)
-#endif
-	return resultView
-}
-
-#if os(OSX)
-import AppKit
-public typealias MColor = NSColor
-public typealias MView = NSView
-public typealias MRepresentable = NSViewRepresentable
-public typealias MHostingController = NSHostingController
-public typealias MFont = NSFont
-#else
-public typealias MColor = UIColor
-public typealias MView = UIView
-public typealias MRepresentable = UIViewRepresentable
-public typealias MHostingController = UIHostingController
-public typealias MFont = UIFont
-#endif
