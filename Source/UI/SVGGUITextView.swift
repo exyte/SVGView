@@ -74,14 +74,14 @@ public struct SVGGUITextView: View {
 #if os(OSX)
 // You need this class because strokeLabel should be in top left corner,
 // otherwise it will be moving by Y axis with window
-class FlippedView: NSView {
+class FlippedView: MView {
 	override var isFlipped: Bool {
 			return true
 	}
 }
 #endif
 
-struct StrokeTextLabel: MRepresentable {
+private struct StrokeTextLabel: MRepresentable {
 
 	@ObservedObject var model: SVGText
 
@@ -143,7 +143,6 @@ struct StrokeTextLabel: MRepresentable {
 	}
 
 	private func createOneColorStrokeLabel(model: SVGText, strokeColor: Color) -> MView {
-
 		guard let stroke = model.stroke else {
 			return MView()
 		}
@@ -152,10 +151,7 @@ struct StrokeTextLabel: MRepresentable {
 		size = CGRect(x: 0, y: 0, width: size.width + stroke.width, height: size.height + stroke.width)
 		let resultView = MView(frame: size)
 #if os(OSX)
-		let strokeTextLayer = CATextLayer()
-		strokeTextLayer.string = attributedString
-		strokeTextLayer.frame = size
-
+		let strokeTextLayer = getStrokeTextLayer(size: size, attributedString: attributedString)
 		strokeTextLayer.bounds = getStrokeBounds(size: size, stroke: stroke)
 
 		resultView.wantsLayer = true
@@ -174,13 +170,10 @@ struct StrokeTextLabel: MRepresentable {
 	private func createOneColorFillLabel(model: SVGText, fillColor: Color) -> MView {
 		let attributedString = getFillAttributedString(model: model, fillColor: fillColor)
 		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-
 #if os(OSX)
-		let strokeTextLayer = CATextLayer()
-		strokeTextLayer.string = attributedString
-		strokeTextLayer.frame = size
+		let strokeTextLayer = getStrokeTextLayer(size: size, attributedString: attributedString)
 
-		let resultView = NSView(frame: size)
+		let resultView = MView(frame: size)
 		resultView.wantsLayer = true
 		resultView.layer = strokeTextLayer
 #else
@@ -194,7 +187,6 @@ struct StrokeTextLabel: MRepresentable {
 		let resultView = UIView(frame: size)
 
 		resultView.addSubview(strokeLabel)
-
 #endif
 		return resultView
 	}
@@ -210,10 +202,7 @@ struct StrokeTextLabel: MRepresentable {
 		let resultView = MView(frame: size)
 
 #if os(OSX)
-		let strokeTextLayer = CATextLayer()
-		strokeTextLayer.string = attributedString
-
-		strokeTextLayer.frame = size
+		let strokeTextLayer = getStrokeTextLayer(size: size, attributedString: attributedString)
 		strokeTextLayer.bounds = getStrokeBounds(size: size, stroke: stroke)
 
 		gradientLayer.mask = strokeTextLayer
@@ -238,12 +227,9 @@ struct StrokeTextLabel: MRepresentable {
 			return MView()
 		}
 #if os(OSX)
-		let strokeTextLayer = CATextLayer()
 		let attributedString = getFillAttributedString(model: model, fillColor: .black)
-		strokeTextLayer.string = attributedString
 		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-		strokeTextLayer.frame = size
-
+		let strokeTextLayer = getStrokeTextLayer(size: size, attributedString: attributedString)
 		let gradientLayer = getLinearGradientLayer(size: size, gradient: gradient)
 
 		let resultView = MView(frame: size)
@@ -264,7 +250,6 @@ struct StrokeTextLabel: MRepresentable {
 		resultView.layer.addSublayer(gradientLayer)
 		resultView.layer.mask = label.layer
 #endif
-
 		return resultView
 	}
 
@@ -273,16 +258,13 @@ struct StrokeTextLabel: MRepresentable {
 			return MView()
 		}
 
-		let strokeTextLayer = CATextLayer()
 		let attributedString = getStrokeAttributedString(model: model, strokeColor: .black)
-		strokeTextLayer.string = attributedString
 		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-
 		size = CGRect(x: 0,
 					  y: 0,
 					  width: size.width + stroke.width,
 					  height: size.height + stroke.width)
-		strokeTextLayer.frame = size
+		let strokeTextLayer = getStrokeTextLayer(size: size, attributedString: attributedString)
 
 		let gradientSize = CGRect(x: model.transform.tx,
 								  y: model.transform.ty - size.height,
@@ -307,11 +289,8 @@ struct StrokeTextLabel: MRepresentable {
 	private func createRadialGradientFillLabel(model: SVGText, gradient: SVGRadialGradient) -> MView {
 
 		let attributedString = getFillAttributedString(model: model, fillColor: .black)
-		let strokeTextLayer = CATextLayer()
-		strokeTextLayer.string = attributedString
 		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-
-		strokeTextLayer.frame = size
+		let strokeTextLayer = getStrokeTextLayer(size: size, attributedString: attributedString)
 		// We make gradientSize like this because SVGRadialGradient method toSwiftUI uses global position of view
 		let gradientSize = CGRect(x: model.transform.tx,
 								  y: model.transform.ty - size.height,
@@ -331,7 +310,7 @@ struct StrokeTextLabel: MRepresentable {
 		return resultView
 	}
 
-	struct LinearGradientCoordinates {
+	private struct LinearGradientCoordinates {
 		let x1: CGFloat
 		let y1: CGFloat
 		let x2: CGFloat
@@ -358,7 +337,7 @@ struct StrokeTextLabel: MRepresentable {
 		return locations
 	}
 
-	struct RadialGradientView: View {
+	private struct RadialGradientView: View {
 		let gradient: SVGRadialGradient
 		let size: CGRect
 		init(gradient: SVGRadialGradient, size: CGRect) {
@@ -385,7 +364,7 @@ struct StrokeTextLabel: MRepresentable {
 		return NSColorArr
 	}
 
-	func getLinearGradientLayer(size: CGRect, gradient: SVGLinearGradient) -> CAGradientLayer {
+	private func getLinearGradientLayer(size: CGRect, gradient: SVGLinearGradient) -> CAGradientLayer {
 		let gradientLayer = CAGradientLayer()
 		gradientLayer.frame = size
 		let gradientColors = getGradientColors(gradient: gradient)
@@ -395,20 +374,6 @@ struct StrokeTextLabel: MRepresentable {
 		gradientLayer.startPoint = CGPoint(x: gradientCoordinates.x1, y: gradientCoordinates.y1)
 		gradientLayer.endPoint = CGPoint(x: gradientCoordinates.x2, y: gradientCoordinates.y2)
 		return gradientLayer
-	}
-
-	func addSublayerToResultView(resultView: MView, textLayer: CATextLayer) -> MView {
-
-	#if os(OSX)
-		resultView.wantsLayer = true
-		guard resultView.layer != nil else {
-			return resultView
-		}
-		resultView.layer?.addSublayer(textLayer)
-	#else
-		resultView.layer.addSublayer(textLayer)
-	#endif
-		return resultView
 	}
 
 }
@@ -431,9 +396,7 @@ private func getLabelSize(model: SVGText) -> CGRect {
 
 		return size
 	} else {
-		let strokeTextLayer = CATextLayer()
 		let attributedString = getFillAttributedString(model: model, fillColor: .black)
-		strokeTextLayer.string = attributedString
 		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
 
 		return size
@@ -445,7 +408,6 @@ private func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NS
 		return NSMutableAttributedString()
 	}
 
-#if os(OSX)
 	let strokeTextAttributes = [
 		NSAttributedString.Key.strokeColor: MColor(strokeColor),
 		NSAttributedString.Key.foregroundColor: MColor.clear,
@@ -454,18 +416,6 @@ private func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NS
 		NSAttributedString.Key.font: MFont(name: getFontName(model: model),
 											size: font.size) ?? .systemFont(ofSize: font.size)
 	] as [NSAttributedString.Key: Any]
-
-#else
-	let strokeTextAttributes = [
-		NSAttributedString.Key.strokeColor: MColor(strokeColor),
-		NSAttributedString.Key.foregroundColor: UIColor.clear,
-		// you need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
-		NSAttributedString.Key.strokeWidth: stroke.width / font.size * 100,
-		NSAttributedString.Key.font: UIFont(name: getFontName(model: model),
-											size: font.size) ?? .systemFont(ofSize: font.size)
-	] as [NSAttributedString.Key: Any]
-
-#endif
 
 	let attributedString = NSAttributedString(string: model.text,
 											  attributes: strokeTextAttributes as [NSAttributedString.Key: Any]?)
@@ -512,4 +462,11 @@ private func getStrokeBounds(size: CGRect, stroke: SVGStroke) -> CGRect {
 		   width: size.width + stroke.width,
 		   height: size.height + stroke.width)
 #endif
+}
+
+private func getStrokeTextLayer(size: CGRect, attributedString: NSAttributedString) -> CATextLayer {
+	let strokeTextLayer = CATextLayer()
+	strokeTextLayer.string = attributedString
+	strokeTextLayer.frame = size
+	return strokeTextLayer
 }
