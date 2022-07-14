@@ -223,7 +223,7 @@ private struct StrokeTextLabel: MRepresentable {
 	}
 
 	private func createFillGradientLabel(model: SVGText, gradient: SVGLinearGradient) -> MView {
-		guard let fontSize = model.font?.size else {
+		guard let fontSize = model.font?.size, let font = UIFont(name: getFontName(model: model), size: fontSize)  else {
 			return MView()
 		}
 #if os(OSX)
@@ -239,7 +239,7 @@ private struct StrokeTextLabel: MRepresentable {
 #else
 		let label =  UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 		label.text = model.text
-		label.font = UIFont(name: getFontName(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		label.font = font
 		label.sizeToFit()
 		let size = label.frame
 		let resultView = MView(frame: size)
@@ -276,6 +276,7 @@ private struct StrokeTextLabel: MRepresentable {
 		let resultView = MView(frame: size)
 
 #if os(OSX)
+		guard gradientView.layer != nil else {return resultView}
 		gradientView.view.layer?.mask = strokeTextLayer
 		resultView.addSubview(gradientView.view)
 #else
@@ -301,6 +302,7 @@ private struct StrokeTextLabel: MRepresentable {
 		gradientView.view.frame = size
 		let resultView = MView(frame: size)
 #if os(OSX)
+		guard gradientView.view.layer != nil else {return resultView}
 		gradientView.view.layer?.mask = strokeTextLayer
 #else
 		gradientView.view.layer.mask = strokeTextLayer
@@ -404,7 +406,8 @@ private func getLabelSize(model: SVGText) -> CGRect {
 }
 
 private func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NSAttributedString {
-	guard let font =  model.font, let stroke = model.stroke else {
+	guard let stroke = model.stroke, let font = MFont(name: getFontName(model: model),
+													  size: model.font!.size) else {
 		return NSMutableAttributedString()
 	}
 
@@ -412,9 +415,9 @@ private func getStrokeAttributedString(model: SVGText, strokeColor: Color) -> NS
 		NSAttributedString.Key.strokeColor: MColor(strokeColor),
 		NSAttributedString.Key.foregroundColor: MColor.clear,
 		// you need this conversion because NSAttributedString.Key.strokeWidth is percent of font size
-		NSAttributedString.Key.strokeWidth: stroke.width / font.size * 100,
+		NSAttributedString.Key.strokeWidth: stroke.width / font.pointSize * 100,
 		NSAttributedString.Key.font: MFont(name: getFontName(model: model),
-											size: font.size) ?? .systemFont(ofSize: font.size)
+											size: font.pointSize) ?? .systemFont(ofSize: font.pointSize)
 	] as [NSAttributedString.Key: Any]
 
 	let attributedString = NSAttributedString(string: model.text,
