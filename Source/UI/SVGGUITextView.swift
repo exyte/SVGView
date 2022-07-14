@@ -223,7 +223,7 @@ private struct StrokeTextLabel: MRepresentable {
 	}
 
 	private func createFillGradientLabel(model: SVGText, gradient: SVGLinearGradient) -> MView {
-		guard let fontSize = model.font?.size, let font = UIFont(name: getFontName(model: model), size: fontSize)  else {
+		guard let fontSize = model.font?.size, let font = MFont(name: getFontName(model: model), size: fontSize)  else {
 			return MView()
 		}
 #if os(OSX)
@@ -276,7 +276,7 @@ private struct StrokeTextLabel: MRepresentable {
 		let resultView = MView(frame: size)
 
 #if os(OSX)
-		guard gradientView.layer != nil else {return resultView}
+		guard gradientView.view.layer != nil else { return resultView }
 		gradientView.view.layer?.mask = strokeTextLayer
 		resultView.addSubview(gradientView.view)
 #else
