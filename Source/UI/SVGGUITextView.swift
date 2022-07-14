@@ -20,7 +20,6 @@ public typealias MHostingController = UIHostingController
 public typealias MFont = UIFont
 #endif
 
-
 public struct SVGGUITextView: View {
 	@ObservedObject var model: SVGText
 
@@ -113,7 +112,8 @@ struct StrokeTextLabel: MRepresentable {
 		let resultView = MView()
 #endif
 
-		// We use two switches because we need to put fill at first, and then put above it stroke
+		// We use two switches because we need to put fill at first,
+		// and then put above it stroke
 		switch fillColor {
 		case nil:
 			break
@@ -156,10 +156,7 @@ struct StrokeTextLabel: MRepresentable {
 		strokeTextLayer.string = attributedString
 		strokeTextLayer.frame = size
 
-		strokeTextLayer.bounds = CGRect(x: -stroke.width,
-										y: stroke.width,
-										width: size.width + stroke.width,
-										height: size.height + stroke.width)
+		strokeTextLayer.bounds = getStrokeBounds(size: size, stroke: stroke)
 
 		resultView.wantsLayer = true
 		resultView.layer?.addSublayer(strokeTextLayer)
@@ -167,10 +164,8 @@ struct StrokeTextLabel: MRepresentable {
 		let strokeLabel = UILabel(frame: .zero)
 		strokeLabel.attributedText = attributedString
 		strokeLabel.frame = size
-		strokeLabel.bounds = CGRect(x: stroke.width,
-									y: stroke.width,
-									width: size.width + stroke.width,
-									height: size.height + stroke.width)
+		strokeLabel.bounds = getStrokeBounds(size: size, stroke: stroke)
+
 		resultView.addSubview(strokeLabel)
 #endif
 		return resultView
@@ -212,18 +207,15 @@ struct StrokeTextLabel: MRepresentable {
 		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
 		size = CGRect(x: 0, y: 0, width: size.width + stroke.width, height: size.height + stroke.width)
 		let gradientLayer = getLinearGradientLayer(size: size, gradient: gradient)
+		let resultView = MView(frame: size)
 
 #if os(OSX)
 		let strokeTextLayer = CATextLayer()
 		strokeTextLayer.string = attributedString
 
 		strokeTextLayer.frame = size
-		strokeTextLayer.bounds = CGRect(x: -stroke.width,
-										y: stroke.width,
-										width: size.width + stroke.width,
-										height: size.height + stroke.width)
+		strokeTextLayer.bounds = getStrokeBounds(size: size, stroke: stroke)
 
-		let resultView = MView(frame: size)
 		gradientLayer.mask = strokeTextLayer
 		resultView.wantsLayer = true
 		resultView.layer = gradientLayer
@@ -232,12 +224,8 @@ struct StrokeTextLabel: MRepresentable {
 		strokeLabel.attributedText = attributedString
 
 		strokeLabel.frame = size
-		strokeLabel.bounds = CGRect(x: stroke.width,
-									y: stroke.width,
-									width: size.width + stroke.width,
-									height: size.height + stroke.width)
+		strokeLabel.bounds = getStrokeBounds(size: size, stroke: stroke)
 
-		let resultView = MView(frame: size)
 		resultView.layer.addSublayer(gradientLayer)
 		resultView.addSubview(strokeLabel)
 		resultView.layer.mask = strokeLabel.layer
@@ -341,21 +329,6 @@ struct StrokeTextLabel: MRepresentable {
 		resultView.addSubview(gradientView.view)
 
 		return resultView
-	}
-
-
-	private func getLabelBounds(size: CGRect, stroke: SVGStroke) -> CGRect {
-	#if os(OSX)
-		return CGRect(x: -stroke.width,
-					  y: stroke.width,
-					  width: size.width + stroke.width,
-					  height: size.height + stroke.width)
-	#else
-		return  CGRect(x: stroke.width,
-					   y: stroke.width,
-					   width: size.width + stroke.width,
-					   height: size.height + stroke.width)
-	#endif
 	}
 
 	struct LinearGradientCoordinates {
@@ -525,4 +498,18 @@ private func getFontName(model: SVGText) -> String {
 	let fontString = model.font?.name
 	let fonts = fontString?.components(separatedBy: separator)
 	return fonts?[0] ?? ""
+}
+
+private func getStrokeBounds(size: CGRect, stroke: SVGStroke) -> CGRect {
+#if os(OSX)
+	return CGRect(x: -stroke.width,
+		   y: stroke.width,
+		   width: size.width + stroke.width,
+		   height: size.height + stroke.width)
+#else
+	return CGRect(x: stroke.width,
+		   y: stroke.width,
+		   width: size.width + stroke.width,
+		   height: size.height + stroke.width)
+#endif
 }
