@@ -3,7 +3,6 @@ import SwiftUI
 import AppKit
 #else
 import UIKit
-import Macaw
 #endif
 
 #if os(OSX)
@@ -268,19 +267,37 @@ struct StrokeTextLabel: MRepresentable {
 	}
 
 	private func createFillGradientLabel(model: SVGText, gradient: SVGLinearGradient) -> MView {
-		let attributedString = getFillAttributedString(model: model, fillColor: .black)
+		guard let fontSize = model.font?.size else {
+			return MView()
+		}
+#if os(OSX)
 		let strokeTextLayer = CATextLayer()
+		let attributedString = getFillAttributedString(model: model, fillColor: .black)
 		strokeTextLayer.string = attributedString
-
 		let size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-
 		strokeTextLayer.frame = size
 
 		let gradientLayer = getLinearGradientLayer(size: size, gradient: gradient)
+
 		let resultView = MView(frame: size)
 		gradientLayer.mask = strokeTextLayer
-//		resultView.wantsLayer = true
-//		resultView.layer?.addSublayer(gradientLayer)
+		resultView.wantsLayer = true
+		resultView.layer = gradientLayer
+#else
+		let label =  UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+		label.text = model.text
+		label.font = UIFont(name: getFontName(model: model), size: fontSize) ?? .systemFont(ofSize: fontSize)
+		label.sizeToFit()
+		let size = label.frame
+		let resultView = MView(frame: size)
+
+		resultView.addSubview(label)
+
+		let gradientLayer = getLinearGradientLayer(size: size, gradient: gradient)
+		resultView.layer.addSublayer(gradientLayer)
+		resultView.layer.mask = label.layer
+#endif
+
 		return resultView
 	}
 
