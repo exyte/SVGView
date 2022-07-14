@@ -3,6 +3,7 @@ import SwiftUI
 import AppKit
 #else
 import UIKit
+import Macaw
 #endif
 
 #if os(OSX)
@@ -231,36 +232,38 @@ struct StrokeTextLabel: MRepresentable {
 		return resultView
 	}
 
-	private func createGradientStrokeLabel(model: SVGText, gradient: SVGLinearGradient) -> MView
-	{
+	private func createGradientStrokeLabel(model: SVGText, gradient: SVGLinearGradient) -> MView {
 		guard let stroke = model.stroke else {
 			return MView()
 		}
-
 		let attributedString = getStrokeAttributedString(model: model, strokeColor: .black)
+		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
+		size = CGRect(x: 0, y: 0, width: size.width + stroke.width , height: size.height + stroke.width)
+		let gradientLayer = getLinearGradientLayer(size: size, gradient: gradient)
+
+#if os(OSX)
 		let strokeTextLayer = CATextLayer()
 		strokeTextLayer.string = attributedString
 
-
-		var size = attributedString.boundingRect(with: .zero, options: [], context: nil)
-		size = CGRect(x: 0, y: 0, width: size.width + stroke.width, height: size.height + stroke.width)
 		strokeTextLayer.frame = size
 		strokeTextLayer.bounds = CGRect(x: -stroke.width, y: stroke.width, width: size.width + stroke.width, height: size.height + stroke.width)
 
-		let gradientLayer = createLinearGradientLayer(size: size, gradient: gradient)
-
 		let resultView = MView(frame: size)
 		gradientLayer.mask = strokeTextLayer
-
-#if os(OSX)
 		resultView.wantsLayer = true
-		resultView.layer?.addSublayer(gradientLayer)
+		resultView.layer = gradientLayer
 #else
-		resultView.layer.addSublayer(gradientLayer)
-		resultView.layer.addSublayer(strokeTextLayer)
-		gradientLayer.mask = strokeTextLayer
-#endif
+		let strokeLabel = UILabel(frame: .zero)
+		strokeLabel.attributedText = attributedString
 
+		strokeLabel.frame = size
+		strokeLabel.bounds = CGRect(x: stroke.width, y: stroke.width, width: size.width + stroke.width, height: size.height + stroke.width)
+
+		let resultView = MView(frame: size)
+		resultView.layer.addSublayer(gradientLayer)
+		resultView.addSubview(strokeLabel)
+		resultView.layer.mask = strokeLabel.layer
+#endif
 		return resultView
 	}
 
@@ -273,7 +276,7 @@ struct StrokeTextLabel: MRepresentable {
 
 		strokeTextLayer.frame = size
 
-		let gradientLayer = createLinearGradientLayer(size: size, gradient: gradient)
+		let gradientLayer = getLinearGradientLayer(size: size, gradient: gradient)
 		let resultView = MView(frame: size)
 		gradientLayer.mask = strokeTextLayer
 //		resultView.wantsLayer = true
@@ -525,7 +528,7 @@ private func getGradientColors(gradient: SVGGradient) -> [MColor] {
 	return NSColorArr
 }
 
-func createLinearGradientLayer(size: CGRect, gradient: SVGLinearGradient) -> CAGradientLayer {
+func getLinearGradientLayer(size: CGRect, gradient: SVGLinearGradient) -> CAGradientLayer {
 	let gradientLayer = CAGradientLayer()
 	gradientLayer.frame = size
 	let gradientColors = getGradientColors(gradient: gradient)
