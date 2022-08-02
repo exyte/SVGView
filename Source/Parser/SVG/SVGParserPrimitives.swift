@@ -27,7 +27,7 @@ public class SVGHelper: NSObject {
         }
 
         return SVGStroke(
-            fill: fill.opacity(SVGHelper.parseOpacity(style, "stroke-opacity")),
+            fill: fill.opacity(SVGHelper.parseOpacity(style, "stroke-opacity", alternativeKeys: ["opacity"])),
             width: parseCGFloat(style, "stroke-width", defaultValue: 1),
             cap: getStrokeCap(style),
             join: getStrokeJoin(style),

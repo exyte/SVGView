@@ -1,0 +1,84 @@
+SVGViewport {
+	id: "svg-root",
+	viewBox: { width: 480, height: 360 },
+	contents: [
+		SVGGroup {
+			id: "test-body-content",
+			contents: [
+				SVGGroup {
+					id: "G1",
+					transform: [1, 0, 0, 1, 120, 30],
+					contents: [
+						SVGRect {
+							width: 90,
+							height: 70,
+							fill: "blue",
+							stroke: { fill: "red", width: 5 }
+						},
+						SVGRect {
+							x: 100,
+							width: 90,
+							height: 70,
+							fill: "blue",
+							stroke: { fill: "red", width: 5 }
+						},
+						SVGRect {
+							y: 80,
+							width: 90,
+							height: 70,
+							fill: "60% yellow",
+							stroke: { fill: "60% red", width: 2 }
+						},
+						SVGRect {
+							x: 100,
+							y: 80,
+							width: 90,
+							height: 70,
+							fill: "20% blue",
+							stroke: { fill: "90% yellow", width: 5 }
+						},
+						SVGGroup {
+							id: "G2",
+							contents: [
+								SVGRect {
+									y: 160,
+									width: 90,
+									height: 70,
+									fill: "yellow",
+									stroke: { fill: "red", width: 5 }
+								},
+								SVGRect {
+									x: 100,
+									y: 160,
+									width: 90,
+									height: 70,
+									fill: "yellow",
+									stroke: { fill: "red", width: 5 }
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		SVGGroup {
+			contents: [
+				SVGText {
+					id: "revision",
+					text: "$Revision: 1.6 $",
+					font: { name: "SVGFreeSansASCII,sans-serif", size: 32 },
+					fill: "black",
+					transform: [1, 0, 0, 1, 10, 340]
+				}
+			]
+		},
+		SVGRect {
+			id: "test-frame",
+			x: 1,
+			y: 1,
+			width: 478,
+			height: 358,
+			stroke: { fill: "black" }
+		}
+	]
+}
