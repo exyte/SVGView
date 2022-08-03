@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 public class SVGNode: SerializableElement {
 

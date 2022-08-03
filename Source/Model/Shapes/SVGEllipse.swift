@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 public class SVGEllipse: SVGShape, ObservableObject {
 
