@@ -58,6 +58,9 @@ extension View {
     }
 
     func makeOneGesture(model: SVGNode) -> some Gesture {
+        guard model.gestures.count > 1 else {
+            return model.gestures.first
+        }
         var result = model.gestures.first
         for gesture in model.gestures {
             result = AnyGesture(SimultaneousGesture(result, gesture).map { _ in () })
