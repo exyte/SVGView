@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 class SVGViewport: SVGGroup {
 

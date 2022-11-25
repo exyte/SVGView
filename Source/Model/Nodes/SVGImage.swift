@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 public class SVGImage: SVGNode {
 
