@@ -1,4 +1,4 @@
-<img src="https://github.com/exyte/SVGView/blob/main/Assets/header.png">
+<img src="https://raw.githubusercontent.com/exyte/media/master/common/header.png">
 
 <p><h1 align="left">SVGView</h1></p>
 
@@ -93,6 +93,14 @@ Our mission is to provide 100% support of all SVG standards: 1.1 (Second Edition
 
 # Installation
 
+## Swift Package Manager
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/exyte/SVGView.git")
+]
+```
+
 ## CocoaPods
 
 ```ruby
@@ -105,15 +113,19 @@ pod 'SVGView'
 github "Exyte/SVGView"
 ```
 
-## Swift Package Manager
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/exyte/SVGView.git", from: "1.0.0")
-]
-```
-
 # Requirements
 
 * iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 11+
 * Xcode 11+
+
+## Our other open source SwiftUI libraries
+[PopupView](https://github.com/exyte/PopupView) - Toasts and popups library    
+[Grid](https://github.com/exyte/Grid) - The most powerful Grid container    
+[ScalingHeaderScrollView](https://github.com/exyte/ScalingHeaderScrollView) - A scroll view with a sticky header which shrinks as you scroll.    
+[MediaPicker](https://github.com/exyte/mediapicker) - Customizable media picker     
+[ConcentricOnboarding](https://github.com/exyte/ConcentricOnboarding) - Animated onboarding flow    
+[FloatingButton](https://github.com/exyte/FloatingButton) - Floating button menu    
+[ActivityIndicatorView](https://github.com/exyte/ActivityIndicatorView) - A number of animated loading indicators    
+[ProgressIndicatorView](https://github.com/exyte/ProgressIndicatorView) - A number of animated progress indicators  
+[LiquidSwipe](https://github.com/exyte/LiquidSwipe) - Liquid navigation animation    
+
