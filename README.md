@@ -31,7 +31,7 @@ Get started with `SVGView` in a few lines of code:
 ```Swift
 struct ContentView: View {
     var body: some View {
-        SVGView(fileURL: Bundle.main.url(forResource: "example", withExtension: "svg")!)
+        SVGView(contentsOf: Bundle.main.url(forResource: "example", withExtension: "svg")!)
     }
 }
 ```
@@ -43,7 +43,7 @@ You may locate the desired part of your SVG file using standard identifiers to a
 ```Swift
 struct ContentView: View {
     var body: some View {
-        let view = SVGView(fileURL: Bundle.main.url(forResource: "example", withExtension: "svg")!)
+        let view = SVGView(contentsOf: Bundle.main.url(forResource: "example", withExtension: "svg")!)
         if let part = view.getNode(byId: "part") {
             part.onTapGesture {
                 part.opacity = 0.2
@@ -74,7 +74,7 @@ SVGView makes it easy to add custom effects to your app. For example, make this 
 
 ```Swift
 var body: some View {
-    let view = SVGView(fileURL: Bundle.main.url(forResource: "pikachu", withExtension: "svg")!)
+    let view = SVGView(contentsOf: Bundle.main.url(forResource: "pikachu", withExtension: "svg")!)
     let delta = CGAffineTransform(translationX: getEyeX(), y: 0)
     view.getNode(byId: "eye1")?.transform = delta
     view.getNode(byId: "eye2")?.transform = delta
@@ -115,7 +115,7 @@ github "Exyte/SVGView"
 
 # Requirements
 
-* iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 11+
+* iOS 14+ / watchOS 7+ / tvOS 13+ / macOS 11+
 * Xcode 11+
 
 ## Our other open source SwiftUI libraries
