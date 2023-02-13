@@ -115,7 +115,7 @@ github "Exyte/SVGView"
 
 # Requirements
 
-* iOS 14+ / watchOS 6+ / macOS 11+
+* iOS 14+ / watchOS 7+ / macOS 11+
 * Xcode 12+
 
 ## Our other open source SwiftUI libraries
