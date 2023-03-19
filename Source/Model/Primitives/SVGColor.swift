@@ -87,7 +87,7 @@ public class SVGColor: SVGPaint {
         return (value >> 24) & 0xff
     }
 
-    var opacity: Double {
+    public var opacity: Double {
         return Double(a) / 255
     }
 
