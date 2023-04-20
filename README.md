@@ -54,7 +54,7 @@ struct ContentView: View {
 
 ## Animation
 
-You can use stanard SwiftUI tools to animate your image:
+You can use standard SwiftUI tools to animate your image:
 
 ```Swift
 if let part = view.getNode(byId: "part") {
