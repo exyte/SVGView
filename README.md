@@ -20,7 +20,7 @@ ___
 
 # Overview
 
-The goal of this project is to bring the full power of SVG to Apple platforms. Out framework can parse SVG files and represent their content in SwiftUI. It provides you with the ability to not only render SVG files, but also add interactivity to them, handle user input and use SwiftUI to put your art into motion.
+The goal of this project is to bring the full power of SVG to Apple platforms. Our framework can parse SVG files and represent their content in SwiftUI. It provides you with the ability to not only render SVG files, but also add interactivity to them, handle user input and use SwiftUI to put your art into motion.
 
 # Usage
 
