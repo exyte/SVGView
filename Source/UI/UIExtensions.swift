@@ -62,7 +62,8 @@ extension View {
             return model.gestures.first
         }
         var result = model.gestures.first
-        for gesture in model.gestures {
+        let gesturesToAdd = model.gestures.dropFirst(1)
+        for gesture in gesturesToAdd {
             result = AnyGesture(SimultaneousGesture(result, gesture).map { _ in () })
         }
         return result
