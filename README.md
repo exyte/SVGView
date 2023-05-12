@@ -34,6 +34,19 @@ struct ContentView: View {
 }
 ```
 
+## Customization
+
+You can change various parameters for the nodes like this:
+
+```Swift
+let circle = SVGCircle(cx: 30, cy: 30, r: 30)
+circle.fill = SVGColor.black
+circle.stroke = SVGStroke(fill: SVGColor(hex: "ABCDEF"), width: 2)
+circle.onTapGesture {
+    print("tap")
+}
+```
+
 ## Interact with vector elements
 
 You may locate the desired part of your SVG file using standard identifiers to add gestures and change its properties in runtime:
