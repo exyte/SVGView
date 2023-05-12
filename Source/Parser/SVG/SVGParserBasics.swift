@@ -9,9 +9,14 @@ import SwiftUI
 
 extension SVGHelper {
 
-    static func parseDouble(_ attributes: [String: String], _ key: String, defaultValue: Double = 0) -> Double {
+  static func parseDouble(_ attributes: [String: String], _ key: String, alternativeKeys: [String] = [], defaultValue: Double = 0) -> Double {
         if let value = attributes[key], let result = doubleFromString(value) {
             return result
+        }
+        for alternativeKey in alternativeKeys {
+            if let value = attributes[alternativeKey], let result = doubleFromString(value) {
+                return result
+            }
         }
         return defaultValue
     }
@@ -62,14 +67,14 @@ extension SVGHelper {
         return points
     }
 
-    static func parseOpacity(_ attributes: [String: String], _ key: String) -> Double {
-        let opacity = parseDouble(attributes, key, defaultValue: 1)
+    static func parseOpacity(_ attributes: [String: String], _ key: String, alternativeKeys: [String] = []) -> Double {
+        let opacity = parseDouble(attributes, key, alternativeKeys: alternativeKeys, defaultValue: 1)
         return min(max(opacity, 0), 1)
     }
 
     static func parseFill(_ style: [String: String], _ index: SVGIndex) -> SVGPaint? {
         guard let colorString = style["fill"] else {
-            return SVGColor.black.opacity(parseOpacity(style, "fill-opacity"))
+            return SVGColor.black.opacity(parseOpacity(style, "fill-opacity", alternativeKeys: ["opacity"]))
         }
         return parseFillInternal(colorString, style, index)
     }
@@ -88,7 +93,7 @@ extension SVGHelper {
             }
         }
         if let color = parseColor(colorString, style) {
-            return color.opacity(parseOpacity(style, "fill-opacity"))
+            return color.opacity(parseOpacity(style, "fill-opacity", alternativeKeys: ["opacity"]))
         }
         
         return .none
