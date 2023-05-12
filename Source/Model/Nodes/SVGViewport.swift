@@ -1,7 +1,7 @@
 import SwiftUI
 import Combine
 
-class SVGViewport: SVGGroup {
+public class SVGViewport: SVGGroup {
 
     @Published public var width: SVGLength {
         willSet {

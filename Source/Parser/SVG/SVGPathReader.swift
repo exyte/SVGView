@@ -317,7 +317,7 @@ class PathReader {
 
 extension SVGPath {
 
-    func toBezierPath() -> MBezierPath {
+    public func toBezierPath() -> MBezierPath {
 
         func calcAngle(ux: CGFloat, uy: CGFloat, vx: CGFloat, vy: CGFloat) -> CGFloat {
             let sign = copysign(1, ux * vy - uy * vx)
