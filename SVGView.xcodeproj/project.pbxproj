@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4460F8F6287C310A00E50E11 /* SVGGUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460F8F5287C310A00E50E11 /* SVGGUITextView.swift */; };
+		4460F8F7287C310A00E50E11 /* SVGGUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4460F8F5287C310A00E50E11 /* SVGGUITextView.swift */; };
 		5815294025B6C8F600E8D23A /* SVGPaint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5815293F25B6C8F600E8D23A /* SVGPaint.swift */; };
 		5815294425B6C90F00E8D23A /* SVGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5815294325B6C90F00E8D23A /* SVGColor.swift */; };
 		5815298A25B752E600E8D23A /* SVGPreserveAspectRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5815298925B752E600E8D23A /* SVGPreserveAspectRatio.swift */; };
@@ -134,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4460F8F5287C310A00E50E11 /* SVGGUITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGGUITextView.swift; sourceTree = "<group>"; };
 		5815293F25B6C8F600E8D23A /* SVGPaint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPaint.swift; sourceTree = "<group>"; };
 		5815294325B6C90F00E8D23A /* SVGColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGColor.swift; sourceTree = "<group>"; };
 		5815298925B752E600E8D23A /* SVGPreserveAspectRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPreserveAspectRatio.swift; sourceTree = "<group>"; };
@@ -296,6 +299,7 @@
 			children = (
 				5B1F462F251348F70068EF42 /* MBezierPath+Extension_macOS.swift */,
 				58A664F3283E96E700F1F6FD /* UIExtensions.swift */,
+				4460F8F5287C310A00E50E11 /* SVGGUITextView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -463,6 +467,7 @@
 				5BE3321924E1446A00BB0D60 /* Sources */,
 				5BE3321A24E1446A00BB0D60 /* Frameworks */,
 				5BE3321B24E1446A00BB0D60 /* Resources */,
+				44FD79C9287D475F00AE8899 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -546,6 +551,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		44FD79C9287D475F00AE8899 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5BE3321924E1446A00BB0D60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -589,6 +614,7 @@
 				586D5C2C284295C400C79E0E /* SVGTextParser.swift in Sources */,
 				586D5C3228429BE600C79E0E /* SVGShapeParser.swift in Sources */,
 				5B1017EC25358E5600105E9A /* SVGLength.swift in Sources */,
+				4460F8F6287C310A00E50E11 /* SVGGUITextView.swift in Sources */,
 				58869B6D25B5C52D00F6E324 /* Serializer.swift in Sources */,
 				5BE3327224E144B200BB0D60 /* SVGStroke.swift in Sources */,
 				5BE3326324E144B200BB0D60 /* SVGLine.swift in Sources */,
@@ -633,6 +659,7 @@
 				58A66521283E99FB00F1F6FD /* Serializations.swift in Sources */,
 				58A66507283E99AC00F1F6FD /* SVGPolygon.swift in Sources */,
 				586D5C30284298BB00C79E0E /* SVGImageParser.swift in Sources */,
+				4460F8F7287C310A00E50E11 /* SVGGUITextView.swift in Sources */,
 				58A664FA283E991E00F1F6FD /* SVGLength.swift in Sources */,
 				58A6650B283E99B700F1F6FD /* SVGRect.swift in Sources */,
 				58A66520283E99F900F1F6FD /* Serializable.swift in Sources */,
