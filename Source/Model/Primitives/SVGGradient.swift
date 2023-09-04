@@ -83,6 +83,7 @@ public class SVGLinearGradient: SVGGradient {
                     .frame(width: width, height: height)
                     .offset(x: bounds.minX, y: bounds.minY)
                     .mask(view)
+                    .opacity(opacity)
             )
     }
 
@@ -130,6 +131,7 @@ public class SVGRadialGradient: SVGGradient {
                                         height: userSpace ? 1 : height/minimum))
                     .offset(x: bounds.minX, y: bounds.minY)
                     .mask(view)
+                    .opacity(opacity)
             )
     }
 
@@ -151,10 +153,16 @@ public class SVGGradient: SVGPaint, Equatable {
 
     public let userSpace: Bool
     public let stops: [SVGStop]
+    public private(set) var opacity: Double = 1.0
 
     public init(userSpace: Bool = false, stops: [SVGStop] = []) {
         self.userSpace = userSpace
         self.stops = stops
+    }
+
+    public override func opacity(_ opacity: Double) -> SVGGradient {
+        self.opacity = opacity
+        return self
     }
 
 }
