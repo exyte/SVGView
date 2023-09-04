@@ -89,7 +89,7 @@ extension SVGHelper {
     static func parseFillInternal(_ colorString: String, _ style: [String: String], _ index: SVGIndex) -> SVGPaint? {
         if let colorId = SVGHelper.parseIdFromUrl(colorString) {
             if let paint = index.paint(by: colorId) {
-                return paint
+                return paint.opacity(parseOpacity(style, "fill-opacity", alternativeKeys: ["opacity"]))
             }
         }
         if let color = parseColor(colorString, style) {
