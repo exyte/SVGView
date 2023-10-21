@@ -52,6 +52,8 @@ extension MBezierPath {
 
             case .closePath:
                 path.closeSubpath()
+            case .cubicCurveTo: fallthrough
+            case .quadraticCurveTo: fallthrough
             @unknown default:
                 fatalError("Type of element undefined")
             }
