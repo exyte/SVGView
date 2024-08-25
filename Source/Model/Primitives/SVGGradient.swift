@@ -81,7 +81,7 @@ public class SVGLinearGradient: SVGGradient {
                             .scaleEffect(CGSize(width: width/maximum, height: height/maximum))
                     }
                     .frame(width: width, height: height)
-                    .offset(x: bounds.minX, y: bounds.minY)
+                    .offset(x: frame.minX, y: frame.minY)
                     .mask(view)
             )
     }
