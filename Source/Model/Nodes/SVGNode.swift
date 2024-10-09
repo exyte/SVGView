@@ -9,8 +9,8 @@ public class SVGNode: SerializableElement {
     @Published public var clip: SVGNode?
     @Published public var mask: SVGNode?
     @Published public var id: String?
-    @Published public var trimFrom: Double = 0
-    @Published public var trimTo: Double = 0
+    @Published public var trimFrom: Double
+    @Published public var trimTo: Double
 
     var gestures = [AnyGesture<()>]()
 
