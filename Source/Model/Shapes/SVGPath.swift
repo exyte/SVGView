@@ -46,7 +46,8 @@ extension MBezierPath {
         let isGradient = model.fill is SVGGradient
         let bounds = isGradient ? model.bounds() : CGRect.zero
         return Path(self.cgPath)
-            .applySVGStroke(stroke: model.stroke, eoFill: eoFill)
+            .trim(from: model.trimFrom, to: model.trimTo)
+            .applySVGStroke(stroke: model.pathStroke ?? model.stroke, eoFill: eoFill)
             .applyShapeAttributes(model: model)
             .applyIf(isGradient) {
                 $0.frame(width: bounds.width, height: bounds.height)
