@@ -148,10 +148,10 @@ class SVGIndex {
 
             let xScale = abs(transform.a)
             let yScale = abs(transform.d)
-            if xScale == yScale {
+            if xScale <= yScale {
                 r *= xScale
             } else {
-                print("SVG parsing error. No oval radial gradients supported")
+                r *= yScale
             }
 
             let point2 = CGPoint(x: fx, y: fy).applying(transform)
