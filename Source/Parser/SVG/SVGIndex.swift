@@ -177,12 +177,16 @@ class SVGIndex {
     private func parseStop(_ element: XMLElement, _ style: [String: String]) -> SVGStop? {
         let offset = getDoubleValueFromPercentage(element, attribute: "offset")
 
+        // Explode any CSS styles and merge with XML style attributes
+        let cssAttributes = SVGParser.getStyleAttributes(xml: element, index: self)
+        let attributes = element.attributes.merging(cssAttributes) { current, _ in current }
+
         var opacity: Double = 1
-        if let stopOpacity = element.attributes["stop-opacity"], let doubleValue = Double(stopOpacity) {
+        if let stopOpacity = attributes["stop-opacity"], let doubleValue = Double(stopOpacity) {
             opacity = doubleValue
         }
         var color = SVGColor.black.opacity(opacity)
-        if let stopColor = element.attributes["stop-color"], let clr = SVGHelper.parseColor(stopColor, style) {
+        if let stopColor = attributes["stop-color"], let clr = SVGHelper.parseColor(stopColor, style) {
             color = clr.opacity(opacity)
         }
         return SVGStop(color: color, offset: offset)
