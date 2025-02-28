@@ -71,7 +71,8 @@ public class SVGLinearGradient: SVGGradient {
         let width = bounds.width
         let height = bounds.height
         let maximum = max(width, height)
-        
+        let offsetRect = model is SVGPolygon ? frame : bounds
+
         return view
             .foregroundColor(.clear)
             .overlay(
@@ -81,7 +82,7 @@ public class SVGLinearGradient: SVGGradient {
                             .scaleEffect(CGSize(width: width/maximum, height: height/maximum))
                     }
                     .frame(width: width, height: height)
-                    .offset(x: bounds.minX, y: bounds.minY)
+                    .offset(x: offsetRect.minX, y: offsetRect.minY)
                     .mask(view)
             )
     }
