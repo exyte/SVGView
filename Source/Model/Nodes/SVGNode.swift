@@ -34,6 +34,7 @@ public class SVGNode: SerializableElement {
         return self.id == id ? self : .none
     }
 
+    @available(tvOS 16.0, *)
     public func onTapGesture(_ count: Int = 1, tapClosure: @escaping ()->()) {
         let newGesture = TapGesture(count: count).onEnded {
             tapClosure()
