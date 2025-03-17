@@ -69,7 +69,7 @@ struct SVGViewportView: View {
                 .transformEffect(getTransform(viewBox: viewBox, size: size))
         }
         .frame(idealWidth: model.width.ideal, idealHeight: model.height.ideal)
-        .clipped()
+        // Removed .clipped() to allow strokes to render beyond viewport bounds
     }
 
     private func getViewBox(size: CGSize) -> CGRect {
