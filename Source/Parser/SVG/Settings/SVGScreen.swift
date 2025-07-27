@@ -5,7 +5,7 @@
 //  Created by Yuri Strot on 27.05.2022.
 //
 
-import CoreGraphics
+import Foundation
 
 struct SVGScreen {
 

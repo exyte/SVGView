@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 enum SVGLengthAxis {
 
