@@ -34,7 +34,37 @@ class SVGURLLinker: SVGLinker {
     }
 
     public override func load(src: String) throws -> Data? {
-        let url = url.appendingPathComponent(src)
-        return try Data(contentsOf: url)
+        let src = src.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !src.isEmpty else { return nil }
+
+        guard URLComponents(string: src)?.scheme == nil else {
+            return nil
+        }
+
+        let resolvedURL: URL
+        if url.isFileURL {
+            resolvedURL = URL(fileURLWithPath: src, relativeTo: url).standardizedFileURL
+            guard url.contains(resolvedFileURL: resolvedURL) else {
+                return nil
+            }
+        } else if let url = URL(string: src, relativeTo: url)?.absoluteURL {
+            resolvedURL = url
+        } else {
+            return nil
+        }
+
+        return try Data(contentsOf: resolvedURL)
+    }
+}
+
+private extension URL {
+    func contains(resolvedFileURL: URL) -> Bool {
+        guard isFileURL, resolvedFileURL.isFileURL else { return false }
+
+        let basePath = standardizedFileURL.resolvingSymlinksInPath().path
+        let resolvedPath = resolvedFileURL.standardizedFileURL.resolvingSymlinksInPath().path
+        let baseDirectoryPath = basePath.hasSuffix("/") ? basePath : basePath + "/"
+
+        return resolvedPath == basePath || resolvedPath.hasPrefix(baseDirectoryPath)
     }
 }
