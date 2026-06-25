@@ -1,4 +1,4 @@
-#if os(WASI) || os(Linux)
+#if os(WASI) || os(Linux) || os(Android)
 import Foundation
 #else
 import SwiftUI
@@ -7,7 +7,7 @@ import Combine
 
 public class SVGRect: SVGShape {
 
-    #if os(WASI) || os(Linux)
+    #if os(WASI) || os(Linux) || os(Android)
     public var x: CGFloat
     public var y: CGFloat
     public var width: CGFloat

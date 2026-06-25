@@ -7,7 +7,7 @@
 
 import Foundation
 
-#if os(WASI) || os(Linux)
+#if os(WASI) || os(Linux) || os(Android)
     private let KAPPA: CGFloat = 0.5522847498  // 4 *(sqrt(2) -1)/3
 
     public struct CGAffineTransform: Equatable {

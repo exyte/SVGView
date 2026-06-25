@@ -1,4 +1,4 @@
-#if os(WASI) || os(Linux)
+#if os(WASI) || os(Linux) || os(Android)
 import Foundation
 #else
 import SwiftUI
@@ -60,7 +60,7 @@ public class SVGMarker: SVGGroup {
         case strokeWidth
     }
 
-    #if os(WASI) || os(Linux)
+    #if os(WASI) || os(Linux) || os(Android)
     public var markerHeight: SVGLength
     public var markerUnits: MarkerUnits
     public var markerWidth: SVGLength

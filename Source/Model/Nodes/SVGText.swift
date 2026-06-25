@@ -1,4 +1,4 @@
-#if os(WASI) || os(Linux)
+#if os(WASI) || os(Linux) || os(Android)
 import Foundation
 #else
 import SwiftUI
@@ -12,7 +12,7 @@ public class SVGText: SVGNode {
         case trailing
     }
     
-    #if os(WASI) || os(Linux)
+    #if os(WASI) || os(Linux) || os(Android)
     public var text: String
     public var font: SVGFont?
     public var fill: SVGPaint?

@@ -5,7 +5,7 @@
 //  Created by Alisa Mylnikova on 20/07/2020.
 //
 
-#if os(WASI) || os(Linux)
+#if os(WASI) || os(Linux) || os(Android)
 import Foundation
 #else
 import SwiftUI

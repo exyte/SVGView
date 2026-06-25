@@ -5,7 +5,7 @@
 //  Created by Alisa Mylnikova on 10/06/2021.
 //
 
-#if os(WASI) || os(Linux)
+#if os(WASI) || os(Linux) || os(Android)
 import Foundation
 #else
 import SwiftUI
@@ -13,7 +13,7 @@ import Combine
 #endif
 
 public class SVGDataImage: SVGImage {
-    #if os(WASI) || os(Linux)           
+    #if os(WASI) || os(Linux) || os(Android)           
     public var data: Data
     #else
     @Published public var data: Data

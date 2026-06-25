@@ -22,7 +22,7 @@ import XCTest
 
 final class PolyfillTests: XCTestCase {
     
-    #if os(WASI) || os(Linux)
+    #if os(WASI) || os(Linux) || os(Android)
     
     // MARK: - CGAffineTransform Tests
     

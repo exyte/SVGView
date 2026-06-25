@@ -11,7 +11,7 @@ public typealias MBezierPath = NSBezierPath
 #elseif os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
 public typealias MBezierPath = UIBezierPath
-#elseif os(WASI) || os(Linux)
+#elseif os(WASI) || os(Linux) || os(Android)
 import Foundation
 #endif
 
@@ -336,7 +336,7 @@ extension SVGPath {
             return CGFloat > 0.5 ? true : false
         }
 
-        #if os(WASI) || os(Linux)
+        #if os(WASI) || os(Linux) || os(Android)
         var bezierPath = MBezierPath()
         #else
         let bezierPath = MBezierPath()
@@ -565,7 +565,7 @@ extension SVGPath {
                 bezierPath.addArc(withCenter: CGPoint(x: cx, y: cy), radius: CGFloat(w / 2), startAngle: extent, endAngle: end, clockwise: arcAngle >= 0)
             } else {
                 let maxSize = CGFloat(max(w, h))
-                #if os(WASI) || os(Linux)
+                #if os(WASI) || os(Linux) || os(Android)
                 var path = MBezierPath(arcCenter: CGPoint.zero, radius: maxSize / 2, startAngle: extent, endAngle: end, clockwise: arcAngle >= 0)
                 #else
                 let path = MBezierPath(arcCenter: CGPoint.zero, radius: maxSize / 2, startAngle: extent, endAngle: end, clockwise: arcAngle >= 0)
