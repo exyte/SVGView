@@ -147,7 +147,7 @@ class SVGRefGenerator: XCTestCase {
     }
 
     func createReference(name: String, version: String) {
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle.module
         let url = bundle.url(forResource: name, withExtension: "svg", subdirectory: version)!
         let versionNumber = String(version.split(separator: "/")[1])
         let testDirectory = getTestDir(version: versionNumber)
