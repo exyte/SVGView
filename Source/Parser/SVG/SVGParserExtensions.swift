@@ -5,7 +5,7 @@
 //  Created by Yuri Strot on 25.05.2022.
 //
 
-import CoreGraphics
+import Foundation
 
 extension CGFloat {
 
