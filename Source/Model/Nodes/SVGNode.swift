@@ -9,16 +9,22 @@ public class SVGNode: SerializableElement {
     @Published public var clip: SVGNode?
     @Published public var mask: SVGNode?
     @Published public var id: String?
+    @Published public var trimFrom: Double
+    @Published public var trimTo: Double
+    @Published public var pathStroke: SVGStroke?
 
     var gestures = [AnyGesture<()>]()
 
-    public init(transform: CGAffineTransform = .identity, opaque: Bool = true, opacity: Double = 1, clip: SVGNode? = nil, mask: SVGNode? = nil, id: String? = nil) {
+    public init(transform: CGAffineTransform = .identity, opaque: Bool = true, opacity: Double = 1, clip: SVGNode? = nil, mask: SVGNode? = nil, id: String? = nil, trimFrom: Double = 0, trimTo: Double = 1, pathStroke: SVGStroke? = nil) {
         self.transform = transform
         self.opaque = opaque
         self.opacity = opacity
         self.clip = clip
         self.mask = mask
         self.id = id
+        self.trimFrom = trimFrom
+        self.trimTo = trimTo
+        self.pathStroke = pathStroke
     }
 
     public func bounds() -> CGRect {
@@ -56,6 +62,9 @@ public class SVGNode: SerializableElement {
         serializer.add("opacity", opacity, 1)
         serializer.add("opaque", opaque, true)
         serializer.add("clip", clip).add("mask", mask)
+        serializer.add("trimFrom", trimFrom)
+        serializer.add("trimTo", trimTo)
+        serializer.add("pathStroke", pathStroke)
     }
 
     var typeName: String {
